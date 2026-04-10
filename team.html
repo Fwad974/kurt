@@ -66,6 +66,41 @@
 .apply-step h3 em{font-style:italic}
 .apply-step p{font-size:.92rem; line-height:1.62; color:var(--ink-2); margin:0}
 
+.team-group{
+  max-width:1400px;
+  margin:0 auto;
+  padding:0 48px 48px;
+}
+.team-group .card-grid{margin-bottom:0}
+.team-group-head{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:36px;
+  padding-bottom:0;
+}
+.team-group-label{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.68rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink);
+  white-space:nowrap;
+  font-weight:500;
+}
+.team-group-line{
+  flex:1;
+  height:1px;
+  background:var(--line);
+}
+.team-group-count{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.6rem;
+  letter-spacing:.08em;
+  color:var(--muted);
+  white-space:nowrap;
+}
+
 @media (max-width:900px){
   .timeline{grid-template-columns:1fr; gap:0}
   .timeline::before{display:none}
@@ -73,6 +108,7 @@
   .t-item::before{left:-5px; top:30px}
   .contact-grid, .pos-grid, .apply-steps{grid-template-columns:1fr}
   .legal, .addr-block, .contact-card, .apply-step, .pos-card{padding:28px}
+  .team-group{padding:0 24px 36px}
 }
 </style>
 <link rel="stylesheet" href="site_v4blend.css">
@@ -113,268 +149,214 @@
 </section>
 
 
-<section class="sec">
-  <div class="sec-head">
-    <div class="eyebrow rv">§ The people</div>
-    <div>
-      <h2 class="display" data-split-on-reveal>Interdisciplinary by <em>design</em>.</h2>
-      <p class="sec-lede rv">Stem cell biology, cardiac tissue engineering, biomaterials, and translational medicine. The MWB Lab is an international and collaborative training environment for the next generation of cardiac regenerative scientists.</p>
-    </div>
-  </div>
-  <div class="lead-figure">
-    <div class="figure hero-fig figure-reveal">
-    <div class="fig-inner microscopy" style="background-image:url('bg_merged.webp')"></div>
-    <div class="fig-stack"><img src="stack_merged.webp" alt=""></div>
-    <div class="fig-overlay"></div>
-    <div class="fig-label">Group photo</div>
-    <div class="fig-caption"><span class="sm">Placeholder · to be provided</span><span>Institute of Physiology I</span></div>
-  </div>
-  </div>
-</section>
-
-<section class="sec">
-  <div class="sec-head">
-    <div class="eyebrow rv">§ 01 — Leadership</div>
-    <div>
-      <h2 class="display" data-split-on-reveal>Directed by a <em>small senior team</em>.</h2>
-      <p class="sec-lede rv">The lab is led by the Principal Investigator and the Head of Scientific Development.</p>
-    </div>
+<section class="team-group">
+  <div class="team-group-head rv">
+    <span class="team-group-label">Leadership</span>
+    <span class="team-group-line"></span>
+    <span class="team-group-count">2 members</span>
   </div>
   <div class="card-grid four">
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
-    <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
-    <div class="fig-overlay"></div>
-    <div class="placeholder">Portrait<br>Prof. Dr. Kurt Pfannkuche</div>
-    <div class="fig-label">Principal Investigator</div>
-  </div>
+        <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
+        <div class="fig-overlay"></div>
+        <div class="placeholder">Portrait<br>Prof. Dr. Kurt Pfannkuche</div>
+      </div>
       <div class="body">
-        <div class="mono">Principal Investigator</div>
         <h3>Prof. Dr. Kurt <em>Pfannkuche</em></h3>
-        <p>Head of the MWB Lab at the Institute of Physiology I. Scalable cardiomyocyte production, cardiac regenerative medicine, and translational validation of cell therapies.</p>
-        <div class="meta">→ <a href="mailto:kurt.pfannkuche@uni-koeln.de">kurt.pfannkuche@uni-koeln.de</a></div>
+        <div class="mono">Principal Investigator</div>
+        <p>Scalable cardiomyocyte production, cardiac regenerative medicine, and translational validation.</p>
+        <div class="meta"><a href="mailto:kurt.pfannkuche@uni-koeln.de">kurt.pfannkuche@uni-koeln.de</a></div>
       </div>
     </div>
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
-    <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
-    <div class="fig-overlay"></div>
-    <div class="placeholder">Portrait<br>Dr. Sarkawt Hamad</div>
-    <div class="fig-label">Head of Scientific Development</div>
-  </div>
+        <div class="fig-inner" style="background:url('team/Sarkawt.jpg') center/cover"></div>
+        <div class="fig-overlay"></div>
+      </div>
       <div class="body">
-        <div class="mono">Head of Scientific Development</div>
         <h3>Dr. Sarkawt <em>Hamad</em></h3>
-        <p>Leads scientific development of the cardiac organoid and 3D tissue programmes, including hydrogel-based culture systems and drug validation platforms.</p>
-        <div class="meta">→ <a href="mailto:shamad@uni-koeln.de">shamad@uni-koeln.de</a></div>
+        <div class="mono">Head of Scientific Development</div>
+        <p>Cardiac organoid and 3D tissue programmes, hydrogel-based culture systems and drug validation.</p>
+        <div class="meta"><a href="mailto:shamad@uni-koeln.de">shamad@uni-koeln.de</a></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="sec">
-  <div class="sec-head">
-    <div class="eyebrow rv">§ 02 — Scientific staff</div>
-    <div>
-      <h2 class="display" data-split-on-reveal>Senior scientists &amp; <em>advisors</em>.</h2>
-      <p class="sec-lede rv">Staff scientists and advisors supporting the lab's active research programmes.</p>
-    </div>
+<section class="team-group">
+  <div class="team-group-head rv">
+    <span class="team-group-label">Scientific Staff</span>
+    <span class="team-group-line"></span>
+    <span class="team-group-count">3 members</span>
   </div>
   <div class="card-grid four">
-    
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
-    <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
-    <div class="fig-overlay"></div>
-    <div class="placeholder">Portrait<br>Scientific staff A</div>
-    <div class="fig-label">Staff scientist</div>
-  </div>
-      <div class="body"><div class="mono">Staff scientist</div><h3>Scientific staff A</h3><p>Placeholder · short expertise line to be provided.</p></div>
+        <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
+        <div class="fig-overlay"></div>
+        <div class="placeholder">Portrait<br>Scientific staff A</div>
+      </div>
+      <div class="body"><h3>Scientific staff A</h3><div class="mono">Staff scientist</div><p>Placeholder · short expertise line to be provided.</p></div>
     </div>
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
-    <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
-    <div class="fig-overlay"></div>
-    <div class="placeholder">Portrait<br>Scientific staff B</div>
-    <div class="fig-label">Staff scientist</div>
-  </div>
-      <div class="body"><div class="mono">Staff scientist</div><h3>Scientific staff B</h3><p>Placeholder · short expertise line to be provided.</p></div>
+        <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
+        <div class="fig-overlay"></div>
+        <div class="placeholder">Portrait<br>Scientific staff B</div>
+      </div>
+      <div class="body"><h3>Scientific staff B</h3><div class="mono">Staff scientist</div><p>Placeholder · short expertise line to be provided.</p></div>
     </div>
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
-    <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
-    <div class="fig-overlay"></div>
-    <div class="placeholder">Portrait<br>Scientific staff C</div>
-    <div class="fig-label">Staff scientist</div>
-  </div>
-      <div class="body"><div class="mono">Staff scientist</div><h3>Scientific staff C</h3><p>Placeholder · short expertise line to be provided.</p></div>
+        <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
+        <div class="fig-overlay"></div>
+        <div class="placeholder">Portrait<br>Scientific staff C</div>
+      </div>
+      <div class="body"><h3>Scientific staff C</h3><div class="mono">Staff scientist</div><p>Placeholder · short expertise line to be provided.</p></div>
     </div>
   </div>
 </section>
 
-<section class="sec">
-  <div class="sec-head">
-    <div class="eyebrow rv">§ 03 — Researchers</div>
-    <div>
-      <h2 class="display" data-split-on-reveal>Postdocs and <em>PhD researchers</em>.</h2>
-      <p class="sec-lede rv">Project leads across cell manufacturing, organoids, translational work, and genetic engineering.</p>
-    </div>
+<section class="team-group">
+  <div class="team-group-head rv">
+    <span class="team-group-label">Researchers</span>
+    <span class="team-group-line"></span>
+    <span class="team-group-count">6 members</span>
   </div>
   <div class="card-grid four">
-    
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
-    <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
-    <div class="fig-overlay"></div>
-    <div class="placeholder">Portrait<br>Researcher A</div>
-    <div class="fig-label">Researcher</div>
-  </div>
-      <div class="body"><div class="mono">Postdoc / PhD</div><h3>Researcher A</h3><p>Placeholder · research focus to be provided.</p></div>
+        <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
+        <div class="fig-overlay"></div>
+        <div class="placeholder">Portrait<br>Researcher A</div>
+      </div>
+      <div class="body"><h3>Researcher A</h3><div class="mono">Postdoc / PhD</div><p>Placeholder · research focus to be provided.</p></div>
     </div>
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
-    <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
-    <div class="fig-overlay"></div>
-    <div class="placeholder">Portrait<br>Researcher B</div>
-    <div class="fig-label">Researcher</div>
-  </div>
-      <div class="body"><div class="mono">Postdoc / PhD</div><h3>Researcher B</h3><p>Placeholder · research focus to be provided.</p></div>
+        <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
+        <div class="fig-overlay"></div>
+        <div class="placeholder">Portrait<br>Researcher B</div>
+      </div>
+      <div class="body"><h3>Researcher B</h3><div class="mono">Postdoc / PhD</div><p>Placeholder · research focus to be provided.</p></div>
     </div>
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
-    <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
-    <div class="fig-overlay"></div>
-    <div class="placeholder">Portrait<br>Researcher C</div>
-    <div class="fig-label">Researcher</div>
-  </div>
-      <div class="body"><div class="mono">Postdoc / PhD</div><h3>Researcher C</h3><p>Placeholder · research focus to be provided.</p></div>
+        <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
+        <div class="fig-overlay"></div>
+        <div class="placeholder">Portrait<br>Researcher C</div>
+      </div>
+      <div class="body"><h3>Researcher C</h3><div class="mono">Postdoc / PhD</div><p>Placeholder · research focus to be provided.</p></div>
     </div>
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
-    <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
-    <div class="fig-overlay"></div>
-    <div class="placeholder">Portrait<br>Researcher D</div>
-    <div class="fig-label">Researcher</div>
-  </div>
-      <div class="body"><div class="mono">Postdoc / PhD</div><h3>Researcher D</h3><p>Placeholder · research focus to be provided.</p></div>
+        <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
+        <div class="fig-overlay"></div>
+        <div class="placeholder">Portrait<br>Researcher D</div>
+      </div>
+      <div class="body"><h3>Researcher D</h3><div class="mono">Postdoc / PhD</div><p>Placeholder · research focus to be provided.</p></div>
     </div>
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
-    <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
-    <div class="fig-overlay"></div>
-    <div class="placeholder">Portrait<br>Researcher E</div>
-    <div class="fig-label">Researcher</div>
-  </div>
-      <div class="body"><div class="mono">Postdoc / PhD</div><h3>Researcher E</h3><p>Placeholder · research focus to be provided.</p></div>
+        <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
+        <div class="fig-overlay"></div>
+        <div class="placeholder">Portrait<br>Researcher E</div>
+      </div>
+      <div class="body"><h3>Researcher E</h3><div class="mono">Postdoc / PhD</div><p>Placeholder · research focus to be provided.</p></div>
     </div>
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
-    <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
-    <div class="fig-overlay"></div>
-    <div class="placeholder">Portrait<br>Researcher F</div>
-    <div class="fig-label">Researcher</div>
-  </div>
-      <div class="body"><div class="mono">Postdoc / PhD</div><h3>Researcher F</h3><p>Placeholder · research focus to be provided.</p></div>
+        <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
+        <div class="fig-overlay"></div>
+        <div class="placeholder">Portrait<br>Researcher F</div>
+      </div>
+      <div class="body"><h3>Researcher F</h3><div class="mono">Postdoc / PhD</div><p>Placeholder · research focus to be provided.</p></div>
     </div>
   </div>
 </section>
 
-<section class="sec">
-  <div class="sec-head">
-    <div class="eyebrow rv">§ 04 — Students</div>
-    <div>
-      <h2 class="display" data-split-on-reveal>MSc and <em>MD students</em>.</h2>
-      <p class="sec-lede rv">Research projects embedded in the lab's active programmes.</p>
-    </div>
+<section class="team-group">
+  <div class="team-group-head rv">
+    <span class="team-group-label">Students</span>
+    <span class="team-group-line"></span>
+    <span class="team-group-count">4 members</span>
   </div>
   <div class="card-grid four">
-    
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
-    <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
-    <div class="fig-overlay"></div>
-    <div class="placeholder">Portrait<br>Student A</div>
-    <div class="fig-label">MSc / MD</div>
-  </div>
-      <div class="body"><div class="mono">Student</div><h3>Student A</h3><p>Placeholder · project title to be provided.</p></div>
+        <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
+        <div class="fig-overlay"></div>
+        <div class="placeholder">Portrait<br>Student A</div>
+      </div>
+      <div class="body"><h3>Student A</h3><div class="mono">MSc / MD</div><p>Placeholder · project title to be provided.</p></div>
     </div>
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
-    <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
-    <div class="fig-overlay"></div>
-    <div class="placeholder">Portrait<br>Student B</div>
-    <div class="fig-label">MSc / MD</div>
-  </div>
-      <div class="body"><div class="mono">Student</div><h3>Student B</h3><p>Placeholder · project title to be provided.</p></div>
+        <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
+        <div class="fig-overlay"></div>
+        <div class="placeholder">Portrait<br>Student B</div>
+      </div>
+      <div class="body"><h3>Student B</h3><div class="mono">MSc / MD</div><p>Placeholder · project title to be provided.</p></div>
     </div>
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
-    <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
-    <div class="fig-overlay"></div>
-    <div class="placeholder">Portrait<br>Student C</div>
-    <div class="fig-label">MSc / MD</div>
-  </div>
-      <div class="body"><div class="mono">Student</div><h3>Student C</h3><p>Placeholder · project title to be provided.</p></div>
+        <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
+        <div class="fig-overlay"></div>
+        <div class="placeholder">Portrait<br>Student C</div>
+      </div>
+      <div class="body"><h3>Student C</h3><div class="mono">MSc / MD</div><p>Placeholder · project title to be provided.</p></div>
     </div>
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
-    <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
-    <div class="fig-overlay"></div>
-    <div class="placeholder">Portrait<br>Student D</div>
-    <div class="fig-label">MSc / MD</div>
-  </div>
-      <div class="body"><div class="mono">Student</div><h3>Student D</h3><p>Placeholder · project title to be provided.</p></div>
+        <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
+        <div class="fig-overlay"></div>
+        <div class="placeholder">Portrait<br>Student D</div>
+      </div>
+      <div class="body"><h3>Student D</h3><div class="mono">MSc / MD</div><p>Placeholder · project title to be provided.</p></div>
     </div>
   </div>
 </section>
 
-<section class="sec">
-  <div class="sec-head">
-    <div class="eyebrow rv">§ 05 — Technical staff</div>
-    <div>
-      <h2 class="display" data-split-on-reveal>The <em>technical backbone</em>.</h2>
-      <p class="sec-lede rv">Cell culture, lab operations, and tissue engineering workflows.</p>
-    </div>
+<section class="team-group">
+  <div class="team-group-head rv">
+    <span class="team-group-label">Technical Staff</span>
+    <span class="team-group-line"></span>
+    <span class="team-group-count">3 members</span>
   </div>
   <div class="card-grid four">
-    
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
-    <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
-    <div class="fig-overlay"></div>
-    <div class="placeholder">Portrait<br>Technician A</div>
-    <div class="fig-label">Technical</div>
-  </div>
-      <div class="body"><div class="mono">Technical staff</div><h3>Technician A</h3><p>Placeholder · area of support to be provided.</p></div>
+        <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
+        <div class="fig-overlay"></div>
+        <div class="placeholder">Portrait<br>Technician A</div>
+      </div>
+      <div class="body"><h3>Technician A</h3><div class="mono">Technical staff</div><p>Placeholder · area of support to be provided.</p></div>
     </div>
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
-    <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
-    <div class="fig-overlay"></div>
-    <div class="placeholder">Portrait<br>Technician B</div>
-    <div class="fig-label">Technical</div>
-  </div>
-      <div class="body"><div class="mono">Technical staff</div><h3>Technician B</h3><p>Placeholder · area of support to be provided.</p></div>
+        <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
+        <div class="fig-overlay"></div>
+        <div class="placeholder">Portrait<br>Technician B</div>
+      </div>
+      <div class="body"><h3>Technician B</h3><div class="mono">Technical staff</div><p>Placeholder · area of support to be provided.</p></div>
     </div>
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
-    <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
-    <div class="fig-overlay"></div>
-    <div class="placeholder">Portrait<br>Technician C</div>
-    <div class="fig-label">Technical</div>
-  </div>
-      <div class="body"><div class="mono">Technical staff</div><h3>Technician C</h3><p>Placeholder · area of support to be provided.</p></div>
+        <div class="fig-inner" style="background:linear-gradient(180deg, var(--bone-2), var(--bone))"></div>
+        <div class="fig-overlay"></div>
+        <div class="placeholder">Portrait<br>Technician C</div>
+      </div>
+      <div class="body"><h3>Technician C</h3><div class="mono">Technical staff</div><p>Placeholder · area of support to be provided.</p></div>
     </div>
   </div>
 </section>
 
-<section class="sec" style="padding-bottom:100px">
-  <div class="sec-head">
-    <div class="eyebrow rv">§ 06 — Alumni</div>
-    <div>
-      <h2 class="display" data-split-on-reveal>Former members &amp; <em>where they went</em>.</h2>
-      <p class="sec-lede rv">An important record of the lab's training history.</p>
-    </div>
+<section class="team-group" style="padding-bottom:100px">
+  <div class="team-group-head rv">
+    <span class="team-group-label">Alumni</span>
+    <span class="team-group-line"></span>
+    <span class="team-group-count">Former members</span>
   </div>
   <div class="ed-list">
     <div class="ed-item rv"><div class="year">—</div><div class="body"><h3>Alumnus A</h3><div class="meta-line">Postdoc · 2020–2023 · Now at [Institution]</div></div><div class="tag">Alumni</div></div>

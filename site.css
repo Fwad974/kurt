@@ -585,21 +585,36 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   margin-bottom:120px;
 }
 .card-grid.two{grid-template-columns:repeat(2, 1fr)}
-.card-grid.four{grid-template-columns:repeat(4, 1fr)}
+.card-grid.four{
+  display:flex !important;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:24px 16px;
+  grid-template-columns:none;
+}
+.card-grid.four > .fig-card{
+  flex:0 0 220px;
+}
 .card-grid:last-child{margin-bottom:0}
 
 .fig-card{
   display:flex; flex-direction:column;
-  border:1px solid var(--line);
-  border-radius:2px;
-  background:rgba(244,240,232,.5);
-  overflow:hidden;
-  transition:border-color .4s var(--ease), transform .5s var(--ease);
+  align-items:center;
+  border:none;
+  border-radius:0;
+  background:transparent;
+  overflow:visible;
+  padding:16px 8px 24px;
+  transition:transform .4s var(--ease);
 }
-.fig-card:hover{border-color:var(--line-strong); transform:translateY(-2px)}
+.fig-card:hover{transform:translateY(-3px)}
+.fig-card:hover .figure.portrait{
+  box-shadow:0 8px 28px rgba(0,0,0,.12);
+  transform:scale(1.05);
+}
 .fig-card .figure{
   border:none;
-  border-bottom:1px solid var(--line);
+  border-bottom:none;
   box-shadow:none;
   border-radius:0;
 }
@@ -607,36 +622,35 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   border:none;
   border-bottom:none;
   border-radius:50%;
-  box-shadow:0 4px 16px rgba(0,0,0,.08);
+  box-shadow:0 4px 20px rgba(0,0,0,.10);
+  transition:box-shadow .4s var(--ease), transform .4s var(--ease);
 }
-.fig-card .body{padding:20px 20px 24px; text-align:center}
-.fig-card .mono{
-  font-family:"JetBrains Mono",monospace;
-  font-size:.64rem; letter-spacing:.12em; text-transform:uppercase;
-  color:var(--muted);
-  margin-bottom:8px;
-  display:flex; gap:12px; align-items:center;
-  justify-content:center;
-}
-.fig-card .mono::before{display:none}
+.fig-card .body{padding:16px 4px 0; text-align:center}
 .fig-card h3{
   font-family:"Fraunces",serif;
   font-variation-settings:"opsz" 144;
   font-weight:400;
-  font-size:1.1rem;
+  font-size:1.05rem;
   letter-spacing:-0.01em;
-  margin:0 0 8px;
+  margin:0 0 4px;
 }
 .fig-card h3 em{font-style:italic}
-.fig-card p{font-size:.82rem; line-height:1.55; color:var(--ink-2); margin:0}
-.fig-card .meta{
-  margin-top:16px; padding-top:14px;
-  border-top:1px solid var(--line);
+.fig-card .mono{
   font-family:"JetBrains Mono",monospace;
-  font-size:.66rem;
+  font-size:.58rem; letter-spacing:.10em; text-transform:uppercase;
   color:var(--muted);
+  margin-bottom:8px;
 }
-.fig-card .meta strong{color:var(--ink); font-weight:500}
+.fig-card p{font-size:.78rem; line-height:1.5; color:var(--ink-2); margin:0; max-width:28ch; margin-left:auto; margin-right:auto}
+.fig-card .meta{
+  margin-top:10px;
+  font-family:"JetBrains Mono",monospace;
+  font-size:.58rem;
+  color:var(--muted);
+  word-break:break-all;
+}
+.fig-card .meta a{color:var(--muted); text-decoration:none; transition:color .3s var(--ease)}
+.fig-card .meta a:hover{color:var(--ink)}
 
 /* lead figure (big hero-sized figure at the top of a page section) */
 .lead-figure{
@@ -705,14 +719,16 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   .split-sec{grid-template-columns:1fr; gap:40px; margin-bottom:80px}
   .split-sec.reverse .split-prose{order:0}
   .card-grid{grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom:80px}
-  .card-grid.two, .card-grid.four{grid-template-columns:repeat(2,1fr)}
+  .card-grid.two{grid-template-columns:1fr}
+  .card-grid.four > .fig-card{flex:0 0 200px}
   .lead-figure{margin-bottom:80px}
   .ed-item{grid-template-columns:60px 1fr; gap:16px}
   .ed-item .tag{grid-column:1/-1; justify-self:start; margin-top:4px}
 }
 @media (max-width:600px){
   .card-grid{grid-template-columns:1fr}
-  .card-grid.two, .card-grid.four{grid-template-columns:1fr}
+  .card-grid.two{grid-template-columns:1fr}
+  .card-grid.four > .fig-card{flex:0 0 180px}
 }
 
 /* =========================================================

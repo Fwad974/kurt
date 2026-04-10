@@ -262,7 +262,6 @@ body,
 .btn.ghost:hover{background:rgba(255,255,255,.06)!important; border-color:rgba(255,255,255,.18)!important;}
 
 .card,
-.fig-card,
 .contact-card,
 .addr-block,
 .legal,
@@ -276,13 +275,17 @@ body,
   background:linear-gradient(180deg, rgba(10,17,32,.78), rgba(5,9,18,.92))!important;
   box-shadow:0 1px 0 rgba(255,255,255,.04) inset, var(--shadow-lg)!important;
 }
+.fig-card{
+  background:transparent!important;
+  border:none!important;
+  box-shadow:none!important;
+}
 .card,
 .contact-card,
 .addr-block,
 .legal,
 .pos-card,
 .apply-step,
-.fig-card,
 .figure,
 .viewer-frame,
 .atlas-viewer{
@@ -294,7 +297,6 @@ body,
   background:transparent!important;
 }
 .card:hover,
-.fig-card:hover,
 .contact-card:hover,
 .pos-card:hover,
 .apply-step:hover,
@@ -303,8 +305,37 @@ body,
   border-color:rgba(14,184,150,.22)!important;
   box-shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 34px 90px rgba(0,0,0,.44), 0 0 0 1px rgba(14,184,150,.08)!important;
 }
-.fig-card .figure{border:none!important; border-bottom:1px solid var(--line)!important; border-radius:24px 24px 0 0!important;}
-.fig-card .figure.portrait{border-bottom:none!important; border-radius:50%!important;}
+.fig-card,
+.fig-card:hover{
+  background:transparent!important;
+  border:none!important;
+  box-shadow:none!important;
+  border-color:transparent!important;
+}
+.fig-card .figure,
+.fig-card .figure.portrait,
+.fig-card .figure.portrait.figure-reveal,
+.fig-card .figure:hover,
+.fig-card .figure.portrait:hover{
+  border:none!important;
+  border-bottom:none!important;
+  background:none!important;
+  box-shadow:none!important;
+  border-radius:50%!important;
+  overflow:hidden!important;
+}
+.fig-card .figure.portrait .fig-inner{
+  background:linear-gradient(180deg, rgba(20,35,60,.9), rgba(10,18,32,.95))!important;
+}
+.fig-card .figure.portrait .fig-overlay{
+  background:none!important;
+}
+.fig-card:hover .figure.portrait,
+.fig-card:hover .figure.portrait:hover{
+  box-shadow:0 8px 32px rgba(14,184,150,.2), 0 0 0 2px rgba(14,184,150,.18)!important;
+}
+.team-group-line{background:var(--line)!important}
+.team-group-label{color:rgba(255,255,255,.85)!important}
 
 .figure,
 .viewer-frame,
