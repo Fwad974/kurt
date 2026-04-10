@@ -305,11 +305,37 @@ body,
   border-color:rgba(14,184,150,.22)!important;
   box-shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 34px 90px rgba(0,0,0,.44), 0 0 0 1px rgba(14,184,150,.08)!important;
 }
-.fig-card:hover{box-shadow:none!important; border-color:transparent!important}
-.fig-card .figure{border:none!important; border-bottom:none!important; border-radius:0!important; background:transparent!important; box-shadow:none!important}
-.fig-card .figure.portrait{border-radius:50%!important; box-shadow:0 4px 20px rgba(0,0,0,.25)!important}
-.fig-card:hover .figure.portrait{box-shadow:0 8px 32px rgba(14,184,150,.18), 0 0 0 2px rgba(14,184,150,.15)!important}
+.fig-card,
+.fig-card:hover{
+  background:transparent!important;
+  border:none!important;
+  box-shadow:none!important;
+  border-color:transparent!important;
+}
+.fig-card .figure,
+.fig-card .figure.portrait,
+.fig-card .figure.portrait.figure-reveal,
+.fig-card .figure:hover,
+.fig-card .figure.portrait:hover{
+  border:none!important;
+  border-bottom:none!important;
+  background:none!important;
+  box-shadow:none!important;
+  border-radius:50%!important;
+  overflow:hidden!important;
+}
+.fig-card .figure.portrait .fig-inner{
+  background:linear-gradient(180deg, rgba(20,35,60,.9), rgba(10,18,32,.95))!important;
+}
+.fig-card .figure.portrait .fig-overlay{
+  background:none!important;
+}
+.fig-card:hover .figure.portrait,
+.fig-card:hover .figure.portrait:hover{
+  box-shadow:0 8px 32px rgba(14,184,150,.2), 0 0 0 2px rgba(14,184,150,.18)!important;
+}
 .team-group-line{background:var(--line)!important}
+.team-group-label{color:rgba(255,255,255,.85)!important}
 
 .figure,
 .viewer-frame,

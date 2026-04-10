@@ -585,7 +585,10 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   margin-bottom:120px;
 }
 .card-grid.two{grid-template-columns:repeat(2, 1fr)}
-.card-grid.four{grid-template-columns:repeat(4, 1fr)}
+.card-grid.four{
+  grid-template-columns:repeat(4, minmax(0, 260px));
+  justify-content:center;
+}
 .card-grid:last-child{margin-bottom:0}
 
 .fig-card{
@@ -710,7 +713,8 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   .split-sec{grid-template-columns:1fr; gap:40px; margin-bottom:80px}
   .split-sec.reverse .split-prose{order:0}
   .card-grid{grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom:80px}
-  .card-grid.two, .card-grid.four{grid-template-columns:repeat(2,1fr)}
+  .card-grid.two{grid-template-columns:1fr}
+  .card-grid.four{grid-template-columns:repeat(2, minmax(0, 260px)); justify-content:center}
   .lead-figure{margin-bottom:80px}
   .ed-item{grid-template-columns:60px 1fr; gap:16px}
   .ed-item .tag{grid-column:1/-1; justify-self:start; margin-top:4px}
