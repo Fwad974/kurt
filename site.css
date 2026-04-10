@@ -488,23 +488,28 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 .figure-reveal.in .fig-label{opacity:1}
 .figure-reveal.in .fig-caption{opacity:1}
 
-/* portrait figure variant — compact, soft vignette, no stack */
+/* portrait figure variant — circular avatar, fixed size */
 .figure.portrait{
   aspect-ratio:1/1;
-  max-height:280px;
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  overflow:hidden;
+  margin:28px auto 0;
+  flex-shrink:0;
 }
 .figure.portrait .placeholder{
   position:absolute; inset:0;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
-  gap:14px;
+  gap:8px;
   color:var(--muted);
   font-family:"JetBrains Mono",monospace;
-  font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;
-  text-align:center; line-height:1.8;
+  font-size:.5rem; letter-spacing:.14em; text-transform:uppercase;
+  text-align:center; line-height:1.6;
   opacity:.7;
 }
 .figure.portrait .placeholder::before{
-  content:""; width:56px; height:56px;
+  content:""; width:36px; height:36px;
   border:1px solid var(--line-strong);
   border-radius:50%;
 }
@@ -598,25 +603,32 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   box-shadow:none;
   border-radius:0;
 }
-.fig-card .body{padding:28px 32px 32px}
+.fig-card .figure.portrait{
+  border:none;
+  border-bottom:none;
+  border-radius:50%;
+  box-shadow:0 4px 16px rgba(0,0,0,.08);
+}
+.fig-card .body{padding:20px 20px 24px; text-align:center}
 .fig-card .mono{
   font-family:"JetBrains Mono",monospace;
   font-size:.64rem; letter-spacing:.12em; text-transform:uppercase;
   color:var(--muted);
-  margin-bottom:12px;
+  margin-bottom:8px;
   display:flex; gap:12px; align-items:center;
+  justify-content:center;
 }
-.fig-card .mono::before{content:""; width:18px; height:1px; background:var(--ink); opacity:.5}
+.fig-card .mono::before{display:none}
 .fig-card h3{
   font-family:"Fraunces",serif;
   font-variation-settings:"opsz" 144;
   font-weight:400;
-  font-size:1.3rem;
+  font-size:1.1rem;
   letter-spacing:-0.01em;
-  margin:0 0 12px;
+  margin:0 0 8px;
 }
 .fig-card h3 em{font-style:italic}
-.fig-card p{font-size:.92rem; line-height:1.62; color:var(--ink-2); margin:0}
+.fig-card p{font-size:.82rem; line-height:1.55; color:var(--ink-2); margin:0}
 .fig-card .meta{
   margin-top:16px; padding-top:14px;
   border-top:1px solid var(--line);
@@ -692,14 +704,15 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 @media (max-width:1100px){
   .split-sec{grid-template-columns:1fr; gap:40px; margin-bottom:80px}
   .split-sec.reverse .split-prose{order:0}
-  .card-grid{grid-template-columns:1fr; gap:14px; margin-bottom:80px}
-  .card-grid.two, .card-grid.four{grid-template-columns:1fr}
+  .card-grid{grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom:80px}
+  .card-grid.two, .card-grid.four{grid-template-columns:repeat(2,1fr)}
   .lead-figure{margin-bottom:80px}
   .ed-item{grid-template-columns:60px 1fr; gap:16px}
   .ed-item .tag{grid-column:1/-1; justify-self:start; margin-top:4px}
 }
-@media (min-width:681px) and (max-width:1100px){
-  .card-grid.four{grid-template-columns:repeat(2,1fr)}
+@media (max-width:600px){
+  .card-grid{grid-template-columns:1fr}
+  .card-grid.two, .card-grid.four{grid-template-columns:1fr}
 }
 
 /* =========================================================
