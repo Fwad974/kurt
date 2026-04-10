@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Translational Impact — MWB Lab</title>
+<meta name="description" content="Validated in a porcine acute myocardial infarction model. No arrhythmogenic effects at 30 days post-transplantation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+.split-fig{min-height:360px}
+.fig-svg{
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  padding:48px;
+}
+.fig-svg svg{
+  width:100%; height:auto; max-width:540px; max-height:100%;
+  stroke:var(--ink); fill:none; stroke-width:1.2;
+}
+.fig-svg svg text{fill:var(--muted); stroke:none; font-family:"JetBrains Mono",monospace; font-size:9px; letter-spacing:.8px}
+
+.ed-filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:32px; font-family:"JetBrains Mono",monospace; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase}
+.ed-filters .chip{padding:9px 14px; border:1px solid var(--line-strong); border-radius:999px; color:var(--ink-2); transition:border-color .3s var(--ease), background .3s var(--ease), color .3s var(--ease); cursor:pointer; background:transparent; font:inherit; letter-spacing:inherit; text-transform:inherit}
+.ed-filters .chip:hover{border-color:var(--ink)}
+.ed-filters .chip.active{background:var(--ink); color:var(--bone); border-color:var(--ink)}
+
+.contact-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-bottom:24px}
+.contact-card{padding:40px; border:1px solid var(--line); border-radius:2px; background:rgba(244,240,232,.5); transition:border-color .4s var(--ease)}
+.contact-card:hover{border-color:var(--line-strong)}
+.contact-card .mono{color:var(--muted); text-transform:uppercase; font-size:.62rem; letter-spacing:.14em; margin-bottom:14px; font-family:"JetBrains Mono",monospace}
+.contact-card h3{margin-bottom:24px}
+
+.addr-block{margin-top:16px; padding:32px 40px; border:1px solid var(--line); border-radius:2px; background:rgba(244,240,232,.5)}
+.addr-block .mono{color:var(--muted); text-transform:uppercase; font-size:.62rem; letter-spacing:.14em; margin-bottom:14px; font-family:"JetBrains Mono",monospace}
+.addr-block p{margin:0; font-family:"JetBrains Mono",monospace; font-size:.78rem; line-height:1.8; color:var(--ink-2)}
+
+.legal{padding:32px 40px; border:1px solid var(--line); border-radius:2px; background:rgba(244,240,232,.5); max-width:72ch}
+.legal p{font-size:.92rem; line-height:1.7; color:var(--ink-2); margin:0 0 14px}
+.legal p:last-child{margin-bottom:0}
+.legal .small{font-size:.8rem; color:var(--muted); line-height:1.65}
+
+.timeline{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; position:relative; margin-bottom:40px}
+.timeline::before{content:""; position:absolute; top:20px; left:4%; right:4%; height:1px; background:var(--line-strong)}
+.t-item{padding:48px 24px 28px 0; position:relative}
+.t-item::before{content:""; position:absolute; top:16px; left:0; width:9px; height:9px; border-radius:50%; background:var(--ink)}
+.t-year{font-family:"JetBrains Mono",monospace; font-size:.8rem; letter-spacing:.08em; color:var(--muted); margin-bottom:10px}
+.t-text{font-family:"Fraunces",serif; font-variation-settings:"opsz" 144; font-weight:400; font-size:1.3rem; letter-spacing:-0.01em; line-height:1.25; max-width:22ch}
+
+.pos-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:40px}
+.pos-card{padding:32px; border:1px solid var(--line); border-radius:2px; background:rgba(244,240,232,.5); transition:border-color .4s var(--ease), transform .5s var(--ease); display:flex; flex-direction:column; gap:14px; min-height:220px}
+.pos-card:hover{border-color:var(--line-strong); transform:translateY(-2px)}
+.pos-card .mono{font-family:"JetBrains Mono",monospace; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+.pos-card h3{font-family:"Fraunces",serif; font-variation-settings:"opsz" 144; font-weight:400; font-size:1.35rem; letter-spacing:-0.01em; margin:0}
+.pos-card h3 em{font-style:italic}
+.pos-card p{font-size:.9rem; line-height:1.6; color:var(--ink-2); margin:0}
+.pos-card .status{margin-top:auto; font-family:"JetBrains Mono",monospace; font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); padding-top:14px; border-top:1px solid var(--line)}
+
+.apply-steps{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+.apply-step{padding:40px 32px; border:1px solid var(--line); border-radius:2px; background:rgba(244,240,232,.5)}
+.apply-step .num{font-family:"JetBrains Mono",monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:24px; display:flex; gap:14px; align-items:center}
+.apply-step .num::before{content:""; width:24px; height:1px; background:var(--ink); opacity:.5}
+.apply-step h3{font-family:"Fraunces",serif; font-variation-settings:"opsz" 144; font-weight:400; font-size:1.35rem; letter-spacing:-0.01em; margin:0 0 14px}
+.apply-step h3 em{font-style:italic}
+.apply-step p{font-size:.92rem; line-height:1.62; color:var(--ink-2); margin:0}
+
+@media (max-width:900px){
+  .timeline{grid-template-columns:1fr; gap:0}
+  .timeline::before{display:none}
+  .t-item{padding:28px 24px 28px 40px; border-left:1px solid var(--line-strong)}
+  .t-item::before{left:-5px; top:30px}
+  .contact-grid, .pos-grid, .apply-steps{grid-template-columns:1fr}
+  .legal, .addr-block, .contact-card, .apply-step, .pos-card{padding:28px}
+}
+</style>
+<link rel="stylesheet" href="site_v4blend.css">
+</head>
+<body data-page="translational">
+
+<div id="ambient"><div class="bg on" style="background-image:url('bg_merged.webp')"></div></div>
+<div class="vignette"></div>
+<div class="grain"></div>
+
+<header class="topbar">
+  <div class="brand"><span class="dot"></span> MWB <em>Lab</em></div>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="technology.html">Technology</a>
+    <a href="translational.html" aria-current="page">Translational</a>
+    <a href="publications.html">Publications</a>
+    <a href="team.html">Team</a>
+    <a href="join.html">Join Us</a>
+    <a href="news.html">News</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="meta-right">
+    <span>University of Cologne</span>
+    <span class="live">Active lab</span>
+  </div>
+</header>
+<div class="progress"><span id="progressFill"></span></div>
+
+<section class="page-hero">
+  <div class="eyebrow">§ Bench to bedside</div>
+  <h1 class="display">From scalable cells and organoids to <em>translational therapy</em>.</h1>
+  <p class="lede">Large-animal validation in an acute myocardial infarction porcine model. Safety was the primary readout — and no arrhythmogenic effects were observed at 30 days post-transplantation.</p>
+</section>
+
+
+<section class="sec">
+  <div class="sec-head">
+    <div class="eyebrow rv">§ The thesis</div>
+    <div>
+      <h2 class="display" data-split-on-reveal>From cells and organoids to <em>therapy</em>.</h2>
+      <p class="sec-lede rv">The lab is not only building cardiac cells and tissue — it is validating them in a clinically relevant large-animal system. The translational pipeline is what turns a scalable platform into a credible path toward the clinic.</p>
+    </div>
+  </div>
+  <div class="lead-figure">
+    <div class="figure hero-fig figure-reveal">
+    <div class="fig-svg"><svg viewBox="0 0 540 220" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(110,110)">
+    <path d="M0 24 C-32 -16,-68 -16,-68 18 C-68 52,-32 74,0 100 C32 74,68 52,68 18 C68 -16,32 -16,0 24 Z"/>
+    <path d="M-20 14 L-6 38 L6 22 L20 42" stroke-width="1"/>
+    <circle cx="-20" cy="-6" r="10" stroke-dasharray="2 3"/>
+    <text x="0" y="130" text-anchor="middle">PORCINE HEART</text>
+  </g>
+  <g stroke-dasharray="3 4" opacity=".6">
+    <path d="M220 110 L320 110"/>
+    <path d="M310 104 L320 110 L310 116"/>
+  </g>
+  <g transform="translate(280,100)"><text x="0" y="-8" text-anchor="middle">DELIVERY</text></g>
+  <g transform="translate(400,110)">
+    <circle r="32"/>
+    <circle cx="-10" cy="-8" r="4"/>
+    <circle cx="8" cy="-4" r="4"/>
+    <circle cx="-4" cy="10" r="4"/>
+    <circle cx="12" cy="12" r="4"/>
+    <circle cx="-16" cy="6" r="4"/>
+    <text x="0" y="60" text-anchor="middle">iPSC-CM / ORGANOID</text>
+  </g>
+  <g transform="translate(480,110)">
+    <path d="M10 0 L30 0 M20 -10 L20 10" stroke-width="1.5"/>
+    <text x="20" y="40" text-anchor="middle">30 DAYS</text>
+    <text x="20" y="54" text-anchor="middle">SAFETY</text>
+  </g>
+</svg></div>
+    <div class="fig-overlay"></div>
+    <div class="fig-label">Large-animal validation</div>
+    <div class="fig-caption"><span class="sm">Porcine MI model</span><span>30 days · no arrhythmia</span></div>
+  </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div class="eyebrow rv">§ 01 — Validation</div>
+    <div>
+      <h2 class="display" data-split-on-reveal>Validated in a <em>porcine MI model</em>.</h2>
+      <p class="sec-lede rv">The lab's work has been validated in an acute myocardial infarction porcine model — the closest preclinical analogue of human cardiac injury. Safety was the primary readout.</p>
+    </div>
+  </div>
+
+  <div class="split-sec ">
+    <div class="split-fig"><div class="figure hero-fig figure-reveal">
+    <div class="fig-inner microscopy" style="background-image:url('bg_merged.webp')"></div>
+    <div class="fig-stack"><img src="stack_merged.webp" alt=""></div>
+    <div class="fig-overlay"></div>
+    <div class="fig-label">Transplanted tissue</div>
+    <div class="fig-caption"><span class="sm">Composite channels</span><span>Scale: 100 μm</span></div>
+  </div></div>
+    <div class="split-prose">
+      <div class="num">Safety endpoint</div>
+      <h3>No arrhythmogenic effects at <em>30 days</em>.</h3>
+      <p>Thirty days after transplantation, no arrhythmogenic effects were observed. That single sentence is the reason the rest of the programme exists: without a clean safety readout in a large animal, there is no path to the clinic for a cardiac cell therapy.</p>
+      <dl class="meta-list"><dt>Model</dt><dd>Porcine · acute MI</dd><dt>Timepoint</dt><dd>30 days post-transplant</dd><dt>Primary</dt><dd>Safety · arrhythmia</dd></dl>
+    </div>
+  </div>
+
+  <div class="split-sec reverse">
+    <div class="split-fig"><div class="figure hero-fig figure-reveal">
+    <div class="fig-svg"><svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <path d="M40 60 Q150 120 260 80 Q370 40 460 100"/>
+    <path d="M40 100 Q140 160 260 120 Q380 80 460 140"/>
+    <path d="M40 140 Q160 200 260 160 Q360 120 460 180"/>
+    <g fill="#14171a">
+      <circle cx="120" cy="90" r="3"/>
+      <circle cx="200" cy="130" r="3"/>
+      <circle cx="300" cy="100" r="3"/>
+      <circle cx="380" cy="150" r="3"/>
+    </g>
+    <text x="250" y="210" text-anchor="middle">ENDOTHELIAL NETWORK</text>
+  </g>
+</svg></div>
+    <div class="fig-overlay"></div>
+    <div class="fig-label">Perfusion</div>
+    <div class="fig-caption"><span class="sm">Vascular network</span><span>Endothelial</span></div>
+  </div></div>
+    <div class="split-prose">
+      <div class="num">§ 02 — Relevance</div>
+      <h3>Four pillars of <em>clinical relevance</em>.</h3>
+      <p>Safety, scalability, translational potential, and therapeutic relevance. Every cell and tissue system we develop is measured against these four pillars. A result that doesn't move any of them isn't worth moving forward.</p>
+      <dl class="meta-list"><dt>Pillar 1</dt><dd>Safety</dd><dt>Pillar 2</dt><dd>Scalability</dd><dt>Pillar 3</dt><dd>Translational potential</dd><dt>Pillar 4</dt><dd>Therapeutic relevance</dd></dl>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-bottom:100px">
+  <div class="sec-head">
+    <div class="eyebrow rv">§ Timeline</div>
+    <div>
+      <h2 class="display" data-split-on-reveal>A decade of <em>milestones</em>.</h2>
+      <p class="sec-lede rv">The lab's translational story arrives in three chapters — each one unlocking the next.</p>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="t-item rv"><div class="t-year">2019</div><div class="t-text">Scalable iPSC-derived cardiomyocytes</div></div>
+    <div class="t-item rv"><div class="t-year">2022</div><div class="t-text">Human iPSC-derived endothelial cells</div></div>
+    <div class="t-item rv"><div class="t-year">2026</div><div class="t-text">Self-organising cardiac organoids</div></div>
+  </div>
+</section>
+
+
+<footer class="foot">
+  <div>
+    <div class="wordmark">MWB <em>Lab</em></div>
+    <p>Scalable cardiac tissue engineering for regenerative medicine. Human iPSC-derived cardiac cells and organoids, developed for translational cardiac therapy.</p>
+    <div class="addr">
+      <strong>Prof. Dr. Kurt Pfannkuche</strong><br>
+      Institute of Physiology I<br>
+      Robert-Koch-Straße 39<br>
+      50931 Cologne, Germany<br>
+      Tel. +49 221 478 6968
+    </div>
+  </div>
+  <div>
+    <h4>Research</h4>
+    <ul>
+      <li><a href="research.html">Overview</a></li>
+      <li><a href="research.html">Cell manufacturing</a></li>
+      <li><a href="research.html">Organoids</a></li>
+      <li><a href="research.html">Drug testing</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Lab</h4>
+    <ul>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="join.html">Join us</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Contact</h4>
+    <ul>
+      <li><a href="mailto:kurt.pfannkuche@uni-koeln.de">kurt.pfannkuche@uni-koeln.de</a></li>
+      <li><a href="mailto:shamad@uni-koeln.de">shamad@uni-koeln.de</a></li>
+      <li><a href="contact.html">Contact page</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="colophon">
+  <span>© MWB Lab · University of Cologne · 2026</span>
+  <span>Institute of Physiology I · Set in Fraunces &amp; Manrope</span>
+</div>
+
+<script>
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function splitText(el, baseDelay = 0, step = 0.018){
+  if(!el || el.dataset.splitDone) return;
+  const tmp = document.createElement('div');
+  tmp.innerHTML = el.innerHTML;
+  const walk = (node, out) => {
+    node.childNodes.forEach(n => {
+      if(n.nodeType === 3){
+        const words = n.textContent.split(/(\s+)/);
+        words.forEach(w => {
+          if(/^\s+$/.test(w)){ out.push(document.createTextNode(' ')); return; }
+          if(!w) return;
+          const wEl = document.createElement('span');
+          wEl.className = 'word';
+          [...w].forEach(ch => {
+            const cEl = document.createElement('span');
+            cEl.className = 'char';
+            cEl.textContent = ch;
+            wEl.appendChild(cEl);
+          });
+          out.push(wEl);
+        });
+      } else if(n.nodeType === 1){
+        const clone = n.cloneNode(false);
+        const inner = [];
+        walk(n, inner);
+        inner.forEach(c => clone.appendChild(c));
+        out.push(clone);
+      }
+    });
+  };
+  const collected = [];
+  walk(tmp, collected);
+  el.innerHTML = '';
+  collected.forEach(c => el.appendChild(c));
+  el.querySelectorAll('.char').forEach((c,i) => c.style.setProperty('--d', (baseDelay + i*step) + 's'));
+  el.dataset.splitDone = '1';
+}
+
+const rvIO = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); rvIO.unobserve(e.target); }});
+},{threshold:.15, rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.rv').forEach(el => rvIO.observe(el));
+
+const figIO = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); figIO.unobserve(e.target); }});
+},{threshold:.2, rootMargin:'0px 0px -4% 0px'});
+document.querySelectorAll('.figure-reveal').forEach(el => figIO.observe(el));
+
+const splitIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const h = e.target;
+      if(!reducedMotion && !h.dataset.splitDone){
+        h.classList.add('split');
+        splitText(h, 0, 0.02);
+      }
+      requestAnimationFrame(() => h.classList.add('in'));
+      splitIO.unobserve(h);
+    }
+  });
+},{threshold:.4});
+document.querySelectorAll('h2[data-split-on-reveal]').forEach(h => splitIO.observe(h));
+
+const progressFill = document.getElementById('progressFill');
+let rafId = null;
+function onScroll(){
+  const max = document.documentElement.scrollHeight - innerHeight;
+  if(progressFill) progressFill.style.width = (max>0 ? scrollY/max*100 : 0) + '%';
+  rafId = null;
+}
+window.addEventListener('scroll', () => { if(!rafId) rafId = requestAnimationFrame(onScroll); }, {passive:true});
+
+const canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+if(canHover && !reducedMotion){
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      const x = e.clientX - r.left - r.width/2;
+      const y = e.clientY - r.top - r.height/2;
+      btn.style.transform = `translate(${x*0.12}px, ${y*0.18}px)`;
+    });
+    btn.addEventListener('mouseleave', () => btn.style.transform = '');
+  });
+}
+
+document.querySelectorAll('.ed-filters').forEach(bar => {
+  const chips = bar.querySelectorAll('.chip');
+  chips.forEach(c => c.addEventListener('click', () => {
+    chips.forEach(x => x.classList.remove('active'));
+    c.classList.add('active');
+    const f = c.dataset.filter;
+    const list = bar.nextElementSibling;
+    if(!list || !list.classList.contains('ed-list')) return;
+    list.querySelectorAll('.ed-item').forEach(i => {
+      const show = f === 'all' || i.dataset.tag === f;
+      i.style.display = show ? '' : 'none';
+    });
+  }));
+});
+
+/* ========== SCROLL ATLAS (ported from v16) ========== */
+(function initScrollAtlas(){
+  const atlas = document.getElementById('researchAtlas');
+  if(!atlas) return;
+
+  const viewer = atlas.querySelector('.atlas-viewer');
+  const bgs = atlas.querySelectorAll('[data-atlasbg]');
+  const channels = atlas.querySelectorAll('[data-atlaschannel]');
+  const dots = atlas.querySelectorAll('[data-atlasdot]');
+  const steps = atlas.querySelectorAll('.atlas-step');
+  const chName = atlas.querySelector('#atlasChName');
+  const chLambda = atlas.querySelector('#atlasLambda');
+
+  const themeMap = {
+    nuclei:   { name:'Nuclei',       lambda:'461 nm · Hoechst' },
+    actinin:  { name:'α-Actinin',    lambda:'519 nm · sarcomere' },
+    rfp:      { name:'Lineage',      lambda:'594 nm · TNNT2-mScarlet' },
+    merged:   { name:'Composite',    lambda:'merged channels' },
+    vwf:      { name:'Vasculature',  lambda:'668 nm · vWF' },
+  };
+
+  function setGroup(group, key, attr, cls){
+    group.forEach(el => el.classList.toggle(cls, el.getAttribute(attr) === key));
+  }
+
+  let currentKey = null;
+  function activate(key){
+    if(key === currentKey || !themeMap[key]) return;
+    currentKey = key;
+    setGroup(bgs, key, 'data-atlasbg', 'on');
+    setGroup(channels, key, 'data-atlaschannel', 'on');
+    dots.forEach(d => d.classList.toggle('active', d.dataset.atlasdot === key));
+    steps.forEach(s => s.classList.toggle('active', s.dataset.atlas === key));
+    if(chName) chName.textContent = themeMap[key].name;
+    if(chLambda) chLambda.textContent = themeMap[key].lambda;
+    // flash scale bar
+    viewer.classList.remove('flash');
+    void viewer.offsetWidth;
+    viewer.classList.add('flash');
+  }
+
+  // IntersectionObserver: fire when step passes 55% of viewport
+  const stepIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        activate(e.target.dataset.atlas);
+      }
+    });
+  }, { threshold: 0.30, rootMargin: '0px 0px -10% 0px' });
+  steps.forEach(s => stepIO.observe(s));
+
+  // dot nav click-to-scroll
+  dots.forEach(d => d.addEventListener('click', () => {
+    const key = d.dataset.atlasdot;
+    const step = atlas.querySelector(`.atlas-step[data-atlas="${key}"]`);
+    if(step) step.scrollIntoView({ behavior:'smooth', block:'center' });
+  }));
+})();
+</script>
+<script src="site_v4blend.js"></script>
+</body>
+</html>

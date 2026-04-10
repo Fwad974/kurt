@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact — MWB Lab</title>
+<meta name="description" content="Contact the MWB Lab at the Institute of Physiology I, University of Cologne. Reach Prof. Dr. Kurt Pfannkuche or Dr. Sarkawt Hamad.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+  margin-bottom:24px;
+}
+.contact-card{
+  padding:40px;
+  border:1px solid var(--line);
+  border-radius:2px;
+  background:rgba(244,240,232,.5);
+  transition:border-color .4s var(--ease);
+}
+.contact-card:hover{border-color:var(--line-strong)}
+.contact-card .mono{
+  color:var(--muted);
+  text-transform:uppercase;
+  font-size:.62rem;
+  letter-spacing:.14em;
+  margin-bottom:14px;
+  font-family:"JetBrains Mono",monospace;
+}
+.contact-card h3{margin:0 0 10px}
+.contact-card p{font-size:.94rem; line-height:1.62; color:var(--ink-2); margin:0 0 24px}
+.contact-card .link{
+  display:inline-flex; gap:8px; align-items:center;
+  font-family:"JetBrains Mono",monospace;
+  font-size:.72rem; letter-spacing:.04em;
+  color:var(--ink); border-bottom:1px solid var(--line-strong);
+  padding-bottom:3px;
+  transition:border-color .3s var(--ease);
+}
+.contact-card .link:hover{border-color:var(--ink)}
+
+.addr-block{
+  margin-top:16px;
+  padding:32px 40px;
+  border:1px solid var(--line);
+  border-radius:2px;
+  background:rgba(244,240,232,.5);
+}
+.addr-block .mono{
+  color:var(--muted);
+  text-transform:uppercase;
+  font-size:.62rem;
+  letter-spacing:.14em;
+  margin-bottom:14px;
+  font-family:"JetBrains Mono",monospace;
+}
+.addr-block p{
+  margin:0;
+  font-family:"JetBrains Mono",monospace;
+  font-size:.78rem;
+  line-height:1.9;
+  color:var(--ink-2);
+}
+
+.legal{
+  padding:40px;
+  border:1px solid var(--line);
+  border-radius:2px;
+  background:rgba(244,240,232,.5);
+}
+.legal h3{font-family:"Fraunces",serif; font-variation-settings:"opsz" 144; font-weight:400; font-size:1.1rem; letter-spacing:-0.01em; margin:0 0 16px}
+.legal p{font-size:.92rem; line-height:1.7; color:var(--ink-2); margin:0 0 12px}
+.legal p:last-child{margin-bottom:0}
+.legal .small{font-size:.82rem; color:var(--muted)}
+
+.split-contact{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:start;
+}
+
+@media (max-width:900px){
+  .contact-grid{grid-template-columns:1fr}
+  .contact-card, .addr-block, .legal{padding:28px}
+  .split-contact{grid-template-columns:1fr; gap:40px}
+}
+</style>
+<link rel="stylesheet" href="site_v4blend.css">
+</head>
+<body data-page="contact">
+
+<!-- ========== AMBIENT BG ========== -->
+<div id="ambient">
+  <div class="bg on" style="background-image:url('bg_merged.webp')"></div>
+</div>
+<div class="vignette"></div>
+<div class="grain"></div>
+
+<!-- ========== TOPBAR ========== -->
+<header class="topbar">
+  <div class="brand"><span class="dot"></span> MWB <em>Lab</em></div>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="technology.html">Technology</a>
+    <a href="translational.html">Translational</a>
+    <a href="publications.html">Publications</a>
+    <a href="team.html">Team</a>
+    <a href="join.html">Join Us</a>
+    <a href="news.html">News</a>
+    <a href="contact.html" aria-current="page">Contact</a>
+  </nav>
+  <div class="meta-right">
+    <span>University of Cologne</span>
+    <span class="live">Active lab</span>
+  </div>
+</header>
+<div class="progress"><span id="progressFill"></span></div>
+
+<!-- ========== PAGE HERO ========== -->
+<section class="page-hero">
+  <div class="eyebrow rv" style="--d:.15s">Contact</div>
+  <h1 class="display rv" style="--d:.3s" data-split-on-reveal>Get in <em>touch</em>.</h1>
+  <p class="lede rv" style="--d:.5s">
+    The MWB Lab welcomes enquiries from prospective collaborators, students, industry partners,
+    and the media. Reach out directly to the people leading the work.
+  </p>
+</section>
+
+<!-- ========== PRIMARY CONTACTS ========== -->
+<section class="sec">
+  <div class="sec-head">
+    <div class="eyebrow rv">§ 01 — People</div>
+    <div>
+      <h2 class="display" data-split-on-reveal>Direct <em>contacts</em>.</h2>
+    </div>
+  </div>
+
+  <div class="contact-grid rv">
+    <div class="contact-card">
+      <div class="mono">Principal Investigator</div>
+      <h3 class="subhead">Prof. Dr. Kurt <em>Pfannkuche</em></h3>
+      <p>
+        Head of the MWB Lab. Enquiries about research programmes, collaborations,
+        grant opportunities, and the lab's translational and clinical partnerships.
+      </p>
+      <a class="link" href="mailto:kurt.pfannkuche@uni-koeln.de">→ kurt.pfannkuche@uni-koeln.de</a>
+    </div>
+
+    <div class="contact-card">
+      <div class="mono">Head of Scientific Development</div>
+      <h3 class="subhead">Dr. Sarkawt <em>Hamad</em></h3>
+      <p>
+        Leads the cardiac organoid and 3D tissue programmes. Best point of contact
+        for scientific enquiries, protocols, and ongoing experimental work.
+      </p>
+      <a class="link" href="mailto:shamad@uni-koeln.de">→ shamad@uni-koeln.de</a>
+    </div>
+  </div>
+
+  <div class="addr-block rv">
+    <div class="mono">Postal address</div>
+    <p>
+      MWB Lab — Institute of Physiology I<br>
+      University of Cologne<br>
+      Robert-Koch-Straße 39<br>
+      50931 Cologne, Germany<br><br>
+      Tel. +49 221 478 6968
+    </p>
+  </div>
+</section>
+
+<!-- ========== HOW TO REACH US ========== -->
+<section class="sec">
+  <div class="sec-head">
+    <div class="eyebrow rv">§ 02 — Enquiry types</div>
+    <div>
+      <h2 class="display" data-split-on-reveal>What we <em>respond to</em>.</h2>
+      <p class="sec-lede rv">
+        We try to respond to all relevant enquiries within five working days.
+        The more specific your message, the quicker we can help.
+      </p>
+    </div>
+  </div>
+
+  <div class="split-contact">
+    <div>
+      <div class="card rv" style="margin-bottom:16px">
+        <div class="mono" style="font-family:'JetBrains Mono',monospace; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:14px">Collaborations</div>
+        <h3>Academic &amp; industry <em>partnerships</em></h3>
+        <p>Proposals for collaborative projects, material transfer, or joint grant applications. Include a brief description of your group and the intended scope.</p>
+      </div>
+
+      <div class="card rv" style="margin-bottom:16px">
+        <div class="mono" style="font-family:'JetBrains Mono',monospace; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:14px">Positions</div>
+        <h3>PhD, postdoc &amp; <em>student enquiries</em></h3>
+        <p>Unsolicited applications are welcome. Please include your CV, a brief motivation letter, and an indication of your preferred start date. See the <a href="join.html" style="text-decoration:underline; color:var(--ink)">Join us</a> page for open positions.</p>
+      </div>
+
+      <div class="card rv">
+        <div class="mono" style="font-family:'JetBrains Mono',monospace; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:14px">Press &amp; media</div>
+        <h3>Interviews &amp; <em>media enquiries</em></h3>
+        <p>Journalists and science communicators may contact the PI directly. High-resolution microscopy images and figures are available on request for editorial use.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="legal rv" style="margin-bottom:16px">
+        <h3>Data protection <em>notice</em></h3>
+        <p class="small">
+          Personal data submitted via email enquiry is processed solely for the purpose of responding
+          to your message, in accordance with the General Data Protection Regulation (GDPR) and the
+          data protection policies of the University of Cologne.
+        </p>
+        <p class="small">
+          Data is not shared with third parties and is not retained beyond the duration required to
+          handle your enquiry. You may request deletion at any time by writing to
+          <a href="mailto:kurt.pfannkuche@uni-koeln.de" style="color:var(--ink)">kurt.pfannkuche@uni-koeln.de</a>.
+        </p>
+      </div>
+
+      <div class="legal rv">
+        <h3>Institute <em>affiliations</em></h3>
+        <p class="small">
+          The MWB Lab is part of the Institute of Physiology I at the Faculty of Medicine,
+          University of Cologne (Universität zu Köln). Research is conducted in accordance with
+          the ethical standards and institutional review requirements of the University of Cologne
+          and the associated University Hospital (Uniklinik Köln).
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="foot">
+  <div>
+    <div class="wordmark">MWB <em>Lab</em></div>
+    <p>Scalable cardiac tissue engineering for regenerative medicine. Human iPSC-derived cardiac cells and organoids, developed for translational cardiac therapy.</p>
+    <div class="addr">
+      <strong>Prof. Dr. Kurt Pfannkuche</strong><br>
+      Institute of Physiology I<br>
+      Robert-Koch-Straße 39<br>
+      50931 Cologne, Germany<br>
+      Tel. +49 221 478 6968
+    </div>
+  </div>
+  <div>
+    <h4>Research</h4>
+    <ul>
+      <li><a href="research.html">Overview</a></li>
+      <li><a href="research.html">Cell manufacturing</a></li>
+      <li><a href="research.html">Organoids</a></li>
+      <li><a href="research.html">Drug testing</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Lab</h4>
+    <ul>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="join.html">Join us</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Contact</h4>
+    <ul>
+      <li><a href="mailto:kurt.pfannkuche@uni-koeln.de">kurt.pfannkuche@uni-koeln.de</a></li>
+      <li><a href="mailto:shamad@uni-koeln.de">shamad@uni-koeln.de</a></li>
+      <li><a href="contact.html">Contact page</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="colophon">
+  <span>© MWB Lab · University of Cologne · 2026</span>
+  <span>Institute of Physiology I · Set in Fraunces &amp; Manrope</span>
+</div>
+
+<script>
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function splitText(el, baseDelay = 0, step = 0.018){
+  if(!el || el.dataset.splitDone) return;
+  const tmp = document.createElement('div');
+  tmp.innerHTML = el.innerHTML;
+  const walk = (node, out) => {
+    node.childNodes.forEach(n => {
+      if(n.nodeType === 3){
+        const words = n.textContent.split(/(\s+)/);
+        words.forEach(w => {
+          if(/^\s+$/.test(w)){ out.push(document.createTextNode(' ')); return; }
+          if(!w) return;
+          const wEl = document.createElement('span');
+          wEl.className = 'word';
+          [...w].forEach(ch => {
+            const cEl = document.createElement('span');
+            cEl.className = 'char';
+            cEl.textContent = ch;
+            wEl.appendChild(cEl);
+          });
+          out.push(wEl);
+        });
+      } else if(n.nodeType === 1){
+        const clone = n.cloneNode(false);
+        const inner = [];
+        walk(n, inner);
+        inner.forEach(c => clone.appendChild(c));
+        out.push(clone);
+      }
+    });
+  };
+  const collected = [];
+  walk(tmp, collected);
+  el.innerHTML = '';
+  collected.forEach(c => el.appendChild(c));
+  el.querySelectorAll('.char').forEach((c,i) => c.style.setProperty('--d', (baseDelay + i*step) + 's'));
+  el.dataset.splitDone = '1';
+}
+
+const rvIO = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); rvIO.unobserve(e.target); }});
+},{threshold:.15, rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.rv').forEach(el => rvIO.observe(el));
+
+const splitIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const h = e.target;
+      if(!reducedMotion && !h.dataset.splitDone){
+        h.classList.add('split');
+        splitText(h, 0, 0.02);
+      }
+      requestAnimationFrame(() => h.classList.add('in'));
+      splitIO.unobserve(h);
+    }
+  });
+},{threshold:.4});
+document.querySelectorAll('h2[data-split-on-reveal]').forEach(h => splitIO.observe(h));
+
+const progressFill = document.getElementById('progressFill');
+let rafId = null;
+function onScroll(){
+  const max = document.documentElement.scrollHeight - innerHeight;
+  if(progressFill) progressFill.style.width = (max>0 ? scrollY/max*100 : 0) + '%';
+  rafId = null;
+}
+window.addEventListener('scroll', () => { if(!rafId) rafId = requestAnimationFrame(onScroll); }, {passive:true});
+
+const canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+if(canHover && !reducedMotion){
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      const x = e.clientX - r.left - r.width/2;
+      const y = e.clientY - r.top - r.height/2;
+      btn.style.transform = `translate(${x*0.12}px, ${y*0.18}px)`;
+    });
+    btn.addEventListener('mouseleave', () => btn.style.transform = '');
+  });
+}
+
+document.documentElement.classList.remove('loading');
+</script>
+<script src="site_v4blend.js"></script>
+</body>
+</html>

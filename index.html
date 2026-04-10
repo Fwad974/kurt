@@ -1,0 +1,2131 @@
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MWB Lab — Scalable Cardiac Tissue Engineering</title>
+<meta name="description" content="The MWB Lab develops human iPSC-derived cardiac cells and organoids for regenerative medicine and translational cardiac therapy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+/* =========================================================
+   HOME-ONLY STYLES
+   ========================================================= */
+
+/* ---------- cinematic intro (from v16) ---------- */
+#intro{
+  position:fixed; inset:0; z-index:10000;
+  background:#000;
+  color:#f4f0e8;
+  overflow:hidden;
+  transition:opacity 1.4s var(--ease) .2s, visibility 1.4s var(--ease) .2s;
+}
+#intro.done{opacity:0; visibility:hidden; pointer-events:none}
+
+.intro-tc{
+  position:absolute; top:28px; left:32px;
+  font-family:"JetBrains Mono",monospace;
+  font-size:.72rem; letter-spacing:.12em;
+  color:rgba(244,240,232,.7);
+  opacity:0; animation:introFadeIn .8s var(--ease) .15s forwards;
+  font-variant-numeric:tabular-nums;
+}
+.intro-tc .blink{
+  display:inline-block; width:6px; height:6px; border-radius:50%;
+  background:#e74c3c; margin-right:10px; vertical-align:middle;
+  animation:introBlink 1.1s steps(2,end) infinite;
+}
+@keyframes introBlink{50%{opacity:.25}}
+
+.intro-meta-r{
+  position:absolute; top:28px; right:32px;
+  font-family:"JetBrains Mono",monospace;
+  font-size:.72rem; letter-spacing:.12em;
+  color:rgba(244,240,232,.7); text-align:right;
+  opacity:0; animation:introFadeIn .8s var(--ease) .15s forwards;
+  display:flex; flex-direction:column; gap:4px;
+}
+.intro-meta-r .dim{color:rgba(244,240,232,.4); font-size:.62rem; text-transform:uppercase; letter-spacing:.16em}
+
+.intro-stage{position:absolute; inset:0; display:flex; align-items:center; justify-content:center}
+.intro-specimen{position:relative; width:min(62vmin, 620px); aspect-ratio:1/1}
+
+.intro-cross{position:absolute; inset:0; opacity:0; animation:introFadeIn 1s var(--ease) .6s forwards}
+.intro-cross::before, .intro-cross::after{content:""; position:absolute; background:rgba(244,240,232,.5)}
+.intro-cross::before{left:50%; top:50%; width:1px; height:0; transform:translate(-50%,-50%); animation:crossV 1.1s var(--ease) .7s forwards}
+.intro-cross::after{left:50%; top:50%; height:1px; width:0; transform:translate(-50%,-50%); animation:crossH 1.1s var(--ease) .85s forwards}
+@keyframes crossV{to{height:100%}}
+@keyframes crossH{to{width:100%}}
+
+.intro-scale{
+  position:absolute; bottom:-34px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  opacity:0; animation:introFadeIn .8s var(--ease) 1.7s forwards;
+}
+.intro-scale .b{width:0; height:1px; background:rgba(244,240,232,.7); position:relative; animation:scaleGrow 1s var(--ease) 1.8s forwards}
+.intro-scale .b::before, .intro-scale .b::after{content:""; position:absolute; top:-3px; width:1px; height:8px; background:rgba(244,240,232,.7); opacity:0; animation:introFadeIn .3s var(--ease) 2.7s forwards}
+.intro-scale .b::before{left:0}
+.intro-scale .b::after{right:0}
+.intro-scale span{font-family:"JetBrains Mono",monospace; font-size:.6rem; letter-spacing:.12em; color:rgba(244,240,232,.55); opacity:0; animation:introFadeIn .5s var(--ease) 2.85s forwards}
+@keyframes scaleGrow{to{width:80px}}
+
+.intro-img{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; transform:scale(1.12); filter:blur(20px); animation:introImgIn 2.2s var(--ease) 2.1s forwards}
+.intro-img img{width:88%; filter:drop-shadow(0 0 60px rgba(244,240,232,.15))}
+.intro-img::before{content:""; position:absolute; inset:0; background:radial-gradient(ellipse at center, rgba(244,240,232,.08), transparent 60%)}
+@keyframes introImgIn{to{opacity:1; transform:scale(1); filter:blur(0)}}
+
+.intro-channels{
+  position:absolute; left:32px; bottom:32px;
+  font-family:"JetBrains Mono",monospace;
+  font-size:.72rem; letter-spacing:.08em;
+  color:rgba(244,240,232,.7);
+  display:flex; flex-direction:column; gap:6px; min-width:240px;
+}
+.intro-channels .row{
+  display:grid; grid-template-columns:24px 1fr auto; gap:14px; align-items:center;
+  opacity:0; transform:translateX(-8px);
+  animation:introRowIn .7s var(--ease) forwards;
+}
+.intro-channels .row:nth-child(1){animation-delay:1.15s}
+.intro-channels .row:nth-child(2){animation-delay:1.35s}
+.intro-channels .row:nth-child(3){animation-delay:1.55s}
+.intro-channels .row:nth-child(4){animation-delay:1.75s}
+.intro-channels .row .n{color:rgba(244,240,232,.35); font-size:.64rem}
+.intro-channels .row .name{color:rgba(244,240,232,.85)}
+.intro-channels .row .wl{color:rgba(244,240,232,.5); font-size:.66rem}
+.intro-channels .row .dot{display:inline-block; width:6px; height:6px; border-radius:50%; background:rgba(244,240,232,.7); margin-left:-12px; animation:introDot 1.4s var(--ease) infinite; animation-delay:inherit}
+@keyframes introRowIn{to{opacity:1; transform:translateX(0)}}
+@keyframes introDot{0%,100%{opacity:.3} 50%{opacity:1}}
+
+.intro-zplane{
+  position:absolute; right:32px; bottom:32px;
+  font-family:"JetBrains Mono",monospace;
+  color:rgba(244,240,232,.7); text-align:right;
+  display:flex; flex-direction:column; gap:4px;
+  opacity:0; animation:introFadeIn .6s var(--ease) 2.3s forwards;
+}
+.intro-zplane .lbl{font-size:.6rem; text-transform:uppercase; letter-spacing:.16em; color:rgba(244,240,232,.4)}
+.intro-zplane .val{font-size:1.1rem; letter-spacing:.04em; font-variant-numeric:tabular-nums; color:rgba(244,240,232,.95)}
+
+.intro-wordmark{
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  font-family:"Fraunces",serif;
+  font-variation-settings:"opsz" 144;
+  font-weight:300;
+  font-size:clamp(3rem, 8vw, 6rem);
+  line-height:.9; letter-spacing:-0.038em;
+  color:#f4f0e8; opacity:0; pointer-events:none; z-index:5;
+}
+.intro-wordmark em{font-style:italic; font-weight:400}
+.intro-wordmark.in{animation:wordmarkIn 1.2s var(--ease) 4.3s forwards}
+@keyframes wordmarkIn{
+  0%{opacity:0; letter-spacing:.1em; filter:blur(12px)}
+  100%{opacity:1; letter-spacing:-0.038em; filter:blur(0)}
+}
+
+#intro.collapsing .intro-tc,
+#intro.collapsing .intro-meta-r,
+#intro.collapsing .intro-channels,
+#intro.collapsing .intro-zplane,
+#intro.collapsing .intro-scale,
+#intro.collapsing .intro-cross,
+#intro.collapsing .intro-img{
+  opacity:0 !important;
+  transition:opacity .9s var(--ease), transform .9s var(--ease), filter .9s var(--ease) !important;
+}
+#intro.collapsing .intro-img{transform:scale(.88); filter:blur(8px)}
+
+@keyframes introFadeIn{to{opacity:1}}
+
+.intro-skip{
+  position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
+  background:transparent; border:1px solid rgba(244,240,232,.25); color:rgba(244,240,232,.6);
+  font-family:"JetBrains Mono",monospace;
+  font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;
+  padding:10px 16px; border-radius:999px; cursor:pointer;
+  opacity:0; animation:introFadeIn .6s var(--ease) 1s forwards;
+  transition:background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
+}
+.intro-skip:hover{background:rgba(244,240,232,.08); color:#f4f0e8; border-color:rgba(244,240,232,.5)}
+@media (prefers-reduced-motion:reduce){#intro{display:none}}
+
+/* ---------- hero ---------- */
+.hero{
+  min-height:100svh;
+  max-width:var(--max);
+  margin:0 auto;
+  padding:120px 56px 80px;
+  display:grid;
+  grid-template-columns:minmax(0,.88fr) minmax(0,1.22fr);
+  gap:64px;
+  align-items:center;
+}
+.hero h1{margin:0 0 24px; max-width:13ch}
+.hero .cta-row{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:36px}
+
+/* hero visual — the organoid viewer */
+.hero-viewer{
+  position:relative;
+  width:100%;
+  max-width:720px;
+  justify-self:end;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.viewer-frame{
+  position:relative;
+  width:100%;
+  aspect-ratio:4/3.8;
+  border-radius:4px; overflow:hidden;
+  background:var(--bone-2);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.6) inset,
+    0 0 0 1px var(--line),
+    0 48px 96px -32px rgba(20,23,26,.28),
+    0 24px 48px -20px rgba(20,23,26,.16);
+  transform:scale(.94); opacity:0;
+  transition:transform 1.6s var(--ease) .35s, opacity 1.2s var(--ease) .35s;
+  cursor:none;
+}
+html:not(.loading) .viewer-frame{transform:scale(1); opacity:1}
+.viewer-frame::before{
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse at 50% 40%, transparent 40%, rgba(20,23,26,.08) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.4), transparent 20%);
+  z-index:3; pointer-events:none;
+}
+.viewer-bg{
+  position:absolute; inset:0;
+  background-size:cover; background-position:center;
+  opacity:0; transform:scale(1.08);
+  transition:opacity 1.2s var(--ease), transform 1.6s var(--ease);
+  mix-blend-mode:multiply;
+  filter:saturate(.65) contrast(.95);
+}
+.viewer-bg.on{opacity:.45; transform:scale(1)}
+.channel-stage{position:absolute; inset:0; z-index:2}
+.channel{position:absolute; inset:0; opacity:0; transition:opacity 1.1s var(--ease)}
+.channel.on{opacity:1}
+.layer{
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  width:86%;
+  transition:transform 1.4s var(--ease), opacity 1.2s var(--ease), filter 1.2s var(--ease);
+}
+.channel .back{opacity:.22; filter:blur(22px) saturate(1.2); transform:translate(-52%,-48%) scale(1.08) rotate(-1.6deg)}
+.channel .mid{opacity:.55; filter:blur(4px); transform:translate(-49%,-50.6%) scale(1.02) rotate(.6deg)}
+.channel .front{opacity:1; filter:drop-shadow(0 24px 40px rgba(20,23,26,.18))}
+.channel:not(.on) .layer{opacity:0}
+
+.hud-top{
+  position:absolute; top:20px; left:22px; right:22px; z-index:10;
+  display:flex; justify-content:space-between; align-items:flex-start;
+  font-family:"JetBrains Mono",monospace;
+  font-size:.68rem; color:var(--ink-2); letter-spacing:.04em;
+  opacity:0; transition:opacity 1s var(--ease) 1.1s;
+}
+html:not(.loading) .hud-top{opacity:1}
+.hud-top .left, .hud-top .right{display:flex; flex-direction:column; gap:4px}
+.hud-top .right{text-align:right}
+.hud-top .sm{color:var(--muted); font-size:.62rem; text-transform:uppercase; letter-spacing:.12em}
+
+.crosshair{
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:18px; height:18px; z-index:10; pointer-events:none;
+  opacity:0; transition:opacity 1s var(--ease) 1.1s;
+}
+html:not(.loading) .crosshair{opacity:.4}
+.crosshair::before, .crosshair::after{content:""; position:absolute; background:var(--ink)}
+.crosshair::before{left:50%; top:0; bottom:0; width:1px; transform:translateX(-50%)}
+.crosshair::after{top:50%; left:0; right:0; height:1px; transform:translateY(-50%)}
+
+.hud-bot{
+  position:absolute; bottom:22px; left:22px; right:22px; z-index:10;
+  display:flex; justify-content:space-between; align-items:flex-end;
+  font-family:"JetBrains Mono",monospace; font-size:.68rem;
+  opacity:0; transition:opacity 1s var(--ease) 1.1s;
+}
+html:not(.loading) .hud-bot{opacity:1}
+.scale-bar{display:flex; flex-direction:column; gap:4px; color:var(--ink-2)}
+.scale-bar .bar{width:70px; height:2px; background:var(--ink); position:relative}
+.scale-bar .bar::before, .scale-bar .bar::after{content:""; position:absolute; top:-3px; width:1px; height:8px; background:var(--ink)}
+.scale-bar .bar::before{left:0}
+.scale-bar .bar::after{right:0}
+.scale-bar span{font-size:.62rem; color:var(--muted); letter-spacing:.08em}
+.channel-label{color:var(--ink-2); text-align:right; display:flex; flex-direction:column; gap:4px}
+.channel-label .sm{color:var(--muted); font-size:.62rem; text-transform:uppercase; letter-spacing:.12em}
+
+/* ---------- key strengths ---------- */
+.strengths-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:16px;
+}
+.strength{
+  padding:32px;
+  border:1px solid var(--line);
+  border-radius:2px;
+  background:rgba(244,240,232,.5);
+  transition:border-color .4s var(--ease), transform .5s var(--ease);
+  display:flex; flex-direction:column; gap:16px;
+  min-height:220px;
+}
+.strength:hover{border-color:var(--line-strong); transform:translateY(-2px)}
+.strength .icon{
+  width:36px; height:36px;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--ink);
+}
+.strength .icon svg{width:100%; height:100%; stroke:currentColor; fill:none; stroke-width:1.2}
+.strength h3{
+  font-family:"Fraunces",serif;
+  font-variation-settings:"opsz" 144;
+  font-weight:400;
+  font-size:1.22rem;
+  letter-spacing:-0.01em;
+  margin:0;
+}
+.strength h3 em{font-style:italic}
+.strength .year{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.66rem; letter-spacing:.1em;
+  color:var(--muted); text-transform:uppercase;
+}
+.strength p{margin:0; font-size:.9rem; line-height:1.6; color:var(--ink-2)}
+
+/* ---------- why it matters ---------- */
+.why{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
+  gap:80px;
+  align-items:center;
+}
+.why .quote{
+  font-family:"Fraunces",serif;
+  font-variation-settings:"opsz" 144;
+  font-weight:300;
+  font-size:clamp(1.8rem, 2.8vw, 2.6rem);
+  line-height:1.2;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+  margin:0;
+}
+.why .quote em{font-style:italic; font-weight:400}
+.why-diagram{
+  position:relative;
+  border:1px solid var(--line);
+  border-radius:2px;
+  padding:48px;
+  background:rgba(244,240,232,.5);
+  min-height:360px;
+  display:flex; align-items:center; justify-content:center;
+}
+.why-diagram svg{width:100%; max-width:420px; height:auto; stroke:var(--ink); fill:none; stroke-width:1.2}
+
+/* ---------- research platforms ---------- */
+.platforms-grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:16px;
+}
+.platform{
+  padding:40px;
+  border:1px solid var(--line);
+  border-radius:2px;
+  background:rgba(244,240,232,.5);
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:32px;
+  align-items:start;
+  transition:border-color .4s var(--ease), transform .5s var(--ease);
+  min-height:260px;
+}
+.platform:hover{border-color:var(--line-strong); transform:translateY(-2px)}
+.platform .num{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.66rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:20px;
+  display:flex; gap:14px; align-items:center;
+}
+.platform .num::before{content:""; width:24px; height:1px; background:var(--ink); opacity:.5}
+.platform h3{
+  font-family:"Fraunces",serif;
+  font-variation-settings:"opsz" 144;
+  font-weight:400;
+  font-size:1.6rem;
+  letter-spacing:-0.015em;
+  margin:0 0 14px;
+  max-width:14ch;
+}
+.platform h3 em{font-style:italic}
+.platform p{font-size:.94rem; line-height:1.62; color:var(--ink-2); margin:0; max-width:42ch}
+.platform .glyph{
+  width:64px; height:64px;
+  color:var(--ink);
+  opacity:.75;
+  flex-shrink:0;
+}
+.platform .glyph svg{width:100%; height:100%; stroke:currentColor; fill:none; stroke-width:1.1}
+
+/* ---------- leadership ---------- */
+.leaders{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:32px;
+}
+.leader{
+  border:1px solid var(--line);
+  border-radius:2px;
+  padding:0;
+  background:rgba(244,240,232,.5);
+  overflow:hidden;
+  display:grid;
+  grid-template-rows:1.1fr auto;
+  min-height:440px;
+  transition:border-color .4s var(--ease);
+}
+.leader:hover{border-color:var(--line-strong)}
+.leader .portrait{
+  position:relative;
+  background:var(--bone-2);
+  border-bottom:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+}
+.leader .portrait::before{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(ellipse at 50% 40%, rgba(20,23,26,.04), transparent 70%);
+}
+.leader .portrait .placeholder{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.62rem;
+  color:var(--muted);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  text-align:center;
+  line-height:1.8;
+  z-index:1;
+  opacity:.7;
+}
+.leader .portrait .placeholder::before{
+  content:""; display:block;
+  width:56px; height:56px;
+  border:1px solid var(--line-strong);
+  border-radius:50%;
+  margin:0 auto 14px;
+}
+.leader .body{padding:28px 32px 32px}
+.leader .role{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.64rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+.leader h3{
+  font-family:"Fraunces",serif;
+  font-variation-settings:"opsz" 144;
+  font-weight:400;
+  font-size:1.5rem;
+  letter-spacing:-0.015em;
+  margin:0 0 12px;
+}
+.leader h3 em{font-style:italic}
+.leader p{font-size:.92rem; line-height:1.6; color:var(--ink-2); margin:0 0 14px; max-width:44ch}
+.leader .contact{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.66rem; letter-spacing:.02em;
+  color:var(--ink);
+  display:inline-flex; gap:6px; align-items:center;
+  padding-top:14px; border-top:1px solid var(--line);
+  margin-top:6px;
+}
+.leader .contact:hover{text-decoration:underline}
+
+/* ---------- latest news ---------- */
+.news-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.news-item{
+  padding:28px;
+  border:1px solid var(--line);
+  border-radius:2px;
+  background:rgba(244,240,232,.5);
+  transition:border-color .4s var(--ease), transform .5s var(--ease);
+  display:flex; flex-direction:column; gap:16px;
+  min-height:220px;
+  cursor:pointer;
+}
+.news-item:hover{border-color:var(--line-strong); transform:translateY(-2px)}
+.news-item .tag{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted);
+  display:flex; gap:14px; align-items:center;
+}
+.news-item .tag::before{content:""; width:20px; height:1px; background:var(--ink); opacity:.5}
+.news-item h3{
+  font-family:"Fraunces",serif;
+  font-variation-settings:"opsz" 144;
+  font-weight:400;
+  font-size:1.22rem;
+  letter-spacing:-0.01em;
+  margin:0; flex:1;
+}
+.news-item .date{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.66rem; color:var(--muted); letter-spacing:.04em;
+  padding-top:14px; border-top:1px solid var(--line);
+}
+
+/* ---------- join cta ---------- */
+.join-cta{
+  max-width:var(--max);
+  margin:80px auto 0;
+  padding:96px 48px;
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+  gap:80px;
+  align-items:center;
+  border-top:1px solid var(--line);
+}
+.join-cta h2{margin:24px 0 28px; max-width:14ch}
+.join-cta p{font-size:1rem; line-height:1.62; color:var(--ink-2); max-width:46ch; margin:0 0 28px}
+
+/* responsive for home-specific */
+@media (max-width:1100px){
+  .hero{grid-template-columns:1fr; gap:48px; padding:108px 28px 60px; min-height:auto}
+  .hero-viewer{max-width:620px; justify-self:center; width:100%}
+  .strengths-grid{grid-template-columns:repeat(2,1fr)}
+  .platforms-grid{grid-template-columns:1fr}
+  .platform{grid-template-columns:1fr; gap:20px}
+  .platform .glyph{width:48px; height:48px}
+  .why{grid-template-columns:1fr; gap:40px}
+  .leaders{grid-template-columns:1fr}
+  .news-grid{grid-template-columns:1fr}
+  .join-cta{grid-template-columns:1fr; gap:32px; padding:64px 28px}
+}
+@media (max-width:680px){
+  .strengths-grid{grid-template-columns:1fr}
+}
+
+/* =========================================================
+   Z-STACK DEPTH TUNNEL — refined
+   ========================================================= */
+#zstack{ position:relative; }
+
+#zstack-scroll-driver{
+  height:600vh;
+  position:relative;
+}
+
+#zstack-sticky{
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow:hidden;
+  background:#020509;
+}
+
+/* ── Ambient color wash — shifts per channel ── */
+#zstack-ambient{
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  transition:background 1.4s cubic-bezier(.19,1,.22,1);
+}
+
+/* ── Image stage ── */
+#zstack-stage{
+  position:absolute; inset:0; z-index:1;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+}
+.zs-layer{
+  position:absolute; inset:-4%;
+  background-size:cover;
+  background-position:center;
+  will-change:filter, opacity, transform;
+  /* No CSS transition — JS drives these every frame for true scroll-sync */
+}
+/* First layer visible on load */
+.zs-layer:first-child{ opacity:1; z-index:2; }
+
+/* Vignette — deeper than before */
+#zstack-vignette{
+  position:absolute; inset:0; z-index:4; pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 80% at center, transparent 32%, rgba(2,5,9,.78) 72%, rgba(2,5,9,.96) 100%),
+    linear-gradient(180deg, rgba(2,5,9,.55) 0%, transparent 12%, transparent 88%, rgba(2,5,9,.72) 100%);
+}
+
+/* Scan-line grid — finer than before */
+#zstack-scanlines{
+  position:absolute; inset:0; z-index:5; pointer-events:none;
+  background:repeating-linear-gradient(
+    180deg,
+    transparent 0, transparent 2px,
+    rgba(0,0,0,.055) 2px, rgba(0,0,0,.055) 3px
+  );
+  mix-blend-mode:multiply;
+}
+
+/* Confocal aperture / focal slit indicator */
+#zstack-focal-line{
+  position:absolute;
+  left:0; right:0;
+  height:2px;
+  z-index:12; pointer-events:none;
+  display:flex; align-items:center;
+  will-change:top;
+  /* No transition — JS sets top every frame */
+}
+#zstack-focal-line::before{
+  content:"";
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,255,255,.06) 8%,
+    rgba(255,255,255,.22) 30%,
+    rgba(255,255,255,.34) 50%,
+    rgba(255,255,255,.22) 70%,
+    rgba(255,255,255,.06) 92%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 8px rgba(255,255,255,.12),
+    0 0 24px rgba(255,255,255,.06);
+}
+/* Scanning pulse on the focal line */
+#zstack-focal-line::after{
+  content:"";
+  position:absolute;
+  width:80px; height:100%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+  animation:focalScan 2.8s cubic-bezier(.4,0,.6,1) infinite;
+  pointer-events:none;
+}
+@keyframes focalScan{
+  0%  { left:-80px; opacity:0; }
+  8%  { opacity:1; }
+  92% { opacity:1; }
+  100%{ left:calc(100% + 80px); opacity:0; }
+}
+
+/* Confocal aperture diamond at center of focal line */
+#zstack-aperture{
+  position:absolute;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:10px; height:10px;
+  z-index:13; pointer-events:none;
+  will-change:top;
+}
+#zstack-aperture::before{
+  content:"";
+  position:absolute; inset:0;
+  border:1px solid rgba(255,255,255,.45);
+  transform:rotate(45deg);
+  border-radius:1px;
+  background:rgba(255,255,255,.06);
+  box-shadow:0 0 10px rgba(255,255,255,.18), 0 0 28px var(--zs-color, rgba(90,212,184,.25));
+  transition:box-shadow .5s ease;
+}
+
+/* ── Aberration rings ── */
+#zstack-rings{
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none; z-index:10;
+}
+.zs-ring{
+  position:absolute;
+  top:50%; left:50%;
+  border-radius:50%;
+  border:0px solid transparent;
+  pointer-events:none;
+  opacity:0;
+}
+/* 3 rings at different sizes */
+.zs-ring:nth-child(1){ width:200px; height:200px; transform:translate(-50%,-50%) scale(0); }
+.zs-ring:nth-child(2){ width:320px; height:320px; transform:translate(-50%,-50%) scale(0); }
+.zs-ring:nth-child(3){ width:480px; height:480px; transform:translate(-50%,-50%) scale(0); }
+.zs-ring.burst{ animation:ringBurst 1.4s cubic-bezier(.19,1,.22,1) forwards; }
+.zs-ring:nth-child(2).burst{ animation-delay:.08s; }
+.zs-ring:nth-child(3).burst{ animation-delay:.18s; }
+@keyframes ringBurst{
+  0%  { transform:translate(-50%,-50%) scale(.12);
+        border-width:1.5px;
+        border-color:var(--ring-color, rgba(255,255,255,.7));
+        opacity:.85; }
+  35% { border-color:var(--ring-color, rgba(255,255,255,.4)); opacity:.5; }
+  100%{ transform:translate(-50%,-50%) scale(1);
+        border-width:.5px;
+        opacity:0; }
+}
+
+/* ── Z-number watermark ── */
+#zstack-znum{
+  position:absolute;
+  bottom:4vh; left:50%;
+  transform:translateX(-50%);
+  font-family:"JetBrains Mono",monospace;
+  font-size:clamp(6rem, 20vw, 16rem);
+  font-weight:400;
+  letter-spacing:-.06em;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(255,255,255,.05);
+  z-index:6; pointer-events:none;
+  font-variant-numeric:tabular-nums;
+  user-select:none;
+  transition:color .2s ease;
+}
+
+/* ── Left HUD rail ── */
+#zstack-hud-left{
+  position:absolute;
+  top:50%; left:28px;
+  transform:translateY(-50%);
+  z-index:20;
+  display:flex; flex-direction:column; gap:0;
+  font-family:"JetBrains Mono",monospace;
+  font-size:.6rem; letter-spacing:.1em;
+  border-left:1px solid rgba(255,255,255,.1);
+  padding-left:12px;
+}
+.zsh-label{
+  font-size:.5rem; text-transform:uppercase;
+  letter-spacing:.18em; color:rgba(255,255,255,.22);
+  margin-top:12px;
+}
+.zsh-label:first-child{ margin-top:0; }
+.zsh-value{
+  color:rgba(255,255,255,.65); font-size:.62rem;
+  margin-top:2px;
+}
+.zsh-sep{
+  width:24px; height:1px;
+  background:rgba(255,255,255,.07);
+  margin:10px 0;
+}
+
+/* ── Right depth gauge — fixed layout ── */
+#zstack-gauge{
+  position:absolute;
+  top:50%; right:0;
+  transform:translateY(-50%);
+  z-index:20;
+  display:flex; flex-direction:column; align-items:flex-end; gap:6px;
+  font-family:"JetBrains Mono",monospace;
+  padding-right:18px;
+}
+.zsg-label{
+  font-size:.48rem; text-transform:uppercase;
+  letter-spacing:.16em; color:rgba(255,255,255,.22);
+  text-align:right;
+}
+#zsg-track{
+  position:relative;
+  width:1px;
+  height:clamp(140px, 26vh, 240px);
+  background:rgba(255,255,255,.08);
+  align-self:flex-end;
+  margin-right:28px;
+}
+/* Tick lines along the track */
+#zsg-track::before{
+  content:"";
+  position:absolute; inset:0;
+  background:repeating-linear-gradient(
+    180deg,
+    rgba(255,255,255,.12) 0, rgba(255,255,255,.12) 1px,
+    transparent 1px, transparent calc(100% / 8)
+  );
+}
+#zsg-fill{
+  position:absolute;
+  top:0; left:-1px; right:-1px;
+  height:0%;
+  background:linear-gradient(180deg,
+    rgba(90,212,184,1)   0%,
+    rgba(106,176,245,.9) 25%,
+    rgba(212,184,74,.9)  50%,
+    rgba(224,120,90,.85) 69%,
+    rgba(160,127,224,.8) 100%
+  );
+  /* No transition — JS sets height every frame */
+  will-change:height;
+}
+/* Glowing bead at fill head */
+#zsg-bead{
+  position:absolute;
+  left:50%; top:0%;
+  transform:translate(-50%,-50%);
+  width:6px; height:6px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 0 2px rgba(255,255,255,.12), 0 0 12px var(--zs-color, rgba(90,212,184,.8));
+  transition:box-shadow .6s ease; /* only color transition, not position */
+  z-index:2;
+  will-change:top;
+}
+/* Marks: tick extends LEFT from track, label LEFT of tick */
+.zsg-mark{
+  position:absolute;
+  right:0;
+  transform:translateY(-50%);
+  display:flex; align-items:center; gap:5px;
+}
+.zsg-mark::after{
+  content:"";
+  display:block;
+  width:4px; height:1px;
+  background:rgba(255,255,255,.18);
+  transition:width .3s ease, background .3s ease;
+}
+.zsg-mark.active::after{
+  width:7px;
+  background:var(--zs-color, rgba(90,212,184,.9));
+}
+.zsg-mark span{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.44rem; letter-spacing:.08em;
+  color:rgba(255,255,255,.2);
+  white-space:nowrap;
+  transition:color .3s ease;
+  text-align:right;
+}
+.zsg-mark.active span{ color:var(--zs-color, rgba(90,212,184,.9)); }
+#zsg-plane-counter{
+  font-size:.54rem; letter-spacing:.06em;
+  color:rgba(255,255,255,.5);
+  font-variant-numeric:tabular-nums;
+  text-align:right;
+  margin-right:28px;
+}
+#zsg-depth-um{
+  font-size:.44rem; letter-spacing:.1em;
+  color:rgba(255,255,255,.24);
+  text-align:right;
+  margin-right:28px;
+}
+
+/* ── Bottom HUD ── */
+#zstack-hud-bot{
+  position:absolute;
+  bottom:24px; left:28px; right:90px;
+  z-index:20;
+  display:flex; justify-content:space-between; align-items:flex-end;
+  font-family:"JetBrains Mono",monospace;
+  font-size:.62rem; letter-spacing:.06em;
+}
+#zstack-scalebar{
+  display:flex; flex-direction:column; gap:5px;
+}
+#zsb-bar{
+  width:72px; height:1px;
+  background:rgba(255,255,255,.75);
+  position:relative;
+  box-shadow:0 0 6px rgba(255,255,255,.12);
+}
+#zsb-bar::before,#zsb-bar::after{
+  content:""; position:absolute;
+  top:-3px; width:1px; height:7px;
+  background:rgba(255,255,255,.75);
+}
+#zsb-bar::before{ left:0; }
+#zsb-bar::after{ right:0; }
+#zstack-scalebar span{ font-size:.5rem; color:rgba(255,255,255,.32); margin-top:2px; }
+
+#zstack-ch-tag{
+  display:flex; flex-direction:column; align-items:flex-end; gap:3px;
+}
+#zsch-dot{
+  width:7px; height:7px; border-radius:50%;
+  background:#5ad4b8;
+  box-shadow:0 0 10px #5ad4b8aa;
+  transition:background .5s ease, box-shadow .5s ease;
+  align-self:flex-end;
+}
+#zsch-name{
+  color:rgba(255,255,255,.82); font-size:.64rem;
+}
+#zsch-lambda{
+  color:rgba(255,255,255,.3); font-size:.52rem;
+}
+
+/* Channel name flicker swap */
+.zsch-swap{
+  animation:schSwap .35s ease forwards;
+}
+@keyframes schSwap{
+  0%  { opacity:1; }
+  30% { opacity:0; transform:translateY(-3px); }
+  60% { opacity:0; transform:translateY(3px); }
+  100%{ opacity:1; transform:translateY(0); }
+}
+
+/* ── Story panels — left-anchored, clear of gauge ── */
+#zstack-panels{
+  position:absolute;
+  left:clamp(100px, 12vw, 160px);
+  top:50%; transform:translateY(-50%);
+  width:clamp(260px, 28vw, 380px);
+  z-index:20; pointer-events:none;
+  /* Height = tallest panel content — panels use position:relative inside */
+}
+.zsp{
+  position:absolute; left:0; right:0; top:0;
+  display:flex; flex-direction:column; gap:12px;
+  padding:22px 26px 20px;
+  background:
+    linear-gradient(160deg, rgba(255,255,255,.03) 0%, rgba(255,255,255,.008) 100%),
+    rgba(5,8,17,.9);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:14px;
+  backdrop-filter:blur(28px) saturate(1.35);
+  opacity:0;
+  transform:translateX(-12px) translateY(4px);
+  transition:
+    opacity  .6s cubic-bezier(.19,1,.22,1),
+    transform .6s cubic-bezier(.19,1,.22,1),
+    border-color .45s ease,
+    box-shadow .45s ease;
+  pointer-events:none;
+  box-shadow:0 20px 52px rgba(0,0,0,.6), 0 1px 0 rgba(255,255,255,.04) inset;
+  visibility:hidden;
+}
+.zsp.active{
+  opacity:1;
+  transform:translateX(0) translateY(0);
+  pointer-events:auto;
+  visibility:visible;
+  border-color:color-mix(in srgb, var(--zp-accent) 30%, rgba(255,255,255,.07));
+  box-shadow:
+    0 20px 52px rgba(0,0,0,.6),
+    0 1px 0 rgba(255,255,255,.04) inset,
+    0 0 0 1px color-mix(in srgb, var(--zp-accent) 12%, transparent),
+    0 0 36px color-mix(in srgb, var(--zp-accent) 6%, transparent);
+}
+
+/* Pips inline with eyebrow — single compact row */
+.zsp-header{
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:2px;
+}
+.zsp-pips{
+  display:flex; gap:3px; align-items:center; flex-shrink:0;
+}
+.zsp-pip{
+  height:2px; border-radius:999px;
+  width:12px;
+  background:rgba(255,255,255,.1);
+  transition:background .35s ease, width .35s ease, box-shadow .35s ease;
+  flex-shrink:0;
+}
+.zsp-pip.cur{
+  width:20px;
+  background:var(--zp-accent, rgba(255,255,255,.5));
+  box-shadow:0 0 5px var(--zp-accent, transparent);
+}
+.zsp-pip.done{ background:rgba(255,255,255,.22); }
+
+.zsp-eyebrow{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.48rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--zp-accent, rgba(255,255,255,.35));
+  display:flex; align-items:center; gap:6px;
+  flex:1; min-width:0;
+}
+.zsp-dot{
+  display:inline-block;
+  width:4px; height:4px; border-radius:50%;
+  background:var(--zp-accent, rgba(255,255,255,.35));
+  box-shadow:0 0 6px var(--zp-accent, transparent);
+  flex-shrink:0;
+  animation:pipPulse 2.2s ease infinite;
+}
+@keyframes pipPulse{
+  0%,100%{ opacity:1; }
+  50%{ opacity:.4; }
+}
+.zsp-h{
+  font-family:"Cormorant Garamond","Fraunces",serif;
+  font-weight:300;
+  font-size:clamp(1.15rem, 1.7vw, 1.55rem);
+  line-height:1.08;
+  letter-spacing:-.022em;
+  color:#eef2ff;
+  margin:0;
+}
+.zsp-h em{
+  font-style:italic; font-weight:400;
+  color:var(--zp-accent, #eef2ff);
+}
+.zsp-p{
+  font-family:"Manrope","Inter",sans-serif;
+  font-size:.76rem; line-height:1.64;
+  color:rgba(185,200,235,.58);
+  margin:0;
+}
+.zsp-meta{
+  display:grid; grid-template-columns:auto 1fr;
+  gap:4px 14px;
+  font-family:"JetBrains Mono",monospace;
+  font-size:.5rem; letter-spacing:.04em;
+  padding-top:10px;
+  border-top:1px solid rgba(255,255,255,.05);
+  margin:0;
+}
+.zsp-meta dt{
+  color:rgba(255,255,255,.2);
+  text-transform:uppercase; letter-spacing:.12em;
+}
+.zsp-meta dd{ margin:0; color:rgba(185,200,235,.55); }
+
+/* Responsive */
+@media (max-width:960px){
+  #zstack-panels{
+    left:12px; right:80px;
+    width:auto; max-width:420px;
+    top:auto; bottom:90px; transform:none;
+  }
+  .zsp{ transform:translateY(10px) translateX(0); }
+  .zsp.active{ transform:translateY(0); }
+  #zstack-hud-left{ display:none; }
+  #zstack-gauge{ padding-right:10px; }
+  #zstack-znum{ font-size:clamp(4rem,22vw,9rem); }
+  #zstack-hud-bot{ right:90px; }
+}
+@media (prefers-reduced-motion:reduce){
+  #zstack-scroll-driver{ height:auto; }
+  #zstack-sticky{ position:relative; height:auto; min-height:80vh; }
+  .zs-layer{ filter:none!important; opacity:1!important; transform:none!important; }
+  .zsp{ opacity:1!important; transform:none!important; position:relative; }
+  #zstack-focal-line::after{ animation:none; }
+}
+</style>
+<link rel="stylesheet" href="site_v4blend.css">
+</head>
+<body data-page="index">
+
+<!-- ========== CINEMATIC INTRO ========== -->
+<div id="intro">
+  <div class="intro-tc"><span class="blink"></span><span id="introTc">00:00:00</span> · REC</div>
+  <div class="intro-meta-r">
+    <span class="dim">Specimen</span>
+    <span>Cardiac organoid</span>
+    <span class="dim" style="margin-top:8px">Objective</span>
+    <span>Confocal · multi-marker</span>
+  </div>
+
+  <div class="intro-stage">
+    <div class="intro-specimen">
+      <div class="intro-cross"></div>
+      <div class="intro-img"><img src="stack_merged.webp" alt=""></div>
+      <div class="intro-scale">
+        <div class="b"></div>
+        <span>100 μm</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="intro-channels">
+    <div class="row"><span class="dot"></span><span class="n">01</span><span class="name">Hoechst 33342</span><span class="wl">461 nm</span></div>
+    <div class="row"><span class="dot"></span><span class="n">02</span><span class="name">α-Actinin 2</span><span class="wl">519 nm</span></div>
+    <div class="row"><span class="dot"></span><span class="n">03</span><span class="name">CD31</span><span class="wl">561 nm</span></div>
+    <div class="row"><span class="dot"></span><span class="n">04</span><span class="name">vWF overlay</span><span class="wl">CD31 + α-Actinin</span></div>
+  </div>
+
+  <div class="intro-zplane">
+    <span class="lbl">z-plane</span>
+    <span class="val"><span id="introZ">00</span> / 32</span>
+  </div>
+
+  <div class="intro-wordmark" id="introWordmark">MWB <em>Lab</em></div>
+  <button class="intro-skip" id="introSkip">Skip intro →</button>
+</div>
+
+<!-- ========== AMBIENT BG ========== -->
+<div id="ambient">
+  <div class="bg on" data-bg="0" style="background-image:url('bg_merged.webp')"></div>
+  <div class="bg" data-bg="1" style="background-image:url('bg_nuclei.webp')"></div>
+  <div class="bg" data-bg="2" style="background-image:url('bg_actinin.webp')"></div>
+  <div class="bg" data-bg="3" style="background-image:url('bg_rfp.webp')"></div>
+  <div class="bg" data-bg="4" style="background-image:url('bg_vwf.webp')"></div>
+</div>
+<div class="vignette"></div>
+<div class="grain"></div>
+
+<!-- ========== TOPBAR ========== -->
+<header class="topbar">
+  <div class="brand"><span class="dot"></span> MWB <em>Lab</em></div>
+  <nav class="nav">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="research.html">Research</a>
+    <a href="technology.html">Technology</a>
+    <a href="translational.html">Translational</a>
+    <a href="publications.html">Publications</a>
+    <a href="team.html">Team</a>
+    <a href="join.html">Join Us</a>
+    <a href="news.html">News</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="meta-right">
+    <span>University of Cologne</span>
+    <span class="live">Active lab</span>
+  </div>
+</header>
+<div class="progress"><span id="progressFill"></span></div>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="hero" data-bg="0">
+  <div class="hero-copy">
+    <div class="eyebrow rv" style="--d:.15s">Institute of Physiology I · University of Cologne</div>
+    <h1 class="display split" data-split>Scalable cardiac tissue engineering for <em>regenerative medicine</em>.</h1>
+    <p class="lede rv" style="--d:1.1s">
+      The MWB Lab develops human iPSC-derived cardiac cells and organoids for
+      regenerative medicine and translational cardiac therapy. We build scalable,
+      clinically relevant systems to support safe regenerative therapies, disease
+      modeling, and drug testing.
+    </p>
+    <div class="cta-row rv" style="--d:1.3s">
+      <a class="btn primary" href="research.html">
+        Explore research
+        <svg class="arrow" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+      </a>
+      <a class="btn ghost" href="publications.html">Publications</a>
+      <a class="btn ghost" href="join.html">Join us</a>
+    </div>
+  </div>
+
+  <div class="hero-viewer">
+    <div class="viewer-frame">
+      <div class="viewer-bg on" data-viewbg="merged" style="background-image:url('bg_merged.webp')"></div>
+      <div class="viewer-bg" data-viewbg="nuclei" style="background-image:url('bg_nuclei.webp')"></div>
+      <div class="viewer-bg" data-viewbg="actinin" style="background-image:url('bg_actinin.webp')"></div>
+      <div class="viewer-bg" data-viewbg="rfp" style="background-image:url('bg_rfp.webp')"></div>
+      <div class="viewer-bg" data-viewbg="vwf" style="background-image:url('bg_vwf.webp')"></div>
+
+      <div class="hud-top">
+        <div class="left">
+          <span class="sm">Organoid</span>
+          <span>Cardiac organoid · D20–D21</span>
+        </div>
+        <div class="right">
+          <span class="sm">Channel</span>
+          <span id="heroChName">Merged overlay</span>
+        </div>
+      </div>
+
+      <div class="channel-stage">
+        <div class="channel on" data-channel="merged">
+          <img class="layer back" src="stack_merged.webp" alt="">
+          <img class="layer mid" src="stack_merged.webp" alt="">
+          <img class="layer front" src="stack_merged.webp" alt="Merged view">
+        </div>
+        <div class="channel" data-channel="nuclei">
+          <img class="layer back" src="stack_nuclei.webp" alt="">
+          <img class="layer mid" src="stack_nuclei.webp" alt="">
+          <img class="layer front" src="stack_nuclei.webp" alt="Nuclei">
+        </div>
+        <div class="channel" data-channel="actinin">
+          <img class="layer back" src="stack_actinin.webp" alt="">
+          <img class="layer mid" src="stack_actinin.webp" alt="">
+          <img class="layer front" src="stack_actinin.webp" alt="α-Actinin">
+        </div>
+        <div class="channel" data-channel="rfp">
+          <img class="layer back" src="stack_rfp.webp" alt="">
+          <img class="layer mid" src="stack_rfp.webp" alt="">
+          <img class="layer front" src="stack_rfp.webp" alt="CD31">
+        </div>
+        <div class="channel" data-channel="vwf">
+          <img class="layer back" src="stack_vwf.webp" alt="">
+          <img class="layer mid" src="stack_vwf.webp" alt="">
+          <img class="layer front" src="stack_vwf.webp" alt="Dual stain">
+        </div>
+      </div>
+
+      <div class="crosshair"></div>
+
+      <div class="hud-bot">
+        <div class="scale-bar">
+          <div class="bar"></div>
+          <span>100 μm</span>
+        </div>
+        <div class="channel-label">
+          <span class="sm">Confocal</span>
+          <span>20× / multi-channel</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="hero-thumbs" id="heroThumbs">
+      <button class="hero-thumb active" data-herodot="merged" aria-label="Merged overlay"><img src="photo_overlay_2026.webp" alt=""><span>Merged</span></button>
+      <button class="hero-thumb" data-herodot="nuclei" aria-label="Hoechst nuclei"><img src="20012026_96well-COs_actinin-CX43_Image001_ch00_SV.webp" alt=""><span>Nuclei</span></button>
+      <button class="hero-thumb" data-herodot="actinin" aria-label="Alpha actinin"><img src="20012026_96well-COs_actinin-CX43_Image001_ch02_SV.webp" alt=""><span>α-Actinin</span></button>
+      <button class="hero-thumb" data-herodot="rfp" aria-label="Cx43"><img src="20012026_96well-COs_actinin-CX43_Image001_ch01_SV.webp" alt=""><span>Cx43</span></button>
+      <button class="hero-thumb" data-herodot="vwf" aria-label="vWF"><img src="03082022_DSR-Organoids_D20_Hoechst-vWF-AF488.webp" alt=""><span>vWF</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Z-STACK DEPTH TUNNEL ========== -->
+<section id="zstack" data-bg="1">
+  <div id="zstack-scroll-driver">
+    <div id="zstack-sticky">
+
+      <div id="zstack-ambient"></div>
+
+      <div id="zstack-stage">
+        <div class="zs-layer" id="zsl-merged"  data-zplane="0"  style="background-image:url('stack_merged.webp')"></div>
+        <div class="zs-layer" id="zsl-nuclei"  data-zplane="8"  style="background-image:url('stack_nuclei.webp')"></div>
+        <div class="zs-layer" id="zsl-actinin" data-zplane="16" style="background-image:url('stack_actinin.webp')"></div>
+        <div class="zs-layer" id="zsl-rfp"     data-zplane="22" style="background-image:url('stack_rfp.webp')"></div>
+        <div class="zs-layer" id="zsl-vwf"     data-zplane="28" style="background-image:url('stack_vwf.webp')"></div>
+        <div id="zstack-rings">
+          <div class="zs-ring"></div>
+          <div class="zs-ring"></div>
+          <div class="zs-ring"></div>
+        </div>
+        <div id="zstack-scanlines"></div>
+        <div id="zstack-vignette"></div>
+      </div>
+
+      <div id="zstack-focal-line"></div>
+      <div id="zstack-aperture"></div>
+      <div id="zstack-znum" aria-hidden="true">00</div>
+
+      <div id="zstack-hud-left">
+        <div class="zsh-label">Specimen</div>
+        <div class="zsh-value">ORG-047 · D21</div>
+        <div class="zsh-sep"></div>
+        <div class="zsh-label">Objective</div>
+        <div class="zsh-value">20× / NA 0.75</div>
+        <div class="zsh-sep"></div>
+        <div class="zsh-label">Mode</div>
+        <div class="zsh-value">Confocal · LSM</div>
+        <div class="zsh-sep"></div>
+        <div class="zsh-label">Step size</div>
+        <div class="zsh-value">0.5 μm / plane</div>
+      </div>
+
+      <div id="zstack-gauge">
+        <div class="zsg-label">Z·DEPTH</div>
+        <div id="zsg-track">
+          <div id="zsg-fill"></div>
+          <div id="zsg-bead"></div>
+          <div class="zsg-mark" style="top:0%"   data-plane="0"><span>z 00</span></div>
+          <div class="zsg-mark" style="top:25%"  data-plane="8"><span>z 08</span></div>
+          <div class="zsg-mark" style="top:50%"  data-plane="16"><span>z 16</span></div>
+          <div class="zsg-mark" style="top:69%"  data-plane="22"><span>z 22</span></div>
+          <div class="zsg-mark" style="top:88%"  data-plane="28"><span>z 28</span></div>
+          <div class="zsg-mark" style="top:100%" data-plane="32"><span>z 32</span></div>
+        </div>
+        <div class="zsg-label" id="zsg-plane-counter">00 / 32</div>
+        <div id="zsg-depth-um">0.0 μm</div>
+      </div>
+
+      <div id="zstack-hud-bot">
+        <div id="zstack-scalebar">
+          <div id="zsb-bar"></div>
+          <span>100 μm</span>
+        </div>
+        <div id="zstack-ch-tag">
+          <div id="zsch-dot"></div>
+          <span id="zsch-name">Merged overlay</span>
+          <span id="zsch-lambda">Hoechst · Cx43 · α-Actinin</span>
+        </div>
+      </div>
+
+      <div id="zstack-panels">
+
+        <div class="zsp" data-zp="0" style="--zp-accent:#5ad4b8">
+          <div class="zsp-header"><div class="zsp-pips"><div class="zsp-pip cur"></div><div class="zsp-pip"></div><div class="zsp-pip"></div><div class="zsp-pip"></div><div class="zsp-pip"></div></div><div class="zsp-eyebrow"><span class="zsp-dot"></span>§ The thesis · z 00–07</div></div>
+          <h3 class="zsp-h">Heart failure is a <em>cell problem</em>.</h3>
+          <p class="zsp-p">Adult human cardiomyocytes don't divide. Once injured — by infarct, toxin, or genetic disease — that tissue doesn't come back. Everything the lab does starts from this single fact.</p>
+          <dl class="zsp-meta">
+            <dt>Problem</dt><dd>Non-regenerative myocardium</dd>
+            <dt>Our answer</dt><dd>Build the cells back</dd>
+          </dl>
+        </div>
+
+        <div class="zsp" data-zp="8" style="--zp-accent:#6ab0f5">
+          <div class="zsp-header"><div class="zsp-pips"><div class="zsp-pip done"></div><div class="zsp-pip cur"></div><div class="zsp-pip"></div><div class="zsp-pip"></div><div class="zsp-pip"></div></div><div class="zsp-eyebrow"><span class="zsp-dot"></span>§ 01 — Nuclei · z 08–15</div></div>
+          <h3 class="zsp-h">Start with a <em>scalable cell source</em>.</h3>
+          <p class="zsp-p">iPSC-derived cardiomyocytes, produced reproducibly at therapy-compatible scale. The 2019 milestone. Each blue nucleus here is a cell that started as skin.</p>
+          <dl class="zsp-meta">
+            <dt>Output</dt><dd>iPSC-CM · iPSC-EC</dd>
+            <dt>Channel</dt><dd>Hoechst · 461 nm</dd>
+          </dl>
+        </div>
+
+        <div class="zsp" data-zp="16" style="--zp-accent:#d4b84a">
+          <div class="zsp-header"><div class="zsp-pips"><div class="zsp-pip done"></div><div class="zsp-pip done"></div><div class="zsp-pip cur"></div><div class="zsp-pip"></div><div class="zsp-pip"></div></div><div class="zsp-eyebrow"><span class="zsp-dot"></span>§ 02 — Sarcomere · z 16–21</div></div>
+          <h3 class="zsp-h">Mature it into <em>real cardiac tissue</em>.</h3>
+          <p class="zsp-p">In self-organising organoids and hydrogel microtissues, cardiomyocytes stripe, align, and contract. The α-actinin lattice at this plane is the first sign the tissue is behaving like myocardium.</p>
+          <dl class="zsp-meta">
+            <dt>Format</dt><dd>Organoid · microtissue</dd>
+            <dt>Channel</dt><dd>α-Actinin 2 · 519 nm</dd>
+          </dl>
+        </div>
+
+        <div class="zsp" data-zp="22" style="--zp-accent:#e0785a">
+          <div class="zsp-header"><div class="zsp-pips"><div class="zsp-pip done"></div><div class="zsp-pip done"></div><div class="zsp-pip done"></div><div class="zsp-pip cur"></div><div class="zsp-pip"></div></div><div class="zsp-eyebrow"><span class="zsp-dot"></span>§ 03 — Coupling · z 22–27</div></div>
+          <h3 class="zsp-h">Track lineage and <em>disease in real time</em>.</h3>
+          <p class="zsp-p">Connexin-43 reveals coupling architecture — where cells communicate, where gap junctions form. This depth resolves the interface between mechanical structure and conductive function.</p>
+          <dl class="zsp-meta">
+            <dt>Modality</dt><dd>Reporter · live imaging</dd>
+            <dt>Channel</dt><dd>Cx43 · 561 nm</dd>
+          </dl>
+        </div>
+
+        <div class="zsp" data-zp="28" style="--zp-accent:#a07fe0">
+          <div class="zsp-header"><div class="zsp-pips"><div class="zsp-pip done"></div><div class="zsp-pip done"></div><div class="zsp-pip done"></div><div class="zsp-pip done"></div><div class="zsp-pip cur"></div></div><div class="zsp-eyebrow"><span class="zsp-dot"></span>§ 04 — Vasculature · z 28–32</div></div>
+          <h3 class="zsp-h">Validated in a <em>porcine MI model</em>.</h3>
+          <p class="zsp-p">The deepest planes reveal vascular architecture — endothelial network threaded through myocardial tissue. This spatial organisation bridges a beautiful image and a therapy that can survive beyond the dish.</p>
+          <dl class="zsp-meta">
+            <dt>Model</dt><dd>Porcine · acute MI</dd>
+            <dt>Endpoint</dt><dd>30 days · no arrhythmia</dd>
+          </dl>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== KEY STRENGTHS ========== -->
+<section class="sec" id="strengths" data-bg="2">
+  <div class="sec-head">
+    <div class="eyebrow rv">§ 01 — Key strengths</div>
+    <div>
+      <h2 class="display" data-split-on-reveal>What the lab is <em>known for</em>.</h2>
+      <p class="sec-lede rv">
+        A decade of work building the cellular, tissue, and translational infrastructure
+        for scalable cardiac regenerative medicine — from iPSC-derived cell production to
+        validated large-animal safety data.
+      </p>
+    </div>
+  </div>
+
+  <div class="strengths-grid">
+    <div class="strength rv">
+      <div class="icon" aria-hidden="true">
+        <svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="11"/><circle cx="18" cy="18" r="4"/><path d="M7 18h-3M32 18h-3M18 7v-3M18 32v-3"/></svg>
+      </div>
+      <div class="year">2019</div>
+      <h3>Scalable iPSC-derived <em>cardiomyocytes</em></h3>
+      <p>Robust, reproducible production of human cardiomyocytes from pluripotent stem cells at a scale compatible with therapeutic and drug-testing applications.</p>
+    </div>
+
+    <div class="strength rv">
+      <div class="icon" aria-hidden="true">
+        <svg viewBox="0 0 36 36"><path d="M6 22c2-6 6-10 12-10s10 4 12 10"/><circle cx="12" cy="22" r="2.2"/><circle cx="24" cy="22" r="2.2"/><circle cx="18" cy="16" r="2.2"/></svg>
+      </div>
+      <div class="year">2022</div>
+      <h3>Human iPSC-derived <em>endothelial cells</em></h3>
+      <p>Differentiation protocols yielding functional endothelial cells for building vascularized cardiac constructs and supporting tissue perfusion.</p>
+    </div>
+
+    <div class="strength rv">
+      <div class="icon" aria-hidden="true">
+        <svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="12"/><circle cx="13" cy="15" r="2"/><circle cx="22" cy="14" r="2"/><circle cx="18" cy="22" r="2"/><circle cx="24" cy="22" r="2"/></svg>
+      </div>
+      <div class="year">2026</div>
+      <h3>Self-organizing <em>cardiac organoids</em></h3>
+      <p>Three-dimensional cardiac microtissues resolving nuclei, sarcomere, lineage and emerging vasculature in a single scalable specimen.</p>
+    </div>
+
+    <div class="strength rv">
+      <div class="icon" aria-hidden="true">
+        <svg viewBox="0 0 36 36"><path d="M18 29s-10-6-10-14a6 6 0 0 1 10-4 6 6 0 0 1 10 4c0 8-10 14-10 14z"/></svg>
+      </div>
+      <div class="year">Validated</div>
+      <h3>Porcine myocardial infarction <em>model</em></h3>
+      <p>Translational validation in an acute myocardial infarction porcine model, demonstrating cell and tissue behaviour in a clinically relevant large-animal system.</p>
+    </div>
+
+    <div class="strength rv">
+      <div class="icon" aria-hidden="true">
+        <svg viewBox="0 0 36 36"><path d="M6 28V10l6-4 6 4 6-4 6 4v18"/><path d="M6 28h24"/><path d="M12 28v-10M24 28v-10"/></svg>
+      </div>
+      <div class="year">30 days</div>
+      <h3>No arrhythmogenic effects <em>post-transplant</em></h3>
+      <p>Safety confirmed thirty days after transplantation, a key prerequisite for moving cardiac cell therapies toward clinical use.</p>
+    </div>
+
+    <div class="strength rv">
+      <div class="icon" aria-hidden="true">
+        <svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="10"/><path d="M18 8v5M18 23v5M8 18h5M23 18h5"/><circle cx="18" cy="18" r="2"/></svg>
+      </div>
+      <div class="year">Platform</div>
+      <h3>Drug validation on <em>cardiac organoids</em></h3>
+      <p>Organoid-based compound testing that captures contractility, conduction and cellular response in a humanized three-dimensional system.</p>
+    </div>
+
+    <div class="strength rv">
+      <div class="icon" aria-hidden="true">
+        <svg viewBox="0 0 36 36"><path d="M10 6c4 4 4 10 0 14s-4 10 0 14"/><path d="M26 6c-4 4-4 10 0 14s4 10 0 14"/><path d="M10 13h16M10 27h16"/></svg>
+      </div>
+      <div class="year">Capability</div>
+      <h3>Genetic engineering <em>of cardiac cells</em></h3>
+      <p>Targeted modification of iPSCs and cardiac lineages to introduce reporters, correct disease alleles, and probe mechanism in isogenic backgrounds.</p>
+    </div>
+
+    <div class="strength rv">
+      <div class="icon" aria-hidden="true">
+        <svg viewBox="0 0 36 36"><path d="M6 18c0-6 4-10 12-10s12 4 12 10-4 10-12 10S6 24 6 18z"/><path d="M6 18h24M18 8v20"/></svg>
+      </div>
+      <div class="year">Infrastructure</div>
+      <h3>Hydrogel-based <em>culture systems</em></h3>
+      <p>Tunable hydrogel matrices for 3D cell culture, tissue engineering, and the reconstitution of mechanical microenvironments that favour maturation.</p>
+    </div>
+
+    <div class="strength rv">
+      <div class="icon" aria-hidden="true">
+        <svg viewBox="0 0 36 36"><circle cx="13" cy="16" r="5"/><circle cx="23" cy="20" r="5"/><path d="M6 30c2-4 6-6 10-6M16 30c2-4 6-6 10-6"/></svg>
+      </div>
+      <div class="year">Cross-species</div>
+      <h3>Horse and camel iPSC <em>research</em></h3>
+      <p>Comparative stem cell work in large domestic species supporting novel regenerative therapies for skin injury and osteoarthritis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== WHY IT MATTERS ========== -->
+<section class="sec" id="why" data-bg="3">
+  <div class="sec-head">
+    <div class="eyebrow rv">§ 02 — Why it matters</div>
+    <div>
+      <h2 class="display" data-split-on-reveal>Cardiovascular disease is <em>still the problem</em>.</h2>
+    </div>
+  </div>
+
+  <div class="why">
+    <p class="quote rv">
+      Cardiovascular disease remains a major global health problem. We develop
+      scalable and clinically relevant cardiac cell and tissue systems — the cellular
+      building blocks, the 3D architectures, and the validation data — to support
+      <em>safe regenerative therapies, disease modeling, and drug testing</em>.
+    </p>
+    <div class="why-diagram rv">
+      <!-- heart connected to engineered tissue schematic -->
+      <svg viewBox="0 0 420 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- heart on left -->
+        <g transform="translate(80,140)">
+          <path d="M0 30 C-30 -10,-60 -10,-60 20 C-60 50,-30 70,0 90 C30 70,60 50,60 20 C60 -10,30 -10,0 30 Z"/>
+          <path d="M-20 20 L-5 40 L5 25 L20 45" stroke-width="1"/>
+        </g>
+        <!-- connector lines -->
+        <g stroke-dasharray="3 4" opacity=".6">
+          <path d="M150 140 L270 90"/>
+          <path d="M150 140 L270 140"/>
+          <path d="M150 140 L270 190"/>
+        </g>
+        <!-- engineered elements on right -->
+        <g transform="translate(300,90)">
+          <circle r="18"/>
+          <circle cx="-6" cy="-4" r="3"/>
+          <circle cx="6" cy="2" r="3"/>
+          <circle cx="-2" cy="7" r="3"/>
+        </g>
+        <g transform="translate(300,140)">
+          <rect x="-20" y="-14" width="40" height="28" rx="2"/>
+          <line x1="-14" y1="-8" x2="14" y2="-8"/>
+          <line x1="-14" y1="0" x2="14" y2="0"/>
+          <line x1="-14" y1="8" x2="14" y2="8"/>
+        </g>
+        <g transform="translate(300,190)">
+          <circle r="18"/>
+          <path d="M-10 0 Q0 -10 10 0 Q0 10 -10 0"/>
+        </g>
+        <!-- labels -->
+        <g font-family="JetBrains Mono, monospace" font-size="8" fill="#7a7369" letter-spacing=".8" stroke="none">
+          <text x="80" y="245" text-anchor="middle">HEART</text>
+          <text x="340" y="95" text-anchor="start">CARDIOMYOCYTES</text>
+          <text x="340" y="145" text-anchor="start">ENG. TISSUE</text>
+          <text x="340" y="195" text-anchor="start">ORGANOIDS</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ========== RESEARCH PLATFORMS ========== -->
+<section class="sec" id="platforms" data-bg="4">
+  <div class="sec-head">
+    <div class="eyebrow rv">§ 03 — Research platforms</div>
+    <div>
+      <h2 class="display" data-split-on-reveal>Four platforms, <em>one pipeline</em>.</h2>
+      <p class="sec-lede rv">
+        The lab's research is organised around four interlocking platforms — from cell
+        manufacturing at the beginning to drug testing and genetic engineering at the end.
+      </p>
+    </div>
+  </div>
+
+  <div class="platforms-grid">
+    <div class="platform rv">
+      <div>
+        <div class="num">I — Manufacturing</div>
+        <h3>Cardiac cell <em>manufacturing</em></h3>
+        <p>Scalable production of iPSC-derived cardiomyocytes and endothelial cells using bioreactor-based expansion protocols compatible with therapeutic and research use.</p>
+      </div>
+      <div class="glyph" aria-hidden="true">
+        <svg viewBox="0 0 64 64"><rect x="14" y="16" width="36" height="40" rx="2"/><path d="M14 26h36M14 36h36M14 46h36"/><path d="M22 16v-6h20v6"/></svg>
+      </div>
+    </div>
+
+    <div class="platform rv">
+      <div>
+        <div class="num">II — 3D Tissue</div>
+        <h3>Organoids and <em>3D tissue systems</em></h3>
+        <p>Self-organising cardiac organoids, engineered microtissues, and hydrogel-based 3D systems that capture structure, contractility, and vasculature in a single specimen.</p>
+      </div>
+      <div class="glyph" aria-hidden="true">
+        <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22"/><circle cx="24" cy="26" r="3"/><circle cx="38" cy="24" r="3"/><circle cx="30" cy="38" r="3"/><circle cx="42" cy="36" r="3"/><circle cx="22" cy="38" r="3"/></svg>
+      </div>
+    </div>
+
+    <div class="platform rv">
+      <div>
+        <div class="num">III — Validation</div>
+        <h3>Translational <em>validation</em></h3>
+        <p>Large-animal validation in an acute myocardial infarction porcine model, with functional and safety readouts at 30 days post-transplantation — no arrhythmogenic effects.</p>
+      </div>
+      <div class="glyph" aria-hidden="true">
+        <svg viewBox="0 0 64 64"><path d="M32 52s-18-11-18-25a10 10 0 0 1 18-7 10 10 0 0 1 18 7c0 14-18 25-18 25z"/></svg>
+      </div>
+    </div>
+
+    <div class="platform rv">
+      <div>
+        <div class="num">IV — Drug & Gene</div>
+        <h3>Drug testing and <em>genetic engineering</em></h3>
+        <p>Organoid-based drug validation combined with targeted genetic engineering of cardiac cells for reporter introduction, disease modelling, and mechanistic study.</p>
+      </div>
+      <div class="glyph" aria-hidden="true">
+        <svg viewBox="0 0 64 64"><path d="M20 12c8 8 8 20 0 28s-8 20 0 28"/><path d="M44 12c-8 8-8 20 0 28s8 20 0 28"/><path d="M20 22h24M20 54h24"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LEADERSHIP ========== -->
+<section class="sec" id="leadership" data-bg="0">
+  <div class="sec-head">
+    <div class="eyebrow rv">§ 04 — Leadership</div>
+    <div>
+      <h2 class="display" data-split-on-reveal>Led by a <em>small senior team</em>.</h2>
+      <p class="sec-lede rv">
+        The MWB Lab is directed by Prof. Dr. Kurt Pfannkuche at the Institute of
+        Physiology I, University of Cologne, with Dr. Sarkawt Hamad leading scientific
+        development.
+      </p>
+    </div>
+  </div>
+
+  <div class="leaders">
+    <article class="leader rv">
+      <div class="portrait">
+        <div class="placeholder">Portrait<br>Prof. Dr. Kurt Pfannkuche</div>
+      </div>
+      <div class="body">
+        <div class="role">Principal Investigator</div>
+        <h3>Prof. Dr. Kurt <em>Pfannkuche</em></h3>
+        <p>
+          Head of the MWB Lab at the Institute of Physiology I. His work spans scalable
+          cardiomyocyte production, cardiac regenerative medicine, and translational
+          validation of cell therapies.
+        </p>
+        <a class="contact" href="mailto:kurt.pfannkuche@uni-koeln.de">→ kurt.pfannkuche@uni-koeln.de</a>
+      </div>
+    </article>
+
+    <article class="leader rv">
+      <div class="portrait">
+        <div class="placeholder">Portrait<br>Dr. Sarkawt Hamad</div>
+      </div>
+      <div class="body">
+        <div class="role">Head of Scientific Development</div>
+        <h3>Dr. Sarkawt <em>Hamad</em></h3>
+        <p>
+          Leads scientific development of the lab's cardiac organoid and 3D tissue
+          programmes, including hydrogel-based culture systems and drug validation
+          platforms.
+        </p>
+        <a class="contact" href="mailto:shamad@uni-koeln.de">→ shamad@uni-koeln.de</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ========== LATEST NEWS ========== -->
+<section class="sec" id="news-preview" data-bg="2">
+  <div class="sec-head">
+    <div class="eyebrow rv">§ 05 — Latest news</div>
+    <div>
+      <h2 class="display" data-split-on-reveal>What we've been <em>doing lately</em>.</h2>
+      <p class="sec-lede rv">
+        A rolling selection of the most recent publications, milestones, and
+        collaborations. The full feed lives on the News page.
+      </p>
+    </div>
+  </div>
+
+  <div class="news-grid">
+    <a class="news-item rv" href="news.html">
+      <div class="tag">Research milestone</div>
+      <h3>Cardiac organoid programme enters Vol. 01</h3>
+      <div class="date">2026 · March</div>
+    </a>
+    <a class="news-item rv" href="news.html">
+      <div class="tag">Publication</div>
+      <h3>Scalable iPSC-derived endothelial cells published</h3>
+      <div class="date">2022</div>
+    </a>
+    <a class="news-item rv" href="news.html">
+      <div class="tag">Collaboration</div>
+      <h3>Porcine MI model validation complete</h3>
+      <div class="date">Ongoing</div>
+    </a>
+  </div>
+</section>
+
+
+<!-- ========== MICROSCOPY LIBRARY ========== -->
+<section class="sec sec-gallery" id="microscopy-library" data-bg="1">
+  <div class="sec-head">
+    <div class="eyebrow rv">§ 06 — Imaging library</div>
+    <div>
+      <h2 class="display" data-split-on-reveal>Selected microscopy views that <em>shape the interface</em>.</h2>
+      <p class="sec-lede rv">
+        A tighter visual system built from real assay photographs: overview fields for ambient depth,
+        organoid overlays for the main viewers, and channel-specific images for scan-like interaction.
+      </p>
+    </div>
+  </div>
+
+  <div class="photo-band rv">
+    <article class="photo-feature wide">
+      <img src="photo_overview_1.webp" alt="Wide microscopy overview">
+      <div class="photo-meta">
+        <span class="k">Overview field</span>
+        <h3>Dense cellular architecture with lumen-like voids and multi-marker texture.</h3>
+        <p>Used as a V4-style cinematic ambient layer to give the site more depth and a more research-led visual identity.</p>
+      </div>
+    </article>
+
+    <article class="photo-feature tall">
+      <img src="photo_overlay_2026.webp" alt="2026 overlay specimen">
+      <div class="photo-meta">
+        <span class="k">2026 overlay</span>
+        <h3>Cx43 + α-Actinin + nuclei</h3>
+      </div>
+    </article>
+
+    <article class="photo-feature tall">
+      <img src="photo_organoid_ring.webp" alt="Ring organoid view">
+      <div class="photo-meta">
+        <span class="k">Ring specimen</span>
+        <h3>Compact organoid shell view</h3>
+      </div>
+    </article>
+
+    <article class="photo-feature wide">
+      <img src="photo_overview_2.webp" alt="Close microscopy overview">
+      <div class="photo-meta">
+        <span class="k">Close field</span>
+        <h3>Fine-grained network detail for section backdrops, figure cards, and image-led transitions.</h3>
+        <p>This gives the darker V4 aesthetic a real laboratory texture instead of abstract gradients alone.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+<!-- ========== JOIN CTA ========== -->
+<section class="join-cta" data-bg="4">
+  <div>
+    <div class="eyebrow rv">§ 07 — Join us</div>
+    <h2 class="display" data-split-on-reveal>Work on the <em>cellular building blocks</em> of cardiac repair.</h2>
+    <p class="rv">
+      The MWB Lab welcomes highly motivated and talented researchers passionate about
+      stem cell biology, cardiac regeneration, and translational medicine. Senior
+      scientists, postdocs, PhD candidates, MSc and MD students are all welcome to
+      apply.
+    </p>
+    <div class="cta-row rv">
+      <a class="btn primary" href="join.html">
+        Open positions
+        <svg class="arrow" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+      </a>
+      <a class="btn ghost" href="contact.html">Contact the lab</a>
+    </div>
+  </div>
+  <div></div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="foot">
+  <div>
+    <div class="wordmark">MWB <em>Lab</em></div>
+    <p>Scalable cardiac tissue engineering for regenerative medicine. Human iPSC-derived cardiac cells and organoids, developed for translational cardiac therapy.</p>
+    <div class="addr">
+      <strong>Prof. Dr. Kurt Pfannkuche</strong><br>
+      Institute of Physiology I<br>
+      Robert-Koch-Straße 39<br>
+      50931 Cologne, Germany<br>
+      Tel. +49 221 478 6968
+    </div>
+  </div>
+  <div>
+    <h4>Research</h4>
+    <ul>
+      <li><a href="research.html">Overview</a></li>
+      <li><a href="research.html">Cell manufacturing</a></li>
+      <li><a href="research.html">Organoids</a></li>
+      <li><a href="research.html">Drug testing</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Lab</h4>
+    <ul>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="join.html">Join us</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Contact</h4>
+    <ul>
+      <li><a href="mailto:kurt.pfannkuche@uni-koeln.de">kurt.pfannkuche@uni-koeln.de</a></li>
+      <li><a href="mailto:shamad@uni-koeln.de">shamad@uni-koeln.de</a></li>
+      <li><a href="contact.html">Contact page</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="colophon">
+  <span>© MWB Lab · University of Cologne · 2026</span>
+  <span>Institute of Physiology I · Set in Fraunces &amp; Manrope</span>
+</div>
+
+<script>
+/* ========== SPLIT TEXT (from v16) ========== */
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function splitText(el, baseDelay = 0, step = 0.018){
+  if(!el || el.dataset.splitDone) return;
+  const tmp = document.createElement('div');
+  tmp.innerHTML = el.innerHTML;
+  const walk = (node, out) => {
+    node.childNodes.forEach(n => {
+      if(n.nodeType === 3){
+        const words = n.textContent.split(/(\s+)/);
+        words.forEach(w => {
+          if(/^\s+$/.test(w)){ out.push(document.createTextNode(' ')); return; }
+          if(!w) return;
+          const wEl = document.createElement('span');
+          wEl.className = 'word';
+          [...w].forEach(ch => {
+            const cEl = document.createElement('span');
+            cEl.className = 'char';
+            cEl.textContent = ch;
+            wEl.appendChild(cEl);
+          });
+          out.push(wEl);
+        });
+      } else if(n.nodeType === 1){
+        const clone = n.cloneNode(false);
+        const inner = [];
+        walk(n, inner);
+        inner.forEach(c => clone.appendChild(c));
+        out.push(clone);
+      }
+    });
+  };
+  const collected = [];
+  walk(tmp, collected);
+  el.innerHTML = '';
+  collected.forEach(c => el.appendChild(c));
+  el.querySelectorAll('.char').forEach((c,i) => c.style.setProperty('--d', (baseDelay + i*step) + 's'));
+  el.dataset.splitDone = '1';
+}
+
+const heroH1 = document.querySelector('.hero h1[data-split]');
+if(heroH1 && !reducedMotion) splitText(heroH1, 0.35, 0.018);
+
+/* ========== HERO VIEWER — smooth auto-cycle ========== */
+(function initHeroViewer(){
+  const heroChannels = [...document.querySelectorAll('.hero-viewer [data-channel]')];
+  const heroViewBgs  = [...document.querySelectorAll('.hero-viewer [data-viewbg]')];
+  const heroChName   = document.getElementById('heroChName');
+  const heroThumbs   = [...document.querySelectorAll('[data-herodot]')];
+  const heroOrder    = ['merged','nuclei','actinin','rfp','vwf'];
+  const chLabels     = { merged:'Merged overlay', nuclei:'Hoechst nuclei', actinin:'α-Actinin', rfp:'Cx43', vwf:'Hoechst + vWF' };
+  let heroCycleIdx   = 0;
+  let cycleTimer     = null;
+  let userPaused     = false;
+  let pauseTimer     = null;
+
+  function setHeroChannel(key){
+    heroChannels.forEach(el => el.classList.toggle('on', el.getAttribute('data-channel') === key));
+    heroViewBgs.forEach(el  => el.classList.toggle('on', el.getAttribute('data-viewbg')  === key));
+    heroThumbs.forEach(el   => el.classList.toggle('active', el.dataset.herodot === key));
+    if(heroChName) heroChName.textContent = chLabels[key] || key;
+  }
+
+  function startCycle(){
+    if(cycleTimer) clearInterval(cycleTimer);
+    cycleTimer = setInterval(() => {
+      if(userPaused) return;
+      heroCycleIdx = (heroCycleIdx + 1) % heroOrder.length;
+      setHeroChannel(heroOrder[heroCycleIdx]);
+    }, 5500);
+  }
+
+  if(!reducedMotion) startCycle();
+
+  heroThumbs.forEach(btn => btn.addEventListener('click', () => {
+    heroCycleIdx = heroOrder.indexOf(btn.dataset.herodot);
+    setHeroChannel(btn.dataset.herodot);
+    // Pause cycle for 12s after manual selection
+    userPaused = true;
+    if(pauseTimer) clearTimeout(pauseTimer);
+    pauseTimer = setTimeout(() => { userPaused = false; }, 12000);
+  }));
+
+  setHeroChannel('merged');
+})();
+
+/* ========== Z-STACK DEPTH TUNNEL — v3 ========== */
+(function initZStack(){
+  const driver   = document.getElementById('zstack-scroll-driver');
+  const sticky   = document.getElementById('zstack-sticky');
+  if(!driver || !sticky || reducedMotion) return;
+
+  const layers    = [...driver.querySelectorAll('.zs-layer')];
+  const panels    = [...driver.querySelectorAll('.zsp')];
+  const rings     = [...driver.querySelectorAll('.zs-ring')];
+  const ambient   = driver.querySelector('#zstack-ambient');
+  const fill      = driver.querySelector('#zsg-fill');
+  const bead      = driver.querySelector('#zsg-bead');
+  const counter   = driver.querySelector('#zsg-plane-counter');
+  const depthUm   = driver.querySelector('#zsg-depth-um');
+  const znum      = driver.querySelector('#zstack-znum');
+  const focalLine = driver.querySelector('#zstack-focal-line');
+  const aperture  = driver.querySelector('#zstack-aperture');
+  const chName    = driver.querySelector('#zsch-name');
+  const chLambda  = driver.querySelector('#zsch-lambda');
+  const chDot     = driver.querySelector('#zsch-dot');
+  const marks     = [...driver.querySelectorAll('.zsg-mark')];
+
+  const Z_MAX        = 32;
+  const UM_PER_PLANE = 0.5;
+  const EASE         = 0.12; // lerp factor for smooth scroll following
+
+  const focalPlanes = [
+    { z:0,  id:'zsl-merged',  name:'Merged overlay',       lambda:'Hoechst · Cx43 · α-Actinin', color:'#5ad4b8', ambient:'rgba(14,90,72,.16)'   },
+    { z:8,  id:'zsl-nuclei',  name:'Hoechst · Nuclei',     lambda:'461 nm · DAPI channel',       color:'#6ab0f5', ambient:'rgba(20,58,120,.18)'  },
+    { z:16, id:'zsl-actinin', name:'α-Actinin',             lambda:'519 nm · sarcomeric lattice', color:'#d4b84a', ambient:'rgba(90,72,10,.18)'   },
+    { z:22, id:'zsl-rfp',     name:'Cx43 · Gap junctions',  lambda:'561 nm · RFP channel',        color:'#e0785a', ambient:'rgba(100,36,16,.18)'  },
+    { z:28, id:'zsl-vwf',     name:'vWF · Vasculature',    lambda:'668 nm · far-red channel',    color:'#a07fe0', ambient:'rgba(52,20,100,.18)'  },
+  ];
+
+  // State
+  let currentPlaneIdx = -1;
+  let lastRingTime    = 0;
+  let targetScrolled  = 0; // raw scroll position 0–1
+  let smoothScrolled  = 0; // lerped version for buttery rendering
+  let rafId           = null;
+  let isRunning       = false;
+
+  // Pre-cache layer z-plane values
+  const layerZValues = layers.map(l => parseInt(l.dataset.zplane));
+
+  /* ── Physics functions ── */
+  function gaussBlur(dist){
+    // Sharp focal window ±1.5 planes, gaussian rolloff beyond
+    if(dist <= 1.5) return 0;
+    const d = dist - 1.5;
+    return Math.min(20, d * d * 0.85);
+  }
+
+  function lerp(a, b, t){ return a + (b - a) * t; }
+
+  function getActiveIdx(z){
+    let best = 0;
+    for(let i = 0; i < focalPlanes.length; i++){
+      if(z >= focalPlanes[i].z) best = i;
+    }
+    return best;
+  }
+
+  /* ── Ring burst — no forced reflow ── */
+  function triggerRings(color){
+    const now = performance.now();
+    if(now - lastRingTime < 600) return;
+    lastRingTime = now;
+    rings.forEach(r => {
+      // Cancel existing animation cleanly
+      r.style.animation = 'none';
+      r.style.setProperty('--ring-color', color);
+      // Force style recalc via offsetHeight is unavoidable for CSS animation restart,
+      // but we batch it — only 3 small divs
+      r.offsetHeight; // eslint-disable-line no-unused-expressions
+      r.style.animation = '';
+      r.classList.remove('burst');
+      r.classList.add('burst');
+    });
+  }
+
+  /* ── HUD swap — immediate, no setTimeout ── */
+  function swapChannelHUD(fp){
+    // Direct swap — clean and instant, no race condition
+    if(chName)   chName.textContent   = fp.name;
+    if(chLambda) chLambda.textContent = fp.lambda;
+    if(chDot){
+      chDot.style.background = fp.color;
+      chDot.style.boxShadow  = `0 0 12px ${fp.color}aa`;
+    }
+    driver.style.setProperty('--zs-color', fp.color);
+    if(bead) bead.style.boxShadow = `0 0 0 2px rgba(255,255,255,.14), 0 0 14px ${fp.color}cc`;
+    if(aperture) aperture.style.setProperty('--zs-color', fp.color + '55');
+    if(ambient)  ambient.style.background = `radial-gradient(ellipse 75% 65% at 50% 50%, ${fp.ambient}, transparent 78%)`;
+
+    panels.forEach(p => {
+      const match = parseInt(p.dataset.zp) === fp.z;
+      p.classList.toggle('active', match);
+    });
+
+    triggerRings(fp.color);
+  }
+
+  /* ── Main render loop ── */
+  function render(){
+    rafId = null;
+
+    // Lerp smooth scroll toward target
+    const diff = targetScrolled - smoothScrolled;
+    if(Math.abs(diff) > 0.0001){
+      smoothScrolled = lerp(smoothScrolled, targetScrolled, EASE);
+    } else {
+      smoothScrolled = targetScrolled;
+    }
+
+    const s      = smoothScrolled;
+    const zFloat = s * Z_MAX;
+    const zInt   = Math.floor(zFloat);
+    const pad    = n => String(Math.min(Z_MAX, Math.floor(n))).padStart(2,'0');
+
+    // Text counters
+    if(counter) counter.textContent = pad(zFloat) + ' / ' + Z_MAX;
+    if(depthUm) depthUm.textContent = (zFloat * UM_PER_PLANE).toFixed(1) + ' μm';
+    if(znum)    znum.textContent    = pad(zFloat);
+
+    // Gauge fill + bead — set inline style, no CSS transition
+    const pct = s * 100;
+    if(fill) fill.style.height = pct.toFixed(2) + '%';
+    if(bead) bead.style.top   = pct.toFixed(2) + '%';
+
+    // Focal line + aperture (locked together)
+    const lineTop = (10 + s * 80).toFixed(2) + '%';
+    if(focalLine) focalLine.style.top = lineTop;
+    if(aperture)  aperture.style.top  = lineTop;
+
+    // Active plane
+    const activeIdx = getActiveIdx(zFloat);
+    const fp = focalPlanes[activeIdx];
+
+    // Gauge marks
+    marks.forEach(m => {
+      m.classList.toggle('active', parseInt(m.dataset.plane) <= zInt);
+    });
+
+    // Layer visuals — pure JS, no CSS transition competing
+    layers.forEach((layer, i) => {
+      const lz      = layerZValues[i];
+      const isActive = fp.id === layer.id;
+      const dist    = Math.abs(lz - zFloat);
+      const blur    = gaussBlur(dist);
+      const opacity = isActive ? 1 : Math.max(0, 1 - dist / 11);
+      const scale   = isActive ? 1.0 : Math.max(0.93, 1 - dist * 0.007);
+      const sat     = isActive ? 1.2  : Math.max(0.5, 1 - dist * 0.055);
+      const bri     = isActive ? 1.02 : Math.max(0.35, 1 - dist * 0.075);
+
+      layer.style.filter    = `blur(${blur.toFixed(1)}px) saturate(${sat.toFixed(2)}) brightness(${bri.toFixed(2)})`;
+      layer.style.opacity   = opacity.toFixed(3);
+      layer.style.transform = `scale(${scale.toFixed(3)})`;
+      layer.style.zIndex    = isActive ? 3 : 1;
+    });
+
+    // HUD swap — fires only on plane change
+    if(activeIdx !== currentPlaneIdx){
+      currentPlaneIdx = activeIdx;
+      swapChannelHUD(fp);
+    }
+
+    // Keep loop running while still lerping
+    if(Math.abs(targetScrolled - smoothScrolled) > 0.00005){
+      rafId = requestAnimationFrame(render);
+    } else {
+      isRunning = false;
+    }
+  }
+
+  function scheduleRender(){
+    // Read scroll synchronously, then schedule render
+    const driverRect  = driver.getBoundingClientRect();
+    const totalScroll = driver.offsetHeight - window.innerHeight;
+    targetScrolled = Math.max(0, Math.min(1, -driverRect.top / totalScroll));
+
+    if(!isRunning){
+      isRunning = true;
+      if(rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(render);
+    }
+  }
+
+  window.addEventListener('scroll', scheduleRender, { passive:true });
+  window.addEventListener('resize', scheduleRender, { passive:true });
+
+  // Init
+  if(ambient && focalPlanes[0]){
+    ambient.style.background = `radial-gradient(ellipse 75% 65% at 50% 50%, ${focalPlanes[0].ambient}, transparent 78%)`;
+  }
+  scheduleRender();
+})();
+
+/* ========== REVEALS ========== */
+const rvIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      rvIO.unobserve(e.target);
+    }
+  });
+},{threshold:.15, rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.rv').forEach(el => rvIO.observe(el));
+
+/* split-on-reveal for section h2s */
+const splitIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const h = e.target;
+      if(!reducedMotion && !h.dataset.splitDone){
+        h.classList.add('split');
+        splitText(h, 0, 0.02);
+      }
+      requestAnimationFrame(() => h.classList.add('in'));
+      splitIO.unobserve(h);
+    }
+  });
+},{threshold:.4});
+document.querySelectorAll('h2[data-split-on-reveal]').forEach(h => splitIO.observe(h));
+
+/* ========== PROGRESS BAR ========== */
+const progressFill = document.getElementById('progressFill');
+let rafId = null;
+function onScroll(){
+  const max = document.documentElement.scrollHeight - innerHeight;
+  progressFill.style.width = (max>0 ? scrollY/max*100 : 0) + '%';
+  rafId = null;
+}
+window.addEventListener('scroll', () => { if(!rafId) rafId = requestAnimationFrame(onScroll); }, {passive:true});
+
+/* ========== MAGNETIC BUTTONS ========== */
+const canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+if(canHover && !reducedMotion){
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      const x = e.clientX - r.left - r.width/2;
+      const y = e.clientY - r.top - r.height/2;
+      btn.style.transform = `translate(${x*0.12}px, ${y*0.18}px)`;
+    });
+    btn.addEventListener('mouseleave', () => btn.style.transform = '');
+  });
+}
+
+/* ========== CINEMATIC INTRO ========== */
+const intro = document.getElementById('intro');
+const introTc = document.getElementById('introTc');
+const introZ = document.getElementById('introZ');
+const introWordmark = document.getElementById('introWordmark');
+const introSkip = document.getElementById('introSkip');
+
+const T = { total:5600, zStart:2100, zEnd:4100, collapse:4200, wordmark:4300, release:5600 };
+function pad2(n){ return String(n).padStart(2,'0'); }
+
+let introStart = 0, introRAF = null, introDone = false;
+
+function tickIntro(now){
+  if(introDone) return;
+  const elapsed = now - introStart;
+  const totalCs = Math.floor(elapsed / 10);
+  const s = Math.floor(totalCs / 100) % 60;
+  const cs = totalCs % 100;
+  introTc.textContent = `00:${pad2(s)}:${pad2(cs)}`;
+  if(elapsed < T.zStart) introZ.textContent = '00';
+  else if(elapsed < T.zEnd){
+    const p = (elapsed - T.zStart)/(T.zEnd - T.zStart);
+    introZ.textContent = pad2(Math.floor((1 - Math.pow(1-p, 2.2)) * 32));
+  } else introZ.textContent = '32';
+  introRAF = requestAnimationFrame(tickIntro);
+}
+function startCollapse(){
+  intro.classList.add('collapsing');
+  introWordmark.classList.add('in');
+}
+function releaseSite(){
+  if(introDone) return;
+  introDone = true;
+  cancelAnimationFrame(introRAF);
+  intro.classList.add('done');
+  document.documentElement.classList.remove('loading');
+  if(heroH1) requestAnimationFrame(() => heroH1.classList.add('in'));
+  setTimeout(() => intro?.remove(), 2000);
+}
+function runIntro(){
+  if(reducedMotion){
+    intro?.remove();
+    document.documentElement.classList.remove('loading');
+    heroH1?.classList.add('in');
+    return;
+  }
+  introStart = performance.now();
+  introRAF = requestAnimationFrame(tickIntro);
+  setTimeout(startCollapse, T.collapse);
+  setTimeout(releaseSite, T.release);
+}
+
+introSkip?.addEventListener('click', () => {
+  intro.classList.add('collapsing');
+  introWordmark.classList.add('in');
+  setTimeout(releaseSite, 600);
+});
+window.addEventListener('keydown', e => {
+  if(e.key === 'Escape' && !introDone) introSkip?.click();
+});
+
+const preload = new Image();
+preload.src = 'stack_merged.webp';
+if(preload.complete) runIntro();
+else {
+  preload.addEventListener('load', runIntro, {once:true});
+  preload.addEventListener('error', runIntro, {once:true});
+  setTimeout(() => { if(!introStart) runIntro(); }, 800);
+}
+setTimeout(() => { if(document.documentElement.classList.contains('loading')) releaseSite(); }, 8000);
+</script>
+<script src="site_v4blend.js"></script>
+</body>
+</html>
