@@ -325,7 +325,8 @@ body,
   overflow:hidden!important;
 }
 .fig-card .figure.portrait .fig-inner{
-  background:linear-gradient(180deg, rgba(20,35,60,.9), rgba(10,18,32,.95))!important;
+  background-size:cover!important;
+  background-position:center!important;
 }
 .fig-card .figure.portrait .fig-overlay{
   background:none!important;
