@@ -586,15 +586,14 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 }
 .card-grid.two{grid-template-columns:repeat(2, 1fr)}
 .card-grid.four{
-  display:flex;
+  display:flex !important;
   flex-wrap:wrap;
   justify-content:center;
-  gap:16px;
+  gap:24px 16px;
+  grid-template-columns:none;
 }
-.card-grid.four > *{
-  width:calc(25% - 12px);
-  min-width:200px;
-  max-width:260px;
+.card-grid.four > .fig-card{
+  flex:0 0 220px;
 }
 .card-grid:last-child{margin-bottom:0}
 
@@ -721,7 +720,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   .split-sec.reverse .split-prose{order:0}
   .card-grid{grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom:80px}
   .card-grid.two{grid-template-columns:1fr}
-  .card-grid.four > *{width:calc(50% - 8px); min-width:160px}
+  .card-grid.four > .fig-card{flex:0 0 200px}
   .lead-figure{margin-bottom:80px}
   .ed-item{grid-template-columns:60px 1fr; gap:16px}
   .ed-item .tag{grid-column:1/-1; justify-self:start; margin-top:4px}
@@ -729,7 +728,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 @media (max-width:600px){
   .card-grid{grid-template-columns:1fr}
   .card-grid.two{grid-template-columns:1fr}
-  .card-grid.four > *{width:100%; max-width:320px}
+  .card-grid.four > .fig-card{flex:0 0 180px}
 }
 
 /* =========================================================
