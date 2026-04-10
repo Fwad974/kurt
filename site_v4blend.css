@@ -1086,3 +1086,21 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   .hero-thumbs{grid-template-columns:repeat(3,1fr);}
   .sec-gallery .photo-band{grid-template-columns:1fr;}
 }
+
+/* ── Logo in navbar ── */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.logo-img {
+  height: 64px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 0 8px rgba(38,179,113,0.25));
+  transition: filter .2s;
+}
+.brand-logo:hover .logo-img {
+  filter: drop-shadow(0 0 14px rgba(38,179,113,0.5));
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="330" height="401" viewBox="0 0 330 401" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <title>Marga &amp; Walter Boll Laboratory logo</title>
+
+  <!-- Icon -->
+  <g transform="translate(0,0)">
+    <!-- green top structure -->
+    <circle cx="165" cy="34" r="18" fill="#26B371"/>
+    <path d="M85 61
+             H245
+             V84
+             M85 61
+             V84"
+          stroke="#26B371" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="165" y1="52" x2="165" y2="246"
+          stroke="#26B371" stroke-width="7" stroke-linecap="round"/>
+
+    <!-- flask body -->
+    <path d="M103 82
+             H227
+             V274
+             Q165 339 103 274
+             Z"
+          fill="#A0DBED"
+          stroke="#233D78"
+          stroke-width="8"
+          stroke-linejoin="round"/>
+
+    <!-- inner highlight lines -->
+    <line x1="119" y1="82" x2="154" y2="82"
+          stroke="#233D78" stroke-width="8" stroke-linecap="round"/>
+    <line x1="176" y1="82" x2="211" y2="82"
+          stroke="#233D78" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- bubbles -->
+    <g fill="#F3DC63" stroke="#FFF7CC" stroke-width="4">
+      <circle cx="135" cy="128" r="13"/>
+      <circle cx="198" cy="162" r="13"/>
+      <circle cx="135" cy="208" r="13"/>
+      <circle cx="198" cy="248" r="13"/>
+    </g>
+  </g>
+
+  <!-- Text -->
+  <g fill="#233D78" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="165" y="355" font-size="25" letter-spacing="0.8">MARGA &amp; WALTER BOLL</text>
+    <text x="165" y="389" font-size="20" letter-spacing="7.2">LABORATORY</text>
+  </g>
+</svg>

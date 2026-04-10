@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="330" height="401" viewBox="0 0 330 401" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <title>Marga &amp; Walter Boll Laboratory logo</title>
+
+  <!-- Icon -->
+  <g>
+    <!-- Flask body -->
+    <path d="M103 82
+             H227
+             V274
+             Q165 339 103 274
+             Z"
+          fill="#A0DBED"
+          stroke="#233D78"
+          stroke-width="8"
+          stroke-linejoin="round"/>
+
+    <!-- Top opening accents -->
+    <line x1="119" y1="82" x2="154" y2="82"
+          stroke="#233D78" stroke-width="8" stroke-linecap="round"/>
+    <line x1="176" y1="82" x2="211" y2="82"
+          stroke="#233D78" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- Bubbles -->
+    <g fill="#F3DC63" stroke="#FFF7CC" stroke-width="4">
+      <circle cx="135" cy="128" r="13"/>
+      <circle cx="198" cy="162" r="13"/>
+      <circle cx="135" cy="208" r="13"/>
+      <circle cx="198" cy="248" r="13"/>
+    </g>
+
+    <!-- Center rod visible inside liquid -->
+    <line x1="165" y1="34" x2="165" y2="247"
+          stroke="#26B371" stroke-width="7" stroke-linecap="round"/>
+
+    <!-- Top green structure -->
+    <circle cx="165" cy="34" r="18" fill="#26B371"/>
+    <path d="M85 61 H245 V84 M85 61 V84"
+          stroke="#26B371" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
