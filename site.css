@@ -488,9 +488,10 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 .figure-reveal.in .fig-label{opacity:1}
 .figure-reveal.in .fig-caption{opacity:1}
 
-/* portrait figure variant — square, soft vignette, no stack */
+/* portrait figure variant — compact, soft vignette, no stack */
 .figure.portrait{
-  aspect-ratio:1/1.15;
+  aspect-ratio:1/1;
+  max-height:280px;
 }
 .figure.portrait .placeholder{
   position:absolute; inset:0;
