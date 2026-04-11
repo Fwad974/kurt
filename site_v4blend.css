@@ -819,8 +819,7 @@ body[data-page="translational"]{
 .hud-bot{
   text-shadow:0 1px 10px rgba(0,0,0,.45);
 }
-.scale-bar .bar,
-.intro-scale .b{
+.scale-bar .bar{
   box-shadow:0 0 18px rgba(255,255,255,.12);
 }
 .atlas-dots button{
