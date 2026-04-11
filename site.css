@@ -662,7 +662,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   grid-template-columns:none;
 }
 .card-grid.four > .fig-card{
-  flex:0 0 180px;
+  flex:0 0 220px;
 }
 .card-grid:last-child{margin-bottom:0}
 
@@ -789,7 +789,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   .split-sec.reverse .split-prose{order:0}
   .card-grid{grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom:80px}
   .card-grid.two{grid-template-columns:1fr}
-  .card-grid.four > .fig-card{flex:0 0 160px}
+  .card-grid.four > .fig-card{flex:0 0 200px}
   .lead-figure{margin-bottom:80px}
   .ed-item{grid-template-columns:60px 1fr; gap:16px}
   .ed-item .tag{grid-column:1/-1; justify-self:start; margin-top:4px}
@@ -797,12 +797,13 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 @media (max-width:600px){
   .card-grid{grid-template-columns:1fr}
   .card-grid.two{grid-template-columns:1fr}
-  .card-grid.four{flex-wrap:wrap !important; gap:12px 8px; justify-content:center}
-  .card-grid.four > .fig-card{flex:0 1 calc(33% - 8px); min-width:0; max-width:120px}
-  .fig-card .body{padding:8px 2px 0}
-  .fig-card h3{font-size:.7rem}
-  .fig-card .mono{font-size:.45rem; letter-spacing:.06em; margin-bottom:4px}
-  .fig-card p, .fig-card .meta{display:none}
+  .card-grid.four{flex-wrap:wrap !important; gap:16px 12px; justify-content:center}
+  .card-grid.four > .fig-card{flex:0 0 calc(50% - 8px); min-width:0; max-width:200px}
+  .fig-card .body{padding:10px 4px 0}
+  .fig-card h3{font-size:.85rem}
+  .fig-card .mono{font-size:.5rem; letter-spacing:.08em; margin-bottom:4px}
+  .fig-card p{font-size:.7rem; line-height:1.4}
+  .fig-card .meta{font-size:.5rem}
   .figure.portrait{margin-top:12px}
 }
 
