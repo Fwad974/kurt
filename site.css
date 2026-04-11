@@ -793,7 +793,8 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 @media (max-width:600px){
   .card-grid{grid-template-columns:1fr}
   .card-grid.two{grid-template-columns:1fr}
-  .card-grid.four > .fig-card{flex:0 0 140px}
+  .card-grid.four{flex-wrap:wrap !important; gap:12px 8px}
+  .card-grid.four > .fig-card{flex:1 1 80px; min-width:0; max-width:120px}
 }
 
 /* =========================================================
