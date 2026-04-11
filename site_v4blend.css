@@ -21,6 +21,11 @@
   --serif:"Cormorant Garamond", Georgia, serif;
   --sans:"Inter", system-ui, sans-serif;
   --mono:"JetBrains Mono", monospace;
+  /* remap light-theme variables for dark background */
+  --ink:rgba(248,243,232,.92);
+  --ink-2:rgba(248,243,232,.72);
+  --bone:#0D1B2A;
+  --bone-2:#12223A;
 }
 
 html{background:var(--bg)!important;}
@@ -1254,4 +1259,45 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 /* ── Mobile menu dark theme ── */
 .menu-toggle span{
   background:#fff!important;
+}
+
+/* ── Index-page card dark overrides ── */
+.strength,
+.platform,
+.leader,
+.news-item,
+.why-diagram{
+  background:linear-gradient(180deg, rgba(14,25,40,.78), rgba(10,22,36,.92))!important;
+  border-color:var(--line)!important;
+  box-shadow:0 1px 0 rgba(255,255,255,.04) inset, var(--shadow-lg)!important;
+  border-radius:24px!important;
+}
+.strength:hover,
+.platform:hover,
+.leader:hover,
+.news-item:hover{
+  border-color:rgba(198,165,90,.22)!important;
+}
+.leader .portrait{
+  background:var(--surface)!important;
+  border-bottom-color:var(--line)!important;
+}
+.strength h3,
+.platform h3,
+.leader h3,
+.news-item h3{
+  color:#fff!important;
+}
+.strength .icon,
+.platform .glyph{
+  color:var(--text)!important;
+}
+.why .quote{
+  color:#fff!important;
+}
+.why-diagram svg{
+  stroke:var(--text)!important;
+}
+.join-cta{
+  border-top-color:var(--line)!important;
 }
