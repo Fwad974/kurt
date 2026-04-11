@@ -154,16 +154,44 @@
   };
 
   const open = () => {
+    // Create fullscreen overlay — all styles inline so nothing depends on CSS cache
     overlay = document.createElement('div');
-    overlay.className = 'mobile-overlay';
+    Object.assign(overlay.style, {
+      position:'fixed', top:'0', left:'0', width:'100%', height:'100%',
+      zIndex:'99999',
+      background:'#0a0f1a',
+      display:'flex', flexDirection:'column',
+      alignItems:'center', justifyContent:'center',
+      gap:'6px',
+      padding:'20px',
+      boxSizing:'border-box'
+    });
+
     nav.querySelectorAll('a').forEach(a => {
       const link = document.createElement('a');
       link.href = a.href;
       link.textContent = a.textContent;
-      if(a.getAttribute('aria-current') === 'page') link.classList.add('active');
+      const isCurrent = a.getAttribute('aria-current') === 'page';
+      Object.assign(link.style, {
+        display:'block',
+        fontFamily:'Manrope, sans-serif',
+        fontSize:'1.05rem',
+        fontWeight: isCurrent ? '600' : '500',
+        padding:'14px 32px',
+        letterSpacing:'.01em',
+        borderRadius:'12px',
+        width:'220px',
+        textAlign:'center',
+        textDecoration:'none',
+        color: isCurrent ? '#fff' : 'rgba(255,255,255,.75)',
+        border: isCurrent ? '1px solid rgba(14,184,150,.28)' : '1px solid rgba(255,255,255,.08)',
+        background: isCurrent ? 'linear-gradient(135deg, rgba(14,184,150,.2), rgba(201,169,110,.1))' : 'transparent',
+        boxSizing:'border-box'
+      });
       link.addEventListener('click', close);
       overlay.appendChild(link);
     });
+
     document.body.appendChild(overlay);
     isOpen = true;
     menuBtn.setAttribute('aria-expanded', 'true');
