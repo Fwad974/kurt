@@ -1,3 +1,6 @@
+/* cleanup: remove leftover custom cursor elements */
+document.querySelectorAll('#v4c1,#v4c2').forEach(function(e){e.remove()});
+document.body.classList.remove('has-v4blend-cursor','cursor-live','cursor-hover');
 
 (function(){
   const sections = [...document.querySelectorAll('section[data-bg]')];
