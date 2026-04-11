@@ -1137,3 +1137,18 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 .brand-logo:hover .logo-img {
   filter: drop-shadow(0 0 14px rgba(38,179,113,0.5));
 }
+
+/* ── Mobile menu dark theme ── */
+.menu-toggle span{
+  background:#fff!important;
+}
+@media (max-width:680px){
+  .nav{
+    background:rgba(5,10,20,.96)!important;
+    backdrop-filter:blur(28px) saturate(1.2)!important;
+    -webkit-backdrop-filter:blur(28px) saturate(1.2)!important;
+  }
+  .nav a{
+    font-size:1.1rem!important;
+  }
+}

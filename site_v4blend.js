@@ -134,3 +134,24 @@
     btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
   });
 })();
+
+/* ── Mobile menu toggle (runs on all devices) ── */
+(function(){
+  const menuBtn = document.querySelector('.menu-toggle');
+  const topbar = document.querySelector('.topbar');
+  if(!menuBtn || !topbar) return;
+
+  menuBtn.addEventListener('click', () => {
+    const open = topbar.classList.toggle('menu-open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+
+  topbar.querySelectorAll('.nav a').forEach(a => {
+    a.addEventListener('click', () => {
+      topbar.classList.remove('menu-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+})();
