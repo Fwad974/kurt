@@ -20,7 +20,7 @@
 }
 
 *{box-sizing:border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-html,body{margin:0;padding:0;scroll-behavior:smooth}
+html,body{margin:0;padding:0;scroll-behavior:smooth;overflow-x:hidden}
 html{background:var(--bone)}
 body{
   font-family:Manrope,system-ui,sans-serif;
@@ -62,6 +62,7 @@ a{text-decoration:none;color:inherit}
   height:64px;
   display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
   padding:0 32px;
+  overflow:hidden;
   background:rgba(244,240,232,.78);
   backdrop-filter:blur(20px) saturate(1.1);
   -webkit-backdrop-filter:blur(20px) saturate(1.1);
@@ -89,7 +90,7 @@ html:not(.loading) .topbar{transform:translateY(0); opacity:1}
 .nav{
   display:flex; align-items:center; gap:2px;
   justify-self:center;
-  flex-wrap:nowrap;
+  flex-wrap:wrap;
 }
 .nav a{
   padding:8px 14px;
@@ -421,43 +422,6 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   .nav{display:none !important}
   .meta-right{display:none !important}
   .foot{grid-template-columns:1fr}
-}
-
-/* Overlay: appended to <body> by JS — lives outside topbar stacking context */
-.mobile-overlay{
-  position:fixed; inset:0; z-index:9999;
-  background:#0a0f1a;
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center;
-  gap:6px;
-  padding:20px;
-}
-.mobile-overlay a{
-  display:block;
-  font-family:Manrope,sans-serif;
-  font-size:1.05rem;
-  font-weight:500;
-  padding:14px 32px;
-  letter-spacing:.01em;
-  border-radius:12px;
-  width:220px;
-  text-align:center;
-  text-decoration:none;
-  color:rgba(255,255,255,.75);
-  border:1px solid rgba(255,255,255,.08);
-  transition:background .3s, color .3s, border-color .3s;
-}
-.mobile-overlay a:hover{
-  color:#fff;
-  background:rgba(14,184,150,.1);
-  border-color:rgba(14,184,150,.22);
-}
-.mobile-overlay a.active{
-  font-weight:600;
-  color:#fff;
-  background:linear-gradient(135deg, rgba(14,184,150,.2), rgba(201,169,110,.1));
-  border-color:rgba(14,184,150,.28);
-  box-shadow:0 0 18px rgba(14,184,150,.1);
 }
 
 @media (prefers-reduced-motion:reduce){
