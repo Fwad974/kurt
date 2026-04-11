@@ -321,11 +321,12 @@ body,
   border-bottom:none!important;
   background:none!important;
   box-shadow:none!important;
-  border-radius:50%!important;
+  border-radius:16px!important;
   overflow:hidden!important;
 }
 .fig-card .figure.portrait .fig-inner{
-  background:linear-gradient(180deg, rgba(20,35,60,.9), rgba(10,18,32,.95))!important;
+  background-size:cover!important;
+  background-position:center!important;
 }
 .fig-card .figure.portrait .fig-overlay{
   background:none!important;

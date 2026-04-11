@@ -488,12 +488,12 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 .figure-reveal.in .fig-label{opacity:1}
 .figure-reveal.in .fig-caption{opacity:1}
 
-/* portrait figure variant — circular avatar, fixed size */
+/* portrait figure variant — rectangular avatar, fixed size */
 .figure.portrait{
-  aspect-ratio:1/1;
-  width:140px;
-  height:140px;
-  border-radius:50%;
+  aspect-ratio:3/4;
+  width:200px;
+  height:auto;
+  border-radius:16px;
   overflow:hidden;
   margin:28px auto 0;
   flex-shrink:0;
@@ -621,7 +621,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 .fig-card .figure.portrait{
   border:none;
   border-bottom:none;
-  border-radius:50%;
+  border-radius:16px;
   box-shadow:0 4px 20px rgba(0,0,0,.10);
   transition:box-shadow .4s var(--ease), transform .4s var(--ease);
 }
