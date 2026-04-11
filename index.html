@@ -17,7 +17,7 @@
 /* ---------- splash — brand reveal + heartbeat ---------- */
 #intro{
   position:fixed; inset:0; z-index:10000;
-  background:#1B263B;
+  background:#1B2438;
   display:flex; align-items:center; justify-content:center; flex-direction:column;
   gap:0;
   transition:opacity 1s cubic-bezier(.19,1,.22,1), visibility 1s cubic-bezier(.19,1,.22,1);
@@ -33,7 +33,7 @@
 }
 @keyframes logoIn{
   0%{opacity:0; filter:drop-shadow(0 0 0 transparent); transform:scale(.92)}
-  100%{opacity:1; filter:drop-shadow(0 0 20px rgba(201,168,76,.3)); transform:scale(1)}
+  100%{opacity:1; filter:drop-shadow(0 0 20px rgba(212,173,74,.3)); transform:scale(1)}
 }
 
 /* Heartbeat line */
@@ -51,7 +51,7 @@
 }
 .splash-line{
   fill:none;
-  stroke:rgba(201,168,76,.8);
+  stroke:rgba(212,173,74,.8);
   stroke-width:1.5;
   stroke-linecap:round;
   stroke-linejoin:round;
@@ -65,7 +65,7 @@
 /* Glow trace behind the line */
 .splash-glow{
   fill:none;
-  stroke:rgba(201,168,76,.3);
+  stroke:rgba(212,173,74,.3);
   stroke-width:4;
   stroke-linecap:round;
   stroke-linejoin:round;
