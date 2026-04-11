@@ -465,7 +465,6 @@ body,
 .foot ul a{color:var(--text-2)!important;}
 .foot ul a:hover{color:#fff!important;}
 .foot h4{color:var(--muted)!important; font-family:var(--mono)!important;}
-.foot .wordmark{font-size:2rem!important;}
 .foot .addr strong{color:#fff!important;}
 
 .split-fig,
@@ -1105,22 +1104,84 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   filter: drop-shadow(0 0 14px rgba(38,179,113,0.5));
 }
 
-/* ── Logo in footer ── */
+/* ── Refined footer layout ── */
+.foot{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:0!important;
+  padding:72px 48px 0!important;
+}
+.foot-brand{
+  display:flex;
+  align-items:flex-start;
+  gap:32px;
+  padding-bottom:48px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
 .foot-logo{
-  display:inline-block;
-  margin-bottom:16px;
+  display:block;
+  flex-shrink:0;
 }
 .foot-logo-img{
-  height:56px;
+  height:72px;
   width:auto;
   display:block;
-  opacity:.85;
-  filter:drop-shadow(0 0 10px rgba(38,179,113,.2));
+  opacity:.9;
+  filter:drop-shadow(0 0 12px rgba(38,179,113,.2));
   transition:opacity .3s ease, filter .3s ease;
 }
 .foot-logo:hover .foot-logo-img{
   opacity:1;
-  filter:drop-shadow(0 0 16px rgba(38,179,113,.4));
+  filter:drop-shadow(0 0 18px rgba(38,179,113,.4));
+}
+.foot-brand p{
+  max-width:38ch!important;
+  padding-top:8px;
+}
+.foot-nav-group{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:48px;
+  padding:40px 0;
+}
+.foot-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:24px;
+  padding:28px 0 36px;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.foot-addr{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  font-family:var(--mono,"JetBrains Mono",monospace);
+  font-size:.68rem;
+  letter-spacing:.02em;
+  color:rgba(255,255,255,.35);
+  line-height:1.6;
+}
+.foot-addr strong{
+  color:#fff!important;
+  font-weight:500;
+  margin-bottom:2px;
+}
+.foot-copy{
+  font-family:var(--mono,"JetBrains Mono",monospace);
+  font-size:.62rem;
+  letter-spacing:.06em;
+  color:rgba(255,255,255,.25);
+  white-space:nowrap;
+}
+@media(max-width:768px){
+  .foot-brand{flex-direction:column; gap:20px;}
+  .foot-nav-group{grid-template-columns:1fr 1fr; gap:32px;}
+  .foot-bottom{flex-direction:column; align-items:flex-start;}
+}
+@media(max-width:480px){
+  .foot{padding:48px 24px 0!important;}
+  .foot-nav-group{grid-template-columns:1fr;}
 }
 
 /* ── Mobile menu dark theme ── */
