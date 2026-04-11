@@ -139,16 +139,17 @@
 (function(){
   const menuBtn = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.topbar .nav');
+  const logoEl = document.querySelector('.topbar .brand-logo');
   if(!menuBtn || !nav) return;
 
   let scrim = null;
   let panel = null;
   let isOpen = false;
 
-  const el = (tag, styles, text) => {
+  const el = (tag, styles, html) => {
     const e = document.createElement(tag);
     if(styles) Object.assign(e.style, styles);
-    if(text) e.textContent = text;
+    if(html && typeof html === 'string') e.textContent = html;
     return e;
   };
 
@@ -157,161 +158,184 @@
     scrim.style.opacity = '0';
     panel.style.transform = 'translateX(100%)';
     setTimeout(() => {
-      if(scrim){ scrim.remove(); scrim = null; panel = null; }
-    }, 360);
+      if(scrim){ scrim.remove(); scrim = null; }
+      if(panel){ panel.remove(); panel = null; }
+    }, 380);
     isOpen = false;
     menuBtn.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   };
 
   const open = () => {
+
     /* ── Scrim ── */
     scrim = el('div', {
       position:'fixed', top:'0', left:'0', width:'100%', height:'100%',
       zIndex:'99999',
-      background:'rgba(0,0,0,.6)',
-      backdropFilter:'blur(2px)', WebkitBackdropFilter:'blur(2px)',
+      background:'rgba(0,0,0,.55)',
+      backdropFilter:'blur(4px)', WebkitBackdropFilter:'blur(4px)',
       opacity:'0',
-      transition:'opacity .35s ease'
+      transition:'opacity .38s ease'
     });
     scrim.addEventListener('click', close);
 
     /* ── Panel ── */
     panel = el('div', {
       position:'fixed', top:'0', right:'0',
-      width:'min(82vw, 340px)', height:'100%',
+      width:'min(80vw, 320px)', height:'100%',
       zIndex:'100000',
-      background:'linear-gradient(180deg, #0b1120 0%, #080d17 40%, #070b14 100%)',
-      borderLeft:'1px solid rgba(14,184,150,.08)',
-      boxShadow:'-12px 0 48px rgba(0,0,0,.5), -2px 0 8px rgba(0,0,0,.3)',
+      background:'#080d17',
+      borderLeft:'1px solid rgba(14,184,150,.06)',
+      boxShadow:'-16px 0 60px rgba(0,0,0,.55)',
       display:'flex', flexDirection:'column',
       boxSizing:'border-box',
+      overflowY:'auto', overflowX:'hidden',
       transform:'translateX(100%)',
-      transition:'transform .35s cubic-bezier(.22,.61,.36,1)'
+      transition:'transform .38s cubic-bezier(.22,.61,.36,1)'
     });
 
-    /* ── Top accent line ── */
-    const accent = el('div', {
-      height:'2px', flexShrink:'0',
-      background:'linear-gradient(90deg, rgba(14,184,150,.5), rgba(201,169,110,.3), transparent)'
-    });
-    panel.appendChild(accent);
+    /* ── Accent strip ── */
+    panel.appendChild(el('div', {
+      height:'1px', flexShrink:'0',
+      background:'linear-gradient(90deg, rgba(14,184,150,.45), rgba(201,169,110,.25) 60%, transparent)'
+    }));
 
-    /* ── Close button row ── */
-    const topRow = el('div', {
-      display:'flex', alignItems:'center', justifyContent:'flex-end',
-      padding:'16px 20px 8px', flexShrink:'0'
+    /* ── Header: logo + close ── */
+    const header = el('div', {
+      display:'flex', alignItems:'center', justifyContent:'space-between',
+      padding:'16px 18px 20px 22px', flexShrink:'0'
     });
 
+    /* logo */
+    if(logoEl){
+      const lClone = logoEl.cloneNode(true);
+      Object.assign(lClone.style, { display:'flex', alignItems:'center', textDecoration:'none' });
+      const img = lClone.querySelector('img');
+      if(img) Object.assign(img.style, { height:'34px', width:'auto', filter:'drop-shadow(0 0 6px rgba(38,179,113,.2))' });
+      header.appendChild(lClone);
+    }
+
+    /* close */
     const closeBtn = el('button', {
-      background:'rgba(255,255,255,.04)', border:'1px solid rgba(255,255,255,.08)',
-      borderRadius:'8px', width:'36px', height:'36px',
+      background:'rgba(255,255,255,.04)', border:'1px solid rgba(255,255,255,.07)',
+      borderRadius:'8px', width:'34px', height:'34px',
       cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center',
-      color:'rgba(255,255,255,.5)', fontSize:'14px', lineHeight:'1',
+      color:'rgba(255,255,255,.45)', fontSize:'13px', lineHeight:'1',
       fontFamily:'system-ui, sans-serif', padding:'0',
-      transition:'background .2s, border-color .2s, color .2s'
+      transition:'background .2s, color .2s'
     });
     closeBtn.innerHTML = '&#10005;';
     closeBtn.setAttribute('aria-label', 'Close menu');
     closeBtn.addEventListener('click', close);
-    topRow.appendChild(closeBtn);
-    panel.appendChild(topRow);
+    header.appendChild(closeBtn);
+    panel.appendChild(header);
 
-    /* ── Links section ── */
-    const linksSection = el('div', {
+    /* ── Separator ── */
+    panel.appendChild(el('div', {
+      height:'1px', margin:'0 22px', flexShrink:'0',
+      background:'rgba(255,255,255,.04)'
+    }));
+
+    /* ── Nav links ── */
+    const linksWrap = el('div', {
       flex:'1', display:'flex', flexDirection:'column',
-      padding:'12px 16px', overflowY:'auto'
+      padding:'20px 14px 16px'
     });
 
-    /* label */
-    const label = el('div', {
-      padding:'4px 10px 14px',
+    /* section label */
+    linksWrap.appendChild(el('div', {
+      padding:'0 12px 12px',
       fontFamily:'"JetBrains Mono", monospace',
-      fontSize:'.58rem', fontWeight:'500',
-      color:'rgba(14,184,150,.5)',
+      fontSize:'.56rem', fontWeight:'500',
+      color:'rgba(14,184,150,.4)',
       letterSpacing:'.14em',
       textTransform:'uppercase'
-    }, 'Menu');
-    linksSection.appendChild(label);
+    }, 'Navigate'));
 
-    /* links */
     nav.querySelectorAll('a').forEach((a, i) => {
       const isCurrent = a.getAttribute('aria-current') === 'page';
+
       const link = el('a', {
-        display:'flex', alignItems:'center', gap:'12px',
+        display:'flex', alignItems:'center', gap:'10px',
         fontFamily:'Manrope, sans-serif',
-        fontSize:'.9rem',
+        fontSize:'.88rem',
         fontWeight: isCurrent ? '600' : '400',
-        padding:'13px 14px',
+        padding:'12px 12px',
+        margin:'1px 0',
         textDecoration:'none',
-        borderRadius:'10px',
-        color: isCurrent ? '#fff' : 'rgba(255,255,255,.5)',
-        background: isCurrent
-          ? 'linear-gradient(135deg, rgba(14,184,150,.12) 0%, rgba(14,184,150,.06) 100%)'
-          : 'transparent',
-        border: isCurrent ? '1px solid rgba(14,184,150,.18)' : '1px solid transparent',
+        borderRadius:'8px',
+        color: isCurrent ? '#fff' : 'rgba(255,255,255,.45)',
+        background: isCurrent ? 'rgba(14,184,150,.08)' : 'transparent',
+        borderLeft: isCurrent ? '2px solid rgba(14,184,150,.7)' : '2px solid transparent',
         letterSpacing:'.01em',
         boxSizing:'border-box',
         opacity:'0',
-        transform:'translateX(20px)',
-        transition:'opacity .3s ease ' + (i * 0.04 + 0.08) + 's, transform .3s ease ' + (i * 0.04 + 0.08) + 's, background .2s, color .2s, border-color .2s'
+        transform:'translateX(14px)',
+        transition:'opacity .28s ease ' + (i * 0.035 + 0.1) + 's, transform .32s cubic-bezier(.22,.61,.36,1) ' + (i * 0.035 + 0.1) + 's, background .2s, color .2s'
       });
 
-      /* teal dot for active page */
       if(isCurrent){
-        const activeDot = el('span', {
-          width:'6px', height:'6px', borderRadius:'50%', flexShrink:'0',
+        link.appendChild(el('span', {
+          width:'5px', height:'5px', borderRadius:'50%', flexShrink:'0',
           background:'rgb(14,184,150)',
-          boxShadow:'0 0 8px rgba(14,184,150,.6)'
-        });
-        link.appendChild(activeDot);
+          boxShadow:'0 0 6px rgba(14,184,150,.55)'
+        }));
       }
 
       link.appendChild(document.createTextNode(a.textContent));
       link.href = a.href;
       link.addEventListener('click', close);
-      linksSection.appendChild(link);
+      linksWrap.appendChild(link);
     });
 
-    panel.appendChild(linksSection);
+    panel.appendChild(linksWrap);
 
-    /* ── Divider ── */
-    panel.appendChild(el('div', {
-      height:'1px', margin:'0 24px', flexShrink:'0',
-      background:'linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.02))'
+    /* ── Bottom section ── */
+    const bottom = el('div', {
+      padding:'0 22px 26px', flexShrink:'0', marginTop:'auto'
+    });
+
+    /* divider */
+    bottom.appendChild(el('div', {
+      height:'1px', marginBottom:'18px',
+      background:'linear-gradient(90deg, rgba(255,255,255,.05), rgba(255,255,255,.01))'
     }));
 
-    /* ── Footer meta ── */
-    const footer = el('div', {
-      padding:'20px 26px 28px', flexShrink:'0'
-    });
-
-    const uni = el('div', {
+    /* university */
+    bottom.appendChild(el('div', {
       fontFamily:'"JetBrains Mono", monospace',
-      fontSize:'.6rem', fontWeight:'400',
-      color:'rgba(255,255,255,.25)',
+      fontSize:'.58rem', fontWeight:'400',
+      color:'rgba(255,255,255,.2)',
       letterSpacing:'.06em',
-      marginBottom:'8px'
-    }, 'University of Cologne');
+      marginBottom:'7px'
+    }, 'University of Cologne'));
 
-    const live = el('div', {
+    /* active lab */
+    const liveRow = el('div', {
       fontFamily:'"JetBrains Mono", monospace',
-      fontSize:'.6rem', fontWeight:'400',
-      color:'rgba(14,184,150,.6)',
+      fontSize:'.58rem', fontWeight:'400',
+      color:'rgba(14,184,150,.55)',
       letterSpacing:'.06em',
-      display:'flex', alignItems:'center', gap:'7px'
+      display:'flex', alignItems:'center', gap:'6px'
     });
-    const dot = el('span', {
-      width:'5px', height:'5px', borderRadius:'50%',
+    liveRow.appendChild(el('span', {
+      width:'4px', height:'4px', borderRadius:'50%',
       background:'rgb(14,184,150)', display:'inline-block',
-      boxShadow:'0 0 4px rgba(14,184,150,.5), 0 0 12px rgba(14,184,150,.2)'
-    });
-    live.appendChild(dot);
-    live.appendChild(document.createTextNode('Active lab'));
+      boxShadow:'0 0 3px rgba(14,184,150,.5), 0 0 10px rgba(14,184,150,.15)'
+    }));
+    liveRow.appendChild(document.createTextNode('Active lab'));
+    bottom.appendChild(liveRow);
 
-    footer.appendChild(uni);
-    footer.appendChild(live);
-    panel.appendChild(footer);
+    /* version tag */
+    bottom.appendChild(el('div', {
+      fontFamily:'"JetBrains Mono", monospace',
+      fontSize:'.5rem', fontWeight:'400',
+      color:'rgba(255,255,255,.08)',
+      letterSpacing:'.08em',
+      marginTop:'14px'
+    }, 'MWB Lab · 2025'));
+
+    panel.appendChild(bottom);
 
     /* ── Mount & animate ── */
     document.body.appendChild(scrim);
@@ -320,7 +344,7 @@
     requestAnimationFrame(() => {
       scrim.style.opacity = '1';
       panel.style.transform = 'translateX(0)';
-      linksSection.querySelectorAll('a').forEach(l => {
+      linksWrap.querySelectorAll('a').forEach(l => {
         l.style.opacity = '1';
         l.style.transform = 'translateX(0)';
       });
