@@ -38,7 +38,7 @@
 
 /* Heartbeat line */
 .splash-pulse{
-  width:120px; height:32px;
+  width:300px; height:32px;
   margin-top:28px;
   opacity:0;
   animation:pulseIn .6s ease .8s forwards;
@@ -55,9 +55,9 @@
   stroke-width:1.5;
   stroke-linecap:round;
   stroke-linejoin:round;
-  stroke-dasharray:200;
-  stroke-dashoffset:200;
-  animation:drawLine 1.8s cubic-bezier(.4,0,.2,1) 1s forwards;
+  stroke-dasharray:500;
+  stroke-dashoffset:500;
+  animation:drawLine 3s cubic-bezier(.4,0,.2,1) 1s forwards;
 }
 @keyframes drawLine{
   to{stroke-dashoffset:0}
@@ -69,10 +69,10 @@
   stroke-width:4;
   stroke-linecap:round;
   stroke-linejoin:round;
-  stroke-dasharray:200;
-  stroke-dashoffset:200;
+  stroke-dasharray:500;
+  stroke-dashoffset:500;
   filter:blur(3px);
-  animation:drawLine 1.8s cubic-bezier(.4,0,.2,1) 1s forwards;
+  animation:drawLine 3s cubic-bezier(.4,0,.2,1) 1s forwards;
 }
 
 @media (prefers-reduced-motion:reduce){#intro{display:none}}
@@ -452,9 +452,9 @@ html:not(.loading) .hud-bot{opacity:1}
 <div id="intro">
   <img src="bioreactor_single_color_orbit.svg" alt="" class="splash-logo">
   <div class="splash-pulse">
-    <svg viewBox="0 0 120 16">
-      <path class="splash-glow" d="M0,16 L30,16 L38,16 L42,4 L48,28 L54,8 L58,20 L62,16 L90,16 L120,16"/>
-      <path class="splash-line" d="M0,16 L30,16 L38,16 L42,4 L48,28 L54,8 L58,20 L62,16 L90,16 L120,16"/>
+    <svg viewBox="0 0 360 32">
+      <path class="splash-glow" d="M0,16 L50,16 L58,12 L66,16 L76,16 L80,14 L84,2 L88,30 L92,6 L96,18 L100,16 L116,16 L124,10 L136,16 L180,16 L188,12 L196,16 L206,16 L210,14 L214,2 L218,30 L222,6 L226,18 L230,16 L246,16 L254,10 L266,16 L360,16"/>
+      <path class="splash-line" d="M0,16 L50,16 L58,12 L66,16 L76,16 L80,14 L84,2 L88,30 L92,6 L96,18 L100,16 L116,16 L124,10 L136,16 L180,16 L188,12 L196,16 L206,16 L210,14 L214,2 L218,30 L222,6 L226,18 L230,16 L246,16 L254,10 L266,16 L360,16"/>
     </svg>
   </div>
 </div>
@@ -1165,9 +1165,9 @@ if(reducedMotion){
   document.documentElement.classList.remove('loading');
   heroH1?.classList.add('in');
 } else {
-  // Logo fades in (.2s delay + 1.6s), pulse draws (1s + 1.8s), then release
-  setTimeout(releaseSite, 3200);
-  setTimeout(() => { if(document.documentElement.classList.contains('loading')) releaseSite(); }, 6000);
+  // Logo fades in (.2s delay + 1.6s), pulse draws (1s + 3s), then release
+  setTimeout(releaseSite, 4800);
+  setTimeout(() => { if(document.documentElement.classList.contains('loading')) releaseSite(); }, 8000);
 }
 </script>
 <script src="site_v4blend.js?v=7"></script>
