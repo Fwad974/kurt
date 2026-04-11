@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site.css?v=5">
 <style>
 .split-fig{min-height:360px}
 .fig-svg{
@@ -75,7 +75,7 @@
   .legal, .addr-block, .contact-card, .apply-step, .pos-card{padding:28px}
 }
 </style>
-<link rel="stylesheet" href="site_v4blend.css">
+<link rel="stylesheet" href="site_v4blend.css?v=3">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png">
@@ -103,6 +103,9 @@
     <span>University of Cologne</span>
     <span class="live">Active lab</span>
   </div>
+  <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </header>
 <div class="progress"><span id="progressFill"></span></div>
 
@@ -433,6 +436,6 @@ document.querySelectorAll('.ed-filters').forEach(bar => {
   }));
 })();
 </script>
-<script src="site_v4blend.js"></script>
+<script src="site_v4blend.js?v=7"></script>
 </body>
 </html>
