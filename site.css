@@ -17,6 +17,7 @@
   --ease-smooth:cubic-bezier(.6,.05,.2,1);
   --max:1680px;
   --pad:48px;
+  --serif:"Cormorant Garamond", Georgia, serif;
 }
 
 *{box-sizing:border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
@@ -73,7 +74,7 @@ html:not(.loading) .topbar{transform:translateY(0); opacity:1}
 
 .brand{
   display:flex; align-items:center; gap:12px;
-  font-family:"Fraunces",serif;
+  font-family:var(--serif);
   font-weight:500;
   font-size:.98rem;
   letter-spacing:.01em;
@@ -155,7 +156,7 @@ html:not(.loading) .topbar{transform:translateY(0); opacity:1}
 }
 
 h1.display, h2.display{
-  font-family:"Fraunces",serif;
+  font-family:var(--serif);
   font-variation-settings:"opsz" 144,"SOFT" 30;
   font-weight:300;
   line-height:.92;
@@ -171,7 +172,7 @@ h1.display em, h2.display em{
   font-variation-settings:"opsz" 144,"SOFT" 100;
 }
 h3.subhead{
-  font-family:"Fraunces",serif;
+  font-family:var(--serif);
   font-variation-settings:"opsz" 144;
   font-weight:400;
   font-size:1.3rem;
@@ -274,7 +275,7 @@ h3.subhead em{font-style:italic}
   transform:translateY(-2px);
   box-shadow:0 1px 0 rgba(255,255,255,.6) inset, 0 20px 40px -28px rgba(20,23,26,.2);
 }
-.card h3{font-family:"Fraunces",serif; font-variation-settings:"opsz" 144; font-weight:400; font-size:1.3rem; letter-spacing:-0.01em; margin:0 0 10px}
+.card h3{font-family:var(--serif); font-variation-settings:"opsz" 144; font-weight:400; font-size:1.3rem; letter-spacing:-0.01em; margin:0 0 10px}
 .card h3 em{font-style:italic}
 .card p{font-size:.94rem; line-height:1.62; color:var(--ink-2); margin:0}
 
@@ -304,7 +305,7 @@ h3.subhead em{font-style:italic}
 .foot ul a{color:var(--ink-2)}
 .foot ul a:hover{color:var(--ink)}
 .foot .wordmark{
-  font-family:"Fraunces",serif;
+  font-family:var(--serif);
   font-variation-settings:"opsz" 144;
   font-weight:400;
   font-size:1.8rem;
@@ -605,7 +606,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 }
 .split-sec .split-prose .num::before{content:""; width:24px; height:1px; background:var(--ink); opacity:.5}
 .split-sec .split-prose h3{
-  font-family:"Fraunces",serif;
+  font-family:var(--serif);
   font-variation-settings:"opsz" 144;
   font-weight:300;
   font-size:clamp(2rem, 3.2vw, 3.2rem);
@@ -686,7 +687,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 }
 .fig-card .body{padding:16px 4px 0; text-align:center}
 .fig-card h3{
-  font-family:"Fraunces",serif;
+  font-family:var(--serif);
   font-variation-settings:"opsz" 144;
   font-weight:400;
   font-size:1.05rem;
@@ -744,7 +745,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   font-variant-numeric:tabular-nums;
 }
 .ed-item .body h3{
-  font-family:"Fraunces",serif;
+  font-family:var(--serif);
   font-variation-settings:"opsz" 144;
   font-weight:400;
   font-size:1.2rem;
@@ -976,7 +977,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 }
 .atlas-step .num::before{content:""; width:24px; height:1px; background:var(--ink); opacity:.5}
 .atlas-step h3{
-  font-family:"Fraunces",serif;
+  font-family:var(--serif);
   font-variation-settings:"opsz" 144;
   font-weight:300;
   font-size:clamp(2rem, 3.4vw, 3.4rem);
