@@ -158,49 +158,58 @@
     panel.style.transform = 'translateX(100%)';
     setTimeout(() => {
       if(scrim){ scrim.remove(); scrim = null; panel = null; }
-    }, 340);
+    }, 360);
     isOpen = false;
     menuBtn.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   };
 
   const open = () => {
-    /* ── Scrim (dark backdrop covering entire screen) ── */
+    /* ── Scrim ── */
     scrim = el('div', {
       position:'fixed', top:'0', left:'0', width:'100%', height:'100%',
       zIndex:'99999',
-      background:'rgba(0,0,0,.55)',
+      background:'rgba(0,0,0,.6)',
+      backdropFilter:'blur(2px)', WebkitBackdropFilter:'blur(2px)',
       opacity:'0',
-      transition:'opacity .32s ease'
+      transition:'opacity .35s ease'
     });
     scrim.addEventListener('click', close);
 
-    /* ── Slide-in panel from right ── */
+    /* ── Panel ── */
     panel = el('div', {
       position:'fixed', top:'0', right:'0',
-      width:'min(78vw, 320px)', height:'100%',
+      width:'min(82vw, 340px)', height:'100%',
       zIndex:'100000',
-      background:'#080d17',
-      borderLeft:'1px solid rgba(255,255,255,.06)',
-      boxShadow:'-8px 0 32px rgba(0,0,0,.4)',
+      background:'linear-gradient(180deg, #0b1120 0%, #080d17 40%, #070b14 100%)',
+      borderLeft:'1px solid rgba(14,184,150,.08)',
+      boxShadow:'-12px 0 48px rgba(0,0,0,.5), -2px 0 8px rgba(0,0,0,.3)',
       display:'flex', flexDirection:'column',
       boxSizing:'border-box',
       transform:'translateX(100%)',
-      transition:'transform .32s cubic-bezier(.4,0,.2,1)'
+      transition:'transform .35s cubic-bezier(.22,.61,.36,1)'
     });
+
+    /* ── Top accent line ── */
+    const accent = el('div', {
+      height:'2px', flexShrink:'0',
+      background:'linear-gradient(90deg, rgba(14,184,150,.5), rgba(201,169,110,.3), transparent)'
+    });
+    panel.appendChild(accent);
 
     /* ── Close button row ── */
     const topRow = el('div', {
       display:'flex', alignItems:'center', justifyContent:'flex-end',
-      padding:'14px 18px', flexShrink:'0'
+      padding:'16px 20px 8px', flexShrink:'0'
     });
 
     const closeBtn = el('button', {
-      background:'rgba(255,255,255,.06)', border:'1px solid rgba(255,255,255,.08)',
-      borderRadius:'50%', width:'34px', height:'34px',
+      background:'rgba(255,255,255,.04)', border:'1px solid rgba(255,255,255,.08)',
+      borderRadius:'8px', width:'36px', height:'36px',
       cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center',
-      color:'rgba(255,255,255,.6)', fontSize:'15px', lineHeight:'1',
-      fontFamily:'system-ui, sans-serif', padding:'0'
+      color:'rgba(255,255,255,.5)', fontSize:'14px', lineHeight:'1',
+      fontFamily:'system-ui, sans-serif', padding:'0',
+      transition:'background .2s, border-color .2s, color .2s'
     });
     closeBtn.innerHTML = '&#10005;';
     closeBtn.setAttribute('aria-label', 'Close menu');
@@ -208,76 +217,94 @@
     topRow.appendChild(closeBtn);
     panel.appendChild(topRow);
 
-    /* ── Label ── */
-    const label = el('div', {
-      padding:'0 24px 16px',
-      fontFamily:'"JetBrains Mono", monospace',
-      fontSize:'.62rem', fontWeight:'400',
-      color:'rgba(255,255,255,.3)',
-      letterSpacing:'.1em',
-      textTransform:'uppercase'
-    }, 'Navigation');
-    panel.appendChild(label);
-
-    /* ── Navigation links ── */
-    const linksWrap = el('div', {
+    /* ── Links section ── */
+    const linksSection = el('div', {
       flex:'1', display:'flex', flexDirection:'column',
-      gap:'2px', padding:'0 14px',
-      overflowY:'auto'
+      padding:'12px 16px', overflowY:'auto'
     });
 
+    /* label */
+    const label = el('div', {
+      padding:'4px 10px 14px',
+      fontFamily:'"JetBrains Mono", monospace',
+      fontSize:'.58rem', fontWeight:'500',
+      color:'rgba(14,184,150,.5)',
+      letterSpacing:'.14em',
+      textTransform:'uppercase'
+    }, 'Menu');
+    linksSection.appendChild(label);
+
+    /* links */
     nav.querySelectorAll('a').forEach((a, i) => {
       const isCurrent = a.getAttribute('aria-current') === 'page';
       const link = el('a', {
-        display:'block',
+        display:'flex', alignItems:'center', gap:'12px',
         fontFamily:'Manrope, sans-serif',
-        fontSize:'.92rem',
+        fontSize:'.9rem',
         fontWeight: isCurrent ? '600' : '400',
-        padding:'12px 14px',
+        padding:'13px 14px',
         textDecoration:'none',
-        borderRadius:'8px',
-        color: isCurrent ? '#fff' : 'rgba(255,255,255,.55)',
-        background: isCurrent ? 'rgba(14,184,150,.1)' : 'transparent',
-        borderLeft: isCurrent ? '2px solid rgb(14,184,150)' : '2px solid transparent',
+        borderRadius:'10px',
+        color: isCurrent ? '#fff' : 'rgba(255,255,255,.5)',
+        background: isCurrent
+          ? 'linear-gradient(135deg, rgba(14,184,150,.12) 0%, rgba(14,184,150,.06) 100%)'
+          : 'transparent',
+        border: isCurrent ? '1px solid rgba(14,184,150,.18)' : '1px solid transparent',
         letterSpacing:'.01em',
         boxSizing:'border-box',
         opacity:'0',
-        transform:'translateX(16px)',
-        transition:'opacity .28s ease ' + (i * 0.035) + 's, transform .28s ease ' + (i * 0.035) + 's, background .2s, color .2s'
+        transform:'translateX(20px)',
+        transition:'opacity .3s ease ' + (i * 0.04 + 0.08) + 's, transform .3s ease ' + (i * 0.04 + 0.08) + 's, background .2s, color .2s, border-color .2s'
       });
+
+      /* teal dot for active page */
+      if(isCurrent){
+        const activeDot = el('span', {
+          width:'6px', height:'6px', borderRadius:'50%', flexShrink:'0',
+          background:'rgb(14,184,150)',
+          boxShadow:'0 0 8px rgba(14,184,150,.6)'
+        });
+        link.appendChild(activeDot);
+      }
+
+      link.appendChild(document.createTextNode(a.textContent));
       link.href = a.href;
-      link.textContent = a.textContent;
       link.addEventListener('click', close);
-      linksWrap.appendChild(link);
+      linksSection.appendChild(link);
     });
-    panel.appendChild(linksWrap);
+
+    panel.appendChild(linksSection);
+
+    /* ── Divider ── */
+    panel.appendChild(el('div', {
+      height:'1px', margin:'0 24px', flexShrink:'0',
+      background:'linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.02))'
+    }));
 
     /* ── Footer meta ── */
     const footer = el('div', {
-      padding:'18px 24px', flexShrink:'0',
-      borderTop:'1px solid rgba(255,255,255,.06)'
+      padding:'20px 26px 28px', flexShrink:'0'
     });
 
     const uni = el('div', {
       fontFamily:'"JetBrains Mono", monospace',
-      fontSize:'.62rem', fontWeight:'400',
-      color:'rgba(255,255,255,.3)',
+      fontSize:'.6rem', fontWeight:'400',
+      color:'rgba(255,255,255,.25)',
       letterSpacing:'.06em',
-      marginBottom:'6px'
+      marginBottom:'8px'
     }, 'University of Cologne');
 
     const live = el('div', {
       fontFamily:'"JetBrains Mono", monospace',
-      fontSize:'.62rem', fontWeight:'400',
-      color:'rgba(14,184,150,.7)',
+      fontSize:'.6rem', fontWeight:'400',
+      color:'rgba(14,184,150,.6)',
       letterSpacing:'.06em',
-      display:'flex', alignItems:'center', gap:'6px'
+      display:'flex', alignItems:'center', gap:'7px'
     });
     const dot = el('span', {
       width:'5px', height:'5px', borderRadius:'50%',
-      background:'rgb(14,184,150)',
-      display:'inline-block',
-      boxShadow:'0 0 6px rgba(14,184,150,.5)'
+      background:'rgb(14,184,150)', display:'inline-block',
+      boxShadow:'0 0 4px rgba(14,184,150,.5), 0 0 12px rgba(14,184,150,.2)'
     });
     live.appendChild(dot);
     live.appendChild(document.createTextNode('Active lab'));
@@ -286,18 +313,28 @@
     footer.appendChild(live);
     panel.appendChild(footer);
 
-    /* ── Mount & animate in ── */
+    /* ── Mount & animate ── */
     document.body.appendChild(scrim);
     document.body.appendChild(panel);
 
     requestAnimationFrame(() => {
       scrim.style.opacity = '1';
       panel.style.transform = 'translateX(0)';
-      linksWrap.querySelectorAll('a').forEach(l => {
+      linksSection.querySelectorAll('a').forEach(l => {
         l.style.opacity = '1';
         l.style.transform = 'translateX(0)';
       });
     });
+
+    isOpen = true;
+    menuBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  };
+
+  menuBtn.addEventListener('click', () => {
+    if(isOpen) close(); else open();
+  });
+})();
 
     isOpen = true;
     menuBtn.setAttribute('aria-expanded', 'true');
