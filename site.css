@@ -424,10 +424,10 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   .foot{grid-template-columns:1fr}
 
   /* ── Mobile layout refinements ── */
-  .page-hero{padding:100px 20px 48px; text-align:center}
-  .page-hero h1{margin-left:auto; margin-right:auto}
-  .page-hero .lede{margin-left:auto; margin-right:auto}
-  .page-hero .eyebrow{margin-bottom:28px}
+  .page-hero{padding:80px 20px 36px; text-align:center}
+  .page-hero h1{margin-left:auto; margin-right:auto; font-size:2rem; line-height:1.05}
+  .page-hero .lede{margin-left:auto; margin-right:auto; font-size:.9rem}
+  .page-hero .eyebrow{margin-bottom:20px}
   .sec{padding:64px 20px 20px}
   .sec-head{text-align:center}
   .sec-head h2.display{margin-left:auto; margin-right:auto}
