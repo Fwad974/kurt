@@ -1309,4 +1309,5 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   .page-hero .lede{font-size:.75rem!important; line-height:1.5!important;}
   .page-hero .eyebrow{margin-bottom:14px!important; font-size:.55rem!important;}
   .page-hero::before,.page-hero::after{inset:52px 10px 0 10px!important; border-radius:20px!important;}
+  .card-grid.four{justify-content:flex-start!important;}
 }
