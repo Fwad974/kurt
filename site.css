@@ -420,15 +420,16 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   }
   .nav{
     display:none !important;
-    position:fixed; inset:0;
+    position:absolute;
+    top:0; left:0;
+    width:100vw; height:100vh;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    gap:4px;
-    background:rgba(244,240,232,.97);
-    backdrop-filter:blur(30px);
-    -webkit-backdrop-filter:blur(30px);
+    gap:6px;
+    background:#0a0f1a;
     z-index:105;
+    overflow-y:auto;
   }
   .topbar.menu-open .nav{
     display:flex !important;
