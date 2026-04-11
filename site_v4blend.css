@@ -1142,23 +1142,3 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 .menu-toggle span{
   background:#fff!important;
 }
-@media (max-width:900px){
-  .nav{
-    background:#0a0f1a!important;
-  }
-  .nav a{
-    color:rgba(255,255,255,.75)!important;
-    border:1px solid rgba(255,255,255,.08)!important;
-  }
-  .nav a:hover{
-    color:#fff!important;
-    background:rgba(14,184,150,.1)!important;
-    border-color:rgba(14,184,150,.22)!important;
-  }
-  .nav a[aria-current="page"]{
-    color:#fff!important;
-    background:linear-gradient(135deg, rgba(14,184,150,.2), rgba(201,169,110,.1))!important;
-    border-color:rgba(14,184,150,.28)!important;
-    box-shadow:0 0 0 1px rgba(255,255,255,.04) inset, 0 0 18px rgba(14,184,150,.1)!important;
-  }
-}
