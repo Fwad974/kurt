@@ -548,15 +548,20 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 .figure-reveal.in .fig-label{opacity:1}
 .figure-reveal.in .fig-caption{opacity:1}
 
-/* portrait figure variant — rectangular avatar, fixed size */
+/* portrait figure variant — rectangular avatar */
 .figure.portrait{
   aspect-ratio:3/4;
-  width:200px;
+  width:100%;
   height:auto;
   border-radius:16px;
   overflow:hidden;
-  margin:28px auto 0;
+  margin:28px 0 0;
   flex-shrink:0;
+}
+.figure.portrait img{
+  image-rendering:auto;
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
 }
 .figure.portrait .placeholder{
   position:absolute; inset:0;
