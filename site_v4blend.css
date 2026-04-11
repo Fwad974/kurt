@@ -1095,7 +1095,7 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   flex-shrink: 0;
 }
 .logo-img {
-  height: 40px;
+  height: 54px;
   width: auto;
   display: block;
   filter: drop-shadow(0 0 8px rgba(38,179,113,0.25));
