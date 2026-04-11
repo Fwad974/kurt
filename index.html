@@ -554,12 +554,12 @@ html:not(.loading) .hud-bot{opacity:1}
 /* First layer visible on load */
 .zs-layer:first-child{ opacity:1; z-index:2; }
 
-/* Vignette — deeper than before */
+/* Vignette — frames the specimen, lets center breathe */
 #zstack-vignette{
   position:absolute; inset:0; z-index:4; pointer-events:none;
   background:
-    radial-gradient(ellipse 80% 80% at center, transparent 32%, rgba(2,5,9,.78) 72%, rgba(2,5,9,.96) 100%),
-    linear-gradient(180deg, rgba(2,5,9,.55) 0%, transparent 12%, transparent 88%, rgba(2,5,9,.72) 100%);
+    radial-gradient(ellipse 85% 85% at center, transparent 36%, rgba(2,5,9,.6) 70%, rgba(2,5,9,.92) 100%),
+    linear-gradient(180deg, rgba(2,5,9,.4) 0%, transparent 12%, transparent 88%, rgba(2,5,9,.6) 100%);
 }
 
 /* Scan-line grid — finer than before */
@@ -987,19 +987,59 @@ html:not(.loading) .hud-bot{opacity:1}
 }
 .zsp-meta dd{ margin:0; color:rgba(185,200,235,.55); }
 
-/* Responsive */
+/* Responsive — tablet */
 @media (max-width:960px){
-  #zstack-panels{
-    left:12px; right:80px;
-    width:auto; max-width:420px;
-    top:auto; bottom:90px; transform:none;
-  }
-  .zsp{ transform:translateY(10px) translateX(0); }
-  .zsp.active{ transform:translateY(0); }
+  /* Less scroll on mobile — 5 panels still transition smoothly */
+  #zstack-scroll-driver{ height:380vh; }
+
+  /* Strip chrome that adds noise on small screens */
   #zstack-hud-left{ display:none; }
-  #zstack-gauge{ padding-right:10px; }
-  #zstack-znum{ font-size:clamp(4rem,22vw,9rem); }
-  #zstack-hud-bot{ right:90px; }
+  #zstack-scanlines{ opacity:0; }
+  #zstack-focal-line{ display:none; }
+  #zstack-aperture{ display:none; }
+  #zstack-znum{ display:none; }
+  #zstack-hud-bot{ display:none; }
+
+  /* Panels: full-width, prominent at bottom */
+  #zstack-panels{
+    left:16px; right:16px;
+    width:auto; max-width:none;
+    top:auto; bottom:24px; transform:none;
+  }
+  .zsp{
+    transform:translateY(12px);
+    padding:20px 22px 18px;
+    border-radius:12px;
+    background:
+      linear-gradient(160deg, rgba(255,255,255,.04) 0%, rgba(255,255,255,.01) 100%),
+      rgba(5,8,17,.92);
+  }
+  .zsp.active{ transform:translateY(0); }
+  .zsp-h{ font-size:clamp(1.08rem, 4.2vw, 1.4rem); }
+  .zsp-p{ font-size:.74rem; line-height:1.58; }
+
+  /* Compact gauge */
+  #zstack-gauge{ padding-right:12px; }
+  #zsg-track{ height:clamp(80px, 16vh, 130px); }
+  .zsg-mark span{ font-size:.42rem; }
+
+  /* Open up image — lighter vignette, darken bottom for panel readability */
+  #zstack-vignette{
+    background:
+      radial-gradient(ellipse 95% 80% at center 40%, transparent 22%, rgba(2,5,9,.55) 58%, rgba(2,5,9,.94) 100%),
+      linear-gradient(180deg, rgba(2,5,9,.3) 0%, transparent 10%, transparent 42%, rgba(2,5,9,.94) 100%);
+  }
+}
+
+/* Responsive — small phone */
+@media (max-width:480px){
+  #zstack-scroll-driver{ height:340vh; }
+  #zstack-panels{ left:12px; right:12px; bottom:18px; }
+  .zsp{ padding:16px 16px 14px; gap:8px; }
+  .zsp-p{ font-size:.7rem; line-height:1.5; }
+  .zsp-meta{ font-size:.46rem; }
+  /* Hide gauge on phones — panels are the focus */
+  #zstack-gauge{ display:none; }
 }
 @media (prefers-reduced-motion:reduce){
   #zstack-scroll-driver{ height:auto; }
