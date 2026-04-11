@@ -1105,6 +1105,24 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   filter: drop-shadow(0 0 14px rgba(38,179,113,0.5));
 }
 
+/* ── Logo in footer ── */
+.foot-logo{
+  display:inline-block;
+  margin-bottom:16px;
+}
+.foot-logo-img{
+  height:56px;
+  width:auto;
+  display:block;
+  opacity:.85;
+  filter:drop-shadow(0 0 10px rgba(38,179,113,.2));
+  transition:opacity .3s ease, filter .3s ease;
+}
+.foot-logo:hover .foot-logo-img{
+  opacity:1;
+  filter:drop-shadow(0 0 16px rgba(38,179,113,.4));
+}
+
 /* ── Mobile menu dark theme ── */
 .menu-toggle span{
   background:#fff!important;
