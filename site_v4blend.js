@@ -138,7 +138,7 @@ document.body.classList.remove('has-v4blend-cursor','cursor-live','cursor-hover'
       width:'min(80vw, 320px)', height:'100%',
       zIndex:'100000',
       background:'#080d17',
-      borderLeft:'1px solid rgba(201,168,122,.06)',
+      borderLeft:'1px solid rgba(110,147,184,.06)',
       boxShadow:'-16px 0 60px rgba(0,0,0,.55)',
       display:'flex', flexDirection:'column',
       boxSizing:'border-box',
@@ -150,7 +150,7 @@ document.body.classList.remove('has-v4blend-cursor','cursor-live','cursor-hover'
     /* ── Accent strip ── */
     panel.appendChild(el('div', {
       height:'1px', flexShrink:'0',
-      background:'linear-gradient(90deg, rgba(201,168,122,.45), rgba(201,169,110,.25) 60%, transparent)'
+      background:'linear-gradient(90deg, rgba(110,147,184,.45), rgba(201,169,110,.25) 60%, transparent)'
     }));
 
     /* ── Header: logo + close ── */
@@ -164,7 +164,7 @@ document.body.classList.remove('has-v4blend-cursor','cursor-live','cursor-hover'
       const lClone = logoEl.cloneNode(true);
       Object.assign(lClone.style, { display:'flex', alignItems:'center', textDecoration:'none' });
       const img = lClone.querySelector('img');
-      if(img) Object.assign(img.style, { height:'34px', width:'auto', filter:'drop-shadow(0 0 6px rgba(201,168,122,.2))' });
+      if(img) Object.assign(img.style, { height:'34px', width:'auto', filter:'drop-shadow(0 0 6px rgba(110,147,184,.2))' });
       header.appendChild(lClone);
     }
 
@@ -200,7 +200,7 @@ document.body.classList.remove('has-v4blend-cursor','cursor-live','cursor-hover'
       padding:'0 12px 12px',
       fontFamily:'"JetBrains Mono", monospace',
       fontSize:'.56rem', fontWeight:'500',
-      color:'rgba(201,168,122,.4)',
+      color:'rgba(110,147,184,.4)',
       letterSpacing:'.14em',
       textTransform:'uppercase'
     }, 'Navigate'));
@@ -218,8 +218,8 @@ document.body.classList.remove('has-v4blend-cursor','cursor-live','cursor-hover'
         textDecoration:'none',
         borderRadius:'8px',
         color: isCurrent ? '#fff' : 'rgba(255,255,255,.45)',
-        background: isCurrent ? 'rgba(201,168,122,.08)' : 'transparent',
-        borderLeft: isCurrent ? '2px solid rgba(201,168,122,.7)' : '2px solid transparent',
+        background: isCurrent ? 'rgba(110,147,184,.08)' : 'transparent',
+        borderLeft: isCurrent ? '2px solid rgba(110,147,184,.7)' : '2px solid transparent',
         letterSpacing:'.01em',
         boxSizing:'border-box',
         opacity:'0',
@@ -230,8 +230,8 @@ document.body.classList.remove('has-v4blend-cursor','cursor-live','cursor-hover'
       if(isCurrent){
         link.appendChild(el('span', {
           width:'5px', height:'5px', borderRadius:'50%', flexShrink:'0',
-          background:'rgb(201,168,122)',
-          boxShadow:'0 0 6px rgba(201,168,122,.55)'
+          background:'rgb(110,147,184)',
+          boxShadow:'0 0 6px rgba(110,147,184,.55)'
         }));
       }
 
@@ -267,14 +267,14 @@ document.body.classList.remove('has-v4blend-cursor','cursor-live','cursor-hover'
     const liveRow = el('div', {
       fontFamily:'"JetBrains Mono", monospace',
       fontSize:'.58rem', fontWeight:'400',
-      color:'rgba(201,168,122,.55)',
+      color:'rgba(110,147,184,.55)',
       letterSpacing:'.06em',
       display:'flex', alignItems:'center', gap:'6px'
     });
     liveRow.appendChild(el('span', {
       width:'4px', height:'4px', borderRadius:'50%',
-      background:'rgb(201,168,122)', display:'inline-block',
-      boxShadow:'0 0 3px rgba(201,168,122,.5), 0 0 10px rgba(201,168,122,.15)'
+      background:'rgb(110,147,184)', display:'inline-block',
+      boxShadow:'0 0 3px rgba(110,147,184,.5), 0 0 10px rgba(110,147,184,.15)'
     }));
     liveRow.appendChild(document.createTextNode('Active lab'));
     bottom.appendChild(liveRow);
