@@ -150,7 +150,7 @@ document.body.classList.remove('has-v4blend-cursor','cursor-live','cursor-hover'
     /* ── Accent strip ── */
     panel.appendChild(el('div', {
       height:'1px', flexShrink:'0',
-      background:'linear-gradient(90deg, rgba(198,165,90,.45), rgba(201,169,110,.25) 60%, transparent)'
+      background:'linear-gradient(90deg, rgba(198,165,90,.45), rgba(198,165,90,.25) 60%, transparent)'
     }));
 
     /* ── Header: logo + close ── */
