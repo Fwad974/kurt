@@ -335,13 +335,3 @@
     if(isOpen) close(); else open();
   });
 })();
-
-    isOpen = true;
-    menuBtn.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
-  };
-
-  menuBtn.addEventListener('click', () => {
-    if(isOpen) close(); else open();
-  });
-})();
