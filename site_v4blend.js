@@ -138,20 +138,39 @@
 /* ── Mobile menu toggle (runs on all devices) ── */
 (function(){
   const menuBtn = document.querySelector('.menu-toggle');
-  const topbar = document.querySelector('.topbar');
-  if(!menuBtn || !topbar) return;
+  const nav = document.querySelector('.topbar .nav');
+  if(!menuBtn || !nav) return;
+
+  let overlay = null;
+  let isOpen = false;
+
+  const close = () => {
+    if(!overlay) return;
+    overlay.remove();
+    overlay = null;
+    isOpen = false;
+    menuBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+
+  const open = () => {
+    overlay = document.createElement('div');
+    overlay.className = 'mobile-overlay';
+    nav.querySelectorAll('a').forEach(a => {
+      const link = document.createElement('a');
+      link.href = a.href;
+      link.textContent = a.textContent;
+      if(a.getAttribute('aria-current') === 'page') link.classList.add('active');
+      link.addEventListener('click', close);
+      overlay.appendChild(link);
+    });
+    document.body.appendChild(overlay);
+    isOpen = true;
+    menuBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  };
 
   menuBtn.addEventListener('click', () => {
-    const open = topbar.classList.toggle('menu-open');
-    menuBtn.setAttribute('aria-expanded', String(open));
-    document.body.style.overflow = open ? 'hidden' : '';
-  });
-
-  topbar.querySelectorAll('.nav a').forEach(a => {
-    a.addEventListener('click', () => {
-      topbar.classList.remove('menu-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    });
+    if(isOpen) close(); else open();
   });
 })();

@@ -418,55 +418,46 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
     grid-template-columns:1fr auto !important;
     padding:0 20px !important;
   }
-  /* When menu open: topbar becomes the fullscreen overlay */
-  .topbar.menu-open{
-    height:100vh !important;
-    height:100dvh !important;
-    background:#0a0f1a !important;
-    backdrop-filter:none !important;
-    -webkit-backdrop-filter:none !important;
-    border-bottom:none !important;
-    align-content:start;
-  }
-  .nav{
-    display:none !important;
-  }
-  .topbar.menu-open .nav{
-    display:flex !important;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:6px;
-    grid-column:1 / -1;
-    padding:40px 0 60px;
-    min-height:calc(100vh - 64px);
-    min-height:calc(100dvh - 64px);
-  }
-  .nav a{
-    font-size:1.05rem !important;
-    padding:14px 32px !important;
-    letter-spacing:.01em !important;
-    border-radius:12px !important;
-    width:220px;
-    text-align:center;
-    color:rgba(255,255,255,.75) !important;
-    border:1px solid rgba(255,255,255,.08) !important;
-    background:transparent !important;
-  }
-  .nav a:hover{
-    color:#fff !important;
-    background:rgba(14,184,150,.1) !important;
-    border-color:rgba(14,184,150,.22) !important;
-  }
-  .nav a[aria-current="page"]{
-    font-weight:600;
-    color:#fff !important;
-    background:linear-gradient(135deg, rgba(14,184,150,.2), rgba(201,169,110,.1)) !important;
-    border-color:rgba(14,184,150,.28) !important;
-    box-shadow:0 0 18px rgba(14,184,150,.1) !important;
-  }
+  .nav{display:none !important}
   .meta-right{display:none !important}
   .foot{grid-template-columns:1fr}
+}
+
+/* Overlay: appended to <body> by JS — lives outside topbar stacking context */
+.mobile-overlay{
+  position:fixed; inset:0; z-index:9999;
+  background:#0a0f1a;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:6px;
+  padding:20px;
+}
+.mobile-overlay a{
+  display:block;
+  font-family:Manrope,sans-serif;
+  font-size:1.05rem;
+  font-weight:500;
+  padding:14px 32px;
+  letter-spacing:.01em;
+  border-radius:12px;
+  width:220px;
+  text-align:center;
+  text-decoration:none;
+  color:rgba(255,255,255,.75);
+  border:1px solid rgba(255,255,255,.08);
+  transition:background .3s, color .3s, border-color .3s;
+}
+.mobile-overlay a:hover{
+  color:#fff;
+  background:rgba(14,184,150,.1);
+  border-color:rgba(14,184,150,.22);
+}
+.mobile-overlay a.active{
+  font-weight:600;
+  color:#fff;
+  background:linear-gradient(135deg, rgba(14,184,150,.2), rgba(201,169,110,.1));
+  border-color:rgba(14,184,150,.28);
+  box-shadow:0 0 18px rgba(14,184,150,.1);
 }
 
 @media (prefers-reduced-motion:reduce){
