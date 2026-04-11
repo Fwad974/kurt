@@ -1066,7 +1066,7 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 .photo-meta h3{
   color:#f4f7ff;
   margin:0 0 8px;
-  font-family:"Fraunces",serif;
+  font-family:var(--serif);
   font-weight:400;
   font-size:clamp(1.2rem, 2vw, 1.8rem);
   line-height:1.08;
@@ -1170,7 +1170,7 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 }
 .foot-tagline{
   color:rgba(255,255,255,.6)!important;
-  font-family:"Fraunces",serif!important;
+  font-family:var(--serif)!important;
   font-size:.95rem!important;
   font-weight:300!important;
   line-height:1.5!important;
