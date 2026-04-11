@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="330" height="401" viewBox="0 0 330 401" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <title>Marga &amp; Walter Boll Laboratory — Animated</title>
+
+  <defs>
+    <clipPath id="fc">
+      <path d="M103 82 H227 V274 Q165 339 103 274 Z"/>
+    </clipPath>
+    <!-- top half: organoids behind rod -->
+    <clipPath id="top">
+      <rect x="0" y="0" width="330" height="210"/>
+    </clipPath>
+    <!-- bottom half: organoids in front of rod -->
+    <clipPath id="bot">
+      <rect x="0" y="210" width="330" height="220"/>
+    </clipPath>
+  </defs>
+
+  <!-- Flask fill -->
+  <path d="M103 82 H227 V274 Q165 339 103 274 Z" fill="rgba(160,219,237,0.25)"/>
+
+  <!-- ORGANOIDS BEHIND rod (top half, same color) -->
+  <g clip-path="url(#top)">
+    <g clip-path="url(#fc)">
+      <!-- Ball 1 -->
+      <circle r="13" fill="#F3DC63" stroke="#C9A800" stroke-width="2.5">
+        <animate attributeName="cx" values="165;207;165;123;165" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+        <animate attributeName="cy" values="172;210;248;210;172" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+      </circle>
+      <!-- Ball 2 -->
+      <circle r="13" fill="#F3DC63" stroke="#C9A800" stroke-width="2.5">
+        <animate attributeName="cx" values="123;165;207;165;123" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+        <animate attributeName="cy" values="210;172;210;248;210" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+      </circle>
+      <!-- Ball 3 -->
+      <circle r="13" fill="#F3DC63" stroke="#C9A800" stroke-width="2.5">
+        <animate attributeName="cx" values="165;123;165;207;165" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+        <animate attributeName="cy" values="248;210;172;210;248" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+      </circle>
+      <!-- Ball 4 -->
+      <circle r="13" fill="#F3DC63" stroke="#C9A800" stroke-width="2.5">
+        <animate attributeName="cx" values="207;165;123;165;207" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+        <animate attributeName="cy" values="210;248;210;172;210" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+      </circle>
+    </g>
+  </g>
+
+  <!-- GREEN ROD -->
+  <line x1="165" y1="52" x2="165" y2="246" stroke="#26B371" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- ORGANOIDS IN FRONT of rod (bottom half, same color) -->
+  <g clip-path="url(#bot)">
+    <g clip-path="url(#fc)">
+      <!-- Ball 1 -->
+      <circle r="13" fill="#F3DC63" stroke="#C9A800" stroke-width="2.5">
+        <animate attributeName="cx" values="165;207;165;123;165" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+        <animate attributeName="cy" values="172;210;248;210;172" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+      </circle>
+      <!-- Ball 2 -->
+      <circle r="13" fill="#F3DC63" stroke="#C9A800" stroke-width="2.5">
+        <animate attributeName="cx" values="123;165;207;165;123" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+        <animate attributeName="cy" values="210;172;210;248;210" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+      </circle>
+      <!-- Ball 3 -->
+      <circle r="13" fill="#F3DC63" stroke="#C9A800" stroke-width="2.5">
+        <animate attributeName="cx" values="165;123;165;207;165" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+        <animate attributeName="cy" values="248;210;172;210;248" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+      </circle>
+      <!-- Ball 4 -->
+      <circle r="13" fill="#F3DC63" stroke="#C9A800" stroke-width="2.5">
+        <animate attributeName="cx" values="207;165;123;165;207" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+        <animate attributeName="cy" values="210;248;210;172;210" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+      </circle>
+    </g>
+  </g>
+
+  <!-- Flask border -->
+  <path d="M103 82 H227 V274 Q165 339 103 274 Z" stroke="rgba(255,255,255,0.85)" stroke-width="8" stroke-linejoin="round"/>
+
+  <!-- Top opening accents -->
+  <line x1="119" y1="82" x2="154" y2="82" stroke="rgba(255,255,255,0.85)" stroke-width="8" stroke-linecap="round"/>
+  <line x1="176" y1="82" x2="211" y2="82" stroke="rgba(255,255,255,0.85)" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- Green top circle -->
+  <circle cx="165" cy="34" r="18" fill="#26B371"/>
+
+  <!-- Green bar -->
+  <path d="M85 61 H245 V84 M85 61 V84" stroke="#26B371" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Text -->
+  <g fill="#ffffff" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="165" y="355" font-size="25" letter-spacing="0.8">MARGA &amp; WALTER BOLL</text>
+    <text x="165" y="389" font-size="20" letter-spacing="7.2">LABORATORY</text>
+  </g>
+</svg>

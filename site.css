@@ -11,7 +11,7 @@
   --muted:#7a7369;
   --line:rgba(20,23,26,.10);
   --line-strong:rgba(20,23,26,.22);
-  --accent:#c9a87a;
+  --accent:#C6A55A;
   --heart:#b54a3e;       /* reserved, used sparingly */
   --ease:cubic-bezier(.19,1,.22,1);
   --ease-smooth:cubic-bezier(.6,.05,.2,1);
@@ -59,7 +59,7 @@ a{text-decoration:none;color:inherit}
    ========================================================= */
 .topbar{
   position:fixed; top:0; left:0; right:0; z-index:60;
-  height:64px;
+  height:80px;
   display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
   padding:0 32px;
   background:rgba(244,240,232,.78);
