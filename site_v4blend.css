@@ -488,38 +488,6 @@ body,
   .atlas-viewer{border-radius:20px!important;}
 }
 
-/* custom cursor only on fine pointers */
-body.has-v4blend-cursor{cursor:none!important;}
-body.has-v4blend-cursor a,
-body.has-v4blend-cursor button,
-body.has-v4blend-cursor .chip,
-body.has-v4blend-cursor .btn,
-body.has-v4blend-cursor .ed-item,
-body.has-v4blend-cursor .fig-card,
-body.has-v4blend-cursor .figure,
-body.has-v4blend-cursor .viewer-frame,
-body.has-v4blend-cursor .atlas-viewer{cursor:none!important;}
-#v4c1,#v4c2{
-  position:fixed;
-  left:0; top:0;
-  pointer-events:none;
-  z-index:9999;
-  border-radius:50%;
-  transform:translate(-50%,-50%);
-  opacity:0;
-  transition:opacity .22s ease, width .22s ease, height .22s ease, border-color .22s ease, background .22s ease;
-}
-#v4c1{width:8px; height:8px; background:var(--accent); box-shadow:0 0 14px rgba(14,184,150,.34);}
-#v4c2{width:34px; height:34px; border:1px solid rgba(14,184,150,.42); background:rgba(14,184,150,.03);}
-body.cursor-live #v4c1,
-body.cursor-live #v4c2{opacity:1;}
-body.cursor-hover #v4c1{width:14px; height:14px; background:var(--accent-2); box-shadow:0 0 18px rgba(201,169,110,.28);}
-body.cursor-hover #v4c2{width:54px; height:54px; border-color:rgba(201,169,110,.55); background:rgba(201,169,110,.03);}
-@media (hover:none), (pointer:coarse), (prefers-reduced-motion:reduce){
-  body.has-v4blend-cursor{cursor:auto!important;}
-  #v4c1,#v4c2{display:none!important;}
-}
-
 /* =========================================================
    V4 PHOTO AMBIENCE — stronger background-photo treatment
    ========================================================= */
