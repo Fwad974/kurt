@@ -139,6 +139,7 @@
 (function(){
   const menuBtn = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.topbar .nav');
+  const logo = document.querySelector('.topbar .brand-logo');
   if(!menuBtn || !nav) return;
 
   let overlay = null;
@@ -146,53 +147,144 @@
 
   const close = () => {
     if(!overlay) return;
-    overlay.remove();
-    overlay = null;
+    overlay.style.opacity = '0';
+    setTimeout(() => { if(overlay){ overlay.remove(); overlay = null; } }, 280);
     isOpen = false;
     menuBtn.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   };
 
+  const el = (tag, styles, text) => {
+    const e = document.createElement(tag);
+    if(styles) Object.assign(e.style, styles);
+    if(text) e.textContent = text;
+    return e;
+  };
+
   const open = () => {
-    // Create fullscreen overlay — all styles inline so nothing depends on CSS cache
-    overlay = document.createElement('div');
-    Object.assign(overlay.style, {
+    /* ── Root overlay ── */
+    overlay = el('div', {
       position:'fixed', top:'0', left:'0', width:'100%', height:'100%',
       zIndex:'99999',
-      background:'#0a0f1a',
+      background:'#080d17',
       display:'flex', flexDirection:'column',
-      alignItems:'center', justifyContent:'center',
-      gap:'6px',
-      padding:'20px',
-      boxSizing:'border-box'
+      boxSizing:'border-box',
+      opacity:'0',
+      transition:'opacity .28s ease'
     });
 
-    nav.querySelectorAll('a').forEach(a => {
-      const link = document.createElement('a');
-      link.href = a.href;
-      link.textContent = a.textContent;
+    /* ── Header row: logo + close ── */
+    const header = el('div', {
+      display:'flex', alignItems:'center', justifyContent:'space-between',
+      padding:'0 20px', height:'64px', flexShrink:'0',
+      borderBottom:'1px solid rgba(255,255,255,.06)'
+    });
+
+    if(logo){
+      const logoClone = logo.cloneNode(true);
+      Object.assign(logoClone.style, { display:'flex', alignItems:'center', textDecoration:'none' });
+      const img = logoClone.querySelector('img');
+      if(img) Object.assign(img.style, { height:'40px', width:'auto' });
+      header.appendChild(logoClone);
+    }
+
+    const closeBtn = el('button', {
+      background:'none', border:'1px solid rgba(255,255,255,.1)',
+      borderRadius:'50%', width:'36px', height:'36px',
+      cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center',
+      color:'rgba(255,255,255,.7)', fontSize:'18px', lineHeight:'1',
+      fontFamily:'system-ui, sans-serif', padding:'0',
+      transition:'border-color .2s, color .2s'
+    });
+    closeBtn.innerHTML = '&#10005;';
+    closeBtn.setAttribute('aria-label', 'Close menu');
+    closeBtn.addEventListener('click', close);
+    header.appendChild(closeBtn);
+
+    overlay.appendChild(header);
+
+    /* ── Navigation links ── */
+    const linksWrap = el('div', {
+      flex:'1', display:'flex', flexDirection:'column',
+      alignItems:'center', justifyContent:'center',
+      gap:'4px', padding:'20px',
+      overflowY:'auto'
+    });
+
+    nav.querySelectorAll('a').forEach((a, i) => {
       const isCurrent = a.getAttribute('aria-current') === 'page';
-      Object.assign(link.style, {
+      const link = el('a', {
         display:'block',
         fontFamily:'Manrope, sans-serif',
-        fontSize:'1.05rem',
-        fontWeight: isCurrent ? '600' : '500',
-        padding:'14px 32px',
-        letterSpacing:'.01em',
-        borderRadius:'12px',
-        width:'220px',
+        fontSize:'1rem',
+        fontWeight: isCurrent ? '600' : '400',
+        padding:'13px 0',
+        width:'200px',
         textAlign:'center',
         textDecoration:'none',
-        color: isCurrent ? '#fff' : 'rgba(255,255,255,.75)',
-        border: isCurrent ? '1px solid rgba(14,184,150,.28)' : '1px solid rgba(255,255,255,.08)',
-        background: isCurrent ? 'linear-gradient(135deg, rgba(14,184,150,.2), rgba(201,169,110,.1))' : 'transparent',
-        boxSizing:'border-box'
+        borderRadius:'10px',
+        color: isCurrent ? '#fff' : 'rgba(255,255,255,.6)',
+        background: isCurrent ? 'rgba(14,184,150,.12)' : 'transparent',
+        border: isCurrent ? '1px solid rgba(14,184,150,.25)' : '1px solid transparent',
+        letterSpacing:'.02em',
+        boxSizing:'border-box',
+        opacity:'0',
+        transform:'translateY(8px)',
+        transition:'opacity .32s ease ' + (i * 0.04) + 's, transform .32s ease ' + (i * 0.04) + 's, background .2s, color .2s, border-color .2s'
       });
+      link.href = a.href;
+      link.textContent = a.textContent;
       link.addEventListener('click', close);
-      overlay.appendChild(link);
+      linksWrap.appendChild(link);
     });
 
+    overlay.appendChild(linksWrap);
+
+    /* ── Footer meta ── */
+    const footer = el('div', {
+      padding:'20px', textAlign:'center', flexShrink:'0',
+      borderTop:'1px solid rgba(255,255,255,.06)'
+    });
+
+    const uni = el('span', {
+      fontFamily:'"JetBrains Mono", monospace',
+      fontSize:'.68rem', fontWeight:'400',
+      color:'rgba(255,255,255,.35)',
+      letterSpacing:'.06em',
+      textTransform:'uppercase',
+      display:'block', marginBottom:'6px'
+    }, 'University of Cologne');
+
+    const live = el('span', {
+      fontFamily:'"JetBrains Mono", monospace',
+      fontSize:'.68rem', fontWeight:'400',
+      color:'rgba(14,184,150,.7)',
+      letterSpacing:'.06em',
+      display:'inline-flex', alignItems:'center', gap:'6px'
+    }, 'Active lab');
+
+    const dot = el('span', {
+      width:'5px', height:'5px', borderRadius:'50%',
+      background:'rgb(14,184,150)',
+      display:'inline-block',
+      boxShadow:'0 0 6px rgba(14,184,150,.5)'
+    });
+    live.prepend(dot);
+
+    footer.appendChild(uni);
+    footer.appendChild(live);
+    overlay.appendChild(footer);
+
+    /* ── Mount & animate in ── */
     document.body.appendChild(overlay);
+    requestAnimationFrame(() => {
+      overlay.style.opacity = '1';
+      linksWrap.querySelectorAll('a').forEach(l => {
+        l.style.opacity = '1';
+        l.style.transform = 'translateY(0)';
+      });
+    });
+
     isOpen = true;
     menuBtn.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
