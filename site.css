@@ -793,8 +793,13 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 @media (max-width:600px){
   .card-grid{grid-template-columns:1fr}
   .card-grid.two{grid-template-columns:1fr}
-  .card-grid.four{flex-wrap:wrap !important; gap:12px 8px}
-  .card-grid.four > .fig-card{flex:1 1 80px; min-width:0; max-width:120px}
+  .card-grid.four{flex-wrap:wrap !important; gap:12px 8px; justify-content:center}
+  .card-grid.four > .fig-card{flex:0 1 calc(33% - 8px); min-width:0; max-width:120px}
+  .fig-card .body{padding:8px 2px 0}
+  .fig-card h3{font-size:.7rem}
+  .fig-card .mono{font-size:.45rem; letter-spacing:.06em; margin-bottom:4px}
+  .fig-card p, .fig-card .meta{display:none}
+  .figure.portrait{margin-top:12px}
 }
 
 /* =========================================================
