@@ -10,7 +10,7 @@ window.SITE_CONFIG = {
      Format: xxxx-xxxx-xxxx-xxxx */
   orcidIds: [
     "0000-0002-5155-9467",
-    // "0000-0000-0000-0000", // add more here
+    "0000-0002-4284-774X",
   ],
 
   /* Maximum number of publications to show on the Publications page. */
