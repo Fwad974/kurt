@@ -7,19 +7,39 @@
 <meta name="description" content="The MWB Lab develops human iPSC-derived cardiac cells and organoids for regenerative medicine and translational cardiac therapy.">
 <script>
 /* Decide before paint whether to show the splash.
-   Show only on first visit to the site or on a hard refresh. */
+   Show only on first visit to the site or on a hard refresh.
+   Skip it on any in-site navigation (clicking home from another page,
+   back/forward, or clicking home while already on home). */
 (function(){
   try {
     var isReload = false;
     var navEntries = performance.getEntriesByType && performance.getEntriesByType('navigation');
-    if(navEntries && navEntries.length && navEntries[0].type === 'reload') isReload = true;
-    else if(performance.navigation && performance.navigation.type === 1) isReload = true;
-    var visited = sessionStorage.getItem('mwbVisited') === '1';
-    if(visited && !isReload){
+    if(navEntries && navEntries.length){
+      var t = navEntries[0].type;
+      if(t === 'reload') isReload = true;
+      // 'back_forward' counts as in-site navigation, treat like normal nav
+    } else if(performance.navigation && performance.navigation.type === 1){
+      isReload = true;
+    }
+
+    var visited = false;
+    try { visited = sessionStorage.getItem('mwbVisited') === '1'; } catch(e){}
+
+    // Fallback: if we came from a same-origin page, the user is already in the site.
+    var sameOriginReferrer = false;
+    try {
+      if(document.referrer){
+        var ref = new URL(document.referrer);
+        if(ref.origin === location.origin) sameOriginReferrer = true;
+      }
+    } catch(e){}
+
+    var skip = !isReload && (visited || sameOriginReferrer);
+    if(skip){
       document.documentElement.classList.add('skip-splash');
       document.documentElement.classList.remove('loading');
     }
-    sessionStorage.setItem('mwbVisited', '1');
+    try { sessionStorage.setItem('mwbVisited', '1'); } catch(e){}
   } catch(e){}
 })();
 </script>
