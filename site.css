@@ -1171,3 +1171,35 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   .atlas-viewer .channel{transition:none}
   .atlas-viewer .viewer-bg{transition:none}
 }
+
+/* ── Minimal footer: logo only ── */
+.foot.foot-minimal{
+  display:flex !important;
+  justify-content:center;
+  align-items:center;
+  grid-template-columns:none !important;
+  padding:48px 24px;
+  gap:0;
+}
+.foot.foot-minimal a.foot-logo{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  opacity:.92;
+  transition:opacity .3s var(--ease), transform .3s var(--ease);
+}
+.foot.foot-minimal a.foot-logo:hover{
+  opacity:1;
+  transform:translateY(-2px);
+}
+.foot.foot-minimal .foot-logo-img{
+  height:72px;
+  width:auto;
+  display:block;
+}
+@media (max-width:600px){
+  .foot.foot-minimal{padding:36px 20px}
+  .foot.foot-minimal .foot-logo-img{height:60px}
+}
+
