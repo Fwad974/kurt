@@ -497,22 +497,32 @@
 
 @media (max-width:760px){
   :root{
-    --bio-max-h:calc(100vh - 20px);
+    --bio-max-h:calc(100svh - 16px);
   }
   .bio-modal{
-    width:calc(100% - 20px);
-    height:calc(100vh - 20px);
-    max-height:calc(100vh - 20px);
+    width:calc(100% - 16px);
+    height:calc(100svh - 16px);
+    max-height:calc(100svh - 16px);
     border-radius:2px;
   }
+  /* Single scroll surface: the whole modal scrolls as one unit
+     instead of nesting a scroll container inside a fixed header.
+     Nested scroll on touch is a poor UX and fights iOS rubber-band. */
   .bio-modal-inner{
     flex-direction:column;
     height:100%;
     max-height:none;
+    overflow-y:auto;
+    overflow-x:hidden;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior:contain;
+    scrollbar-width:none;
   }
+  .bio-modal-inner::-webkit-scrollbar{display:none}
+
   .bio-portrait{
     flex:0 0 auto;
-    aspect-ratio:16/9;
+    aspect-ratio:3/2;        /* a bit shorter so more of the text shows */
     min-height:0;
     background-position:center 22%;
   }
@@ -521,17 +531,54 @@
     width:auto; height:1px;
     background:rgba(198,165,90,.15);
   }
-  .bio-initials{font-size:4rem}
+  .bio-initials{font-size:3.6rem}
+
   .bio-body{
     flex:1 1 auto;
     max-height:none;
-    padding:28px 24px 30px;
+    padding:28px 22px 36px;
+    overflow:visible;         /* don't clip — parent scrolls */
+    display:block;            /* no inner flex column */
   }
-  .bio-eyebrow{margin-bottom:16px}
+
+  /* Disable the nested scroll on mobile — no max-height, no
+     overflow clipping, no negative-margin gutter, no scroll
+     shadows. Content flows naturally into the parent scroll. */
+  .bio-scroll{
+    overflow:visible;
+    min-height:0;
+    display:block;
+  }
+  .bio-scroll::before,
+  .bio-scroll::after{display:none}
+  .bio-text{
+    overflow:visible;
+    max-height:none;
+    padding-right:0;
+    margin-right:0;
+  }
+
+  .bio-eyebrow{margin-bottom:14px}
   .bio-body h3{font-size:1.55rem; max-width:none; margin-bottom:10px}
   .bio-body .bio-role{margin-bottom:22px; padding-bottom:18px}
-  .bio-text p{max-width:none}
+  .bio-text p{max-width:none; font-size:.92rem; line-height:1.72}
   .bio-text p:first-of-type{font-size:.96rem; margin-bottom:16px}
+  .bio-contact{margin-top:24px; padding-top:18px}
+  .bio-contact a{padding:10px 14px 10px 16px; font-size:.58rem}
+
+  /* Close button: absolute-positioned relative to the dialog,
+     which is itself fixed — so it stays pinned above the
+     scrolling .bio-modal-inner regardless of how far the user
+     scrolls. Just give it a larger tap target and an opaque
+     backdrop for legibility over the portrait. */
+  .bio-close{
+    top:calc(env(safe-area-inset-top, 0px) + 14px);
+    right:calc(env(safe-area-inset-right, 0px) + 14px);
+    width:40px; height:40px;
+    font-size:1.25rem;
+    background:rgba(5,12,22,.78);
+    border-color:rgba(198,165,90,.55);
+  }
 }
 </style>
 <link rel="stylesheet" href="site_v4blend.css?v=4">
@@ -982,8 +1029,12 @@ document.querySelectorAll('.ed-filters').forEach(bar => {
       initialsEl.textContent = buildInitials(h3 ? h3.textContent : '');
     }
 
-    // Reset scroll so long bios always start from the top
+    // Reset scroll so long bios always start from the top.
+    // Reset both possible scroll containers: on desktop the
+    // inner .bio-text scrolls, on mobile the whole .bio-modal-inner.
     if(textEl) textEl.scrollTop = 0;
+    const innerEl = modal.querySelector('.bio-modal-inner');
+    if(innerEl) innerEl.scrollTop = 0;
 
     // Clear any leftover state from a previous close animation
     modal.classList.remove('closing');
