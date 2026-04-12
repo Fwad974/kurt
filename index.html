@@ -307,80 +307,6 @@ html:not(.loading) .hud-bot{opacity:1}
 .platform p{font-size:.94rem; line-height:1.62; color:var(--ink-2); margin:0; max-width:42ch}
 .platform .glyph{display:none}
 
-/* ---------- leadership ---------- */
-.leaders{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:32px;
-}
-.leader{
-  border:1px solid var(--line);
-  border-radius:2px;
-  padding:0;
-  background:rgba(244,240,232,.5);
-  overflow:hidden;
-  display:grid;
-  grid-template-rows:1.1fr auto;
-  min-height:440px;
-  transition:border-color .4s var(--ease);
-}
-.leader:hover{border-color:var(--line-strong)}
-.leader .portrait{
-  position:relative;
-  background:var(--bone-2);
-  border-bottom:1px solid var(--line);
-  display:flex; align-items:center; justify-content:center;
-  overflow:hidden;
-}
-.leader .portrait::before{
-  content:""; position:absolute; inset:0;
-  background:radial-gradient(ellipse at 50% 40%, rgba(20,23,26,.04), transparent 70%);
-}
-.leader .portrait .placeholder{
-  font-family:"JetBrains Mono",monospace;
-  font-size:.62rem;
-  color:var(--muted);
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  text-align:center;
-  line-height:1.8;
-  z-index:1;
-  opacity:.7;
-}
-.leader .portrait .placeholder::before{
-  content:""; display:block;
-  width:56px; height:56px;
-  border:1px solid var(--line-strong);
-  border-radius:50%;
-  margin:0 auto 14px;
-}
-.leader .body{padding:28px 32px 32px}
-.leader .role{
-  font-family:"JetBrains Mono",monospace;
-  font-size:.64rem; letter-spacing:.12em; text-transform:uppercase;
-  color:var(--muted);
-  margin-bottom:10px;
-}
-.leader h3{
-  font-family:var(--serif);
-  font-variation-settings:"opsz" 144;
-  font-weight:400;
-  font-size:1.5rem;
-  letter-spacing:-0.015em;
-  margin:0 0 12px;
-}
-.leader h3 em{font-style:italic}
-.leader p{font-size:.92rem; line-height:1.6; color:var(--ink-2); margin:0 0 14px; max-width:44ch}
-.leader .contact{
-  font-family:"JetBrains Mono",monospace;
-  font-size:.66rem; letter-spacing:.02em;
-  color:var(--ink);
-  display:inline-flex; gap:6px; align-items:center;
-  padding-top:14px; border-top:1px solid var(--line);
-  margin-top:6px;
-}
-.leader .contact:hover{text-decoration:underline}
-
 /* ---------- latest news ---------- */
 .news-grid{
   display:grid;
@@ -442,8 +368,6 @@ html:not(.loading) .hud-bot{opacity:1}
   .platforms-grid{grid-template-columns:1fr}
   .platform p{max-width:none}
   .why .quote{max-width:none}
-  .leaders{grid-template-columns:1fr}
-  .leader p{max-width:none}
   .news-grid{grid-template-columns:1fr}
   .join-cta{grid-template-columns:1fr; gap:32px; padding:64px 28px}
   .join-cta h2{max-width:none}
@@ -827,59 +751,10 @@ html:not(.loading) .hud-bot{opacity:1}
   </div>
 </section>
 
-<!-- ========== LEADERSHIP ========== -->
-<section class="sec" id="leadership" data-bg="0">
-  <div class="sec-head">
-    <div class="eyebrow rv">§ 04 — Leadership</div>
-    <div>
-      <h2 class="display" data-split-on-reveal>Led by a <em>small senior team</em>.</h2>
-      <p class="sec-lede rv">
-        The MWB Lab is directed by Prof. Dr. Kurt Pfannkuche at the Institute of
-        Physiology I, University of Cologne, with Dr. Sarkawt Hamad leading scientific
-        development.
-      </p>
-    </div>
-  </div>
-
-  <div class="leaders">
-    <article class="leader rv">
-      <div class="portrait">
-        <div class="placeholder">Portrait<br>Prof. Dr. Kurt Pfannkuche</div>
-      </div>
-      <div class="body">
-        <div class="role">Principal Investigator</div>
-        <h3>Prof. Dr. Kurt <em>Pfannkuche</em></h3>
-        <p>
-          Head of the MWB Lab at the Institute of Physiology I. His work spans scalable
-          cardiomyocyte production, cardiac regenerative medicine, and translational
-          validation of cell therapies.
-        </p>
-        <a class="contact" href="mailto:kurt.pfannkuche@uni-koeln.de">→ kurt.pfannkuche@uni-koeln.de</a>
-      </div>
-    </article>
-
-    <article class="leader rv">
-      <div class="portrait">
-        <div class="placeholder">Portrait<br>Dr. Sarkawt Hamad</div>
-      </div>
-      <div class="body">
-        <div class="role">Head of Scientific Development</div>
-        <h3>Dr. Sarkawt <em>Hamad</em></h3>
-        <p>
-          Leads scientific development of the lab's cardiac organoid and 3D tissue
-          programmes, including hydrogel-based culture systems and drug validation
-          platforms.
-        </p>
-        <a class="contact" href="mailto:shamad@uni-koeln.de">→ shamad@uni-koeln.de</a>
-      </div>
-    </article>
-  </div>
-</section>
-
 <!-- ========== LATEST NEWS ========== -->
 <section class="sec" id="news-preview" data-bg="2">
   <div class="sec-head">
-    <div class="eyebrow rv">§ 05 — Latest news</div>
+    <div class="eyebrow rv">§ 04 — Latest news</div>
     <div>
       <h2 class="display" data-split-on-reveal>What we've been <em>doing lately</em>.</h2>
       <p class="sec-lede rv">
@@ -912,7 +787,7 @@ html:not(.loading) .hud-bot{opacity:1}
 <!-- ========== MICROSCOPY LIBRARY ========== -->
 <section class="sec sec-gallery" id="microscopy-library" data-bg="1">
   <div class="sec-head">
-    <div class="eyebrow rv">§ 06 — Imaging library</div>
+    <div class="eyebrow rv">§ 05 — Imaging library</div>
     <div>
       <h2 class="display" data-split-on-reveal>Selected microscopy views that <em>shape the interface</em>.</h2>
       <p class="sec-lede rv">
@@ -963,7 +838,7 @@ html:not(.loading) .hud-bot{opacity:1}
 <!-- ========== JOIN CTA ========== -->
 <section class="join-cta" data-bg="4">
   <div>
-    <div class="eyebrow rv">§ 07 — Join us</div>
+    <div class="eyebrow rv">§ 06 — Join us</div>
     <h2 class="display" data-split-on-reveal>Work on the <em>cellular building blocks</em> of cardiac repair.</h2>
     <p class="rv">
       The MWB Lab welcomes highly motivated and talented researchers passionate about
