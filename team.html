@@ -196,6 +196,17 @@
   from{opacity:0; transform:translateY(16px) scale(.97)}
   to{opacity:1; transform:translateY(0) scale(1)}
 }
+.bio-modal.closing{
+  animation:bioOut .32s cubic-bezier(.5,0,.75,0) forwards;
+  pointer-events:none;
+}
+@keyframes bioOut{
+  to{opacity:0; transform:translateY(8px) scale(.98)}
+}
+.bio-modal.closing::backdrop{
+  animation:bioBackdropOut .32s cubic-bezier(.5,0,.75,0) forwards;
+}
+@keyframes bioBackdropOut{to{opacity:0}}
 
 /* Flexbox is more reliable than grid for "left column + scrolling
    right column" inside a capped dialog. */
@@ -216,6 +227,16 @@
   background-position:center 20%;
   background-repeat:no-repeat;
   min-height:440px;
+  overflow:hidden;
+  transform-origin:center;
+}
+/* Subtle cinematic zoom-out every time the modal opens. */
+.bio-modal[open] .bio-portrait{
+  animation:portraitZoom 1.4s cubic-bezier(.19,1,.22,1);
+}
+@keyframes portraitZoom{
+  from{transform:scale(1.05)}
+  to{transform:scale(1)}
 }
 .bio-portrait::after{
   content:"";
@@ -264,11 +285,42 @@
   min-width:0;
   min-height:0;
   max-height:var(--bio-max-h);
-  padding:48px 52px 52px;
+  padding:52px 52px 52px;
   display:flex;
   flex-direction:column;
   overflow:hidden;
 }
+
+/* Wrapper that hosts the scroll fades over the scroll container. */
+.bio-scroll{
+  position:relative;
+  flex:1 1 auto;
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+}
+.bio-scroll::before,
+.bio-scroll::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  height:28px;
+  pointer-events:none;
+  z-index:2;
+  opacity:0;
+  transition:opacity .25s var(--ease);
+}
+.bio-scroll::before{
+  top:0;
+  background:linear-gradient(180deg, var(--bone) 0%, rgba(13,27,42,0) 100%);
+}
+.bio-scroll::after{
+  bottom:0;
+  background:linear-gradient(0deg, var(--bone) 0%, rgba(13,27,42,0) 100%);
+}
+.bio-scroll.is-scrolled::before{opacity:1}
+.bio-scroll.has-more::after{opacity:1}
 
 /* The scroll container. */
 .bio-text{
@@ -395,6 +447,11 @@
   letter-spacing:0;
   color:#C6A55A;
   transition:color .25s var(--ease), transform .25s var(--ease);
+}
+/* External links (LinkedIn, Google Scholar, …) get a small
+   "open-in-new" glyph instead of the plain right arrow. */
+.bio-contact a[target="_blank"]::after{
+  content:"↗";
 }
 .bio-contact a:hover,
 .bio-contact a:focus-visible{
@@ -545,6 +602,16 @@
         <div class="mono">Head of Scientific Development</div>
         <p>Cardiac organoid and 3D tissue programmes, hydrogel-based culture systems and drug validation.</p>
         <div class="meta"><a href="mailto:shamad@uni-koeln.de">shamad@uni-koeln.de</a></div>
+        <div class="fig-bio">
+          <p>Dr. Sarkawt Hamad is a scientist specializing in regenerative medicine, with a focus on cardiac tissue engineering, stem cell biology, and translational research. He currently serves as Head of Scientific Development at the MWB-Lab, where he works on developing clinically relevant and scalable approaches in cardiac regeneration.</p>
+          <p>His research includes hiPSC-derived cardiomyocytes, endothelial cells, cardiac organoids, mesenchymal stem cells, exosome platforms, and cGMP-compliant cell systems. He is particularly interested in translating stem cell-based technologies into reproducible and clinically applicable solutions.</p>
+          <p>Dr. Hamad has experience in large-animal translational models, AI-driven bioinformatics, and international scientific collaboration. He has supervised MD, MSc, and PhD researchers and actively contributes to advancing regenerative medicine toward clinical and industrial applications.</p>
+          <div class="bio-contact">
+            <a href="mailto:shamad@uni-koeln.de">Email</a>
+            <a href="https://www.linkedin.com/in/sarkawt-hamad-7192b7219" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://scholar.google.com/scholar?q=Sarkawt+Hamad" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -732,7 +799,9 @@
       <div class="bio-eyebrow">&sect; Biography</div>
       <h3 id="bioName"></h3>
       <div class="bio-role" id="bioRole"></div>
-      <div class="bio-text" id="bioText"></div>
+      <div class="bio-scroll" id="bioScroll">
+        <div class="bio-text" id="bioText"></div>
+      </div>
     </div>
   </div>
 </dialog>
@@ -849,7 +918,19 @@ document.querySelectorAll('.ed-filters').forEach(bar => {
   const roleEl = document.getElementById('bioRole');
   const portraitEl = document.getElementById('bioPortrait');
   const initialsEl = document.getElementById('bioInitials');
+  const scrollEl = document.getElementById('bioScroll');
   const textEl = document.getElementById('bioText');
+
+  // Scroll fade shadows: toggle classes on the wrapper based on
+  // where the user is within the scrollable text.
+  function updateScrollShadows(){
+    if(!textEl || !scrollEl) return;
+    const atTop = textEl.scrollTop <= 2;
+    const atBottom = textEl.scrollTop + textEl.clientHeight >= textEl.scrollHeight - 2;
+    scrollEl.classList.toggle('is-scrolled', !atTop);
+    scrollEl.classList.toggle('has-more', !atBottom);
+  }
+  if(textEl) textEl.addEventListener('scroll', updateScrollShadows, {passive:true});
 
   function buildInitials(text){
     return text
@@ -904,7 +985,14 @@ document.querySelectorAll('.ed-filters').forEach(bar => {
     // Reset scroll so long bios always start from the top
     if(textEl) textEl.scrollTop = 0;
 
+    // Clear any leftover state from a previous close animation
+    modal.classList.remove('closing');
+
     modal.showModal();
+
+    // After layout settles, evaluate whether the bio overflows so
+    // the top/bottom fade shadows show correctly on open.
+    requestAnimationFrame(updateScrollShadows);
   }
 
   document.querySelectorAll('.fig-card.has-bio').forEach(card => {
@@ -921,7 +1009,30 @@ document.querySelectorAll('.ed-filters').forEach(bar => {
     });
   });
 
-  modal.querySelector('.bio-close').addEventListener('click', () => modal.close());
+  // Animated close so the modal fades out instead of vanishing.
+  function closeModal(){
+    if(modal.classList.contains('closing')) return;
+    modal.classList.add('closing');
+    const done = (e) => {
+      // Only react to the modal's own fade-out; ignore inner
+      // animations like portraitZoom that may still be running.
+      if(e.animationName !== 'bioOut') return;
+      modal.removeEventListener('animationend', done);
+      modal.close();
+      modal.classList.remove('closing');
+    };
+    modal.addEventListener('animationend', done);
+    // Fallback if animationend doesn't fire (reduced motion, etc.)
+    setTimeout(() => {
+      if(modal.classList.contains('closing')){
+        modal.removeEventListener('animationend', done);
+        modal.close();
+        modal.classList.remove('closing');
+      }
+    }, 500);
+  }
+
+  modal.querySelector('.bio-close').addEventListener('click', closeModal);
   // Backdrop click to close: when the click target is the dialog element
   // itself AND the click lands outside its bounding rect.
   modal.addEventListener('click', e => {
@@ -929,7 +1040,12 @@ document.querySelectorAll('.ed-filters').forEach(bar => {
     const r = modal.getBoundingClientRect();
     const inside = e.clientX >= r.left && e.clientX <= r.right
                 && e.clientY >= r.top  && e.clientY <= r.bottom;
-    if(!inside) modal.close();
+    if(!inside) closeModal();
+  });
+  // Intercept the native Esc cancel so we can animate out.
+  modal.addEventListener('cancel', e => {
+    e.preventDefault();
+    closeModal();
   });
 })();
 
