@@ -195,7 +195,9 @@
 .bio-modal-inner{
   display:grid;
   grid-template-columns:300px 1fr;
-  max-height:inherit;
+  /* cap the inner at the dialog cap; short bios still shrink to fit */
+  max-height:min(640px, calc(100vh - 48px));
+  min-height:0;
 }
 
 .bio-portrait{
@@ -219,11 +221,36 @@
   background:var(--line);
   z-index:2;
 }
+/* Monogram fallback when a card has no portrait image */
+.bio-portrait.no-img{
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(198,165,90,.14) 0%, transparent 60%),
+    linear-gradient(160deg, var(--bone-2) 0%, var(--bone) 55%, rgba(198,165,90,.08) 100%);
+}
+.bio-initials{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--serif);
+  font-variation-settings:"opsz" 144;
+  font-weight:300;
+  font-style:italic;
+  font-size:6rem;
+  letter-spacing:-0.04em;
+  color:rgba(198,165,90,.55);
+  opacity:0;
+  transition:opacity .35s var(--ease);
+  pointer-events:none;
+  user-select:none;
+}
+.bio-portrait.no-img .bio-initials{opacity:1}
 
 .bio-body{
   padding:52px 56px 56px;
   overflow-y:auto;
-  max-height:inherit;
+  min-height:0;
   display:flex;
   flex-direction:column;
   scrollbar-width:thin;
@@ -276,11 +303,79 @@
   font-size:.94rem;
   line-height:1.78;
   color:var(--ink-2);
-  margin:0 0 14px;
-  max-width:54ch;
+  margin:0 0 16px;
+  max-width:56ch;
 }
-.bio-text p:last-child{margin:0}
+.bio-text p:last-of-type{margin-bottom:0}
 .bio-text p em{font-style:italic; color:var(--ink)}
+/* Lead paragraph — the first <p> gets a slightly larger, darker
+   treatment so bios that open with an intro line breathe more. */
+.bio-text p:first-of-type{
+  font-size:1rem;
+  color:var(--ink);
+  line-height:1.7;
+  margin-bottom:20px;
+}
+/* Inline links inside the bio copy */
+.bio-text a{
+  color:var(--ink);
+  text-decoration:none;
+  border-bottom:1px solid rgba(198,165,90,.55);
+  transition:color .22s var(--ease), border-color .22s var(--ease);
+}
+.bio-text a:hover,
+.bio-text a:focus-visible{
+  color:#C6A55A;
+  border-bottom-color:#C6A55A;
+  outline:none;
+}
+
+/* Contact row at the bottom of a bio — e.g. LinkedIn + email pills */
+.bio-contact{
+  margin-top:24px;
+  padding-top:22px;
+  border-top:1px solid var(--line);
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.bio-contact a{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.6rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ink);
+  text-decoration:none;
+  padding:9px 14px 9px 16px;
+  border:1px solid var(--line-strong);
+  border-radius:999px;
+  display:inline-flex; align-items:center; gap:10px;
+  transition:
+    background .25s var(--ease),
+    color .25s var(--ease),
+    border-color .25s var(--ease),
+    transform .25s var(--ease);
+}
+.bio-contact a::after{
+  content:"→";
+  font-size:.72rem;
+  letter-spacing:0;
+  color:#C6A55A;
+  transition:color .25s var(--ease), transform .25s var(--ease);
+}
+.bio-contact a:hover,
+.bio-contact a:focus-visible{
+  background:var(--ink);
+  color:var(--bone);
+  border-color:var(--ink);
+  transform:translateY(-1px);
+  outline:none;
+}
+.bio-contact a:hover::after,
+.bio-contact a:focus-visible::after{
+  color:#C6A55A;
+  transform:translateX(2px);
+}
 
 .bio-close{
   position:absolute;
@@ -318,10 +413,10 @@
   }
   .bio-modal-inner{
     grid-template-columns:1fr;
-    max-height:calc(100vh - 20px);
+    grid-template-rows:auto 1fr;
+    height:calc(100vh - 20px);
   }
   .bio-portrait{
-    min-height:0;
     aspect-ratio:16/9;
     background-position:center 22%;
   }
@@ -329,10 +424,12 @@
     top:auto; left:0; right:0; bottom:0;
     width:auto; height:1px;
   }
+  .bio-initials{font-size:4rem}
   .bio-body{padding:34px 26px 36px}
   .bio-eyebrow{margin-bottom:18px}
   .bio-body h3{font-size:1.55rem; max-width:none}
   .bio-text p{max-width:none}
+  .bio-text p:first-of-type{font-size:.96rem}
 }
 </style>
 <link rel="stylesheet" href="site_v4blend.css?v=4">
@@ -484,7 +581,15 @@
       <div class="figure portrait" style="clip-path:none;">
         <img src="team/Rezwan.jpg" alt="Rezwan Firuzi" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
       </div>
-      <div class="body"><h3>Rezwan <em>Firuzi</em></h3><div class="mono">PhD student</div></div>
+      <div class="body">
+        <h3>Rezwan <em>Firuzi</em></h3>
+        <div class="mono">PhD student</div>
+        <div class="fig-bio">
+          <p>Rezwan Firuzi is a PhD researcher at the MWB Lab, University of Cologne, specializing in stem cell biology, cell reprogramming, and regenerative medicine. With a foundation in veterinary science, she investigates the transgene-free production of equine induced pluripotent stem cells (eqiPSCs) as a platform for musculoskeletal regenerative therapies.</p>
+          <p>Her technical expertise spans mRNA transfection, nucleofection, PBMC-based stem cell engineering, hiPSC-derived cardiomyocyte differentiation, and cardiac organoid development. Complementing her experimental work, Rezwan applies advanced bioinformatics pipelines &mdash; including single-cell and bulk RNA-seq analysis &mdash; to uncover transcriptomic insights in cardiac tissue engineering.</p>
+          <p>Her integrative approach, bridging hands-on laboratory methods with computational biology, positions her at the forefront of translational stem cell research.</p>
+        </div>
+      </div>
     </div>
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
@@ -508,7 +613,15 @@
       <div class="figure portrait" style="clip-path:none;">
         <img src="team/Pranjali.jpg" alt="Pranjali Bhagat" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
       </div>
-      <div class="body"><h3>Pranjali <em>Bhagat</em></h3><div class="mono">B.Sc. student</div></div>
+      <div class="body">
+        <h3>Pranjali <em>Bhagat</em></h3>
+        <div class="mono">B.Sc. student</div>
+        <div class="fig-bio">
+          <p>My name is Pranjali Bhagat, and I am a B.Tech. graduate in Biotechnology from VIT Vellore, India. I joined the Marga and Walter Boll Laboratory for Cardiac Tissue Engineering at the Medical Faculty of the University of Cologne in early 2025 as part of my Bachelor&rsquo;s thesis internship, and I&rsquo;m currently continuing here as a research assistant until June 2026.</p>
+          <p>My current project focuses on extending the non-cryogenic storage of hiPSC-derived cardiomyocytes by modulating metabolic pathways using small molecules.</p>
+          <p>Outside the lab, I enjoy getting creative with handicrafts and LEGO, experimenting with baking, and staying active through swimming. These hobbies keep me grounded and bring a nice balance to my work routine.</p>
+        </div>
+      </div>
     </div>
     <div class="fig-card">
       <div class="figure portrait figure-reveal">
@@ -516,7 +629,19 @@
         <div class="fig-overlay"></div>
         <div class="placeholder">Portrait<br>Ziwei Lu</div>
       </div>
-      <div class="body"><h3>Ziwei <em>Lu</em></h3><div class="mono">MD student</div></div>
+      <div class="body">
+        <h3>Ziwei <em>Lu</em></h3>
+        <div class="mono">MD student</div>
+        <div class="fig-bio">
+          <p>I&rsquo;m Ziwei Lu, an MD Candidate at the University of Cologne, specializing in cryopolymer hydrogel and silk fibroin scaffold development for engineered heart tissue in vivo, with a focus on cardiomyocyte maturation, cardiac organoid engineering, and induced pluripotent stem cell (iPSC) technology for cardiac regeneration.</p>
+          <p>My core research focuses on cryopolymer hydrogel and silk fibroin as biomaterial scaffolds to support the 3D culture, maturation, and in vivo engraftment of cardiomyocytes and cardiac organoids, aiming to advance translational therapies for myocardial repair and cardiovascular regenerative medicine. I have hands-on expertise in iPSC differentiation into cardiomyocytes and laboratory skills.</p>
+          <p>I&rsquo;m passionate about bridging biomaterial science, stem cell biology, and clinical cardiovascular medicine.</p>
+          <div class="bio-contact">
+            <a href="https://www.linkedin.com/in/ziwei-lu-691a51401" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="mailto:lu_ziwei@yeah.net">lu_ziwei@yeah.net</a>
+          </div>
+        </div>
+      </div>
     </div>
 <div class="fig-card">
       <div class="figure portrait figure-reveal">
@@ -555,9 +680,11 @@
 <dialog id="bioModal" class="bio-modal" aria-labelledby="bioName">
   <button type="button" class="bio-close" aria-label="Close biography">&times;</button>
   <div class="bio-modal-inner">
-    <div class="bio-portrait" id="bioPortrait" role="img" aria-hidden="true"></div>
+    <div class="bio-portrait" id="bioPortrait" role="img" aria-hidden="true">
+      <span class="bio-initials" id="bioInitials" aria-hidden="true"></span>
+    </div>
     <div class="bio-body">
-      <div class="bio-eyebrow">§ Biography</div>
+      <div class="bio-eyebrow">&sect; Biography</div>
       <h3 id="bioName"></h3>
       <div class="bio-role" id="bioRole"></div>
       <div class="bio-text" id="bioText"></div>
@@ -676,7 +803,19 @@ document.querySelectorAll('.ed-filters').forEach(bar => {
   const nameEl = document.getElementById('bioName');
   const roleEl = document.getElementById('bioRole');
   const portraitEl = document.getElementById('bioPortrait');
+  const initialsEl = document.getElementById('bioInitials');
   const textEl = document.getElementById('bioText');
+
+  function buildInitials(text){
+    return text
+      .replace(/\b(Prof\.|Dr\.|PhD|MD|MSc)\b/gi, '')
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map(w => w.charAt(0).toUpperCase())
+      .join('');
+  }
 
   // Any card that contains a .fig-bio becomes a clickable bio card.
   document.querySelectorAll('.fig-card').forEach(card => {
@@ -700,10 +839,27 @@ document.querySelectorAll('.ed-filters').forEach(bar => {
     const mono = card.querySelector('.body .mono');
     const img = card.querySelector('.figure img');
     const bio = card.querySelector('.fig-bio');
+
     nameEl.innerHTML = h3 ? h3.innerHTML : '';
     roleEl.innerHTML = mono ? mono.innerHTML : '';
-    portraitEl.style.backgroundImage = img ? `url("${img.getAttribute('src')}")` : '';
     textEl.innerHTML = bio ? bio.innerHTML : '';
+
+    // Portrait: use real image if available, otherwise render a
+    // serif monogram from the person's name as a graceful fallback.
+    if(img && img.getAttribute('src')){
+      portraitEl.style.backgroundImage = `url("${img.getAttribute('src')}")`;
+      portraitEl.classList.remove('no-img');
+      initialsEl.textContent = '';
+    } else {
+      portraitEl.style.backgroundImage = '';
+      portraitEl.classList.add('no-img');
+      initialsEl.textContent = buildInitials(h3 ? h3.textContent : '');
+    }
+
+    // Reset scroll so long bios always start from the top
+    const body = modal.querySelector('.bio-body');
+    if(body) body.scrollTop = 0;
+
     modal.showModal();
   }
 
