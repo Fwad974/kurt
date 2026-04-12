@@ -166,22 +166,27 @@
 }
 
 /* ---------- Bio modal ---------- */
+/* Shared cap for the dialog, inner, and body so the body can
+   reliably turn into a scroll container. */
+:root{
+  --bio-max-h:min(620px, calc(100vh - 48px));
+}
 .bio-modal{
   border:none; padding:0;
   max-width:860px;
   width:calc(100% - 48px);
-  max-height:min(640px, calc(100vh - 48px));
+  max-height:var(--bio-max-h);
   background:var(--bone);
   color:var(--ink);
   border-radius:3px;
   box-shadow:
-    0 0 0 1px rgba(198,165,90,.22),
-    0 60px 120px -32px rgba(13,27,42,.55),
-    0 24px 48px -20px rgba(13,27,42,.3);
+    0 0 0 1px rgba(198,165,90,.2),
+    0 60px 120px -32px rgba(0,0,0,.6),
+    0 24px 48px -20px rgba(0,0,0,.35);
   overflow:hidden;
 }
 .bio-modal::backdrop{
-  background:rgba(13,27,42,.72);
+  background:rgba(5,12,22,.78);
   backdrop-filter:blur(6px) saturate(.9);
   animation:bioBackdropIn .5s var(--ease);
 }
@@ -192,17 +197,21 @@
   to{opacity:1; transform:translateY(0) scale(1)}
 }
 
+/* Flexbox is more reliable than grid for "left column + scrolling
+   right column" inside a capped dialog. */
 .bio-modal-inner{
-  display:grid;
-  grid-template-columns:300px 1fr;
-  /* cap the inner at the dialog cap; short bios still shrink to fit */
-  max-height:min(640px, calc(100vh - 48px));
+  display:flex;
+  align-items:stretch;
+  max-height:var(--bio-max-h);
   min-height:0;
 }
 
 .bio-portrait{
   position:relative;
-  background:linear-gradient(180deg, var(--bone-2), var(--bone));
+  flex:0 0 300px;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(198,165,90,.08) 0%, transparent 60%),
+    linear-gradient(180deg, var(--bone-2), var(--bone));
   background-size:cover;
   background-position:center 20%;
   background-repeat:no-repeat;
@@ -211,21 +220,21 @@
 .bio-portrait::after{
   content:"";
   position:absolute; inset:0;
-  background:linear-gradient(180deg, rgba(13,27,42,0) 55%, rgba(13,27,42,.14) 100%);
+  background:linear-gradient(180deg, rgba(5,12,22,0) 50%, rgba(5,12,22,.35) 100%);
   pointer-events:none;
 }
 .bio-portrait::before{
   content:"";
   position:absolute; top:0; right:0; bottom:0;
   width:1px;
-  background:var(--line);
+  background:rgba(198,165,90,.15);
   z-index:2;
 }
 /* Monogram fallback when a card has no portrait image */
 .bio-portrait.no-img{
   background:
-    radial-gradient(ellipse at 50% 30%, rgba(198,165,90,.14) 0%, transparent 60%),
-    linear-gradient(160deg, var(--bone-2) 0%, var(--bone) 55%, rgba(198,165,90,.08) 100%);
+    radial-gradient(ellipse at 50% 30%, rgba(198,165,90,.18) 0%, transparent 62%),
+    linear-gradient(160deg, var(--bone-2) 0%, var(--bone) 55%, rgba(198,165,90,.05) 100%);
 }
 .bio-initials{
   position:absolute;
@@ -239,7 +248,7 @@
   font-style:italic;
   font-size:6rem;
   letter-spacing:-0.04em;
-  color:rgba(198,165,90,.55);
+  color:rgba(198,165,90,.65);
   opacity:0;
   transition:opacity .35s var(--ease);
   pointer-events:none;
@@ -247,17 +256,40 @@
 }
 .bio-portrait.no-img .bio-initials{opacity:1}
 
+/* The right column. Header (eyebrow/name/role) stays fixed; only
+   .bio-text scrolls, so the user never loses context when reading
+   long bios. */
 .bio-body{
-  padding:52px 56px 56px;
-  overflow-y:auto;
+  flex:1 1 auto;
+  min-width:0;
   min-height:0;
+  max-height:var(--bio-max-h);
+  padding:48px 52px 52px;
   display:flex;
   flex-direction:column;
-  scrollbar-width:thin;
-  scrollbar-color:rgba(20,23,26,.2) transparent;
+  overflow:hidden;
 }
-.bio-body::-webkit-scrollbar{width:5px}
-.bio-body::-webkit-scrollbar-thumb{background:rgba(20,23,26,.18); border-radius:3px}
+
+/* The scroll container. */
+.bio-text{
+  flex:1 1 auto;
+  min-height:0;
+  overflow-y:auto;
+  overflow-x:hidden;
+  /* Extend into the padding gutter so the scrollbar sits away
+     from the text without shifting it when it appears. */
+  padding-right:16px;
+  margin-right:-16px;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(198,165,90,.35) transparent;
+}
+.bio-text::-webkit-scrollbar{width:6px}
+.bio-text::-webkit-scrollbar-track{background:transparent; margin:4px 0}
+.bio-text::-webkit-scrollbar-thumb{
+  background:rgba(198,165,90,.35);
+  border-radius:3px;
+}
+.bio-text::-webkit-scrollbar-thumb:hover{background:rgba(198,165,90,.55)}
 
 .bio-eyebrow{
   font-family:"JetBrains Mono",monospace;
@@ -293,10 +325,10 @@
   font-size:.64rem;
   letter-spacing:.14em;
   text-transform:uppercase;
-  color:var(--ink-2);
+  color:rgba(248,243,232,.68);
   margin:0 0 28px;
   padding-bottom:22px;
-  border-bottom:1px solid var(--line);
+  border-bottom:1px solid rgba(198,165,90,.22);
 }
 
 .bio-text p{
@@ -332,9 +364,9 @@
 
 /* Contact row at the bottom of a bio — e.g. LinkedIn + email pills */
 .bio-contact{
-  margin-top:24px;
+  margin-top:28px;
   padding-top:22px;
-  border-top:1px solid var(--line);
+  border-top:1px solid rgba(198,165,90,.22);
   display:flex;
   flex-wrap:wrap;
   gap:10px;
@@ -344,11 +376,12 @@
   font-size:.6rem;
   letter-spacing:.16em;
   text-transform:uppercase;
-  color:var(--ink);
+  color:rgba(248,243,232,.92);
   text-decoration:none;
   padding:9px 14px 9px 16px;
-  border:1px solid var(--line-strong);
+  border:1px solid rgba(198,165,90,.35);
   border-radius:999px;
+  background:rgba(198,165,90,.04);
   display:inline-flex; align-items:center; gap:10px;
   transition:
     background .25s var(--ease),
@@ -365,28 +398,28 @@
 }
 .bio-contact a:hover,
 .bio-contact a:focus-visible{
-  background:var(--ink);
-  color:var(--bone);
-  border-color:var(--ink);
+  background:#C6A55A;
+  color:#0D1B2A;
+  border-color:#C6A55A;
   transform:translateY(-1px);
   outline:none;
 }
 .bio-contact a:hover::after,
 .bio-contact a:focus-visible::after{
-  color:#C6A55A;
+  color:#0D1B2A;
   transform:translateX(2px);
 }
 
 .bio-close{
   position:absolute;
-  top:16px; right:16px;
-  width:34px; height:34px;
-  border:1px solid rgba(198,165,90,.35);
-  background:rgba(244,240,232,.88);
-  backdrop-filter:blur(4px);
+  top:18px; right:20px;
+  width:32px; height:32px;
+  border:1px solid rgba(198,165,90,.4);
+  background:rgba(198,165,90,.1);
+  backdrop-filter:blur(8px);
   border-radius:50%;
-  font-size:1.05rem; line-height:1;
-  color:var(--ink);
+  font-size:1.1rem; line-height:1;
+  color:rgba(248,243,232,.92);
   cursor:pointer;
   display:flex; align-items:center; justify-content:center;
   z-index:5;
@@ -399,37 +432,49 @@
 .bio-close:hover,
 .bio-close:focus-visible{
   background:#C6A55A;
-  color:var(--bone);
+  color:#0D1B2A;
   border-color:#C6A55A;
   transform:rotate(90deg);
   outline:none;
 }
 
 @media (max-width:760px){
+  :root{
+    --bio-max-h:calc(100vh - 20px);
+  }
   .bio-modal{
     width:calc(100% - 20px);
+    height:calc(100vh - 20px);
     max-height:calc(100vh - 20px);
     border-radius:2px;
   }
   .bio-modal-inner{
-    grid-template-columns:1fr;
-    grid-template-rows:auto 1fr;
-    height:calc(100vh - 20px);
+    flex-direction:column;
+    height:100%;
+    max-height:none;
   }
   .bio-portrait{
+    flex:0 0 auto;
     aspect-ratio:16/9;
+    min-height:0;
     background-position:center 22%;
   }
   .bio-portrait::before{
     top:auto; left:0; right:0; bottom:0;
     width:auto; height:1px;
+    background:rgba(198,165,90,.15);
   }
   .bio-initials{font-size:4rem}
-  .bio-body{padding:34px 26px 36px}
-  .bio-eyebrow{margin-bottom:18px}
-  .bio-body h3{font-size:1.55rem; max-width:none}
+  .bio-body{
+    flex:1 1 auto;
+    max-height:none;
+    padding:28px 24px 30px;
+  }
+  .bio-eyebrow{margin-bottom:16px}
+  .bio-body h3{font-size:1.55rem; max-width:none; margin-bottom:10px}
+  .bio-body .bio-role{margin-bottom:22px; padding-bottom:18px}
   .bio-text p{max-width:none}
-  .bio-text p:first-of-type{font-size:.96rem}
+  .bio-text p:first-of-type{font-size:.96rem; margin-bottom:16px}
 }
 </style>
 <link rel="stylesheet" href="site_v4blend.css?v=4">
@@ -857,8 +902,7 @@ document.querySelectorAll('.ed-filters').forEach(bar => {
     }
 
     // Reset scroll so long bios always start from the top
-    const body = modal.querySelector('.bio-body');
-    if(body) body.scrollTop = 0;
+    if(textEl) textEl.scrollTop = 0;
 
     modal.showModal();
   }
