@@ -117,115 +117,222 @@
 .fig-bio{display:none}
 
 .fig-card.has-bio{position:relative; cursor:pointer}
-.fig-card.has-bio .figure{transition:box-shadow .4s var(--ease)}
+.fig-card.has-bio .figure{
+  transition:box-shadow .45s var(--ease), transform .45s var(--ease);
+}
 .fig-card.has-bio:hover .figure{
-  box-shadow:0 24px 48px -28px rgba(20,23,26,.35);
+  transform:translateY(-2px);
+  box-shadow:
+    0 0 0 1px var(--line-strong),
+    0 28px 56px -32px rgba(20,23,26,.32);
+}
+.fig-card.has-bio:focus-visible{outline:none}
+.fig-card.has-bio:focus-visible .figure{
+  box-shadow:
+    0 0 0 1px #C6A55A,
+    0 28px 56px -32px rgba(20,23,26,.32);
 }
 
-/* Subtle "read bio" badge — only visible on hover / focus */
+/* Mono "Read bio" pill — appears only on hover / keyboard focus */
 .fig-card .bio-hint{
   position:absolute;
-  top:12px; right:12px;
-  width:28px; height:28px;
-  border-radius:50%;
-  background:rgba(13,27,42,.82);
-  color:rgba(244,240,232,.95);
+  top:14px; right:16px;
+  display:inline-flex; align-items:center; gap:8px;
+  padding:7px 12px;
   font-family:"JetBrains Mono",monospace;
-  font-size:.9rem; line-height:1;
-  display:flex; align-items:center; justify-content:center;
-  opacity:0; transform:translateY(-4px);
-  transition:opacity .35s var(--ease), transform .35s var(--ease);
+  font-size:.56rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:rgba(244,240,232,.95);
+  background:rgba(13,27,42,.82);
+  backdrop-filter:blur(4px);
+  border:1px solid rgba(198,165,90,.35);
+  border-radius:999px;
+  opacity:0;
+  transform:translateY(-4px);
+  transition:opacity .4s var(--ease), transform .4s var(--ease);
   pointer-events:none;
   z-index:3;
 }
+.fig-card .bio-hint::after{
+  content:"→";
+  font-size:.7rem;
+  letter-spacing:0;
+  color:#C6A55A;
+}
 .fig-card.has-bio:hover .bio-hint,
-.fig-card.has-bio:focus-visible .bio-hint{opacity:1; transform:translateY(0)}
+.fig-card.has-bio:focus-visible .bio-hint{
+  opacity:1; transform:translateY(0);
+}
 
-/* Modal */
+/* ---------- Bio modal ---------- */
 .bio-modal{
   border:none; padding:0;
-  max-width:760px;
+  max-width:860px;
   width:calc(100% - 48px);
-  max-height:calc(100vh - 48px);
+  max-height:min(640px, calc(100vh - 48px));
   background:var(--bone);
   color:var(--ink);
-  border-radius:4px;
-  box-shadow:0 48px 96px -24px rgba(20,23,26,.45);
+  border-radius:3px;
+  box-shadow:
+    0 0 0 1px rgba(198,165,90,.22),
+    0 60px 120px -32px rgba(13,27,42,.55),
+    0 24px 48px -20px rgba(13,27,42,.3);
   overflow:hidden;
 }
 .bio-modal::backdrop{
-  background:rgba(13,27,42,.7);
-  backdrop-filter:blur(4px);
+  background:rgba(13,27,42,.72);
+  backdrop-filter:blur(6px) saturate(.9);
+  animation:bioBackdropIn .5s var(--ease);
 }
-.bio-modal[open]{animation:bioIn .4s cubic-bezier(.19,1,.22,1)}
+@keyframes bioBackdropIn{from{opacity:0} to{opacity:1}}
+.bio-modal[open]{animation:bioIn .55s cubic-bezier(.19,1,.22,1)}
 @keyframes bioIn{
-  from{opacity:0; transform:translateY(12px)}
-  to{opacity:1; transform:translateY(0)}
+  from{opacity:0; transform:translateY(16px) scale(.97)}
+  to{opacity:1; transform:translateY(0) scale(1)}
 }
+
 .bio-modal-inner{
   display:grid;
-  grid-template-columns:260px 1fr;
-  max-height:calc(100vh - 48px);
+  grid-template-columns:300px 1fr;
+  max-height:inherit;
 }
+
 .bio-portrait{
-  background:var(--bone-2);
+  position:relative;
+  background:linear-gradient(180deg, var(--bone-2), var(--bone));
   background-size:cover;
-  background-position:center 18%;
-  min-height:340px;
+  background-position:center 20%;
+  background-repeat:no-repeat;
+  min-height:440px;
 }
+.bio-portrait::after{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(13,27,42,0) 55%, rgba(13,27,42,.14) 100%);
+  pointer-events:none;
+}
+.bio-portrait::before{
+  content:"";
+  position:absolute; top:0; right:0; bottom:0;
+  width:1px;
+  background:var(--line);
+  z-index:2;
+}
+
 .bio-body{
-  padding:44px 48px 48px;
+  padding:52px 56px 56px;
   overflow-y:auto;
-  max-height:calc(100vh - 48px);
+  max-height:inherit;
+  display:flex;
+  flex-direction:column;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(20,23,26,.2) transparent;
 }
+.bio-body::-webkit-scrollbar{width:5px}
+.bio-body::-webkit-scrollbar-thumb{background:rgba(20,23,26,.18); border-radius:3px}
+
+.bio-eyebrow{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.6rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:#C6A55A;
+  display:flex; align-items:center; gap:14px;
+  margin:0 0 22px;
+}
+.bio-eyebrow::before{
+  content:"";
+  display:block;
+  width:28px; height:1px;
+  background:#C6A55A;
+  opacity:.7;
+}
+
 .bio-body h3{
   font-family:var(--serif);
   font-variation-settings:"opsz" 144;
   font-weight:400;
-  font-size:1.85rem;
-  letter-spacing:-0.015em;
-  margin:0 0 10px;
+  font-size:2.1rem;
+  letter-spacing:-0.02em;
+  line-height:1.08;
+  margin:0 0 14px;
+  max-width:22ch;
 }
-.bio-body h3 em{font-style:italic}
+.bio-body h3 em{font-style:italic; font-weight:400}
+
 .bio-body .bio-role{
   font-family:"JetBrains Mono",monospace;
-  font-size:.66rem;
-  letter-spacing:.12em;
+  font-size:.64rem;
+  letter-spacing:.14em;
   text-transform:uppercase;
   color:var(--ink-2);
-  margin:0 0 22px;
-  padding-bottom:18px;
+  margin:0 0 28px;
+  padding-bottom:22px;
   border-bottom:1px solid var(--line);
 }
+
 .bio-text p{
   font-size:.94rem;
-  line-height:1.74;
+  line-height:1.78;
   color:var(--ink-2);
   margin:0 0 14px;
+  max-width:54ch;
 }
 .bio-text p:last-child{margin:0}
+.bio-text p em{font-style:italic; color:var(--ink)}
+
 .bio-close{
   position:absolute;
-  top:14px; right:14px;
+  top:16px; right:16px;
   width:34px; height:34px;
-  border:1px solid var(--line-strong);
-  background:rgba(244,240,232,.92);
+  border:1px solid rgba(198,165,90,.35);
+  background:rgba(244,240,232,.88);
+  backdrop-filter:blur(4px);
   border-radius:50%;
-  font-size:1.15rem; line-height:1;
+  font-size:1.05rem; line-height:1;
   color:var(--ink);
   cursor:pointer;
   display:flex; align-items:center; justify-content:center;
-  z-index:4;
-  transition:background .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease);
+  z-index:5;
+  transition:
+    background .28s var(--ease),
+    color .28s var(--ease),
+    border-color .28s var(--ease),
+    transform .35s var(--ease);
 }
-.bio-close:hover{background:var(--ink); color:var(--bone); border-color:var(--ink)}
+.bio-close:hover,
+.bio-close:focus-visible{
+  background:#C6A55A;
+  color:var(--bone);
+  border-color:#C6A55A;
+  transform:rotate(90deg);
+  outline:none;
+}
 
-@media (max-width:700px){
-  .bio-modal{width:calc(100% - 24px); max-height:calc(100vh - 24px)}
-  .bio-modal-inner{grid-template-columns:1fr; max-height:calc(100vh - 24px)}
-  .bio-portrait{min-height:0; aspect-ratio:16/10; background-position:center 22%}
-  .bio-body{padding:30px 26px 34px}
-  .bio-body h3{font-size:1.5rem}
+@media (max-width:760px){
+  .bio-modal{
+    width:calc(100% - 20px);
+    max-height:calc(100vh - 20px);
+    border-radius:2px;
+  }
+  .bio-modal-inner{
+    grid-template-columns:1fr;
+    max-height:calc(100vh - 20px);
+  }
+  .bio-portrait{
+    min-height:0;
+    aspect-ratio:16/9;
+    background-position:center 22%;
+  }
+  .bio-portrait::before{
+    top:auto; left:0; right:0; bottom:0;
+    width:auto; height:1px;
+  }
+  .bio-body{padding:34px 26px 36px}
+  .bio-eyebrow{margin-bottom:18px}
+  .bio-body h3{font-size:1.55rem; max-width:none}
+  .bio-text p{max-width:none}
 }
 </style>
 <link rel="stylesheet" href="site_v4blend.css?v=4">
@@ -446,10 +553,11 @@
 
 <!-- Shared bio modal (populated on click from any .fig-card with a .fig-bio child) -->
 <dialog id="bioModal" class="bio-modal" aria-labelledby="bioName">
-  <button type="button" class="bio-close" aria-label="Close">&times;</button>
+  <button type="button" class="bio-close" aria-label="Close biography">&times;</button>
   <div class="bio-modal-inner">
     <div class="bio-portrait" id="bioPortrait" role="img" aria-hidden="true"></div>
     <div class="bio-body">
+      <div class="bio-eyebrow">§ Biography</div>
       <h3 id="bioName"></h3>
       <div class="bio-role" id="bioRole"></div>
       <div class="bio-text" id="bioText"></div>
@@ -573,12 +681,16 @@ document.querySelectorAll('.ed-filters').forEach(bar => {
   // Any card that contains a .fig-bio becomes a clickable bio card.
   document.querySelectorAll('.fig-card').forEach(card => {
     if(!card.querySelector('.fig-bio')) return;
+    const h3 = card.querySelector('.body h3');
+    const displayName = h3 ? h3.textContent.trim() : 'biography';
     card.classList.add('has-bio');
     card.setAttribute('tabindex', '0');
     card.setAttribute('role', 'button');
+    card.setAttribute('aria-haspopup', 'dialog');
+    card.setAttribute('aria-label', `Read biography: ${displayName}`);
     const hint = document.createElement('span');
     hint.className = 'bio-hint';
-    hint.textContent = '+';
+    hint.textContent = 'Read bio';
     hint.setAttribute('aria-hidden', 'true');
     card.appendChild(hint);
   });
