@@ -4,11 +4,14 @@
  */
 (function () {
   const cfg = window.SITE_CONFIG || {};
-  const orcidId = cfg.orcidId;
+  // Accept either the new array field or the legacy single-id field.
+  const orcidIds = Array.isArray(cfg.orcidIds) && cfg.orcidIds.length
+    ? cfg.orcidIds.slice()
+    : (cfg.orcidId ? [cfg.orcidId] : []);
   const limit = cfg.publicationsLimit || 20;
 
   const listEl = document.querySelector(".ed-list");
-  if (!listEl || !orcidId) return;
+  if (!listEl || orcidIds.length === 0) return;
 
   // Update profile button links from config
   const scholarBtn = document.querySelector('[data-link="scholar"]');
@@ -144,23 +147,71 @@
     )}</div></article>`;
   };
 
+  // Build a stable key for deduplication. DOI is the most reliable signal
+  // for "same paper"; when a work has no DOI we fall back to a normalized
+  // title + year combo so cross-profile duplicates still merge.
+  const normalize = (s) =>
+    decodeEntities(s || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim();
+
+  const dedupKey = (work) => {
+    const doi = getDoi(work);
+    if (doi && doi.value) return "doi:" + doi.value.toLowerCase().trim();
+    const title =
+      (work.title && work.title.title && work.title.title.value) || "";
+    const year =
+      (work["publication-date"] &&
+        work["publication-date"].year &&
+        work["publication-date"].year.value) ||
+      "";
+    return "t:" + normalize(title) + "|" + year;
+  };
+
+  const fetchWorks = (id) =>
+    fetch(`https://pub.orcid.org/v3.0/${encodeURIComponent(id)}/works`, {
+      headers: { Accept: "application/json" },
+    }).then((res) => {
+      if (!res.ok) throw new Error(`ORCID ${id} returned ${res.status}`);
+      return res.json();
+    });
+
   showLoading();
 
-  fetch(`https://pub.orcid.org/v3.0/${encodeURIComponent(orcidId)}/works`, {
-    headers: { Accept: "application/json" },
-  })
-    .then((res) => {
-      if (!res.ok) throw new Error(`ORCID ${res.status}`);
-      return res.json();
-    })
-    .then((data) => {
-      const groups = data.group || [];
-      const works = groups
-        .map((g) => (g["work-summary"] || [])[0])
-        .filter(Boolean);
+  Promise.allSettled(orcidIds.map(fetchWorks))
+    .then((results) => {
+      const merged = new Map();
+      let anySuccess = false;
 
+      results.forEach((r, idx) => {
+        if (r.status !== "fulfilled") {
+          console.warn(
+            `ORCID fetch failed for ${orcidIds[idx]}:`,
+            r.reason && r.reason.message
+          );
+          return;
+        }
+        anySuccess = true;
+        const groups = (r.value && r.value.group) || [];
+        groups.forEach((g) => {
+          const summary = (g["work-summary"] || [])[0];
+          if (!summary) return;
+          const key = dedupKey(summary);
+          if (!merged.has(key)) merged.set(key, summary);
+        });
+      });
+
+      if (!anySuccess) {
+        showError(
+          "ORCID API is unreachable. Please try again later or visit the profile directly."
+        );
+        return;
+      }
+
+      const works = Array.from(merged.values());
       if (works.length === 0) {
-        showError("No publications found for this ORCID ID.");
+        showError("No publications found for the configured ORCID IDs.");
         return;
       }
 
