@@ -16,8 +16,18 @@
   const orcidBtn = document.querySelector('[data-link="orcid"]');
   if (orcidBtn && cfg.orcidUrl) orcidBtn.href = cfg.orcidUrl;
 
+  // ORCID sometimes returns strings that already contain HTML entities
+  // (e.g. "Stem Cell Research &amp; Therapy"). Decode them first so we
+  // don't double-escape when we re-encode for safe insertion.
+  const decodeEntities = (s) => {
+    if (s == null) return "";
+    const el = document.createElement("textarea");
+    el.innerHTML = String(s);
+    return el.value;
+  };
+
   const escape = (s) =>
-    String(s == null ? "" : s)
+    decodeEntities(s)
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
@@ -91,8 +101,13 @@
       "—";
     const journal =
       (work["journal-title"] && work["journal-title"].value) || "";
-    const type = formatType(work.type);
+    const rawType = (work.type || "journal-article").toLowerCase();
+    const type = formatType(rawType);
     const doi = getDoi(work);
+
+    // Only show a type badge when it's NOT a regular journal article,
+    // to cut visual noise for the common case.
+    const showTypeBadge = rawType !== "journal-article";
 
     const metaParts = [];
     if (journal) metaParts.push(escape(journal));
@@ -102,27 +117,31 @@
       );
     const meta = metaParts.join(" · ");
 
+    const typeBadge = showTypeBadge
+      ? `<span class="pub-type">${escape(type)}</span>`
+      : "";
+
     return `
-      <div class="ed-item">
-        <div class="year">${escape(year)}</div>
-        <div class="body">
-          <h3>${emphasize(title)}</h3>
-          <div class="meta-line">${meta}</div>
-        </div>
-        <div class="tag">${escape(type)}</div>
-      </div>
+      <article class="pub-card">
+        <header class="pub-head">
+          <span class="pub-year">${escape(year)}</span>
+          ${typeBadge}
+        </header>
+        <h3 class="pub-title">${emphasize(title)}</h3>
+        <div class="pub-meta">${meta}</div>
+      </article>
     `;
   };
 
   const showLoading = () => {
     listEl.innerHTML =
-      '<div class="ed-item"><div class="year">—</div><div class="body"><h3>Loading publications…</h3><div class="meta-line">Fetching from ORCID</div></div><div class="tag">Live</div></div>';
+      '<article class="pub-card pub-status"><header class="pub-head"><span class="pub-year">—</span></header><h3 class="pub-title">Loading publications…</h3><div class="pub-meta">Fetching from ORCID</div></article>';
   };
 
   const showError = (msg) => {
-    listEl.innerHTML = `<div class="ed-item"><div class="year">—</div><div class="body"><h3>Could not load publications</h3><div class="meta-line">${escape(
+    listEl.innerHTML = `<article class="pub-card pub-status"><header class="pub-head"><span class="pub-year">—</span></header><h3 class="pub-title">Could not load publications</h3><div class="pub-meta">${escape(
       msg
-    )}</div></div><div class="tag">Error</div></div>`;
+    )}</div></article>`;
   };
 
   showLoading();
