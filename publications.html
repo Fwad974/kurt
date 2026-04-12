@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=5">
+<link rel="stylesheet" href="site.css?v=8">
 <style>
 .split-fig{min-height:360px}
 .fig-svg{
@@ -87,7 +87,7 @@
 <div class="grain"></div>
 
 <header class="topbar">
-  <a href="index.html" class="brand-logo"><img src="logo_white.svg" alt="Marga &amp; Walter Boll Laboratory" class="logo-img"></a>
+  <a href="index.html" class="brand-logo"><img src="log_animated.svg?v=2" alt="Marga &amp; Walter Boll Laboratory" class="logo-img"></a>
   <nav class="nav">
     <a href="index.html">Home</a>
     <a href="research.html">Research</a>
@@ -117,80 +117,25 @@
 
 
 <section class="sec" style="padding-bottom:100px">
-  <div class="sec-head">
-    <div class="eyebrow rv">§ Selected</div>
-    <div>
-      <h2 class="display" data-split-on-reveal>Selected <em>publications</em>.</h2>
-      <p class="sec-lede rv">The most significant papers from the lab, organised by category. The full archive is maintained on Google Scholar and ORCID.</p>
-    </div>
-  </div>
-  <div class="ed-filters">
-    <button class="chip active" data-filter="all">All</button>
-    <button class="chip" data-filter="manufacturing">Cell manufacturing</button>
-    <button class="chip" data-filter="organoids">Organoids</button>
-    <button class="chip" data-filter="validation">Translational validation</button>
-    <button class="chip" data-filter="biomaterials">Biomaterials</button>
-    <button class="chip" data-filter="regen">Regenerative medicine</button>
-  </div>
   <div class="ed-list">
-    <div class="ed-item rv" data-tag="manufacturing"><div class="year">2019</div><div class="body"><h3>Scalable production of human iPSC-derived <em>cardiomyocytes</em></h3><div class="meta-line">Authors · Journal · <em>DOI</em></div></div><div class="tag">Manufacturing</div></div>
-    <div class="ed-item rv" data-tag="manufacturing"><div class="year">2022</div><div class="body"><h3>Human iPSC-derived <em>endothelial cells</em> for vascularised tissue constructs</h3><div class="meta-line">Authors · Journal · <em>DOI</em></div></div><div class="tag">Manufacturing</div></div>
-    <div class="ed-item rv" data-tag="validation"><div class="year">2024</div><div class="body"><h3>Large-animal validation of cardiac cell therapy in a porcine <em>myocardial infarction model</em></h3><div class="meta-line">Authors · Journal · <em>DOI</em></div></div><div class="tag">Validation</div></div>
     <div class="ed-item rv" data-tag="organoids"><div class="year">2026</div><div class="body"><h3>Self-organising cardiac <em>organoids</em> resolve sarcomere, lineage, and vasculature</h3><div class="meta-line">Authors · Journal · <em>DOI</em></div></div><div class="tag">Organoids</div></div>
     <div class="ed-item rv" data-tag="biomaterials"><div class="year">2025</div><div class="body"><h3>Tunable <em>hydrogel scaffolds</em> for cardiac tissue engineering</h3><div class="meta-line">Authors · Journal · <em>DOI</em></div></div><div class="tag">Biomaterials</div></div>
     <div class="ed-item rv" data-tag="regen"><div class="year">2025</div><div class="body"><h3>Cross-species iPSC research for <em>regenerative applications</em></h3><div class="meta-line">Authors · Journal · <em>DOI</em></div></div><div class="tag">Regenerative</div></div>
+    <div class="ed-item rv" data-tag="validation"><div class="year">2024</div><div class="body"><h3>Large-animal validation of cardiac cell therapy in a porcine <em>myocardial infarction model</em></h3><div class="meta-line">Authors · Journal · <em>DOI</em></div></div><div class="tag">Validation</div></div>
+    <div class="ed-item rv" data-tag="manufacturing"><div class="year">2022</div><div class="body"><h3>Human iPSC-derived <em>endothelial cells</em> for vascularised tissue constructs</h3><div class="meta-line">Authors · Journal · <em>DOI</em></div></div><div class="tag">Manufacturing</div></div>
+    <div class="ed-item rv" data-tag="manufacturing"><div class="year">2019</div><div class="body"><h3>Scalable production of human iPSC-derived <em>cardiomyocytes</em></h3><div class="meta-line">Authors · Journal · <em>DOI</em></div></div><div class="tag">Manufacturing</div></div>
   </div>
   <div class="cta-row">
-    <a class="btn primary" href="#">Google Scholar <svg class="arrow" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
-    <a class="btn ghost" href="#">ORCID</a>
+    <a class="btn primary" data-link="scholar" href="#" target="_blank" rel="noopener">Google Scholar <svg class="arrow" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 7h12M8 2l5 5-5 5"/></svg></a>
+    <a class="btn ghost" data-link="orcid" href="#" target="_blank" rel="noopener">ORCID</a>
   </div>
-  <p class="mono rv" style="margin-top:32px; color:var(--muted)">Entries above are structured placeholders. Real author lists, journal names, and DOIs will be added as the archive is populated.</p>
+  <p class="mono rv" style="margin-top:32px; color:var(--muted)">Publications are fetched live from ORCID. Showing the most recent entries.</p>
 </section>
 
 
-<footer class="foot">
-  <div>
-    <div class="wordmark">MWB <em>Lab</em></div>
-    <p>Scalable cardiac tissue engineering for regenerative medicine. Human iPSC-derived cardiac cells and organoids, developed for translational cardiac therapy.</p>
-    <div class="addr">
-      <strong>Prof. Dr. Kurt Pfannkuche</strong><br>
-      Institute of Physiology I<br>
-      Robert-Koch-Straße 39<br>
-      50931 Cologne, Germany<br>
-      Tel. +49 221 478 6968
-    </div>
-  </div>
-  <div>
-    <h4>Research</h4>
-    <ul>
-      <li><a href="research.html">Overview</a></li>
-      <li><a href="research.html">Cell manufacturing</a></li>
-      <li><a href="research.html">Organoids</a></li>
-      <li><a href="research.html">Drug testing</a></li>
-    </ul>
-  </div>
-  <div>
-    <h4>Lab</h4>
-    <ul>
-      <li><a href="team.html">Team</a></li>
-      <li><a href="publications.html">Publications</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="join.html">Join us</a></li>
-    </ul>
-  </div>
-  <div>
-    <h4>Contact</h4>
-    <ul>
-      <li><a href="mailto:kurt.pfannkuche@uni-koeln.de">kurt.pfannkuche@uni-koeln.de</a></li>
-      <li><a href="mailto:shamad@uni-koeln.de">shamad@uni-koeln.de</a></li>
-      <li><a href="contact.html">Contact page</a></li>
-    </ul>
-  </div>
+<footer class="foot foot-minimal">
+  <a href="index.html" class="foot-logo"><img src="logo_white.svg" alt="MWB Lab" class="foot-logo-img"></a>
 </footer>
-<div class="colophon">
-  <span>© MWB Lab · University of Cologne · 2026</span>
-  <span>Institute of Physiology I · Set in Fraunces &amp; Manrope</span>
-</div>
 
 <script>
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -355,5 +300,7 @@ document.querySelectorAll('.ed-filters').forEach(bar => {
 })();
 </script>
 <script src="site_v4blend.js?v=7"></script>
+<script src="config.js?v=2"></script>
+<script src="publications.js?v=3"></script>
 </body>
 </html>

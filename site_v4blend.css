@@ -1301,3 +1301,21 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 .join-cta{
   border-top-color:var(--line)!important;
 }
+
+/* ── Mobile team page fit ── */
+@media(max-width:600px){
+  .page-hero{padding:60px 16px 24px!important;}
+  .page-hero h1{font-size:1.5rem!important; line-height:1.1!important; overflow-wrap:break-word!important;}
+  .page-hero .lede{font-size:.75rem!important; line-height:1.5!important;}
+  .page-hero .eyebrow{margin-bottom:14px!important; font-size:.55rem!important;}
+  .page-hero::before,.page-hero::after{inset:52px 10px 0 10px!important; border-radius:20px!important;}
+  .card-grid.four{display:grid!important; grid-template-columns:1fr 1fr!important; justify-content:start!important; flex-wrap:nowrap!important;}
+  .card-grid.four > .fig-card{flex:none!important; max-width:none!important; width:100%!important;}
+  /* Home page hero: let text fill full width instead of balanced short lines */
+  .hero{padding:88px 16px 48px!important; gap:32px!important;}
+  .hero h1{text-wrap:wrap!important; max-width:none!important; font-size:2rem!important; line-height:1.1!important;}
+  .hero .lede{max-width:none!important; font-size:.88rem!important; line-height:1.55!important;}
+  .hero .eyebrow{font-size:.58rem!important;}
+  /* Make sure the status-indicator dot never leaks through on mobile */
+  .meta-right, .meta-right *{display:none!important;}
+}
