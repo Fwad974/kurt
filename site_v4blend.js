@@ -2,6 +2,10 @@
 document.querySelectorAll('#v4c1,#v4c2').forEach(function(e){e.remove()});
 document.body.classList.remove('has-v4blend-cursor','cursor-live','cursor-hover');
 
+/* mark that the user has visited the site during this session,
+   so the home-page splash is skipped on subsequent in-site navigation */
+try { sessionStorage.setItem('mwbVisited', '1'); } catch(e){}
+
 (function(){
   const sections = [...document.querySelectorAll('section[data-bg]')];
   const layers = [...document.querySelectorAll('#ambient .bg[data-bg]')];

@@ -432,10 +432,11 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   .team-group-head{margin-bottom:16px}
   .team-group-label{font-size:.55rem}
   .team-group-count{font-size:.5rem}
-  .sec{padding:64px 20px 20px}
-  .sec-head{text-align:center}
-  .sec-head h2.display{margin-left:auto; margin-right:auto}
-  .sec-head .lede{margin-left:auto; margin-right:auto}
+  .sec{padding:64px 14px 20px}
+  .sec-head{text-align:left}
+  .sec-head h2.display{margin-left:0; margin-right:0; max-width:none}
+  .sec-head .lede{margin-left:0; margin-right:0}
+  .sec-head .sec-lede{max-width:none}
   .colophon{text-align:center}
 
   .figure, .split-fig, .viewer-frame, .atlas-viewer{
