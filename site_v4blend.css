@@ -1311,4 +1311,11 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   .page-hero::before,.page-hero::after{inset:52px 10px 0 10px!important; border-radius:20px!important;}
   .card-grid.four{display:grid!important; grid-template-columns:1fr 1fr!important; justify-content:start!important; flex-wrap:nowrap!important;}
   .card-grid.four > .fig-card{flex:none!important; max-width:none!important; width:100%!important;}
+  /* Home page hero: let text fill full width instead of balanced short lines */
+  .hero{padding:88px 16px 48px!important; gap:32px!important;}
+  .hero h1{text-wrap:wrap!important; max-width:none!important; font-size:2rem!important; line-height:1.1!important;}
+  .hero .lede{max-width:none!important; font-size:.88rem!important; line-height:1.55!important;}
+  .hero .eyebrow{font-size:.58rem!important;}
+  /* Make sure the status-indicator dot never leaks through on mobile */
+  .meta-right, .meta-right *{display:none!important;}
 }

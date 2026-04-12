@@ -77,4 +77,9 @@
   <!-- Green bar -->
   <path d="M85 61 H245 V84 M85 61 V84" stroke="#26B371" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
 
+  <!-- Wordmark -->
+  <g fill="#ffffff" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="165" y="355" font-size="25" letter-spacing="0.8">MARGA &amp; WALTER BOLL</text>
+    <text x="165" y="389" font-size="20" letter-spacing="7.2">LABORATORY</text>
+  </g>
 </svg>

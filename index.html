@@ -424,6 +424,7 @@ html:not(.loading) .hud-bot{opacity:1}
 /* responsive for home-specific */
 @media (max-width:1100px){
   .hero{grid-template-columns:1fr; gap:48px; padding:108px 28px 60px; min-height:auto}
+  .hero h1{max-width:none}
   .hero-viewer{max-width:620px; justify-self:center; width:100%}
   .strengths-grid{grid-template-columns:repeat(2,1fr)}
   .platforms-grid{grid-template-columns:1fr}
@@ -436,6 +437,12 @@ html:not(.loading) .hud-bot{opacity:1}
 }
 @media (max-width:680px){
   .strengths-grid{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .hero{padding:88px 16px 48px; gap:32px}
+  .hero h1{max-width:none; font-size:2rem; line-height:1.1}
+  .hero .lede{max-width:none; font-size:.88rem; line-height:1.55}
+  .hero .eyebrow{font-size:.58rem}
 }
 
 </style>
