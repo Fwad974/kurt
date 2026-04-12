@@ -114,6 +114,42 @@ html.skip-splash #intro{display:none !important}
   animation:drawLine 3s cubic-bezier(.4,0,.2,1) 1s forwards;
 }
 
+/* Heart image — sits below the ECG pulse, beats in sync with the
+   two QRS complexes embedded in the pulse path (R-waves near
+   x=84 and x=214 of the 360-wide viewBox → ~23% and ~59% of the
+   3s draw animation). */
+.splash-heart{
+  width:160px; height:160px;
+  margin-top:28px;
+  object-fit:contain;
+  border-radius:50%;
+  opacity:0;
+  transform-origin:center center;
+  filter:
+    drop-shadow(0 0 28px rgba(220,30,60,.85))
+    drop-shadow(0 0 60px rgba(180,10,40,.45));
+  animation:
+    heartFadeIn .6s ease 1s forwards,
+    ecgHeartbeat 3s cubic-bezier(.4,0,.2,1) 1s forwards;
+}
+@keyframes heartFadeIn{
+  to{opacity:1}
+}
+/* Two-beat sequence matched to the splash-line draw timing.
+   Peaks at 23% and 59% align with the two R-waves of the ECG path. */
+@keyframes ecgHeartbeat{
+  0%   {transform:scale(1)}
+  18%  {transform:scale(1.05)}
+  23%  {transform:scale(1.22)}
+  30%  {transform:scale(1.08)}
+  40%  {transform:scale(1)}
+  55%  {transform:scale(1.05)}
+  59%  {transform:scale(1.22)}
+  66%  {transform:scale(1.08)}
+  75%  {transform:scale(1)}
+  100% {transform:scale(1)}
+}
+
 @media (prefers-reduced-motion:reduce){#intro{display:none}}
 
 /* ---------- hero ---------- */
@@ -404,6 +440,7 @@ html:not(.loading) .hud-bot{opacity:1}
       <path class="splash-line" d="M0,16 L50,16 L58,12 L66,16 L76,16 L80,14 L84,2 L88,30 L92,6 L96,18 L100,16 L116,16 L124,10 L136,16 L180,16 L188,12 L196,16 L206,16 L210,14 L214,2 L218,30 L222,6 L226,18 L230,16 L246,16 L254,10 L266,16 L360,16"/>
     </svg>
   </div>
+  <img class="splash-heart" src="6806dbfc1df5e49ceefa3cc2_00.png" alt="Beating heart">
 </div>
 
 <!-- ========== AMBIENT BG ========== -->
