@@ -110,6 +110,123 @@
   .legal, .addr-block, .contact-card, .apply-step, .pos-card{padding:28px}
   .team-group{padding:0 24px 36px}
 }
+
+/* ---------- bios (click-to-open modal) ---------- */
+/* Hidden long-form bio lives inside each card. Display is toggled
+   off so the resting UI is unchanged; JS reads it on click. */
+.fig-bio{display:none}
+
+.fig-card.has-bio{position:relative; cursor:pointer}
+.fig-card.has-bio .figure{transition:box-shadow .4s var(--ease)}
+.fig-card.has-bio:hover .figure{
+  box-shadow:0 24px 48px -28px rgba(20,23,26,.35);
+}
+
+/* Subtle "read bio" badge — only visible on hover / focus */
+.fig-card .bio-hint{
+  position:absolute;
+  top:12px; right:12px;
+  width:28px; height:28px;
+  border-radius:50%;
+  background:rgba(13,27,42,.82);
+  color:rgba(244,240,232,.95);
+  font-family:"JetBrains Mono",monospace;
+  font-size:.9rem; line-height:1;
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; transform:translateY(-4px);
+  transition:opacity .35s var(--ease), transform .35s var(--ease);
+  pointer-events:none;
+  z-index:3;
+}
+.fig-card.has-bio:hover .bio-hint,
+.fig-card.has-bio:focus-visible .bio-hint{opacity:1; transform:translateY(0)}
+
+/* Modal */
+.bio-modal{
+  border:none; padding:0;
+  max-width:760px;
+  width:calc(100% - 48px);
+  max-height:calc(100vh - 48px);
+  background:var(--bone);
+  color:var(--ink);
+  border-radius:4px;
+  box-shadow:0 48px 96px -24px rgba(20,23,26,.45);
+  overflow:hidden;
+}
+.bio-modal::backdrop{
+  background:rgba(13,27,42,.7);
+  backdrop-filter:blur(4px);
+}
+.bio-modal[open]{animation:bioIn .4s cubic-bezier(.19,1,.22,1)}
+@keyframes bioIn{
+  from{opacity:0; transform:translateY(12px)}
+  to{opacity:1; transform:translateY(0)}
+}
+.bio-modal-inner{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  max-height:calc(100vh - 48px);
+}
+.bio-portrait{
+  background:var(--bone-2);
+  background-size:cover;
+  background-position:center 18%;
+  min-height:340px;
+}
+.bio-body{
+  padding:44px 48px 48px;
+  overflow-y:auto;
+  max-height:calc(100vh - 48px);
+}
+.bio-body h3{
+  font-family:var(--serif);
+  font-variation-settings:"opsz" 144;
+  font-weight:400;
+  font-size:1.85rem;
+  letter-spacing:-0.015em;
+  margin:0 0 10px;
+}
+.bio-body h3 em{font-style:italic}
+.bio-body .bio-role{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.66rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--ink-2);
+  margin:0 0 22px;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--line);
+}
+.bio-text p{
+  font-size:.94rem;
+  line-height:1.74;
+  color:var(--ink-2);
+  margin:0 0 14px;
+}
+.bio-text p:last-child{margin:0}
+.bio-close{
+  position:absolute;
+  top:14px; right:14px;
+  width:34px; height:34px;
+  border:1px solid var(--line-strong);
+  background:rgba(244,240,232,.92);
+  border-radius:50%;
+  font-size:1.15rem; line-height:1;
+  color:var(--ink);
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  z-index:4;
+  transition:background .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease);
+}
+.bio-close:hover{background:var(--ink); color:var(--bone); border-color:var(--ink)}
+
+@media (max-width:700px){
+  .bio-modal{width:calc(100% - 24px); max-height:calc(100vh - 24px)}
+  .bio-modal-inner{grid-template-columns:1fr; max-height:calc(100vh - 24px)}
+  .bio-portrait{min-height:0; aspect-ratio:16/10; background-position:center 22%}
+  .bio-body{padding:30px 26px 34px}
+  .bio-body h3{font-size:1.5rem}
+}
 </style>
 <link rel="stylesheet" href="site_v4blend.css?v=4">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -199,6 +316,9 @@
         <h3>Konrad <em>Brockmeier</em>, MD</h3>
         <div class="mono">Emeritus</div>
         <p>Professor of Pediatrics, Head of Pediatric Cardiology, University Hospital of Cologne.</p>
+        <div class="fig-bio">
+          <p>Prof. Dr. Konrad Brockmeier is an emeritus Professor of Pediatrics and former Head of Pediatric Cardiology at the University Hospital of Cologne. He earned his medical degree from the Free University of Berlin and completed his training in general pediatrics and pediatric cardiology in Berlin, followed by a European Community research fellowship in Rome. Over his career, he held consultant positions at leading institutions, including Charité Berlin and the University of Heidelberg, before joining Cologne in 2002. As Director of Pediatric Cardiology until 2023, he significantly shaped clinical care and research in the field. He also served on the boards of international societies including ISCE and AEPC.</p>
+        </div>
       </div>
     </div>
     <div class="fig-card">
@@ -209,6 +329,9 @@
         <h3>Gang <em>Bao</em>, PhD</h3>
         <div class="mono">Rice University, Texas, USA</div>
         <p>Foyt Family Professor of Bioengineering, Professor of Chemistry and Materials Science &amp; NanoEngineering, CPRIT Scholar in Cancer Research.</p>
+        <div class="fig-bio">
+          <p>Prof. Dr. Gang Bao is the Foyt Family Professor of Bioengineering at Rice University and a leading pioneer in nanomedicine, molecular imaging, and genome editing. His research focuses on developing advanced biomolecular engineering and nanotechnology approaches for disease diagnosis and therapy, including targeted drug delivery and gene correction using tools such as CRISPR/Cas9. He has made significant contributions to understanding and treating diseases such as cancer and genetic disorders, including sickle cell disease. Prof. Bao has authored over 180 scientific publications, holds multiple patents, and is an elected fellow of several major scientific societies, reflecting his broad impact on bioengineering and translational medicine.</p>
+        </div>
       </div>
     </div>
     <div class="fig-card">
@@ -219,6 +342,9 @@
         <h3>Fatma <em>Alhashimi</em>, PhD</h3>
         <div class="mono">Director, First Stem Cell and Genomics Laboratory, Dubai</div>
         <p>Expert in GMP cell manufacturing.</p>
+        <div class="fig-bio">
+          <p>Dr. Fatma Alhashimi is a stem cell expert, CEO of FSG Lab in Dubai, and Chairperson of the Dubai Stem Cell Congress. She established the UAE&rsquo;s first GMP-compliant stem cell and molecular laboratory, featuring advanced ISO clean room facilities for stem cell isolation, culture, and banking. With a PhD in Project Management and a background in molecular and medical genetics, she combines scientific expertise with strong leadership in healthcare innovation. Dr. Alhashimi has led pioneering initiatives in cord blood donor recruitment in the UAE and is a certified trainer in project management, change management, and organizational transformation.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -317,6 +443,19 @@
 <footer class="foot foot-minimal">
   <a href="index.html" class="foot-logo"><img src="logo_white.svg" alt="MWB Lab" class="foot-logo-img"></a>
 </footer>
+
+<!-- Shared bio modal (populated on click from any .fig-card with a .fig-bio child) -->
+<dialog id="bioModal" class="bio-modal" aria-labelledby="bioName">
+  <button type="button" class="bio-close" aria-label="Close">&times;</button>
+  <div class="bio-modal-inner">
+    <div class="bio-portrait" id="bioPortrait" role="img" aria-hidden="true"></div>
+    <div class="bio-body">
+      <h3 id="bioName"></h3>
+      <div class="bio-role" id="bioRole"></div>
+      <div class="bio-text" id="bioText"></div>
+    </div>
+  </div>
+</dialog>
 
 <script>
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -420,6 +559,67 @@ document.querySelectorAll('.ed-filters').forEach(bar => {
     });
   }));
 });
+
+/* ========== BIO MODAL ========== */
+(function initBioModal(){
+  const modal = document.getElementById('bioModal');
+  if(!modal || typeof modal.showModal !== 'function') return;
+
+  const nameEl = document.getElementById('bioName');
+  const roleEl = document.getElementById('bioRole');
+  const portraitEl = document.getElementById('bioPortrait');
+  const textEl = document.getElementById('bioText');
+
+  // Any card that contains a .fig-bio becomes a clickable bio card.
+  document.querySelectorAll('.fig-card').forEach(card => {
+    if(!card.querySelector('.fig-bio')) return;
+    card.classList.add('has-bio');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    const hint = document.createElement('span');
+    hint.className = 'bio-hint';
+    hint.textContent = '+';
+    hint.setAttribute('aria-hidden', 'true');
+    card.appendChild(hint);
+  });
+
+  function openFromCard(card){
+    const h3 = card.querySelector('.body h3');
+    const mono = card.querySelector('.body .mono');
+    const img = card.querySelector('.figure img');
+    const bio = card.querySelector('.fig-bio');
+    nameEl.innerHTML = h3 ? h3.innerHTML : '';
+    roleEl.innerHTML = mono ? mono.innerHTML : '';
+    portraitEl.style.backgroundImage = img ? `url("${img.getAttribute('src')}")` : '';
+    textEl.innerHTML = bio ? bio.innerHTML : '';
+    modal.showModal();
+  }
+
+  document.querySelectorAll('.fig-card.has-bio').forEach(card => {
+    card.addEventListener('click', e => {
+      // Don't hijack clicks on email/other links inside the card
+      if(e.target.closest('a')) return;
+      openFromCard(card);
+    });
+    card.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        openFromCard(card);
+      }
+    });
+  });
+
+  modal.querySelector('.bio-close').addEventListener('click', () => modal.close());
+  // Backdrop click to close: when the click target is the dialog element
+  // itself AND the click lands outside its bounding rect.
+  modal.addEventListener('click', e => {
+    if(e.target !== modal) return;
+    const r = modal.getBoundingClientRect();
+    const inside = e.clientX >= r.left && e.clientX <= r.right
+                && e.clientY >= r.top  && e.clientY <= r.bottom;
+    if(!inside) modal.close();
+  });
+})();
 
 /* ========== SCROLL ATLAS (ported from v16) ========== */
 (function initScrollAtlas(){
