@@ -1181,10 +1181,11 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   justify-content:center;
   align-items:center;
   grid-template-columns:none !important;
-  /* Asymmetric padding: less at the top (closer to content above),
-     more at the bottom so the logo sits visually lifted above the
-     page edge instead of hugging the viewport bottom. */
-  padding:40px 24px 96px;
+  /* Minimal top padding because each section above already has its
+     own padding-bottom — stacking more here just creates dead space.
+     Bottom padding is larger so the logo floats above the viewport
+     edge instead of hugging the browser chrome. */
+  padding:12px 24px 64px;
   gap:0;
 }
 .foot.foot-minimal a.foot-logo{
@@ -1192,7 +1193,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   align-items:center;
   justify-content:center;
   text-decoration:none;
-  opacity:.92;
+  opacity:.9;
   transition:opacity .3s var(--ease), transform .3s var(--ease);
 }
 .foot.foot-minimal a.foot-logo:hover{
@@ -1200,15 +1201,16 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   transform:translateY(-2px);
 }
 .foot.foot-minimal .foot-logo-img{
-  height:72px;
+  height:64px;
   width:auto;
   display:block;
 }
 @media (max-width:900px){
-  .foot.foot-minimal{padding:32px 20px 76px}
+  .foot.foot-minimal{padding:10px 20px 52px}
+  .foot.foot-minimal .foot-logo-img{height:58px}
 }
 @media (max-width:600px){
-  .foot.foot-minimal{padding:28px 20px 64px}
-  .foot.foot-minimal .foot-logo-img{height:60px}
+  .foot.foot-minimal{padding:8px 20px 44px}
+  .foot.foot-minimal .foot-logo-img{height:54px}
 }
 
