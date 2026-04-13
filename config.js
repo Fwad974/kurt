@@ -18,5 +18,13 @@ window.SITE_CONFIG = {
 
   /* External profile links (used by buttons on the Publications page). */
   googleScholarUrl: "",
-  orcidUrl: "https://orcid.org/0000-0002-5155-9467"
+  orcidUrl: "https://orcid.org/0000-0002-5155-9467",
+
+  /* News feed: drop markdown files into the news/ folder and they will
+     be picked up automatically. The page uses the GitHub contents API to
+     list the folder; if that fails (rate limit, offline preview) it
+     falls back to the news/index.json manifest. */
+  githubRepo: "Fwad974/kurt",
+  githubBranch: "main",
+  newsFolder: "news"
 };
