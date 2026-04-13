@@ -197,6 +197,30 @@
   .featured-pub-link{padding:10px 16px; font-size:.56rem}
 }
 
+/* Inline photo attached to a news item. Lives inside .ed-item .body
+   below the meta-line, constrained to a sensible max width so tall
+   portraits don't blow out the row. */
+.ed-item .ed-media{
+  margin:18px 0 0;
+  padding:0;
+  max-width:620px;
+  border:1px solid rgba(198,165,90,.22);
+  border-radius:2px;
+  overflow:hidden;
+  background:rgba(255,255,255,.02);
+}
+.ed-item .ed-media img{
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:cover;
+  max-height:360px;
+}
+@media (max-width:760px){
+  .ed-item .ed-media{margin-top:14px; max-width:100%}
+  .ed-item .ed-media img{max-height:240px}
+}
+
 @media (max-width:900px){
   .timeline{grid-template-columns:1fr; gap:0}
   .timeline::before{display:none}
@@ -276,6 +300,7 @@
       <div class="body">
         <h3>Scalable production of <em>cardiac organoids</em> &mdash; critical milestone achieved</h3>
         <div class="meta-line">Research milestone &middot; Dr. Sarkawt Hamad and Ebru Aksoy scale up cardiac organoid differentiation for cell replacement therapy</div>
+        <figure class="ed-media"><img src="img_news/2025-06-scalable-organoids.jpg" alt="Scaling up cardiac organoid production in the lab" loading="lazy"></figure>
       </div>
       <div class="tag">Milestone</div>
     </div>
@@ -292,6 +317,7 @@
       <div class="body">
         <h3>Ebru Aksoy wins <em>Best Poster Award</em> at 3rd Dubai Stem Cell Congress</h3>
         <div class="meta-line">Award &middot; 3rd Dubai Stem Cell Congress</div>
+        <figure class="ed-media"><img src="img_news/2025-03-ebru-aksoy-dubai-poster.jpg" alt="Ebru Aksoy receiving the Best Poster Award at the 3rd Dubai Stem Cell Congress" loading="lazy"></figure>
       </div>
       <div class="tag">Award</div>
     </div>
@@ -316,6 +342,7 @@
       <div class="body">
         <h3><em>Hortman Stem Cell Laboratory</em> collaboration launched</h3>
         <div class="meta-line">Collaboration &middot; Dr. Fatma Alhashimi joins the MWB Lab opening as guest of honour</div>
+        <figure class="ed-media"><img src="img_news/2023-06-hortman-collaboration.jpg" alt="Dr. Fatma Alhashimi at the Marga and Walter Boll Laboratory opening" loading="lazy"></figure>
       </div>
       <div class="tag">Collaboration</div>
     </div>
