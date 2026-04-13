@@ -430,9 +430,6 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   .page-hero h1{margin:0 auto 14px; font-size:1.4rem; line-height:1.15; max-width:none}
   .page-hero .lede{margin:0 auto; font-size:.75rem; line-height:1.5}
   .page-hero .eyebrow{margin-bottom:10px; font-size:.55rem}
-  .team-group{padding:0 16px 24px}
-  .team-group-head{margin-bottom:16px}
-  .team-group-label{font-size:.55rem}
   .team-group-count{font-size:.5rem}
   .sec{padding:5px 14px 20px}
   .sec-head{text-align:left}

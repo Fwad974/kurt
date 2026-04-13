@@ -340,9 +340,6 @@ body,
 .fig-card:hover .figure.portrait:hover{
   box-shadow:0 8px 32px rgba(198,165,90,.2), 0 0 0 2px rgba(198,165,90,.18)!important;
 }
-.team-group-line{background:var(--line)!important}
-.team-group-label{color:rgba(255,255,255,.85)!important}
-
 .figure,
 .viewer-frame,
 .atlas-viewer{
