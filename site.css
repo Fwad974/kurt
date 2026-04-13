@@ -1182,9 +1182,9 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   align-items:center;
   grid-template-columns:none !important;
   /* Shallow top padding (sections above already carry their own
-     padding-bottom) and a tighter bottom padding so the logo is
-     positioned higher and reachable without extra scroll. */
-  padding:16px 24px 32px;
+     padding-bottom) and enough bottom padding so the wordmark
+     underneath the bioreactor never hugs the page edge. */
+  padding:16px 24px 56px;
   gap:0;
 }
 .foot.foot-minimal a.foot-logo{
@@ -1200,16 +1200,16 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   transform:translateY(-2px);
 }
 .foot.foot-minimal .foot-logo-img{
-  height:104px;
+  height:124px;
   width:auto;
   display:block;
 }
 @media (max-width:900px){
-  .foot.foot-minimal{padding:12px 20px 28px}
-  .foot.foot-minimal .foot-logo-img{height:92px}
+  .foot.foot-minimal{padding:14px 20px 48px}
+  .foot.foot-minimal .foot-logo-img{height:108px}
 }
 @media (max-width:600px){
-  .foot.foot-minimal{padding:10px 20px 24px}
-  .foot.foot-minimal .foot-logo-img{height:84px}
+  .foot.foot-minimal{padding:10px 20px 40px}
+  .foot.foot-minimal .foot-logo-img{height:96px}
 }
 
