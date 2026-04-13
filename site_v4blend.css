@@ -1120,30 +1120,30 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 
 /* ── Accent bar ── */
 .foot-accent{
-  height:2px;
+  height:1px;
   background:linear-gradient(90deg,
     transparent 0%,
-    rgba(198,165,90,.35) 20%,
-    rgba(198,165,90,.5) 50%,
-    rgba(198,165,90,.35) 80%,
+    rgba(198,165,90,.18) 16%,
+    rgba(198,165,90,.42) 50%,
+    rgba(198,165,90,.18) 84%,
     transparent 100%
   );
-  margin-bottom:64px;
+  margin-bottom:80px;
 }
 
 /* ── Main area: brand + nav side by side ── */
 .foot-main{
   display:grid;
-  grid-template-columns:1.4fr 1fr;
-  gap:80px;
-  padding-bottom:48px;
+  grid-template-columns:1.35fr 1fr;
+  gap:88px;
+  padding-bottom:64px;
 }
 
 /* ── Brand column ── */
 .foot-brand{
   display:flex;
   flex-direction:column;
-  gap:28px;
+  gap:32px;
 }
 .foot-logo{
   display:block;
@@ -1151,86 +1151,106 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   width:fit-content;
 }
 .foot-logo-img{
-  height:100px;
+  height:84px;
   width:auto;
   display:block;
-  opacity:.9;
-  filter:drop-shadow(0 0 14px rgba(198,165,90,.15));
-  transition:opacity .4s ease, filter .4s ease, transform .4s ease;
+  opacity:.92;
+  filter:drop-shadow(0 0 16px rgba(198,165,90,.16));
+  transition:opacity .45s ease, filter .45s ease, transform .45s ease;
 }
 .foot-logo:hover .foot-logo-img{
   opacity:1;
-  filter:drop-shadow(0 0 24px rgba(198,165,90,.35));
+  filter:drop-shadow(0 0 26px rgba(198,165,90,.4));
   transform:translateY(-1px);
 }
 .foot-brand-text{
   display:flex;
   flex-direction:column;
-  gap:6px;
+  gap:10px;
+  max-width:42ch;
 }
 .foot-tagline{
-  color:rgba(255,255,255,.6)!important;
+  color:rgba(255,255,255,.72)!important;
   font-family:var(--serif)!important;
-  font-size:.95rem!important;
+  font-size:1rem!important;
   font-weight:300!important;
   line-height:1.5!important;
-  letter-spacing:-.01em!important;
+  letter-spacing:-.012em!important;
   margin:0!important;
-  max-width:36ch!important;
+  max-width:38ch!important;
 }
 .foot-sub{
-  color:rgba(255,255,255,.28)!important;
-  font-size:.76rem!important;
-  line-height:1.6!important;
+  color:rgba(255,255,255,.36)!important;
+  font-size:.78rem!important;
+  line-height:1.65!important;
   margin:0!important;
-  max-width:40ch!important;
+  max-width:42ch!important;
+}
+
+/* ── Shared eyebrow treatment for every footer h4
+   (Supported by, Research, Lab, Contact) ── */
+.foot-supporters h4,
+.foot-nav-group h4{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-family:var(--mono,"JetBrains Mono",monospace)!important;
+  font-size:.58rem!important;
+  font-weight:400!important;
+  letter-spacing:.22em!important;
+  text-transform:uppercase!important;
+  color:rgba(198,165,90,.62)!important;
+  margin:0 0 18px!important;
+}
+.foot-supporters h4::before,
+.foot-nav-group h4::before{
+  content:"";
+  display:block;
+  width:18px;
+  height:1px;
+  background:rgba(198,165,90,.42);
+  flex-shrink:0;
 }
 
 /* ── Supported by (sponsor list inside the brand column) ── */
 .foot-supporters{
   margin-top:8px;
-  padding-top:24px;
-  border-top:1px solid rgba(255,255,255,.06);
-  max-width:46ch;
+  padding-top:28px;
+  border-top:1px solid rgba(198,165,90,.12);
+  max-width:48ch;
 }
-.foot-supporters h4{
-  font-family:var(--mono,"JetBrains Mono",monospace)!important;
-  font-size:.56rem!important;
-  font-weight:400!important;
-  letter-spacing:.2em!important;
-  text-transform:uppercase!important;
-  color:rgba(255,255,255,.3)!important;
-  margin:0 0 14px!important;
-}
+/* Inline rendering so separators flow naturally with text wrap
+   instead of stranding on a new line as flex items would. */
 .foot-supporters ul{
   list-style:none;
   padding:0;
   margin:0;
   display:flex;
   flex-direction:column;
-  gap:6px;
+  gap:8px;
   font-size:.78rem;
-  line-height:1.55;
+  line-height:1.6;
 }
 .foot-supporters li{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  align-items:baseline;
+  display:block;
 }
 .foot-supporters a{
-  color:rgba(255,255,255,.55)!important;
+  color:rgba(255,255,255,.6)!important;
   text-decoration:none;
   border-bottom:1px solid transparent;
+  padding-bottom:1px;
   transition:color .25s ease, border-color .25s ease;
 }
-.foot-supporters a:hover{
-  color:rgba(255,255,255,.95)!important;
-  border-bottom-color:rgba(198,165,90,.55);
+.foot-supporters a:hover,
+.foot-supporters a:focus-visible{
+  color:#fff!important;
+  border-bottom-color:rgba(198,165,90,.65);
+  outline:none;
 }
 .foot-supporters .sep{
-  color:rgba(255,255,255,.18);
-  font-size:.7rem;
+  color:rgba(198,165,90,.32);
+  margin:0 6px;
+  font-size:.72rem;
   user-select:none;
 }
 
@@ -1238,24 +1258,23 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 .foot-nav-group{
   display:grid;
   grid-template-columns:1fr 1fr 1fr;
-  gap:40px;
-  padding-top:6px;
+  gap:48px;
+  padding-top:8px;
 }
-.foot-nav-group h4{
-  margin-bottom:16px!important;
-  color:rgba(255,255,255,.3)!important;
-  font-size:.56rem!important;
-  letter-spacing:.2em!important;
-}
-.foot-nav-group ul{gap:9px!important;}
+.foot-nav-group ul{gap:11px!important;}
 .foot-nav-group ul a{
-  font-size:.8rem!important;
-  color:rgba(255,255,255,.45)!important;
-  transition:color .2s ease, padding-left .2s ease!important;
+  position:relative;
+  font-size:.82rem!important;
+  color:rgba(255,255,255,.55)!important;
+  border-bottom:1px solid transparent;
+  padding-bottom:1px;
+  transition:color .25s ease, border-color .25s ease!important;
 }
-.foot-nav-group ul a:hover{
+.foot-nav-group ul a:hover,
+.foot-nav-group ul a:focus-visible{
   color:#fff!important;
-  padding-left:4px!important;
+  border-bottom-color:rgba(198,165,90,.65);
+  outline:none;
 }
 
 /* ── Bottom bar ── */
@@ -1264,24 +1283,27 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   justify-content:space-between;
   align-items:center;
   gap:24px;
-  padding:22px 0 28px;
-  border-top:1px solid rgba(255,255,255,.06);
+  padding:30px 0 40px;
+  border-top:1px solid rgba(198,165,90,.1);
 }
 .foot-addr{
   display:flex;
   flex-direction:column;
-  gap:2px;
+  gap:3px;
   font-family:var(--mono,"JetBrains Mono",monospace);
-  font-size:.62rem;
+  font-size:.66rem;
   letter-spacing:.02em;
-  color:rgba(255,255,255,.25);
-  line-height:1.5;
+  color:rgba(255,255,255,.36);
+  line-height:1.55;
+}
+.foot-addr span:first-child{
+  color:rgba(255,255,255,.55);
 }
 .foot-copy{
   font-family:var(--mono,"JetBrains Mono",monospace);
-  font-size:.56rem;
-  letter-spacing:.1em;
-  color:rgba(255,255,255,.18);
+  font-size:.6rem;
+  letter-spacing:.16em;
+  color:rgba(198,165,90,.42);
   white-space:nowrap;
   text-transform:uppercase;
 }
@@ -1289,19 +1311,30 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 /* ── Footer responsive ── */
 @media(max-width:960px){
   .foot{padding:0 36px!important;}
-  .foot-main{grid-template-columns:1fr; gap:40px;}
-  .foot-accent{margin-bottom:48px;}
-  .foot-logo-img{height:80px;}
+  .foot-main{grid-template-columns:1fr; gap:56px; padding-bottom:48px}
+  .foot-accent{margin-bottom:56px;}
+  .foot-logo-img{height:72px;}
+  .foot-brand{gap:28px}
+  .foot-supporters{max-width:none}
+  .foot-tagline{font-size:.96rem!important;}
 }
 @media(max-width:768px){
-  .foot-nav-group{grid-template-columns:1fr 1fr; gap:32px;}
-  .foot-bottom{flex-direction:column; align-items:flex-start; gap:14px;}
+  .foot-nav-group{grid-template-columns:1fr 1fr; gap:36px 32px;}
+  .foot-bottom{flex-direction:column; align-items:flex-start; gap:16px; padding:24px 0 32px;}
+  .foot-supporters .sep{margin:0 4px}
 }
 @media(max-width:480px){
-  .foot{padding:0 24px!important;}
-  .foot-nav-group{grid-template-columns:1fr; gap:24px;}
-  .foot-logo-img{height:68px;}
-  .foot-accent{margin-bottom:36px;}
+  .foot{padding:0 22px!important;}
+  .foot-accent{margin-bottom:40px;}
+  .foot-main{gap:44px; padding-bottom:36px}
+  .foot-nav-group{grid-template-columns:1fr; gap:28px;}
+  .foot-logo-img{height:60px;}
+  .foot-brand{gap:24px}
+  .foot-supporters{padding-top:22px}
+  .foot-supporters h4,
+  .foot-nav-group h4{margin-bottom:14px!important}
+  .foot-tagline{font-size:.92rem!important;}
+  .foot-sub{font-size:.74rem!important;}
 }
 
 /* ── Mobile menu dark theme ── */
