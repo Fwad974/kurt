@@ -1186,6 +1186,54 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   max-width:40ch!important;
 }
 
+/* ── Supported by (sponsor list inside the brand column) ── */
+.foot-supporters{
+  margin-top:8px;
+  padding-top:24px;
+  border-top:1px solid rgba(255,255,255,.06);
+  max-width:46ch;
+}
+.foot-supporters h4{
+  font-family:var(--mono,"JetBrains Mono",monospace)!important;
+  font-size:.56rem!important;
+  font-weight:400!important;
+  letter-spacing:.2em!important;
+  text-transform:uppercase!important;
+  color:rgba(255,255,255,.3)!important;
+  margin:0 0 14px!important;
+}
+.foot-supporters ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  font-size:.78rem;
+  line-height:1.55;
+}
+.foot-supporters li{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:baseline;
+}
+.foot-supporters a{
+  color:rgba(255,255,255,.55)!important;
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:color .25s ease, border-color .25s ease;
+}
+.foot-supporters a:hover{
+  color:rgba(255,255,255,.95)!important;
+  border-bottom-color:rgba(198,165,90,.55);
+}
+.foot-supporters .sep{
+  color:rgba(255,255,255,.18);
+  font-size:.7rem;
+  user-select:none;
+}
+
 /* ── Nav columns ── */
 .foot-nav-group{
   display:grid;
