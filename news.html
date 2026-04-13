@@ -210,30 +210,47 @@ body[data-page="news"] .ed-list{
   margin:0 auto 80px;
 }
 body[data-page="news"] .ed-item{
-  grid-template-columns:96px 1fr auto!important;
-  gap:28px!important;
-  padding:28px 32px!important;
+  grid-template-columns:1fr auto!important;
+  grid-template-rows:auto auto!important;
+  grid-template-areas:
+    "year  tag"
+    "body  body"!important;
+  gap:18px 20px!important;
+  padding:24px 32px 28px!important;
   align-items:start!important;
 }
 body[data-page="news"] .ed-item .year{
-  padding-top:4px;
+  grid-area:year;
+  justify-self:start;
+  align-self:center;
   white-space:nowrap;
   font-variant-numeric:tabular-nums;
+  font-size:.68rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.5);
+  padding:0;
+  margin:0;
+}
+body[data-page="news"] .ed-item .tag{
+  grid-area:tag;
+  justify-self:end;
+  align-self:center;
+  margin:0;
 }
 body[data-page="news"] .ed-item .body{
+  grid-area:body;
   min-width:0;
+  padding-top:20px;
+  border-top:1px solid rgba(198,165,90,.18);
 }
 body[data-page="news"] .ed-item .body h3{
   max-width:58ch;
-  margin-bottom:10px;
+  margin:0 0 10px;
 }
 body[data-page="news"] .ed-item .body .meta-line{
   max-width:62ch;
   line-height:1.6;
-}
-body[data-page="news"] .ed-item .tag{
-  margin-top:4px;
-  align-self:start;
 }
 
 /* Photo attached to a news item: fills the body column, rounded,
@@ -308,17 +325,23 @@ body[data-page="news"] .ed-item.has-detail:focus-visible::after{
 @media (max-width:760px){
   body[data-page="news"] .ed-list{max-width:100%; margin-bottom:56px}
   body[data-page="news"] .ed-item{
-    grid-template-columns:1fr!important;
-    gap:6px!important;
+    grid-template-columns:auto 1fr!important;
+    grid-template-rows:auto auto!important;
+    grid-template-areas:
+      "year  tag"
+      "body  body"!important;
+    gap:14px 14px!important;
     padding:20px 20px 24px!important;
   }
   body[data-page="news"] .ed-item .year{
-    padding-top:0;
-    font-size:.62rem;
+    font-size:.6rem;
+    letter-spacing:.12em;
   }
   body[data-page="news"] .ed-item .tag{
-    justify-self:start!important;
-    margin-top:10px;
+    justify-self:end!important;
+  }
+  body[data-page="news"] .ed-item .body{
+    padding-top:14px;
   }
   body[data-page="news"] .ed-item.has-detail::after{
     position:static;
