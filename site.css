@@ -1181,11 +1181,11 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   justify-content:center;
   align-items:center;
   grid-template-columns:none !important;
-  /* Shallow top padding (sections above already carry their own
-     padding-bottom) and a very generous bottom padding so the
-     logo floats noticeably above the page edge — even on short
-     pages where there is otherwise a lot of empty space. */
-  padding:16px 24px 160px;
+  /* Bottom padding scales with viewport height so the logo
+     always sits well above the page bottom — roughly in the
+     middle of the scrolled-to-end view regardless of screen
+     size. */
+  padding:16px 24px max(200px, 32vh);
   gap:0;
 }
 .foot.foot-minimal a.foot-logo{
@@ -1206,11 +1206,11 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   display:block;
 }
 @media (max-width:900px){
-  .foot.foot-minimal{padding:14px 20px 180px}
+  .foot.foot-minimal{padding:14px 20px max(200px, 34vh)}
   .foot.foot-minimal .foot-logo-img{height:108px}
 }
 @media (max-width:600px){
-  .foot.foot-minimal{padding:10px 20px 200px}
+  .foot.foot-minimal{padding:10px 20px max(220px, 38vh)}
   .foot.foot-minimal .foot-logo-img{height:96px}
 }
 
