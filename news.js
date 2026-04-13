@@ -1,32 +1,93 @@
 /**
- * News page: render the news list from markdown files in news/.
+ * News page: renders a simple in-file list of news items into .ed-list.
  *
- * Each .md file is a standalone news item with a small YAML-ish
- * front matter block:
+ * HOW TO ADD A NEWS ITEM
+ * ----------------------
+ * Just add an object to the NEWS_ITEMS array below. The newest item goes
+ * at the top, but order in the file doesn't actually matter — items are
+ * sorted by date before rendering.
  *
- *   ---
- *   title: Cardiac organoid programme enters _Vol. 01_
- *   date: 2026-03
- *   tag: milestone
- *   summary: Research milestone · first volume of the atlas published
- *   ---
+ * Fields:
+ *   date     "YYYY-MM" or "YYYY-MM-DD"       required
+ *   title    Headline. Wrap words in _…_ to italicize them.  required
+ *   tag      Short key: milestone | funding | publication |
+ *            award | conference | collaboration | news      required
+ *   summary  One-line description shown under the title     required
  *
- * Discovery is manifest-driven: news/index.json lists every .md file in
- * the folder. The manifest is regenerated automatically on every push by
- * the .github/workflows/news-manifest.yml workflow, so dropping a new
- * file into news/ and committing is enough — no manual edit.
- *
- * Everything is served from the site's own origin — no GitHub API call
- * at runtime, no rate limits, works offline and via file:// preview.
+ * To remove an item, delete its object. That's it. No manifest, no
+ * external files, no network calls — everything lives in this file.
  */
 (function () {
+  const NEWS_ITEMS = [
+    {
+      date: "2025-06",
+      tag: "milestone",
+      title: "Scalable production of _cardiac organoids_ — critical milestone achieved",
+      summary:
+        "Research milestone · Dr. Sarkawt Hamad and Ebru Aksoy scale up cardiac organoid differentiation for cell replacement therapy",
+    },
+    {
+      date: "2025-05",
+      tag: "funding",
+      title: "_BiRonCa_ bioreactor project funded by ZukunftBio.NRW",
+      summary:
+        "Funding · ~€850,000 over two years for bubble-free bioreactor scale-up with Biothrust GmbH",
+    },
+    {
+      date: "2025-03",
+      tag: "award",
+      title: "Ebru Aksoy wins _Best Poster Award_ at 3rd Dubai Stem Cell Congress",
+      summary: "Award · 3rd Dubai Stem Cell Congress",
+    },
+    {
+      date: "2025-02",
+      tag: "publication",
+      title: "Engineered in vitro multi-cell type _ventricle model_ published",
+      summary:
+        "Publication · Adv. Healthcare Materials — Kuckelkorn, Aksoy, Stojanovic, Oulahyane, Ritter, Pfannkuche, Fischer",
+    },
+    {
+      date: "2023-06-22",
+      tag: "milestone",
+      title: "Official opening of the _Marga and Walter Boll Laboratory_",
+      summary:
+        "Milestone · Inauguration event at the Medical Faculty, University of Cologne",
+    },
+    {
+      date: "2023-06-21",
+      tag: "collaboration",
+      title: "_Hortman Stem Cell Laboratory_ collaboration launched",
+      summary:
+        "Collaboration · Dr. Fatma Alhashimi joins the MWB Lab opening as guest of honour",
+    },
+    {
+      date: "2022-12",
+      tag: "funding",
+      title: "_PERIDIAN_ project receives ZukunftBIO.NRW funding recommendation",
+      summary:
+        "Funding · Joint project with innoVitro GmbH and Fraunhofer Institute for Laser Technology",
+    },
+    {
+      date: "2022-06",
+      tag: "publication",
+      title:
+        "High-efficient serum-free differentiation of _endothelial cells_ from hiPSCs",
+      summary:
+        "Publication · Stem Cell Research & Therapy 13(1):251 — Hamad, Derichsweiler, Gaspar, Brockmeier, Hescheler, Sachinidis, Pfannkuche",
+    },
+    {
+      date: "2022-05",
+      tag: "publication",
+      title: "Generation of cardiac _microtissues_ by microfluidic cell encapsulation",
+      summary:
+        "Publication · Biofabrication — Jahn, Karger, Khalaf, Hamad, Peinkofer et al.",
+    },
+  ];
+
+  /* ---------- rendering ---------- */
+
   const listEl = document.querySelector(".ed-list");
   if (!listEl) return;
-
-  const cfg = window.SITE_CONFIG || {};
-  const folder = cfg.newsFolder || "news";
-
-  /* ---------- helpers ---------- */
 
   const escapeHtml = (s) =>
     String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({
@@ -44,26 +105,6 @@
       .replace(/_([^_]+)_/g, "<em>$1</em>")
       .replace(/\*([^*]+)\*/g, "<em>$1</em>");
 
-  const parseFrontMatter = (text) => {
-    const m = text.match(/^---\s*\r?\n([\s\S]*?)\r?\n---\s*\r?\n?([\s\S]*)$/);
-    if (!m) return { meta: {}, body: text };
-    const meta = {};
-    m[1].split(/\r?\n/).forEach((line) => {
-      const kv = line.match(/^\s*([A-Za-z_][\w-]*)\s*:\s*(.*?)\s*$/);
-      if (!kv) return;
-      let val = kv[2];
-      if (
-        (val.startsWith('"') && val.endsWith('"')) ||
-        (val.startsWith("'") && val.endsWith("'"))
-      ) {
-        val = val.slice(1, -1);
-      }
-      meta[kv[1].toLowerCase()] = val;
-    });
-    return { meta, body: m[2] };
-  };
-
-  // Accept "2026-03", "2026/03", "2026-03-15" and build a sort score.
   const sortScore = (dateStr) => {
     const m = String(dateStr || "").match(
       /^(\d{4})[-/](\d{1,2})(?:[-/](\d{1,2}))?/
@@ -84,23 +125,14 @@
   const capitalize = (s) =>
     s ? s.charAt(0).toUpperCase() + s.slice(1).toLowerCase() : "";
 
-  const fetchText = (url) =>
-    fetch(url).then((r) => {
-      if (!r.ok) throw new Error(`${url} → ${r.status}`);
-      return r.text();
-    });
-
-  /* ---------- rendering ---------- */
-
   const renderItem = (item) => {
-    const meta = item.meta;
-    const year = formatYearMonth(meta.date);
-    const rawTag = (meta.tag || "news").toLowerCase();
+    const year = formatYearMonth(item.date);
+    const rawTag = (item.tag || "news").toLowerCase();
     const tagLabel = capitalize(rawTag);
-    const title = applyTitleEmphasis(escapeHtml(meta.title || "Untitled"));
-    const summary = escapeHtml(meta.summary || "");
+    const title = applyTitleEmphasis(escapeHtml(item.title || "Untitled"));
+    const summary = escapeHtml(item.summary || "");
     return `
-      <div class="ed-item rv" data-tag="${escapeHtml(rawTag)}">
+      <div class="ed-item rv in" data-tag="${escapeHtml(rawTag)}">
         <div class="year">${escapeHtml(year)}</div>
         <div class="body">
           <h3>${title}</h3>
@@ -111,63 +143,15 @@
     `;
   };
 
-  const showStatus = (msg) => {
-    listEl.innerHTML = `<div class="mono" style="color:var(--muted); padding:24px 0; font-family:'JetBrains Mono',monospace; font-size:.7rem; letter-spacing:.08em">${escapeHtml(
-      msg
-    )}</div>`;
-  };
+  const sorted = NEWS_ITEMS
+    .filter((i) => i && i.date)
+    .slice()
+    .sort((a, b) => sortScore(b.date) - sortScore(a.date));
 
-  const renderAll = (items) => {
-    if (!items.length) {
-      showStatus("No news items yet.");
-      return;
-    }
-    listEl.innerHTML = items.map(renderItem).join("");
-    // The site uses IntersectionObserver on .rv elements to reveal them
-    // on scroll. Those observers already ran before we injected content,
-    // so trigger the reveal immediately for the new nodes.
-    listEl
-      .querySelectorAll(".ed-item.rv")
-      .forEach((el) => el.classList.add("in"));
-  };
+  if (!sorted.length) {
+    listEl.innerHTML = `<div class="mono" style="color:var(--muted); padding:24px 0; font-family:'JetBrains Mono',monospace; font-size:.7rem; letter-spacing:.08em">No news items yet.</div>`;
+    return;
+  }
 
-  /* ---------- go ---------- */
-
-  showStatus("Loading news…");
-
-  fetchText(`${folder}/index.json`)
-    .then((txt) => JSON.parse(txt))
-    .then((names) => {
-      if (!Array.isArray(names)) {
-        throw new Error("news/index.json is not a JSON array");
-      }
-      const files = names
-        .filter((n) => typeof n === "string" && /\.md$/i.test(n))
-        .map((n) => ({ name: n, url: `${folder}/${n}` }));
-      return Promise.allSettled(
-        files.map((f) =>
-          fetchText(f.url).then((text) => ({
-            ...parseFrontMatter(text),
-            name: f.name,
-          }))
-        )
-      );
-    })
-    .then((results) => {
-      const items = results
-        .filter(
-          (r) =>
-            r.status === "fulfilled" &&
-            r.value &&
-            r.value.meta &&
-            r.value.meta.date
-        )
-        .map((r) => r.value);
-      items.sort((a, b) => sortScore(b.meta.date) - sortScore(a.meta.date));
-      renderAll(items);
-    })
-    .catch((err) => {
-      console.error("News load failed:", err);
-      showStatus("Could not load news. Please try again later.");
-    });
+  listEl.innerHTML = sorted.map(renderItem).join("");
 })();

@@ -18,10 +18,5 @@ window.SITE_CONFIG = {
 
   /* External profile links (used by buttons on the Publications page). */
   googleScholarUrl: "",
-  orcidUrl: "https://orcid.org/0000-0002-5155-9467",
-
-  /* News feed: drop markdown files into the news/ folder and commit.
-     news/index.json (the manifest used by news.js) is regenerated
-     automatically on push by .github/workflows/news-manifest.yml. */
-  newsFolder: "news"
+  orcidUrl: "https://orcid.org/0000-0002-5155-9467"
 };
