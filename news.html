@@ -66,6 +66,137 @@
 .apply-step h3 em{font-style:italic}
 .apply-step p{font-size:.92rem; line-height:1.62; color:var(--ink-2); margin:0}
 
+/* Featured publication card — highlights a single paper at the top of
+   the news page. Mirrors the MDPI journal card look, tuned to the
+   site's dark theme. */
+.featured-pub{
+  position:relative;
+  padding:44px 48px 40px;
+  border:1px solid rgba(198,165,90,.28);
+  border-radius:4px;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(124,236,213,.07), transparent 55%),
+    linear-gradient(135deg, rgba(198,165,90,.06), rgba(13,27,42,.0) 60%),
+    rgba(255,255,255,.02);
+  overflow:hidden;
+  max-width:1000px;
+  margin:0 auto;
+}
+.featured-pub::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height:4px;
+  background:linear-gradient(90deg, rgba(124,236,213,.45), #C6A55A, rgba(124,236,213,.45));
+  opacity:.75;
+}
+.featured-pub-badge{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  margin-bottom:26px;
+}
+.featured-pub-journal{
+  font-family:var(--serif);
+  font-size:2rem;
+  line-height:1;
+  color:#7CECD5;
+  letter-spacing:-0.01em;
+}
+.featured-pub-journal em{font-style:italic}
+.featured-pub-sub{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.58rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted, rgba(255,255,255,.55));
+}
+.featured-pub-title{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:1.72rem;
+  line-height:1.22;
+  letter-spacing:-0.01em;
+  margin:0 0 22px;
+  color:#F8F3E8;
+  max-width:44ch;
+}
+.featured-pub-title em{font-style:italic}
+.featured-pub-authors{
+  font-family:Manrope,sans-serif;
+  font-size:.92rem;
+  line-height:1.65;
+  color:rgba(248,243,232,.82);
+  margin:0 0 14px;
+  max-width:66ch;
+}
+.featured-pub-citation{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.72rem;
+  letter-spacing:.06em;
+  color:rgba(255,255,255,.55);
+  margin:0 0 28px;
+}
+.featured-pub-citation em{
+  font-family:var(--serif);
+  font-size:.92rem;
+  font-style:italic;
+  letter-spacing:0;
+  color:#7CECD5;
+  margin-right:2px;
+}
+.featured-pub-citation strong{
+  font-weight:600;
+  color:rgba(248,243,232,.85);
+}
+.featured-pub-link{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 20px 12px 22px;
+  border:1px solid rgba(198,165,90,.4);
+  border-radius:999px;
+  background:rgba(198,165,90,.06);
+  font-family:"JetBrains Mono",monospace;
+  font-size:.62rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:rgba(248,243,232,.92);
+  text-decoration:none;
+  transition:
+    background .25s var(--ease),
+    color .25s var(--ease),
+    border-color .25s var(--ease),
+    transform .25s var(--ease);
+}
+.featured-pub-link svg{
+  width:12px; height:12px;
+  stroke:currentColor;
+  transition:transform .25s var(--ease);
+}
+.featured-pub-link:hover,
+.featured-pub-link:focus-visible{
+  background:#C6A55A;
+  color:#0D1B2A;
+  border-color:#C6A55A;
+  transform:translateY(-1px);
+  outline:none;
+}
+.featured-pub-link:hover svg,
+.featured-pub-link:focus-visible svg{
+  transform:translateX(3px);
+}
+
+@media (max-width:760px){
+  .featured-pub{padding:28px 22px 26px; border-radius:2px}
+  .featured-pub-badge{margin-bottom:18px}
+  .featured-pub-journal{font-size:1.55rem}
+  .featured-pub-title{font-size:1.25rem; margin-bottom:16px}
+  .featured-pub-authors{font-size:.82rem; line-height:1.55; margin-bottom:10px}
+  .featured-pub-citation{font-size:.66rem; margin-bottom:22px}
+  .featured-pub-link{padding:10px 16px; font-size:.56rem}
+}
+
 @media (max-width:900px){
   .timeline{grid-template-columns:1fr; gap:0}
   .timeline::before{display:none}
@@ -116,22 +247,20 @@
 
 
 <section class="sec">
-  <div class="sec-head">
-    <div class="eyebrow rv">§ Featured</div>
-    <div>
-      <h2 class="display" data-split-on-reveal>The lab is <em>active</em>.</h2>
-      <p class="sec-lede rv">Publications, funding, awards, conferences, collaborations, and research milestones. This page is a rolling log of what the lab is up to, in reverse chronological order.</p>
+  <div class="eyebrow rv" style="margin-bottom:20px">&sect; Featured publication</div>
+  <article class="featured-pub rv">
+    <div class="featured-pub-badge">
+      <span class="featured-pub-journal"><em>bioengineering</em></span>
+      <span class="featured-pub-sub">an Open Access Journal by MDPI</span>
     </div>
-  </div>
-  <div class="lead-figure">
-    <div class="figure hero-fig figure-reveal">
-    <div class="fig-inner microscopy" style="background-image:url('bg_merged.webp')"></div>
-    <div class="fig-stack"><img src="stack_merged.webp" alt=""></div>
-    <div class="fig-overlay"></div>
-    <div class="fig-label">Featured · March 2026</div>
-    <div class="fig-caption"><span class="sm">Cardiac organoid programme</span><span>Vol. 01 launch</span></div>
-  </div>
-  </div>
+    <h2 class="featured-pub-title">Cell-Based Therapies: Ferromagnetic Versus <em>Superparamagnetic</em> Cell Targeting</h2>
+    <p class="featured-pub-authors">Tasneem Halhouli, Lisa M&uuml;nchhalfen, Sarkawt Hamad, Larissa Schmitz-Ullrich, Frank Nitsche, Felix Gaedke, Astrid Schauss, Linlin Zhang, Quoc-Khanh Pham, Gang Bao, Kurt Paul Pfannkuche</p>
+    <p class="featured-pub-citation"><em>Bioengineering</em> <strong>2025</strong>, Volume 12, Issue 6, 657</p>
+    <a class="featured-pub-link" href="https://www.mdpi.com/2306-5354/12/6/657" target="_blank" rel="noopener noreferrer">
+      Read the full article
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+    </a>
+  </article>
 </section>
 
 <section class="sec" style="padding-bottom:100px">
