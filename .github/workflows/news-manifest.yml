@@ -1,0 +1,68 @@
+name: Regenerate news manifest
+
+# When anything in news/ changes on main (a new .md added, one removed,
+# or a rename), regenerate news/index.json so news.js always has an
+# accurate list of files to load.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "news/**"
+      - ".github/workflows/news-manifest.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: news-manifest
+  cancel-in-progress: false
+
+jobs:
+  update-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+        with:
+          # Need a real token so the follow-up push is allowed to
+          # re-trigger other workflows if you ever add them.
+          token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: true
+
+      - name: Rebuild news/index.json from news/*.md
+        run: |
+          set -euo pipefail
+          cd news
+          # List every .md in the folder (top-level only), sort, and
+          # emit a pretty JSON array. Skip index.json itself.
+          files=$(ls -1 *.md 2>/dev/null | LC_ALL=C sort) || true
+          {
+            echo "["
+            first=1
+            for f in $files; do
+              if [ $first -eq 1 ]; then
+                printf '  "%s"' "$f"
+                first=0
+              else
+                printf ',\n  "%s"' "$f"
+              fi
+            done
+            echo
+            echo "]"
+          } > index.json
+          echo "---- news/index.json ----"
+          cat index.json
+
+      - name: Commit manifest if it changed
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- news/index.json; then
+            echo "news/index.json is already up to date."
+            exit 0
+          fi
+          git add news/index.json
+          git commit -m "chore(news): regenerate news/index.json [skip ci]"
+          git push

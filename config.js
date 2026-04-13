@@ -20,11 +20,8 @@ window.SITE_CONFIG = {
   googleScholarUrl: "",
   orcidUrl: "https://orcid.org/0000-0002-5155-9467",
 
-  /* News feed: drop markdown files into the news/ folder and they will
-     be picked up automatically. The page uses the GitHub contents API to
-     list the folder; if that fails (rate limit, offline preview) it
-     falls back to the news/index.json manifest. */
-  githubRepo: "Fwad974/kurt",
-  githubBranch: "main",
+  /* News feed: drop markdown files into the news/ folder and commit.
+     news/index.json (the manifest used by news.js) is regenerated
+     automatically on push by .github/workflows/news-manifest.yml. */
   newsFolder: "news"
 };

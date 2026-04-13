@@ -1,7 +1,8 @@
 /**
- * News page: pull markdown files from the news/ folder and render them
- * into the .ed-list. Each file is a standalone news item with a small
- * YAML-style front matter block:
+ * News page: render the news list from markdown files in news/.
+ *
+ * Each .md file is a standalone news item with a small YAML-ish
+ * front matter block:
  *
  *   ---
  *   title: Cardiac organoid programme enters _Vol. 01_
@@ -10,20 +11,19 @@
  *   summary: Research milestone · first volume of the atlas published
  *   ---
  *
- * Dropping a new .md file into news/ is enough — it shows up
- * automatically on the next page load.
+ * Discovery is manifest-driven: news/index.json lists every .md file in
+ * the folder. The manifest is regenerated automatically on every push by
+ * the .github/workflows/news-manifest.yml workflow, so dropping a new
+ * file into news/ and committing is enough — no manual edit.
  *
- * Discovery uses the GitHub contents API so no manifest edit is needed.
- * If the API is unreachable (rate limit, local preview over file://),
- * we fall back to reading news/index.json as a manifest.
+ * Everything is served from the site's own origin — no GitHub API call
+ * at runtime, no rate limits, works offline and via file:// preview.
  */
 (function () {
   const listEl = document.querySelector(".ed-list");
   if (!listEl) return;
 
   const cfg = window.SITE_CONFIG || {};
-  const repo = cfg.githubRepo || "";
-  const branch = cfg.githubBranch || "main";
   const folder = cfg.newsFolder || "news";
 
   /* ---------- helpers ---------- */
@@ -52,7 +52,6 @@
       const kv = line.match(/^\s*([A-Za-z_][\w-]*)\s*:\s*(.*?)\s*$/);
       if (!kv) return;
       let val = kv[2];
-      // Strip surrounding single or double quotes if present
       if (
         (val.startsWith('"') && val.endsWith('"')) ||
         (val.startsWith("'") && val.endsWith("'"))
@@ -85,47 +84,10 @@
   const capitalize = (s) =>
     s ? s.charAt(0).toUpperCase() + s.slice(1).toLowerCase() : "";
 
-  /* ---------- discovery ---------- */
-
   const fetchText = (url) =>
     fetch(url).then((r) => {
       if (!r.ok) throw new Error(`${url} → ${r.status}`);
       return r.text();
-    });
-
-  const discoverViaGithub = () => {
-    if (!repo) return Promise.reject(new Error("githubRepo not configured"));
-    const url = `https://api.github.com/repos/${repo}/contents/${folder}?ref=${encodeURIComponent(
-      branch
-    )}`;
-    return fetch(url, { headers: { Accept: "application/vnd.github+json" } })
-      .then((r) => {
-        if (!r.ok) throw new Error(`GitHub API ${r.status}`);
-        return r.json();
-      })
-      .then((items) =>
-        items
-          .filter((i) => i.type === "file" && /\.md$/i.test(i.name))
-          .map((i) => ({
-            name: i.name,
-            url: i.download_url || `${folder}/${i.name}`,
-          }))
-      );
-  };
-
-  const discoverViaManifest = () =>
-    fetchText(`${folder}/index.json`)
-      .then((txt) => JSON.parse(txt))
-      .then((names) =>
-        (Array.isArray(names) ? names : [])
-          .filter((n) => /\.md$/i.test(n))
-          .map((n) => ({ name: n, url: `${folder}/${n}` }))
-      );
-
-  const discoverFiles = () =>
-    discoverViaGithub().catch((e) => {
-      console.warn("News: falling back to manifest —", e.message);
-      return discoverViaManifest();
     });
 
   /* ---------- rendering ---------- */
@@ -164,24 +126,33 @@
     // The site uses IntersectionObserver on .rv elements to reveal them
     // on scroll. Those observers already ran before we injected content,
     // so trigger the reveal immediately for the new nodes.
-    listEl.querySelectorAll(".ed-item.rv").forEach((el) => el.classList.add("in"));
+    listEl
+      .querySelectorAll(".ed-item.rv")
+      .forEach((el) => el.classList.add("in"));
   };
 
   /* ---------- go ---------- */
 
   showStatus("Loading news…");
 
-  discoverFiles()
-    .then((files) =>
-      Promise.allSettled(
+  fetchText(`${folder}/index.json`)
+    .then((txt) => JSON.parse(txt))
+    .then((names) => {
+      if (!Array.isArray(names)) {
+        throw new Error("news/index.json is not a JSON array");
+      }
+      const files = names
+        .filter((n) => typeof n === "string" && /\.md$/i.test(n))
+        .map((n) => ({ name: n, url: `${folder}/${n}` }));
+      return Promise.allSettled(
         files.map((f) =>
           fetchText(f.url).then((text) => ({
             ...parseFrontMatter(text),
             name: f.name,
           }))
         )
-      )
-    )
+      );
+    })
     .then((results) => {
       const items = results
         .filter(
@@ -192,9 +163,7 @@
             r.value.meta.date
         )
         .map((r) => r.value);
-      items.sort(
-        (a, b) => sortScore(b.meta.date) - sortScore(a.meta.date)
-      );
+      items.sort((a, b) => sortScore(b.meta.date) - sortScore(a.meta.date));
       renderAll(items);
     })
     .catch((err) => {
