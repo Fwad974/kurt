@@ -1245,9 +1245,11 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   list-style:none;
   padding:0;
   margin:0;
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
+  display:flex!important;
+  flex-direction:row!important; /* override .foot ul { flex-direction: column } */
+  flex-wrap:wrap!important;
+  gap:10px;
+  align-items:center;
 }
 .foot-supporters .supporters-list li{
   display:inline-flex;
