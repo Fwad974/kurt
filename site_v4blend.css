@@ -1385,11 +1385,11 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 
 /* ── Mobile team page fit ── */
 @media(max-width:600px){
-  .page-hero{padding:36px 16px 20px!important;}
+  .page-hero{padding:72px 16px 20px!important;}
   .page-hero h1{font-size:1.5rem!important; line-height:1.15!important; overflow-wrap:break-word!important; max-width:none!important;}
   .page-hero .lede{font-size:.75rem!important; line-height:1.5!important;}
   .page-hero .eyebrow{margin-bottom:8px!important; font-size:.55rem!important;}
-  .page-hero::before,.page-hero::after{inset:26px 10px 0 10px!important; border-radius:20px!important;}
+  .page-hero::before,.page-hero::after{inset:62px 10px 0 10px!important; border-radius:20px!important;}
   .card-grid.four{display:grid!important; grid-template-columns:1fr 1fr!important; justify-content:start!important; flex-wrap:nowrap!important;}
   .card-grid.four > .fig-card{flex:none!important; max-width:none!important; width:100%!important;}
   /* Home page hero: let text fill full width instead of balanced short lines */
