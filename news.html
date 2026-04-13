@@ -197,15 +197,54 @@
   .featured-pub-link{padding:10px 16px; font-size:.56rem}
 }
 
-/* Inline photo attached to a news item. Lives inside .ed-item .body
-   below the meta-line, constrained to a sensible max width so tall
-   portraits don't blow out the row. */
+/* ================================================================
+   News list refinement. Overrides the shared .ed-list / .ed-item
+   rules so the rolling news log renders as a single-column editorial
+   feed with properly-sized photos, instead of the cramped 3-column
+   auto-fill grid the publications page uses.
+   ================================================================ */
+body[data-page="news"] .ed-list{
+  grid-template-columns:1fr!important;
+  gap:14px!important;
+  max-width:1000px;
+  margin:0 auto 80px;
+}
+body[data-page="news"] .ed-item{
+  grid-template-columns:96px 1fr auto!important;
+  gap:28px!important;
+  padding:28px 32px!important;
+  align-items:start!important;
+}
+body[data-page="news"] .ed-item .year{
+  padding-top:4px;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+body[data-page="news"] .ed-item .body{
+  min-width:0;
+}
+body[data-page="news"] .ed-item .body h3{
+  max-width:58ch;
+  margin-bottom:10px;
+}
+body[data-page="news"] .ed-item .body .meta-line{
+  max-width:62ch;
+  line-height:1.6;
+}
+body[data-page="news"] .ed-item .tag{
+  margin-top:4px;
+  align-self:start;
+}
+
+/* Photo attached to a news item: fills the body column, rounded,
+   with a soft gold hairline to match the site's dark theme. */
 .ed-item .ed-media{
-  margin:18px 0 0;
+  margin:20px 0 4px;
   padding:0;
-  max-width:620px;
+  width:100%;
+  max-width:720px;
   border:1px solid rgba(198,165,90,.22);
-  border-radius:2px;
+  border-radius:3px;
   overflow:hidden;
   background:rgba(255,255,255,.02);
 }
@@ -216,28 +255,80 @@
   object-fit:cover;
   max-height:360px;
 }
-@media (max-width:760px){
-  .ed-item .ed-media{margin-top:14px; max-width:100%}
-  .ed-item .ed-media img{max-height:240px}
-}
 
 /* Full-detail body of each news item is hidden in the card list and
    only shown when the item is clicked open in the modal. */
 .ed-item .ed-body{display:none}
 
-/* Items that have a .ed-body become clickable cards. */
+/* Items that have a .ed-body become clickable cards with a small
+   gold "read more" affordance on hover. */
 .ed-item.has-detail{
   cursor:pointer;
-  transition:border-color .3s var(--ease), transform .3s var(--ease);
+  transition:
+    border-color .35s var(--ease),
+    background .35s var(--ease),
+    transform .35s var(--ease),
+    box-shadow .35s var(--ease);
+}
+body[data-page="news"] .ed-item.has-detail{
+  position:relative;
+}
+body[data-page="news"] .ed-item.has-detail::after{
+  content:"Read more →";
+  position:absolute;
+  bottom:18px;
+  right:32px;
+  font-family:"JetBrains Mono",monospace;
+  font-size:.58rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:rgba(198,165,90,.55);
+  opacity:0;
+  transform:translateX(-6px);
+  transition:opacity .3s var(--ease), transform .3s var(--ease), color .3s var(--ease);
+  pointer-events:none;
 }
 .ed-item.has-detail:hover,
 .ed-item.has-detail:focus-visible{
-  border-color:rgba(198,165,90,.5)!important;
+  border-color:rgba(198,165,90,.55)!important;
   outline:none;
 }
+body[data-page="news"] .ed-item.has-detail:hover::after,
+body[data-page="news"] .ed-item.has-detail:focus-visible::after{
+  opacity:1;
+  transform:translateX(0);
+  color:#C6A55A;
+}
 .ed-item.has-detail:focus-visible{
-  outline:2px solid rgba(198,165,90,.6);
+  outline:2px solid rgba(198,165,90,.55);
   outline-offset:2px;
+}
+
+/* Mobile: stack the row vertically so images and text get full width. */
+@media (max-width:760px){
+  body[data-page="news"] .ed-list{max-width:100%; margin-bottom:56px}
+  body[data-page="news"] .ed-item{
+    grid-template-columns:1fr!important;
+    gap:6px!important;
+    padding:20px 20px 24px!important;
+  }
+  body[data-page="news"] .ed-item .year{
+    padding-top:0;
+    font-size:.62rem;
+  }
+  body[data-page="news"] .ed-item .tag{
+    justify-self:start!important;
+    margin-top:10px;
+  }
+  body[data-page="news"] .ed-item.has-detail::after{
+    position:static;
+    display:inline-block;
+    margin-top:12px;
+    opacity:.6;
+    transform:none;
+  }
+  .ed-item .ed-media{margin:14px 0 4px; max-width:100%}
+  .ed-item .ed-media img{max-height:240px}
 }
 
 /* ===== News detail modal ===== */
