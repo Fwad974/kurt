@@ -426,9 +426,9 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   .foot{grid-template-columns:1fr}
 
   /* ── Mobile layout refinements ── */
-  .page-hero{padding:72px 16px 20px; text-align:center}
-  .page-hero h1{margin-left:auto; margin-right:auto; font-size:1.4rem; line-height:1.15; max-width:none}
-  .page-hero .lede{margin-left:auto; margin-right:auto; font-size:.75rem; line-height:1.5}
+  .page-hero{padding:72px 16px 10px; text-align:center}
+  .page-hero h1{margin:0 auto 16px; font-size:1.4rem; line-height:1.15; max-width:none}
+  .page-hero .lede{margin:0 auto; font-size:.75rem; line-height:1.5}
   .page-hero .eyebrow{margin-bottom:8px; font-size:.55rem}
   .team-group{padding:0 16px 24px}
   .team-group-head{margin-bottom:16px}
