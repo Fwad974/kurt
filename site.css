@@ -1181,7 +1181,10 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   justify-content:center;
   align-items:center;
   grid-template-columns:none !important;
-  padding:48px 24px;
+  /* Asymmetric padding: less at the top (closer to content above),
+     more at the bottom so the logo sits visually lifted above the
+     page edge instead of hugging the viewport bottom. */
+  padding:40px 24px 96px;
   gap:0;
 }
 .foot.foot-minimal a.foot-logo{
@@ -1201,8 +1204,11 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   width:auto;
   display:block;
 }
+@media (max-width:900px){
+  .foot.foot-minimal{padding:32px 20px 76px}
+}
 @media (max-width:600px){
-  .foot.foot-minimal{padding:36px 20px}
+  .foot.foot-minimal{padding:28px 20px 64px}
   .foot.foot-minimal .foot-logo-img{height:60px}
 }
 
