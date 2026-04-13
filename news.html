@@ -221,6 +221,218 @@
   .ed-item .ed-media img{max-height:240px}
 }
 
+/* Full-detail body of each news item is hidden in the card list and
+   only shown when the item is clicked open in the modal. */
+.ed-item .ed-body{display:none}
+
+/* Items that have a .ed-body become clickable cards. */
+.ed-item.has-detail{
+  cursor:pointer;
+  transition:border-color .3s var(--ease), transform .3s var(--ease);
+}
+.ed-item.has-detail:hover,
+.ed-item.has-detail:focus-visible{
+  border-color:rgba(198,165,90,.5)!important;
+  outline:none;
+}
+.ed-item.has-detail:focus-visible{
+  outline:2px solid rgba(198,165,90,.6);
+  outline-offset:2px;
+}
+
+/* ===== News detail modal ===== */
+.news-modal{
+  width:min(760px, calc(100vw - 32px));
+  max-height:calc(100vh - 64px);
+  margin:32px auto;
+  padding:0;
+  border:1px solid rgba(198,165,90,.3);
+  border-radius:4px;
+  background:#0D1B2A;
+  color:#F8F3E8;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+  overflow:hidden;
+  position:fixed;
+  inset:0;
+}
+.news-modal::backdrop{
+  background:rgba(0,0,0,.78);
+  backdrop-filter:blur(4px);
+}
+.news-modal[open]{
+  animation:newsIn .28s var(--ease) both;
+}
+.news-modal[open]::backdrop{
+  animation:newsBackdropIn .28s ease both;
+}
+.news-modal.closing{
+  animation:newsOut .22s var(--ease) both;
+}
+.news-modal.closing::backdrop{
+  animation:newsBackdropOut .22s ease both;
+}
+@keyframes newsIn{
+  from{opacity:0; transform:translateY(14px) scale(.985)}
+  to{opacity:1; transform:translateY(0) scale(1)}
+}
+@keyframes newsOut{
+  from{opacity:1; transform:translateY(0) scale(1)}
+  to{opacity:0; transform:translateY(10px) scale(.985)}
+}
+@keyframes newsBackdropIn{from{opacity:0}to{opacity:1}}
+@keyframes newsBackdropOut{from{opacity:1}to{opacity:0}}
+
+.news-modal-inner{
+  padding:48px 56px 44px;
+  overflow-y:auto;
+  overflow-x:hidden;
+  max-height:calc(100vh - 64px);
+  -webkit-overflow-scrolling:touch;
+}
+.news-close{
+  position:absolute;
+  top:18px; right:20px;
+  width:34px; height:34px;
+  border:1px solid rgba(198,165,90,.4);
+  background:rgba(198,165,90,.1);
+  backdrop-filter:blur(6px);
+  border-radius:50%;
+  font-size:1.15rem; line-height:1;
+  color:rgba(248,243,232,.92);
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  z-index:5;
+  transition:
+    background .28s var(--ease),
+    color .28s var(--ease),
+    border-color .28s var(--ease),
+    transform .35s var(--ease);
+}
+.news-close:hover,
+.news-close:focus-visible{
+  background:#C6A55A;
+  color:#0D1B2A;
+  border-color:#C6A55A;
+  transform:rotate(90deg);
+  outline:none;
+}
+
+.news-meta-row{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:16px;
+}
+.news-year{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.68rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(248,243,232,.55);
+}
+.news-tag{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.58rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:#0D1B2A;
+  background:#C6A55A;
+  padding:5px 12px;
+  border-radius:999px;
+}
+
+.news-title{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:2rem;
+  line-height:1.2;
+  letter-spacing:-0.01em;
+  color:#F8F3E8;
+  margin:0 0 14px;
+  max-width:44ch;
+}
+.news-title em{font-style:italic}
+
+.news-summary{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.72rem;
+  letter-spacing:.08em;
+  color:rgba(255,255,255,.6);
+  line-height:1.6;
+  margin:0 0 26px;
+  padding-bottom:22px;
+  border-bottom:1px solid rgba(198,165,90,.22);
+}
+.news-summary:empty{display:none}
+
+.news-media{
+  margin:0 0 28px;
+  border:1px solid rgba(198,165,90,.22);
+  border-radius:2px;
+  overflow:hidden;
+  background:rgba(255,255,255,.02);
+}
+.news-media:empty{display:none}
+.news-media img,
+.news-media figure img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:440px;
+  object-fit:cover;
+}
+.news-media figure{margin:0}
+
+.news-body{
+  font-family:Manrope,sans-serif;
+  font-size:.95rem;
+  line-height:1.72;
+  color:rgba(248,243,232,.84);
+}
+.news-body p{margin:0 0 14px}
+.news-body p:last-child{margin-bottom:0}
+.news-body ul{
+  margin:0 0 14px;
+  padding-left:22px;
+  list-style:disc outside;
+}
+.news-body ul li{margin-bottom:6px}
+.news-body a{
+  color:#7CECD5;
+  text-decoration:none;
+  border-bottom:1px solid rgba(124,236,213,.35);
+  transition:color .22s var(--ease), border-color .22s var(--ease);
+}
+.news-body a:hover,
+.news-body a:focus-visible{
+  color:#C6A55A;
+  border-bottom-color:#C6A55A;
+  outline:none;
+}
+.news-body strong{color:#F8F3E8}
+.news-body em{font-style:italic}
+
+@media (max-width:760px){
+  .news-modal{
+    width:100%;
+    max-width:100%;
+    margin:0;
+    height:100dvh;
+    max-height:100dvh;
+    border-radius:0;
+    border:none;
+  }
+  .news-modal-inner{
+    padding:64px 20px 32px;
+    max-height:100dvh;
+  }
+  .news-title{font-size:1.4rem; margin-bottom:12px}
+  .news-summary{font-size:.66rem; margin-bottom:20px; padding-bottom:16px}
+  .news-media{margin-bottom:20px}
+  .news-media img{max-height:260px}
+  .news-body{font-size:.85rem; line-height:1.65}
+}
+
 @media (max-width:900px){
   .timeline{grid-template-columns:1fr; gap:0}
   .timeline::before{display:none}
@@ -301,6 +513,10 @@
         <h3>Scalable production of <em>cardiac organoids</em> &mdash; critical milestone achieved</h3>
         <div class="meta-line">Research milestone &middot; Dr. Sarkawt Hamad and Ebru Aksoy scale up cardiac organoid differentiation for cell replacement therapy</div>
         <figure class="ed-media"><img src="img_news/2025-06-scalable-organoids.jpg" alt="Scaling up cardiac organoid production in the lab" loading="lazy"></figure>
+        <div class="ed-body">
+          <p>For the first time, Dr. Sarkawt Hamad and Ebru Aksoy have succeeded in scaling up cardiac organoid differentiation for cell replacement therapy.</p>
+          <p>This milestone unlocks the production of therapeutically relevant quantities of cardiac organoids for preclinical transplantation trials &mdash; a key step on the translational path from bench to clinic.</p>
+        </div>
       </div>
       <div class="tag">Milestone</div>
     </div>
@@ -309,6 +525,13 @@
       <div class="body">
         <h3><em>BiRonCa</em> bioreactor project funded by ZukunftBio.NRW</h3>
         <div class="meta-line">Funding &middot; ~&euro;850,000 over two years for bubble-free bioreactor scale-up with Biothrust GmbH</div>
+        <div class="ed-body">
+          <p>The working group led by Prof. Dr. Kurt Pfannkuche at the Marga and Walter Boll Laboratory for Cardiac Tissue Engineering is researching the use of cardiac organoids derived from human induced pluripotent stem cells for the treatment of cardiac infarction.</p>
+          <p>To produce therapeutically relevant quantities of organoids for preclinical transplantation trials, bioreactor processes are being optimised and scaled up from a small 200&nbsp;mL laboratory system to larger reactors with a volume of 2&ndash;3&nbsp;litres.</p>
+          <p>In a joint project with <strong>Biothrust GmbH</strong> (Aachen), an innovative gas transfer system is being tested that allows the reactors to be operated with higher cell densities. The Biothrust system is based on hollow fibres through which oxygen flows and is released into the cell culture medium without forming bubbles, while excess carbon dioxide is removed.</p>
+          <p>The state of North Rhine-Westphalia is funding the <em>Bionic Reactors for Cardiac Organoids (BiRonCa)</em> project for two years with around &euro;850,000.</p>
+          <p><a href="https://www.zukunftbio.nrw/projekte/bironca" target="_blank" rel="noopener noreferrer">Learn more at ZukunftBio.NRW &rarr;</a></p>
+        </div>
       </div>
       <div class="tag">Funding</div>
     </div>
@@ -318,6 +541,11 @@
         <h3>Ebru Aksoy wins <em>Best Poster Award</em> at 3rd Dubai Stem Cell Congress</h3>
         <div class="meta-line">Award &middot; 3rd Dubai Stem Cell Congress</div>
         <figure class="ed-media"><img src="img_news/2025-03-ebru-aksoy-dubai-poster.jpg" alt="Ebru Aksoy receiving the Best Poster Award at the 3rd Dubai Stem Cell Congress" loading="lazy"></figure>
+        <div class="ed-body">
+          <p>Congratulations to <strong>Ebru Aksoy</strong> for winning the Best Poster Award (Student Category) at the 3rd Dubai Stem Cell Congress.</p>
+          <p>Her poster presented scalable manufacturing of human iPSC-derived cardiac organoids for preclinical therapy.</p>
+          <p><a href="https://dubaistemcellcongress.com/" target="_blank" rel="noopener noreferrer">About the Dubai Stem Cell Congress &rarr;</a></p>
+        </div>
       </div>
       <div class="tag">Award</div>
     </div>
@@ -326,6 +554,12 @@
       <div class="body">
         <h3>Engineered in vitro multi-cell type <em>ventricle model</em> published</h3>
         <div class="meta-line">Publication &middot; Adv. Healthcare Materials &mdash; Kuckelkorn, Aksoy, Stojanovic, Oulahyane, Ritter, Pfannkuche, Fischer</div>
+        <div class="ed-body">
+          <p><em>&ldquo;Engineered In Vitro Multi-Cell Type Ventricle Model Generates Long-Term Pulsatile Flow and Modulates Cardiac Output in Response to Cardioactive Drugs.&rdquo;</em></p>
+          <p><strong>Authors:</strong> Christoph Kuckelkorn, Ebru Aksoy, Natalija Stojanovic, Laila Oulahyane, Mira Ritter, Kurt Pfannkuche, Horst Fischer.</p>
+          <p><strong>Published in:</strong> <em>Advanced Healthcare Materials</em>, 2025 Feb 13: e2403897. doi:&nbsp;10.1002/adhm.202403897</p>
+          <p><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adhm.202403897" target="_blank" rel="noopener noreferrer">Read the full article &rarr;</a></p>
+        </div>
       </div>
       <div class="tag">Publication</div>
     </div>
@@ -334,6 +568,21 @@
       <div class="body">
         <h3>Official opening of the <em>Marga and Walter Boll Laboratory</em></h3>
         <div class="meta-line">Milestone &middot; Inauguration event at the Medical Faculty, University of Cologne</div>
+        <div class="ed-body">
+          <p>The Marga and Walter Boll Laboratory for Cardiac Tissue Engineering was officially opened on Thursday, 22 June 2023, in the large lecture hall of the physiology department of the Medical Faculty, University of Cologne.</p>
+          <p>Invited scientists presented current projects alongside talks from international experts:</p>
+          <ul>
+            <li><strong>11:00</strong> &mdash; Priv.-Doz. Dr. Kurt Pfannkuche (Cologne): &ldquo;Research at the Laboratory for Cardiac Tissue Engineering&rdquo;</li>
+            <li><strong>11:40</strong> &mdash; Dr. Sarkawt Hamad (Cologne): &ldquo;Human Cardiac Organoids for Cell Replacement Therapy&rdquo;</li>
+            <li><strong>13:00</strong> &mdash; Prof. Dr. Konrad Brockmeier (Cologne): &ldquo;Challenges in congenital heart disease&rdquo;</li>
+            <li><strong>13:30</strong> &mdash; Prof. Dr. Bastiaan Boukens (Maastricht): &ldquo;Arrhythmias in structural heart disease&rdquo;</li>
+            <li><strong>14:15</strong> &mdash; Prof. Dr. Horst Fischer (RWTH Aachen): &ldquo;The Potential of Acoustics for 3D Tissue Engineering&rdquo;</li>
+            <li><strong>14:45</strong> &mdash; Dr. Nadine Nottrodt (Fraunhofer ILT): &ldquo;Laser induced forward transfer for cell printing&rdquo;</li>
+            <li><strong>15:00</strong> &mdash; Katharina Schwab (Cologne): &ldquo;Macroporous cryogel beads for cell culture&rdquo;</li>
+            <li><strong>15:15</strong> &mdash; Philipp Jahn (Cologne): &ldquo;Cardiac microtissues by microfluidics&rdquo;</li>
+            <li><strong>15:30</strong> &mdash; Lisa M&uuml;nchhalfen (Cologne): &ldquo;Intraembryonic organ complementation assay&rdquo;</li>
+          </ul>
+        </div>
       </div>
       <div class="tag">Milestone</div>
     </div>
@@ -343,6 +592,10 @@
         <h3><em>Hortman Stem Cell Laboratory</em> collaboration launched</h3>
         <div class="meta-line">Collaboration &middot; Dr. Fatma Alhashimi joins the MWB Lab opening as guest of honour</div>
         <figure class="ed-media"><img src="img_news/2023-06-hortman-collaboration.jpg" alt="Dr. Fatma Alhashimi at the Marga and Walter Boll Laboratory opening" loading="lazy"></figure>
+        <div class="ed-body">
+          <p>On the occasion of the official opening of the Marga and Walter Boll Laboratory, we were honoured to welcome <strong>Dr. Fatma Alhashimi</strong>, director of the Hortman Stem Cell Laboratories in Dubai, as our guest.</p>
+          <p>Hortman Laboratories operates the <strong>first GMP laboratory for stem cells in the United Arab Emirates</strong>. We are looking forward to the cooperation.</p>
+        </div>
       </div>
       <div class="tag">Collaboration</div>
     </div>
@@ -351,6 +604,11 @@
       <div class="body">
         <h3><em>PERIDIAN</em> project receives ZukunftBIO.NRW funding recommendation</h3>
         <div class="meta-line">Funding &middot; Joint project with innoVitro GmbH and Fraunhofer Institute for Laser Technology</div>
+        <div class="ed-body">
+          <p>North Rhine-Westphalia has announced the positively evaluated projects in the <em>Zukunftsmedizin</em> call.</p>
+          <p>We are happy to find our <strong>PERIDIAN</strong> project on the list of successful applications. Together with our partners <strong>innoVitro GmbH</strong> and the <strong>Fraunhofer Institute for Laser Technology</strong>, we look forward to an exciting project.</p>
+          <p><a href="https://www.zukunftbio.nrw/projekte" target="_blank" rel="noopener noreferrer">All ZukunftBio.NRW projects &rarr;</a></p>
+        </div>
       </div>
       <div class="tag">Funding</div>
     </div>
@@ -359,6 +617,15 @@
       <div class="body">
         <h3>High-efficient serum-free differentiation of <em>endothelial cells</em> from hiPSCs</h3>
         <div class="meta-line">Publication &middot; Stem Cell Research &amp; Therapy 13(1):251 &mdash; Hamad, Derichsweiler, Gaspar, Brockmeier, Hescheler, Sachinidis, Pfannkuche</div>
+        <div class="ed-body">
+          <p><em>&ldquo;High-efficient serum-free differentiation of endothelial cells from human iPS cells.&rdquo;</em></p>
+          <p><strong>Authors:</strong> Sarkawt Hamad, Daniel Derichsweiler, John Antonydas Gaspar, Konrad Brockmeier, J&uuml;rgen Hescheler, Agapios Sachinidis, Kurt Paul Pfannkuche.</p>
+          <p><strong>Published in:</strong> <em>Stem Cell Research &amp; Therapy</em>, 2022 Jun 11; 13(1):251.</p>
+          <p><strong>Introduction.</strong> Endothelial cells (ECs) form the inner lining of all blood vessels and play important roles in vascular tone regulation, hormone secretion, anticoagulation, and immune cell extravasation. Limitless EC sources are required for in vitro studies and tissue engineering.</p>
+          <p><strong>Method.</strong> Human iPSCs are cultured under serum-free conditions and induced into mesodermal progenitor cells via Wnt signalling for 24&nbsp;h, then further differentiated into ECs using a combination of VEGF, bFGF, 8-Bromoadenosine 3&prime;,5&prime;-cyclic monophosphate (8Bro), and melatonin for 48&nbsp;h.</p>
+          <p><strong>Result.</strong> The protocol generates hiPSC-derived ECs at 90.9&nbsp;&plusmn;&nbsp;1.5% efficiency in only six days, without animal-derived serum, and transfers cleanly from 2D monolayers into 3D scalable bioreactor suspension cultures.</p>
+          <p><a href="https://stemcellres.biomedcentral.com/articles/10.1186/s13287-022-02924-x" target="_blank" rel="noopener noreferrer">Read the full article &rarr;</a></p>
+        </div>
       </div>
       <div class="tag">Publication</div>
     </div>
@@ -367,11 +634,33 @@
       <div class="body">
         <h3>Generation of cardiac <em>microtissues</em> by microfluidic cell encapsulation</h3>
         <div class="meta-line">Publication &middot; Biofabrication &mdash; Jahn, Karger, Khalaf, Hamad, Peinkofer et al.</div>
+        <div class="ed-body">
+          <p><em>&ldquo;Engineering of cardiac microtissues by microfluidic cell encapsulation in thermoshrinking non-crosslinked PNIPAAm gels.&rdquo;</em></p>
+          <p><strong>Authors:</strong> Philipp Jahn, Rebecca Katharina Karger, Shahab Soso Khalaf, Sarkawt Hamad, Gabriel Peinkofer, Raja Ghazanfar Ali Sahito, Stephanie Pieroth, Frank Nitsche, Junqi Lu, Daniel Derichsweiler, Konrad Brockmeier, J&uuml;rgen Hescheler, Annette Schmidt, Kurt Paul Pfannkuche.</p>
+          <p><strong>Published in:</strong> <em>Biofabrication</em>, accepted manuscript.</p>
+          <p>Cardiomyocytes and MSCs are encapsulated in PNIPAAm droplets above the lower critical solute temperature (32&nbsp;&deg;C), trapping cells in a collapsing polymer network and increasing local cell density by an order of magnitude. Stable, rhythmically contracting microtissues form within 24&nbsp;h and are released by washout below the LCST.</p>
+          <p><a href="https://iopscience.iop.org/article/10.1088/1758-5090/ac73b5" target="_blank" rel="noopener noreferrer">Download the accepted manuscript &rarr;</a></p>
+        </div>
       </div>
       <div class="tag">Publication</div>
     </div>
   </div>
 </section>
+
+<!-- Shared news modal, populated on click from any .ed-item with a .ed-body child -->
+<dialog id="newsModal" class="news-modal" aria-labelledby="newsTitle">
+  <button type="button" class="news-close" aria-label="Close">&times;</button>
+  <div class="news-modal-inner">
+    <div class="news-meta-row">
+      <span class="news-year" id="newsYear"></span>
+      <span class="news-tag" id="newsTagLabel"></span>
+    </div>
+    <h3 class="news-title" id="newsTitle"></h3>
+    <div class="news-summary" id="newsSummary"></div>
+    <div class="news-media" id="newsMedia"></div>
+    <div class="news-body" id="newsBody"></div>
+  </div>
+</dialog>
 
 <script>
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -533,6 +822,99 @@ document.querySelectorAll('.ed-filters').forEach(bar => {
     const step = atlas.querySelector(`.atlas-step[data-atlas="${key}"]`);
     if(step) step.scrollIntoView({ behavior:'smooth', block:'center' });
   }));
+})();
+
+/* ========== NEWS DETAIL MODAL ========== */
+(function initNewsModal(){
+  const modal = document.getElementById('newsModal');
+  if(!modal || typeof modal.showModal !== 'function') return;
+
+  const yearEl    = document.getElementById('newsYear');
+  const tagEl     = document.getElementById('newsTagLabel');
+  const titleEl   = document.getElementById('newsTitle');
+  const summaryEl = document.getElementById('newsSummary');
+  const mediaEl   = document.getElementById('newsMedia');
+  const bodyEl    = document.getElementById('newsBody');
+  const closeBtn  = modal.querySelector('.news-close');
+  const inner     = modal.querySelector('.news-modal-inner');
+
+  // Any .ed-item that contains a .ed-body (full detail) becomes a
+  // clickable card that opens the shared modal on click / Enter / Space.
+  document.querySelectorAll('.ed-item').forEach(item => {
+    if(!item.querySelector('.ed-body')) return;
+    item.classList.add('has-detail');
+    item.setAttribute('role', 'button');
+    item.setAttribute('tabindex', '0');
+    const h3 = item.querySelector('h3');
+    if(h3){
+      const label = 'Read more: ' + h3.textContent.trim();
+      item.setAttribute('aria-label', label);
+    }
+  });
+
+  function openFromItem(item){
+    const year    = item.querySelector('.year');
+    const tag     = item.querySelector('.tag');
+    const title   = item.querySelector('.body h3');
+    const summary = item.querySelector('.body > .meta-line');
+    const media   = item.querySelector('.body > .ed-media');
+    const body    = item.querySelector('.body > .ed-body');
+
+    yearEl.textContent   = year    ? year.textContent    : '';
+    tagEl.textContent    = tag     ? tag.textContent     : '';
+    titleEl.innerHTML    = title   ? title.innerHTML     : '';
+    summaryEl.innerHTML  = summary ? summary.innerHTML   : '';
+    mediaEl.innerHTML    = media   ? media.outerHTML     : '';
+    bodyEl.innerHTML     = body    ? body.innerHTML      : '';
+
+    if(inner) inner.scrollTop = 0;
+    modal.classList.remove('closing');
+    modal.showModal();
+  }
+
+  function closeModal(){
+    if(modal.classList.contains('closing')) return;
+    modal.classList.add('closing');
+    const done = (e) => {
+      if(e.animationName !== 'newsOut') return;
+      modal.removeEventListener('animationend', done);
+      modal.close();
+      modal.classList.remove('closing');
+    };
+    modal.addEventListener('animationend', done);
+    setTimeout(() => {
+      if(modal.classList.contains('closing')){
+        modal.removeEventListener('animationend', done);
+        modal.close();
+        modal.classList.remove('closing');
+      }
+    }, 400);
+  }
+
+  document.querySelectorAll('.ed-item.has-detail').forEach(item => {
+    item.addEventListener('click', e => {
+      // Don't hijack clicks on links inside the card (if any ever exist)
+      if(e.target.closest('a')) return;
+      openFromItem(item);
+    });
+    item.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        openFromItem(item);
+      }
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  // Click on the dark backdrop area (outside the inner content) closes.
+  modal.addEventListener('click', e => {
+    if(e.target === modal) closeModal();
+  });
+  // Esc key uses the native dialog cancel event; intercept to animate.
+  modal.addEventListener('cancel', e => {
+    e.preventDefault();
+    closeModal();
+  });
 })();
 </script>
 <script src="site_v4blend.js?v=8"></script>
