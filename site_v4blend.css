@@ -1198,7 +1198,7 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   font-weight:700!important;
   letter-spacing:.22em!important;
   text-transform:uppercase!important;
-  color:#F0D480!important;
+  color:#FBE196!important;
   margin:0 0 18px!important;
 }
 .foot-supporters h4::before,
@@ -1230,7 +1230,7 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   font-weight:700;
   letter-spacing:.2em;
   text-transform:uppercase;
-  color:#F0D480;
+  color:#FBE196;
   margin:0 0 12px;
   display:flex;
   align-items:center;
