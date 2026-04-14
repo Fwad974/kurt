@@ -342,7 +342,7 @@ h3.subhead em{font-style:italic}
   margin-bottom:18px;
 }
 .foot .wordmark em{font-style:italic}
-.foot p{color:var(--muted); line-height:1.6; font-size:.82rem; margin:0; max-width:40ch}
+.foot p{color:var(--muted); line-height:1.6; font-size:.95rem; margin:0; max-width:42ch}
 .foot .addr{
   margin-top:14px;
   font-family:"JetBrains Mono",monospace;
@@ -652,8 +652,8 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 }
 .split-sec .split-prose h3 em{font-style:italic; font-weight:400}
 .split-sec .split-prose p{
-  font-size:1rem; line-height:1.68; color:var(--ink-2); margin:0 0 28px;
-  max-width:44ch;
+  font-size:1.18rem; line-height:1.65; color:var(--ink-2); margin:0 0 28px;
+  max-width:48ch;
 }
 .split-sec .split-prose .meta-list{
   display:grid;
@@ -736,7 +736,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   color:var(--muted);
   margin-bottom:8px;
 }
-.fig-card p{font-size:.78rem; line-height:1.5; color:var(--ink-2); margin:0; max-width:28ch; margin-left:auto; margin-right:auto}
+.fig-card p{font-size:.96rem; line-height:1.55; color:var(--ink-2); margin:0; max-width:30ch; margin-left:auto; margin-right:auto}
 .fig-card .meta{
   margin-top:10px;
   font-family:"JetBrains Mono",monospace;
@@ -1152,8 +1152,8 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 }
 .atlas-step h3 em{font-style:italic; font-weight:400}
 .atlas-step p{
-  font-size:1.02rem; line-height:1.7; color:var(--ink-2); margin:0 0 32px;
-  max-width:44ch;
+  font-size:1.18rem; line-height:1.68; color:var(--ink-2); margin:0 0 32px;
+  max-width:48ch;
 }
 .atlas-step .meta-list{
   display:grid;
