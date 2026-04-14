@@ -157,6 +157,23 @@ html:not(.loading) .topbar{transform:translateY(0); opacity:1}
   content:""; width:28px; height:1px; background:var(--ink); opacity:.5;
 }
 
+/* Page hero eyebrow spans the full width of the hero card on
+   desktop so the decorative line reads as a section rule rather
+   than a short dash. On mobile the hero is centered, so we leave
+   the eyebrow as its original inline-flex dash. */
+@media (min-width:901px){
+  .page-hero .eyebrow{
+    display:flex;
+    width:100%;
+  }
+  .page-hero .eyebrow::before{
+    flex:1;
+    width:auto;
+    max-width:none;
+    margin-right:4px;
+  }
+}
+
 h1.display, h2.display{
   font-family:var(--serif);
   font-variation-settings:"opsz" 144,"SOFT" 30;
