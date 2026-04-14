@@ -172,6 +172,15 @@ html:not(.loading) .topbar{transform:translateY(0); opacity:1}
     max-width:none;
     margin-right:4px;
   }
+  /* Title and lede span the full hero width instead of being
+     capped to narrow measures (16ch for h1, 58ch for the lede).
+     !important is needed to beat site_v4blend.css's lede rule. */
+  .page-hero h1{
+    max-width:none!important;
+  }
+  .page-hero .lede{
+    max-width:none!important;
+  }
 }
 
 h1.display, h2.display{
