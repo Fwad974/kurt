@@ -688,7 +688,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   grid-template-columns:none;
 }
 .card-grid.four > .fig-card{
-  flex:0 0 220px;
+  flex:0 0 260px;
 }
 .card-grid:last-child{margin-bottom:0}
 
@@ -725,10 +725,11 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   font-family:var(--serif);
   font-variation-settings:"opsz" 144;
   font-weight:400;
-  font-size:1.35rem;
+  font-size:1.3rem;
   line-height:1.25;
-  letter-spacing:-0.01em;
+  letter-spacing:-0.015em;
   margin:0 0 8px;
+  white-space:nowrap;
 }
 .fig-card h3 em{font-style:italic}
 .fig-card .mono{
@@ -937,7 +938,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   .split-sec.reverse .split-prose{order:0}
   .card-grid{grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom:80px}
   .card-grid.two{grid-template-columns:1fr}
-  .card-grid.four > .fig-card{flex:0 0 200px}
+  .card-grid.four > .fig-card{flex:0 0 240px}
   .lead-figure{margin-bottom:80px}
   .ed-list{grid-template-columns:1fr}
   .ed-item{grid-template-columns:56px 1fr; gap:14px; padding:16px 18px}
@@ -949,7 +950,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   .card-grid.four{flex-wrap:wrap !important; gap:16px 12px; justify-content:flex-start}
   .card-grid.four > .fig-card{flex:0 0 calc(50% - 8px); min-width:0; max-width:200px}
   .fig-card .body{padding:14px 4px 4px}
-  .fig-card h3{font-size:1rem; line-height:1.25}
+  .fig-card h3{font-size:1rem; line-height:1.25; white-space:normal}
   .fig-card .mono{font-size:.58rem; letter-spacing:.1em; margin-bottom:6px}
   .fig-card p{font-size:.82rem; line-height:1.45}
   .fig-card .meta{font-size:.6rem; margin-top:8px}
