@@ -1,23 +1,28 @@
 /**
- * Publications page: fetch latest works from ORCID and render them.
- * Configuration comes from window.SITE_CONFIG (see config.js).
+ * Publications page: fetch works from every ORCID profile in
+ * window.SITE_CONFIG.orcidIds, dedupe, filter by year, sort
+ * newest-first, and render into the .ed-list as .ed-item cards.
+ *
+ * Each entry shows year + title + journal + a DOI link out to the
+ * publisher. No external profile buttons, no limit by default.
+ *
+ * Configuration (config.js):
+ *   orcidIds              [string]  — one ORCID iD per author
+ *   publicationsSinceYear number    — earliest year to include (e.g. 2018)
+ *   publicationsLimit     number    — cap on entries rendered, 0 = no cap
  */
 (function () {
   const cfg = window.SITE_CONFIG || {};
-  // Accept either the new array field or the legacy single-id field.
   const orcidIds = Array.isArray(cfg.orcidIds) && cfg.orcidIds.length
     ? cfg.orcidIds.slice()
     : (cfg.orcidId ? [cfg.orcidId] : []);
-  const limit = cfg.publicationsLimit || 20;
+  const sinceYear = Number(cfg.publicationsSinceYear) || 0;
+  const limit = Number(cfg.publicationsLimit) || 0;
 
   const listEl = document.querySelector(".ed-list");
   if (!listEl || orcidIds.length === 0) return;
 
-  // Update profile button links from config
-  const scholarBtn = document.querySelector('[data-link="scholar"]');
-  if (scholarBtn && cfg.googleScholarUrl) scholarBtn.href = cfg.googleScholarUrl;
-  const orcidBtn = document.querySelector('[data-link="orcid"]');
-  if (orcidBtn && cfg.orcidUrl) orcidBtn.href = cfg.orcidUrl;
+  /* ---------- helpers ---------- */
 
   // ORCID sometimes returns strings that already contain HTML entities
   // (e.g. "Stem Cell Research &amp; Therapy"). Decode them first so we
@@ -36,43 +41,24 @@
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
 
-  // Convert ORCID work type like "journal-article" -> "Journal article"
-  const formatType = (t) => {
-    if (!t) return "Publication";
-    const s = t.replace(/[-_]/g, " ").toLowerCase();
-    return s.charAt(0).toUpperCase() + s.slice(1);
+  // Format a work's type into a human-readable tag label
+  const tagForType = (rawType) => {
+    const t = (rawType || "journal-article").toLowerCase();
+    if (t === "book-chapter") return { key: "chapter", label: "Chapter" };
+    if (t === "book") return { key: "book", label: "Book" };
+    if (t === "review-article") return { key: "review", label: "Review" };
+    if (t === "preprint") return { key: "preprint", label: "Preprint" };
+    if (t === "conference-paper") return { key: "conference", label: "Conference" };
+    return { key: "publication", label: "Article" };
   };
 
-  // Emphasize keywords in the title by wrapping them in <em>
-  const KEYWORDS = [
-    "cardiomyocytes",
-    "cardiomyocyte",
-    "organoid",
-    "organoids",
-    "stem cell",
-    "stem cells",
-    "hydrogel",
-    "iPSC",
-    "cardiac",
-    "regenerative",
-    "endothelial",
-    "myocardial",
-    "tissue engineering",
-    "cell therapy",
-    "scaffold",
-    "biomaterial",
-    "biomaterials",
-  ];
-  const emphasize = (title) => {
-    let out = escape(title);
-    KEYWORDS.forEach((kw) => {
-      const re = new RegExp(`\\b(${kw})\\b`, "i");
-      out = out.replace(re, "<em>$1</em>");
-    });
-    return out;
+  const getYear = (work) => {
+    const pd = work && work["publication-date"];
+    if (!pd) return 0;
+    return parseInt((pd.year && pd.year.value) || "0", 10) || 0;
   };
 
-  const getDate = (work) => {
+  const getSortScore = (work) => {
     const pd = work && work["publication-date"];
     if (!pd) return 0;
     const y = parseInt((pd.year && pd.year.value) || "0", 10) || 0;
@@ -94,59 +80,6 @@
     return { url, value: doi["external-id-value"] };
   };
 
-  const renderWork = (work) => {
-    const title =
-      (work.title && work.title.title && work.title.title.value) || "Untitled";
-    const year =
-      (work["publication-date"] &&
-        work["publication-date"].year &&
-        work["publication-date"].year.value) ||
-      "—";
-    const journal =
-      (work["journal-title"] && work["journal-title"].value) || "";
-    const rawType = (work.type || "journal-article").toLowerCase();
-    const type = formatType(rawType);
-    const doi = getDoi(work);
-
-    // Only show a type badge when it's NOT a regular journal article,
-    // to cut visual noise for the common case.
-    const showTypeBadge = rawType !== "journal-article";
-
-    const metaParts = [];
-    if (journal) metaParts.push(escape(journal));
-    if (doi)
-      metaParts.push(
-        `<a href="${escape(doi.url)}" target="_blank" rel="noopener"><em>DOI</em></a>`
-      );
-    const meta = metaParts.join(" · ");
-
-    const typeBadge = showTypeBadge
-      ? `<span class="pub-type">${escape(type)}</span>`
-      : "";
-
-    return `
-      <article class="pub-card">
-        <header class="pub-head">
-          <span class="pub-year">${escape(year)}</span>
-          ${typeBadge}
-        </header>
-        <h3 class="pub-title">${emphasize(title)}</h3>
-        <div class="pub-meta">${meta}</div>
-      </article>
-    `;
-  };
-
-  const showLoading = () => {
-    listEl.innerHTML =
-      '<article class="pub-card pub-status"><header class="pub-head"><span class="pub-year">—</span></header><h3 class="pub-title">Loading publications…</h3><div class="pub-meta">Fetching from ORCID</div></article>';
-  };
-
-  const showError = (msg) => {
-    listEl.innerHTML = `<article class="pub-card pub-status"><header class="pub-head"><span class="pub-year">—</span></header><h3 class="pub-title">Could not load publications</h3><div class="pub-meta">${escape(
-      msg
-    )}</div></article>`;
-  };
-
   // Build a stable key for deduplication. DOI is the most reliable signal
   // for "same paper"; when a work has no DOI we fall back to a normalized
   // title + year combo so cross-profile duplicates still merge.
@@ -161,13 +94,46 @@
     if (doi && doi.value) return "doi:" + doi.value.toLowerCase().trim();
     const title =
       (work.title && work.title.title && work.title.title.value) || "";
-    const year =
-      (work["publication-date"] &&
-        work["publication-date"].year &&
-        work["publication-date"].year.value) ||
-      "";
+    const year = String(getYear(work) || "");
     return "t:" + normalize(title) + "|" + year;
   };
+
+  const renderWork = (work) => {
+    const title =
+      (work.title && work.title.title && work.title.title.value) || "Untitled";
+    const year = String(getYear(work) || "—");
+    const journal =
+      (work["journal-title"] && work["journal-title"].value) || "";
+    const tag = tagForType(work.type);
+    const doi = getDoi(work);
+
+    const metaParts = [];
+    if (journal) metaParts.push(`<em>${escape(journal)}</em>`);
+    if (doi)
+      metaParts.push(
+        `<a href="${escape(doi.url)}" target="_blank" rel="noopener noreferrer"><em>DOI</em></a>`
+      );
+    const meta = metaParts.join(" &middot; ");
+
+    return `
+      <div class="ed-item rv" data-tag="${escape(tag.key)}">
+        <div class="year">${escape(year)}</div>
+        <div class="body">
+          <h3>${escape(title)}</h3>
+          <div class="meta-line">${meta}</div>
+        </div>
+        <div class="tag">${escape(tag.label)}</div>
+      </div>
+    `;
+  };
+
+  const showStatus = (msg) => {
+    listEl.innerHTML = `<div class="mono" style="color:var(--muted); padding:24px 0; font-family:'JetBrains Mono',monospace; font-size:.78rem; letter-spacing:.08em">${escape(
+      msg
+    )}</div>`;
+  };
+
+  /* ---------- fetch + render ---------- */
 
   const fetchWorks = (id) =>
     fetch(`https://pub.orcid.org/v3.0/${encodeURIComponent(id)}/works`, {
@@ -177,7 +143,7 @@
       return res.json();
     });
 
-  showLoading();
+  showStatus("Loading publications…");
 
   Promise.allSettled(orcidIds.map(fetchWorks))
     .then((results) => {
@@ -197,32 +163,47 @@
         groups.forEach((g) => {
           const summary = (g["work-summary"] || [])[0];
           if (!summary) return;
+
+          // Skip years before the since-year filter
+          if (sinceYear && getYear(summary) < sinceYear) return;
+
+          // Skip non-publication types ORCID occasionally stores
+          const t = (summary.type || "").toLowerCase();
+          if (t === "data-set" || t === "test" || t === "other") return;
+
           const key = dedupKey(summary);
           if (!merged.has(key)) merged.set(key, summary);
         });
       });
 
       if (!anySuccess) {
-        showError(
-          "ORCID API is unreachable. Please try again later or visit the profile directly."
+        showStatus(
+          "Could not load publications — ORCID API unreachable. Please try again later."
         );
         return;
       }
 
       const works = Array.from(merged.values());
       if (works.length === 0) {
-        showError("No publications found for the configured ORCID IDs.");
+        showStatus(`No publications since ${sinceYear || "—"} found.`);
         return;
       }
 
-      works.sort((a, b) => getDate(b) - getDate(a));
-      const top = works.slice(0, limit);
+      // Sort newest first by full YYYYMMDD score
+      works.sort((a, b) => getSortScore(b) - getSortScore(a));
+
+      const top = limit > 0 ? works.slice(0, limit) : works;
       listEl.innerHTML = top.map(renderWork).join("");
+
+      // The site uses IntersectionObserver on .rv elements to reveal
+      // them on scroll. Those observers already ran before we injected
+      // content, so trigger the reveal immediately for the new nodes.
+      listEl
+        .querySelectorAll(".ed-item.rv")
+        .forEach((el) => el.classList.add("in"));
     })
     .catch((err) => {
       console.error("Publications load failed:", err);
-      showError(
-        "ORCID API is unreachable. Please try again later or visit the profile directly."
-      );
+      showStatus("Could not load publications. Please try again later.");
     });
 })();

@@ -142,7 +142,7 @@ try { sessionStorage.setItem('mwbVisited', '1'); } catch(e){}
       width:'min(80vw, 320px)', height:'100%',
       zIndex:'100000',
       background:'#080d17',
-      borderLeft:'1px solid rgba(198,165,90,.06)',
+      borderLeft:'1px solid rgba(251,225,150,.06)',
       boxShadow:'-16px 0 60px rgba(0,0,0,.55)',
       display:'flex', flexDirection:'column',
       boxSizing:'border-box',
@@ -154,7 +154,7 @@ try { sessionStorage.setItem('mwbVisited', '1'); } catch(e){}
     /* ── Accent strip ── */
     panel.appendChild(el('div', {
       height:'1px', flexShrink:'0',
-      background:'linear-gradient(90deg, rgba(198,165,90,.45), rgba(198,165,90,.25) 60%, transparent)'
+      background:'linear-gradient(90deg, rgba(251,225,150,.45), rgba(251,225,150,.25) 60%, transparent)'
     }));
 
     /* ── Header: logo + close ── */
@@ -168,7 +168,7 @@ try { sessionStorage.setItem('mwbVisited', '1'); } catch(e){}
       const lClone = logoEl.cloneNode(true);
       Object.assign(lClone.style, { display:'flex', alignItems:'center', textDecoration:'none' });
       const img = lClone.querySelector('img');
-      if(img) Object.assign(img.style, { height:'34px', width:'auto', filter:'drop-shadow(0 0 6px rgba(198,165,90,.2))' });
+      if(img) Object.assign(img.style, { height:'34px', width:'auto', filter:'drop-shadow(0 0 6px rgba(251,225,150,.2))' });
       header.appendChild(lClone);
     }
 
@@ -204,7 +204,7 @@ try { sessionStorage.setItem('mwbVisited', '1'); } catch(e){}
       padding:'0 12px 12px',
       fontFamily:'"JetBrains Mono", monospace',
       fontSize:'.56rem', fontWeight:'500',
-      color:'rgba(198,165,90,.4)',
+      color:'rgba(251,225,150,.4)',
       letterSpacing:'.14em',
       textTransform:'uppercase'
     }, 'Navigate'));
@@ -222,8 +222,8 @@ try { sessionStorage.setItem('mwbVisited', '1'); } catch(e){}
         textDecoration:'none',
         borderRadius:'8px',
         color: isCurrent ? '#fff' : 'rgba(255,255,255,.45)',
-        background: isCurrent ? 'rgba(198,165,90,.08)' : 'transparent',
-        borderLeft: isCurrent ? '2px solid rgba(198,165,90,.7)' : '2px solid transparent',
+        background: isCurrent ? 'rgba(251,225,150,.08)' : 'transparent',
+        borderLeft: isCurrent ? '2px solid rgba(251,225,150,.7)' : '2px solid transparent',
         letterSpacing:'.01em',
         boxSizing:'border-box',
         opacity:'0',
@@ -234,8 +234,8 @@ try { sessionStorage.setItem('mwbVisited', '1'); } catch(e){}
       if(isCurrent){
         link.appendChild(el('span', {
           width:'5px', height:'5px', borderRadius:'50%', flexShrink:'0',
-          background:'rgb(198,165,90)',
-          boxShadow:'0 0 6px rgba(198,165,90,.55)'
+          background:'rgb(251,225,150)',
+          boxShadow:'0 0 6px rgba(251,225,150,.55)'
         }));
       }
 
@@ -271,14 +271,14 @@ try { sessionStorage.setItem('mwbVisited', '1'); } catch(e){}
     const liveRow = el('div', {
       fontFamily:'"JetBrains Mono", monospace',
       fontSize:'.58rem', fontWeight:'400',
-      color:'rgba(198,165,90,.55)',
+      color:'rgba(251,225,150,.55)',
       letterSpacing:'.06em',
       display:'flex', alignItems:'center', gap:'6px'
     });
     liveRow.appendChild(el('span', {
       width:'4px', height:'4px', borderRadius:'50%',
-      background:'rgb(198,165,90)', display:'inline-block',
-      boxShadow:'0 0 3px rgba(198,165,90,.5), 0 0 10px rgba(198,165,90,.15)'
+      background:'rgb(251,225,150)', display:'inline-block',
+      boxShadow:'0 0 3px rgba(251,225,150,.5), 0 0 10px rgba(251,225,150,.15)'
     }));
     liveRow.appendChild(document.createTextNode('Active lab'));
     bottom.appendChild(liveRow);

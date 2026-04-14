@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=19">
+<link rel="stylesheet" href="site.css?v=32">
 <style>
 .split-fig{min-height:360px}
 .fig-svg{
@@ -38,7 +38,7 @@
 .addr-block p{margin:0; font-family:"JetBrains Mono",monospace; font-size:.78rem; line-height:1.8; color:var(--ink-2)}
 
 .legal{padding:32px 40px; border:1px solid var(--line); border-radius:2px; background:rgba(244,240,232,.5); max-width:72ch}
-.legal p{font-size:.92rem; line-height:1.7; color:var(--ink-2); margin:0 0 14px}
+.legal p{font-size:1.08rem; line-height:1.68; color:var(--ink-2); margin:0 0 14px}
 .legal p:last-child{margin-bottom:0}
 .legal .small{font-size:.8rem; color:var(--muted); line-height:1.65}
 
@@ -55,7 +55,7 @@
 .pos-card .mono{font-family:"JetBrains Mono",monospace; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
 .pos-card h3{font-family:var(--serif); font-variation-settings:"opsz" 144; font-weight:400; font-size:1.35rem; letter-spacing:-0.01em; margin:0}
 .pos-card h3 em{font-style:italic}
-.pos-card p{font-size:.9rem; line-height:1.6; color:var(--ink-2); margin:0}
+.pos-card p{font-size:1.06rem; line-height:1.6; color:var(--ink-2); margin:0}
 .pos-card .status{margin-top:auto; font-family:"JetBrains Mono",monospace; font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); padding-top:14px; border-top:1px solid var(--line)}
 
 .apply-steps{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
@@ -64,7 +64,497 @@
 .apply-step .num::before{content:""; width:24px; height:1px; background:var(--ink); opacity:.5}
 .apply-step h3{font-family:var(--serif); font-variation-settings:"opsz" 144; font-weight:400; font-size:1.35rem; letter-spacing:-0.01em; margin:0 0 14px}
 .apply-step h3 em{font-style:italic}
-.apply-step p{font-size:.92rem; line-height:1.62; color:var(--ink-2); margin:0}
+.apply-step p{font-size:1.08rem; line-height:1.62; color:var(--ink-2); margin:0}
+
+/* Featured publication card — highlights a single paper at the top of
+   the news page. Mirrors the MDPI journal card look, tuned to the
+   site's dark theme. */
+.featured-pub{
+  position:relative;
+  padding:44px 48px 40px;
+  border:1px solid rgba(251,225,150,.28);
+  border-radius:4px;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(124,236,213,.07), transparent 55%),
+    linear-gradient(135deg, rgba(251,225,150,.06), rgba(13,27,42,.0) 60%),
+    rgba(255,255,255,.02);
+  overflow:hidden;
+  max-width:1000px;
+  margin:0 auto;
+}
+.featured-pub::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height:4px;
+  background:linear-gradient(90deg, rgba(124,236,213,.45), #FBE196, rgba(124,236,213,.45));
+  opacity:.75;
+}
+.featured-pub-badge{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  margin-bottom:26px;
+}
+.featured-pub-journal{
+  font-family:var(--serif);
+  font-size:2rem;
+  line-height:1;
+  color:#7CECD5;
+  letter-spacing:-0.01em;
+}
+.featured-pub-journal em{font-style:italic}
+.featured-pub-sub{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.78rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted, rgba(255,255,255,.55));
+}
+.featured-pub-title{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:2.05rem;
+  line-height:1.22;
+  letter-spacing:-0.01em;
+  margin:0 0 24px;
+  color:#F8F3E8;
+  max-width:44ch;
+}
+.featured-pub-title em{font-style:italic}
+.featured-pub-authors{
+  font-family:Manrope,sans-serif;
+  font-size:1.08rem;
+  line-height:1.65;
+  color:rgba(248,243,232,.85);
+  margin:0 0 16px;
+  max-width:66ch;
+}
+.featured-pub-citation{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.92rem;
+  letter-spacing:.06em;
+  color:rgba(255,255,255,.6);
+  margin:0 0 30px;
+}
+.featured-pub-citation em{
+  font-family:var(--serif);
+  font-size:1.1rem;
+  font-style:italic;
+  letter-spacing:0;
+  color:#7CECD5;
+  margin-right:2px;
+}
+.featured-pub-citation strong{
+  font-weight:600;
+  color:rgba(248,243,232,.9);
+}
+.featured-pub-link{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 24px 14px 26px;
+  border:1px solid rgba(251,225,150,.4);
+  border-radius:999px;
+  background:rgba(251,225,150,.06);
+  font-family:"JetBrains Mono",monospace;
+  font-size:.8rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:rgba(248,243,232,.92);
+  text-decoration:none;
+  transition:
+    background .25s var(--ease),
+    color .25s var(--ease),
+    border-color .25s var(--ease),
+    transform .25s var(--ease);
+}
+.featured-pub-link svg{
+  width:12px; height:12px;
+  stroke:currentColor;
+  transition:transform .25s var(--ease);
+}
+.featured-pub-link:hover,
+.featured-pub-link:focus-visible{
+  background:#FBE196;
+  color:#0D1B2A;
+  border-color:#FBE196;
+  transform:translateY(-1px);
+  outline:none;
+}
+.featured-pub-link:hover svg,
+.featured-pub-link:focus-visible svg{
+  transform:translateX(3px);
+}
+
+@media (max-width:760px){
+  .featured-pub{padding:28px 22px 26px; border-radius:2px}
+  .featured-pub-badge{margin-bottom:18px}
+  .featured-pub-journal{font-size:1.55rem}
+  .featured-pub-title{font-size:1.25rem; margin-bottom:16px}
+  .featured-pub-authors{font-size:.95rem; line-height:1.55; margin-bottom:12px}
+  .featured-pub-citation{font-size:.82rem; margin-bottom:24px}
+  .featured-pub-link{padding:12px 18px; font-size:.72rem}
+}
+
+/* ================================================================
+   News list refinement. Overrides the shared .ed-list / .ed-item
+   rules so the rolling news log renders as a single-column editorial
+   feed with properly-sized photos, instead of the cramped 3-column
+   auto-fill grid the publications page uses.
+   ================================================================ */
+body[data-page="news"] .ed-list{
+  grid-template-columns:1fr!important;
+  gap:14px!important;
+  max-width:1000px;
+  margin:0 auto 80px;
+}
+body[data-page="news"] .ed-item{
+  grid-template-columns:1fr auto!important;
+  grid-template-rows:auto auto!important;
+  grid-template-areas:
+    "year  tag"
+    "body  body"!important;
+  gap:18px 20px!important;
+  padding:24px 32px 28px!important;
+  align-items:start!important;
+}
+body[data-page="news"] .ed-item .year{
+  grid-area:year;
+  justify-self:start;
+  align-self:center;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+  font-size:.92rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.6);
+  padding:0;
+  margin:0;
+}
+body[data-page="news"] .ed-item .tag{
+  grid-area:tag;
+  justify-self:end;
+  align-self:center;
+  margin:0;
+  font-size:.82rem;
+  padding:9px 16px;
+}
+body[data-page="news"] .ed-item .body{
+  grid-area:body;
+  min-width:0;
+  padding-top:20px;
+  border-top:1px solid rgba(251,225,150,.18);
+}
+body[data-page="news"] .ed-item .body h3{
+  max-width:60ch;
+  margin:0 0 12px;
+  font-size:1.52rem;
+  line-height:1.28;
+}
+body[data-page="news"] .ed-item .body .meta-line{
+  max-width:64ch;
+  line-height:1.68;
+  font-size:1.02rem;
+}
+
+/* Photo attached to a news item: fills the body column, rounded,
+   with a soft gold hairline to match the site's dark theme. */
+.ed-item .ed-media{
+  margin:20px 0 4px;
+  padding:0;
+  width:100%;
+  max-width:720px;
+  border:1px solid rgba(251,225,150,.22);
+  border-radius:3px;
+  overflow:hidden;
+  background:rgba(255,255,255,.02);
+}
+.ed-item .ed-media img{
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:cover;
+  max-height:360px;
+}
+
+/* Full-detail body of each news item is hidden in the card list and
+   only shown when the item is clicked open in the modal. */
+.ed-item .ed-body{display:none}
+
+/* Items that have a .ed-body become clickable cards with a small
+   gold "read more" affordance on hover. */
+.ed-item.has-detail{
+  cursor:pointer;
+  transition:
+    border-color .35s var(--ease),
+    background .35s var(--ease),
+    transform .35s var(--ease),
+    box-shadow .35s var(--ease);
+}
+body[data-page="news"] .ed-item.has-detail{
+  position:relative;
+}
+body[data-page="news"] .ed-item.has-detail::after{
+  content:"Read more →";
+  position:absolute;
+  bottom:18px;
+  right:32px;
+  font-family:"JetBrains Mono",monospace;
+  font-size:.58rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:rgba(251,225,150,.55);
+  opacity:0;
+  transform:translateX(-6px);
+  transition:opacity .3s var(--ease), transform .3s var(--ease), color .3s var(--ease);
+  pointer-events:none;
+}
+.ed-item.has-detail:hover,
+.ed-item.has-detail:focus-visible{
+  border-color:rgba(251,225,150,.55)!important;
+  outline:none;
+}
+body[data-page="news"] .ed-item.has-detail:hover::after,
+body[data-page="news"] .ed-item.has-detail:focus-visible::after{
+  opacity:1;
+  transform:translateX(0);
+  color:#FBE196;
+}
+.ed-item.has-detail:focus-visible{
+  outline:2px solid rgba(251,225,150,.55);
+  outline-offset:2px;
+}
+
+/* Mobile: stack the row vertically so images and text get full width. */
+@media (max-width:760px){
+  body[data-page="news"] .ed-list{max-width:100%; margin-bottom:56px}
+  body[data-page="news"] .ed-item{
+    grid-template-columns:auto 1fr!important;
+    grid-template-rows:auto auto!important;
+    grid-template-areas:
+      "year  tag"
+      "body  body"!important;
+    gap:14px 14px!important;
+    padding:20px 20px 24px!important;
+  }
+  body[data-page="news"] .ed-item .year{
+    font-size:.76rem;
+    letter-spacing:.12em;
+  }
+  body[data-page="news"] .ed-item .tag{
+    justify-self:end!important;
+    font-size:.7rem;
+    padding:7px 13px;
+  }
+  body[data-page="news"] .ed-item .body{
+    padding-top:14px;
+  }
+  body[data-page="news"] .ed-item .body h3{font-size:1.2rem; line-height:1.28}
+  body[data-page="news"] .ed-item .body .meta-line{font-size:.9rem; line-height:1.6}
+  body[data-page="news"] .ed-item.has-detail::after{
+    position:static;
+    display:inline-block;
+    margin-top:12px;
+    opacity:.6;
+    transform:none;
+  }
+  .ed-item .ed-media{margin:14px 0 4px; max-width:100%}
+  .ed-item .ed-media img{max-height:240px}
+}
+
+/* ===== News detail modal ===== */
+.news-modal{
+  width:min(760px, calc(100vw - 32px));
+  max-height:calc(100vh - 64px);
+  margin:32px auto;
+  padding:0;
+  border:1px solid rgba(251,225,150,.3);
+  border-radius:4px;
+  background:#0D1B2A;
+  color:#F8F3E8;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+  overflow:hidden;
+  position:fixed;
+  inset:0;
+}
+.news-modal::backdrop{
+  background:rgba(0,0,0,.78);
+  backdrop-filter:blur(4px);
+}
+.news-modal[open]{
+  animation:newsIn .28s var(--ease) both;
+}
+.news-modal[open]::backdrop{
+  animation:newsBackdropIn .28s ease both;
+}
+.news-modal.closing{
+  animation:newsOut .22s var(--ease) both;
+}
+.news-modal.closing::backdrop{
+  animation:newsBackdropOut .22s ease both;
+}
+@keyframes newsIn{
+  from{opacity:0; transform:translateY(14px) scale(.985)}
+  to{opacity:1; transform:translateY(0) scale(1)}
+}
+@keyframes newsOut{
+  from{opacity:1; transform:translateY(0) scale(1)}
+  to{opacity:0; transform:translateY(10px) scale(.985)}
+}
+@keyframes newsBackdropIn{from{opacity:0}to{opacity:1}}
+@keyframes newsBackdropOut{from{opacity:1}to{opacity:0}}
+
+.news-modal-inner{
+  padding:48px 56px 44px;
+  overflow-y:auto;
+  overflow-x:hidden;
+  max-height:calc(100vh - 64px);
+  -webkit-overflow-scrolling:touch;
+}
+.news-close{
+  position:absolute;
+  top:18px; right:20px;
+  width:34px; height:34px;
+  border:1px solid rgba(251,225,150,.4);
+  background:rgba(251,225,150,.1);
+  backdrop-filter:blur(6px);
+  border-radius:50%;
+  font-size:1.15rem; line-height:1;
+  color:rgba(248,243,232,.92);
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  z-index:5;
+  transition:
+    background .28s var(--ease),
+    color .28s var(--ease),
+    border-color .28s var(--ease),
+    transform .35s var(--ease);
+}
+.news-close:hover,
+.news-close:focus-visible{
+  background:#FBE196;
+  color:#0D1B2A;
+  border-color:#FBE196;
+  transform:rotate(90deg);
+  outline:none;
+}
+
+.news-meta-row{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:16px;
+}
+.news-year{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.68rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(248,243,232,.55);
+}
+.news-tag{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.58rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:#0D1B2A;
+  background:#FBE196;
+  padding:5px 12px;
+  border-radius:999px;
+}
+
+.news-title{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:2rem;
+  line-height:1.2;
+  letter-spacing:-0.01em;
+  color:#F8F3E8;
+  margin:0 0 14px;
+  max-width:44ch;
+}
+.news-title em{font-style:italic}
+
+.news-summary{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.9rem;
+  letter-spacing:.08em;
+  color:rgba(255,255,255,.68);
+  line-height:1.65;
+  margin:0 0 28px;
+  padding-bottom:24px;
+  border-bottom:1px solid rgba(251,225,150,.22);
+}
+.news-summary:empty{display:none}
+
+.news-media{
+  margin:0 0 28px;
+  border:1px solid rgba(251,225,150,.22);
+  border-radius:2px;
+  overflow:hidden;
+  background:rgba(255,255,255,.02);
+}
+.news-media:empty{display:none}
+.news-media img,
+.news-media figure img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:440px;
+  object-fit:cover;
+}
+.news-media figure{margin:0}
+
+.news-body{
+  font-family:Manrope,sans-serif;
+  font-size:1.12rem;
+  line-height:1.7;
+  color:rgba(248,243,232,.88);
+}
+.news-body p{margin:0 0 14px}
+.news-body p:last-child{margin-bottom:0}
+.news-body ul{
+  margin:0 0 14px;
+  padding-left:22px;
+  list-style:disc outside;
+}
+.news-body ul li{margin-bottom:6px}
+.news-body a{
+  color:#7CECD5;
+  text-decoration:none;
+  border-bottom:1px solid rgba(124,236,213,.35);
+  transition:color .22s var(--ease), border-color .22s var(--ease);
+}
+.news-body a:hover,
+.news-body a:focus-visible{
+  color:#FBE196;
+  border-bottom-color:#FBE196;
+  outline:none;
+}
+.news-body strong{color:#F8F3E8}
+.news-body em{font-style:italic}
+
+@media (max-width:760px){
+  .news-modal{
+    width:100%;
+    max-width:100%;
+    margin:0;
+    height:100dvh;
+    max-height:100dvh;
+    border-radius:0;
+    border:none;
+  }
+  .news-modal-inner{
+    padding:64px 20px 32px;
+    max-height:100dvh;
+  }
+  .news-title{font-size:1.4rem; margin-bottom:12px}
+  .news-summary{font-size:.82rem; margin-bottom:22px; padding-bottom:18px}
+  .news-media{margin-bottom:22px}
+  .news-media img{max-height:260px}
+  .news-body{font-size:1rem; line-height:1.65}
+}
 
 @media (max-width:900px){
   .timeline{grid-template-columns:1fr; gap:0}
@@ -75,7 +565,7 @@
   .legal, .addr-block, .contact-card, .apply-step, .pos-card{padding:28px}
 }
 </style>
-<link rel="stylesheet" href="site_v4blend.css?v=6">
+<link rel="stylesheet" href="site_v4blend.css?v=16">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png">
@@ -95,7 +585,7 @@
     <a href="translational.html">Translational</a>
     <a href="publications.html">Publications</a>
     <a href="team.html">Team</a>
-    <a href="join.html">Join Us</a>
+    <a href="sponsors.html">Sponsors</a>
     <a href="news.html" aria-current="page">News</a>
     <a href="contact.html">Contact</a>
   </nav>
@@ -117,42 +607,184 @@
 
 
 <section class="sec">
-  <div class="sec-head">
-    <div class="eyebrow rv">§ Featured</div>
-    <div>
-      <h2 class="display" data-split-on-reveal>The lab is <em>active</em>.</h2>
-      <p class="sec-lede rv">Publications, funding, awards, conferences, collaborations, and research milestones. This page is a rolling log of what the lab is up to, in reverse chronological order.</p>
+  <div class="eyebrow rv" style="margin-bottom:20px">&sect; Featured publication</div>
+  <article class="featured-pub rv">
+    <div class="featured-pub-badge">
+      <span class="featured-pub-journal"><em>bioengineering</em></span>
+      <span class="featured-pub-sub">an Open Access Journal by MDPI</span>
     </div>
-  </div>
-  <div class="lead-figure">
-    <div class="figure hero-fig figure-reveal">
-    <div class="fig-inner microscopy" style="background-image:url('bg_merged.webp')"></div>
-    <div class="fig-stack"><img src="stack_merged.webp" alt=""></div>
-    <div class="fig-overlay"></div>
-    <div class="fig-label">Featured · March 2026</div>
-    <div class="fig-caption"><span class="sm">Cardiac organoid programme</span><span>Vol. 01 launch</span></div>
-  </div>
-  </div>
+    <h2 class="featured-pub-title">Cell-Based Therapies: Ferromagnetic Versus <em>Superparamagnetic</em> Cell Targeting</h2>
+    <p class="featured-pub-authors">Tasneem Halhouli, Lisa M&uuml;nchhalfen, Sarkawt Hamad, Larissa Schmitz-Ullrich, Frank Nitsche, Felix Gaedke, Astrid Schauss, Linlin Zhang, Quoc-Khanh Pham, Gang Bao, Kurt Paul Pfannkuche</p>
+    <p class="featured-pub-citation"><em>Bioengineering</em> <strong>2025</strong>, Volume 12, Issue 6, 657</p>
+    <a class="featured-pub-link" href="https://www.mdpi.com/2306-5354/12/6/657" target="_blank" rel="noopener noreferrer">
+      Read the full article
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+    </a>
+  </article>
 </section>
 
 <section class="sec" style="padding-bottom:100px">
-  <div class="sec-head">
-    <div class="eyebrow rv">§ All posts</div>
-    <div>
-      <h2 class="display" data-split-on-reveal>Filter by <em>category</em>.</h2>
-      <p class="sec-lede rv">Publications, funding, awards, conferences, collaborations, research milestones.</p>
+  <!--
+    News items. To add a new one, copy any .ed-item block and edit its
+    fields: the year/month in .year, the headline in <h3> (wrap words
+    in <em> for italics), the category + summary in .meta-line, the
+    chip label in .tag, and the short key in data-tag. Newest on top.
+  -->
+  <div class="ed-list">
+    <div class="ed-item rv in" data-tag="milestone">
+      <div class="year">2025 · 06</div>
+      <div class="body">
+        <h3>Scalable production of <em>cardiac organoids</em> &mdash; critical milestone achieved</h3>
+        <div class="meta-line">Research milestone &middot; Dr. Sarkawt Hamad and Ebru Aksoy scale up cardiac organoid differentiation for cell replacement therapy</div>
+        <figure class="ed-media"><img src="img_news/2025-06-scalable-organoids.jpg" alt="Scaling up cardiac organoid production in the lab" loading="lazy"></figure>
+        <div class="ed-body">
+          <p>For the first time, Dr. Sarkawt Hamad and Ebru Aksoy have succeeded in scaling up cardiac organoid differentiation for cell replacement therapy.</p>
+          <p>This milestone unlocks the production of therapeutically relevant quantities of cardiac organoids for preclinical transplantation trials &mdash; a key step on the translational path from bench to clinic.</p>
+        </div>
+      </div>
+      <div class="tag">Milestone</div>
+    </div>
+    <div class="ed-item rv in" data-tag="funding">
+      <div class="year">2025 · 05</div>
+      <div class="body">
+        <h3><em>BiRonCa</em> bioreactor project funded by ZukunftBio.NRW</h3>
+        <div class="meta-line">Funding &middot; ~&euro;850,000 over two years for bubble-free bioreactor scale-up with Biothrust GmbH</div>
+        <div class="ed-body">
+          <p>The working group led by Prof. Dr. Kurt Pfannkuche at the Marga and Walter Boll Laboratory for Cardiac Tissue Engineering is researching the use of cardiac organoids derived from human induced pluripotent stem cells for the treatment of cardiac infarction.</p>
+          <p>To produce therapeutically relevant quantities of organoids for preclinical transplantation trials, bioreactor processes are being optimised and scaled up from a small 200&nbsp;mL laboratory system to larger reactors with a volume of 2&ndash;3&nbsp;litres.</p>
+          <p>In a joint project with <strong>Biothrust GmbH</strong> (Aachen), an innovative gas transfer system is being tested that allows the reactors to be operated with higher cell densities. The Biothrust system is based on hollow fibres through which oxygen flows and is released into the cell culture medium without forming bubbles, while excess carbon dioxide is removed.</p>
+          <p>The state of North Rhine-Westphalia is funding the <em>Bionic Reactors for Cardiac Organoids (BiRonCa)</em> project for two years with around &euro;850,000.</p>
+          <p><a href="https://www.zukunftbio.nrw/projekte/bironca" target="_blank" rel="noopener noreferrer">Learn more at ZukunftBio.NRW &rarr;</a></p>
+        </div>
+      </div>
+      <div class="tag">Funding</div>
+    </div>
+    <div class="ed-item rv in" data-tag="award">
+      <div class="year">2025 · 03</div>
+      <div class="body">
+        <h3>Ebru Aksoy wins <em>Best Poster Award</em> at 3rd Dubai Stem Cell Congress</h3>
+        <div class="meta-line">Award &middot; 3rd Dubai Stem Cell Congress</div>
+        <figure class="ed-media"><img src="img_news/2025-03-ebru-aksoy-dubai-poster.jpg" alt="Ebru Aksoy receiving the Best Poster Award at the 3rd Dubai Stem Cell Congress" loading="lazy"></figure>
+        <div class="ed-body">
+          <p>Congratulations to <strong>Ebru Aksoy</strong> for winning the Best Poster Award (Student Category) at the 3rd Dubai Stem Cell Congress.</p>
+          <p>Her poster presented scalable manufacturing of human iPSC-derived cardiac organoids for preclinical therapy.</p>
+          <p><a href="https://dubaistemcellcongress.com/" target="_blank" rel="noopener noreferrer">About the Dubai Stem Cell Congress &rarr;</a></p>
+        </div>
+      </div>
+      <div class="tag">Award</div>
+    </div>
+    <div class="ed-item rv in" data-tag="publication">
+      <div class="year">2025 · 02</div>
+      <div class="body">
+        <h3>Engineered in vitro multi-cell type <em>ventricle model</em> published</h3>
+        <div class="meta-line">Publication &middot; Adv. Healthcare Materials &mdash; Kuckelkorn, Aksoy, Stojanovic, Oulahyane, Ritter, Pfannkuche, Fischer</div>
+        <div class="ed-body">
+          <p><em>&ldquo;Engineered In Vitro Multi-Cell Type Ventricle Model Generates Long-Term Pulsatile Flow and Modulates Cardiac Output in Response to Cardioactive Drugs.&rdquo;</em></p>
+          <p><strong>Authors:</strong> Christoph Kuckelkorn, Ebru Aksoy, Natalija Stojanovic, Laila Oulahyane, Mira Ritter, Kurt Pfannkuche, Horst Fischer.</p>
+          <p><strong>Published in:</strong> <em>Advanced Healthcare Materials</em>, 2025 Feb 13: e2403897. doi:&nbsp;10.1002/adhm.202403897</p>
+          <p><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adhm.202403897" target="_blank" rel="noopener noreferrer">Read the full article &rarr;</a></p>
+        </div>
+      </div>
+      <div class="tag">Publication</div>
+    </div>
+    <div class="ed-item rv in" data-tag="milestone">
+      <div class="year">2023 · 06</div>
+      <div class="body">
+        <h3>Official opening of the <em>Marga and Walter Boll Laboratory</em></h3>
+        <div class="meta-line">Milestone &middot; Inauguration event at the Medical Faculty, University of Cologne</div>
+        <div class="ed-body">
+          <p>The Marga and Walter Boll Laboratory for Cardiac Tissue Engineering was officially opened on Thursday, 22 June 2023, in the large lecture hall of the physiology department of the Medical Faculty, University of Cologne.</p>
+          <p>Invited scientists presented current projects alongside talks from international experts:</p>
+          <ul>
+            <li><strong>11:00</strong> &mdash; Priv.-Doz. Dr. Kurt Pfannkuche (Cologne): &ldquo;Research at the Laboratory for Cardiac Tissue Engineering&rdquo;</li>
+            <li><strong>11:40</strong> &mdash; Dr. Sarkawt Hamad (Cologne): &ldquo;Human Cardiac Organoids for Cell Replacement Therapy&rdquo;</li>
+            <li><strong>13:00</strong> &mdash; Prof. Dr. Konrad Brockmeier (Cologne): &ldquo;Challenges in congenital heart disease&rdquo;</li>
+            <li><strong>13:30</strong> &mdash; Prof. Dr. Bastiaan Boukens (Maastricht): &ldquo;Arrhythmias in structural heart disease&rdquo;</li>
+            <li><strong>14:15</strong> &mdash; Prof. Dr. Horst Fischer (RWTH Aachen): &ldquo;The Potential of Acoustics for 3D Tissue Engineering&rdquo;</li>
+            <li><strong>14:45</strong> &mdash; Dr. Nadine Nottrodt (Fraunhofer ILT): &ldquo;Laser induced forward transfer for cell printing&rdquo;</li>
+            <li><strong>15:00</strong> &mdash; Katharina Schwab (Cologne): &ldquo;Macroporous cryogel beads for cell culture&rdquo;</li>
+            <li><strong>15:15</strong> &mdash; Philipp Jahn (Cologne): &ldquo;Cardiac microtissues by microfluidics&rdquo;</li>
+            <li><strong>15:30</strong> &mdash; Lisa M&uuml;nchhalfen (Cologne): &ldquo;Intraembryonic organ complementation assay&rdquo;</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tag">Milestone</div>
+    </div>
+    <div class="ed-item rv in" data-tag="collaboration">
+      <div class="year">2023 · 06</div>
+      <div class="body">
+        <h3><em>Hortman Stem Cell Laboratory</em> collaboration launched</h3>
+        <div class="meta-line">Collaboration &middot; Dr. Fatma Alhashimi joins the MWB Lab opening as guest of honour</div>
+        <figure class="ed-media"><img src="img_news/2023-06-hortman-collaboration.jpg" alt="Dr. Fatma Alhashimi at the Marga and Walter Boll Laboratory opening" loading="lazy"></figure>
+        <div class="ed-body">
+          <p>On the occasion of the official opening of the Marga and Walter Boll Laboratory, we were honoured to welcome <strong>Dr. Fatma Alhashimi</strong>, director of the Hortman Stem Cell Laboratories in Dubai, as our guest.</p>
+          <p>Hortman Laboratories operates the <strong>first GMP laboratory for stem cells in the United Arab Emirates</strong>. We are looking forward to the cooperation.</p>
+        </div>
+      </div>
+      <div class="tag">Collaboration</div>
+    </div>
+    <div class="ed-item rv in" data-tag="funding">
+      <div class="year">2022 · 12</div>
+      <div class="body">
+        <h3><em>PERIDIAN</em> project receives ZukunftBIO.NRW funding recommendation</h3>
+        <div class="meta-line">Funding &middot; Joint project with innoVitro GmbH and Fraunhofer Institute for Laser Technology</div>
+        <div class="ed-body">
+          <p>North Rhine-Westphalia has announced the positively evaluated projects in the <em>Zukunftsmedizin</em> call.</p>
+          <p>We are happy to find our <strong>PERIDIAN</strong> project on the list of successful applications. Together with our partners <strong>innoVitro GmbH</strong> and the <strong>Fraunhofer Institute for Laser Technology</strong>, we look forward to an exciting project.</p>
+          <p><a href="https://www.zukunftbio.nrw/projekte" target="_blank" rel="noopener noreferrer">All ZukunftBio.NRW projects &rarr;</a></p>
+        </div>
+      </div>
+      <div class="tag">Funding</div>
+    </div>
+    <div class="ed-item rv in" data-tag="publication">
+      <div class="year">2022 · 06</div>
+      <div class="body">
+        <h3>High-efficient serum-free differentiation of <em>endothelial cells</em> from hiPSCs</h3>
+        <div class="meta-line">Publication &middot; Stem Cell Research &amp; Therapy 13(1):251 &mdash; Hamad, Derichsweiler, Gaspar, Brockmeier, Hescheler, Sachinidis, Pfannkuche</div>
+        <div class="ed-body">
+          <p><em>&ldquo;High-efficient serum-free differentiation of endothelial cells from human iPS cells.&rdquo;</em></p>
+          <p><strong>Authors:</strong> Sarkawt Hamad, Daniel Derichsweiler, John Antonydas Gaspar, Konrad Brockmeier, J&uuml;rgen Hescheler, Agapios Sachinidis, Kurt Paul Pfannkuche.</p>
+          <p><strong>Published in:</strong> <em>Stem Cell Research &amp; Therapy</em>, 2022 Jun 11; 13(1):251.</p>
+          <p><strong>Introduction.</strong> Endothelial cells (ECs) form the inner lining of all blood vessels and play important roles in vascular tone regulation, hormone secretion, anticoagulation, and immune cell extravasation. Limitless EC sources are required for in vitro studies and tissue engineering.</p>
+          <p><strong>Method.</strong> Human iPSCs are cultured under serum-free conditions and induced into mesodermal progenitor cells via Wnt signalling for 24&nbsp;h, then further differentiated into ECs using a combination of VEGF, bFGF, 8-Bromoadenosine 3&prime;,5&prime;-cyclic monophosphate (8Bro), and melatonin for 48&nbsp;h.</p>
+          <p><strong>Result.</strong> The protocol generates hiPSC-derived ECs at 90.9&nbsp;&plusmn;&nbsp;1.5% efficiency in only six days, without animal-derived serum, and transfers cleanly from 2D monolayers into 3D scalable bioreactor suspension cultures.</p>
+          <p><a href="https://stemcellres.biomedcentral.com/articles/10.1186/s13287-022-02924-x" target="_blank" rel="noopener noreferrer">Read the full article &rarr;</a></p>
+        </div>
+      </div>
+      <div class="tag">Publication</div>
+    </div>
+    <div class="ed-item rv in" data-tag="publication">
+      <div class="year">2022 · 05</div>
+      <div class="body">
+        <h3>Generation of cardiac <em>microtissues</em> by microfluidic cell encapsulation</h3>
+        <div class="meta-line">Publication &middot; Biofabrication &mdash; Jahn, Karger, Khalaf, Hamad, Peinkofer et al.</div>
+        <div class="ed-body">
+          <p><em>&ldquo;Engineering of cardiac microtissues by microfluidic cell encapsulation in thermoshrinking non-crosslinked PNIPAAm gels.&rdquo;</em></p>
+          <p><strong>Authors:</strong> Philipp Jahn, Rebecca Katharina Karger, Shahab Soso Khalaf, Sarkawt Hamad, Gabriel Peinkofer, Raja Ghazanfar Ali Sahito, Stephanie Pieroth, Frank Nitsche, Junqi Lu, Daniel Derichsweiler, Konrad Brockmeier, J&uuml;rgen Hescheler, Annette Schmidt, Kurt Paul Pfannkuche.</p>
+          <p><strong>Published in:</strong> <em>Biofabrication</em>, accepted manuscript.</p>
+          <p>Cardiomyocytes and MSCs are encapsulated in PNIPAAm droplets above the lower critical solute temperature (32&nbsp;&deg;C), trapping cells in a collapsing polymer network and increasing local cell density by an order of magnitude. Stable, rhythmically contracting microtissues form within 24&nbsp;h and are released by washout below the LCST.</p>
+          <p><a href="https://iopscience.iop.org/article/10.1088/1758-5090/ac73b5" target="_blank" rel="noopener noreferrer">Download the accepted manuscript &rarr;</a></p>
+        </div>
+      </div>
+      <div class="tag">Publication</div>
     </div>
   </div>
-  <div class="ed-list">
-    <div class="ed-item rv" data-tag="milestone"><div class="year">2026 · 03</div><div class="body"><h3>Cardiac organoid programme enters <em>Vol. 01</em></h3><div class="meta-line">Research milestone · first volume of the atlas published</div></div><div class="tag">Milestone</div></div>
-    <div class="ed-item rv" data-tag="publication"><div class="year">2025 · 11</div><div class="body"><h3>Hydrogel scaffold paper accepted</h3><div class="meta-line">Publication · placeholder journal</div></div><div class="tag">Publication</div></div>
-    <div class="ed-item rv" data-tag="collab"><div class="year">2025 · 09</div><div class="body"><h3>Porcine MI model validation complete</h3><div class="meta-line">Collaboration · preclinical partners</div></div><div class="tag">Collaboration</div></div>
-    <div class="ed-item rv" data-tag="funding"><div class="year">2025 · 06</div><div class="body"><h3>New funding awarded for organoid programme</h3><div class="meta-line">Funding · placeholder source</div></div><div class="tag">Funding</div></div>
-    <div class="ed-item rv" data-tag="conference"><div class="year">2025 · 04</div><div class="body"><h3>Lab presents at ISSCR annual meeting</h3><div class="meta-line">Conference · placeholder venue</div></div><div class="tag">Conference</div></div>
-    <div class="ed-item rv" data-tag="award"><div class="year">2024 · 12</div><div class="body"><h3>Research award for translational cardiac therapy</h3><div class="meta-line">Award · placeholder award name</div></div><div class="tag">Award</div></div>
-  </div>
-  <p class="mono rv" style="margin-top:32px; color:var(--muted)">Entries above are structured placeholders ready to be populated with real dates, titles, summaries, and images.</p>
 </section>
+
+<!-- Shared news modal, populated on click from any .ed-item with a .ed-body child -->
+<dialog id="newsModal" class="news-modal" aria-labelledby="newsTitle">
+  <button type="button" class="news-close" aria-label="Close">&times;</button>
+  <div class="news-modal-inner">
+    <div class="news-meta-row">
+      <span class="news-year" id="newsYear"></span>
+      <span class="news-tag" id="newsTagLabel"></span>
+    </div>
+    <h3 class="news-title" id="newsTitle"></h3>
+    <div class="news-summary" id="newsSummary"></div>
+    <div class="news-media" id="newsMedia"></div>
+    <div class="news-body" id="newsBody"></div>
+  </div>
+</dialog>
 
 <script>
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -315,7 +947,100 @@ document.querySelectorAll('.ed-filters').forEach(bar => {
     if(step) step.scrollIntoView({ behavior:'smooth', block:'center' });
   }));
 })();
+
+/* ========== NEWS DETAIL MODAL ========== */
+(function initNewsModal(){
+  const modal = document.getElementById('newsModal');
+  if(!modal || typeof modal.showModal !== 'function') return;
+
+  const yearEl    = document.getElementById('newsYear');
+  const tagEl     = document.getElementById('newsTagLabel');
+  const titleEl   = document.getElementById('newsTitle');
+  const summaryEl = document.getElementById('newsSummary');
+  const mediaEl   = document.getElementById('newsMedia');
+  const bodyEl    = document.getElementById('newsBody');
+  const closeBtn  = modal.querySelector('.news-close');
+  const inner     = modal.querySelector('.news-modal-inner');
+
+  // Any .ed-item that contains a .ed-body (full detail) becomes a
+  // clickable card that opens the shared modal on click / Enter / Space.
+  document.querySelectorAll('.ed-item').forEach(item => {
+    if(!item.querySelector('.ed-body')) return;
+    item.classList.add('has-detail');
+    item.setAttribute('role', 'button');
+    item.setAttribute('tabindex', '0');
+    const h3 = item.querySelector('h3');
+    if(h3){
+      const label = 'Read more: ' + h3.textContent.trim();
+      item.setAttribute('aria-label', label);
+    }
+  });
+
+  function openFromItem(item){
+    const year    = item.querySelector('.year');
+    const tag     = item.querySelector('.tag');
+    const title   = item.querySelector('.body h3');
+    const summary = item.querySelector('.body > .meta-line');
+    const media   = item.querySelector('.body > .ed-media');
+    const body    = item.querySelector('.body > .ed-body');
+
+    yearEl.textContent   = year    ? year.textContent    : '';
+    tagEl.textContent    = tag     ? tag.textContent     : '';
+    titleEl.innerHTML    = title   ? title.innerHTML     : '';
+    summaryEl.innerHTML  = summary ? summary.innerHTML   : '';
+    mediaEl.innerHTML    = media   ? media.outerHTML     : '';
+    bodyEl.innerHTML     = body    ? body.innerHTML      : '';
+
+    if(inner) inner.scrollTop = 0;
+    modal.classList.remove('closing');
+    modal.showModal();
+  }
+
+  function closeModal(){
+    if(modal.classList.contains('closing')) return;
+    modal.classList.add('closing');
+    const done = (e) => {
+      if(e.animationName !== 'newsOut') return;
+      modal.removeEventListener('animationend', done);
+      modal.close();
+      modal.classList.remove('closing');
+    };
+    modal.addEventListener('animationend', done);
+    setTimeout(() => {
+      if(modal.classList.contains('closing')){
+        modal.removeEventListener('animationend', done);
+        modal.close();
+        modal.classList.remove('closing');
+      }
+    }, 400);
+  }
+
+  document.querySelectorAll('.ed-item.has-detail').forEach(item => {
+    item.addEventListener('click', e => {
+      // Don't hijack clicks on links inside the card (if any ever exist)
+      if(e.target.closest('a')) return;
+      openFromItem(item);
+    });
+    item.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        openFromItem(item);
+      }
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  // Click on the dark backdrop area (outside the inner content) closes.
+  modal.addEventListener('click', e => {
+    if(e.target === modal) closeModal();
+  });
+  // Esc key uses the native dialog cancel event; intercept to animate.
+  modal.addEventListener('cancel', e => {
+    e.preventDefault();
+    closeModal();
+  });
+})();
 </script>
-<script src="site_v4blend.js?v=8"></script>
+<script src="site_v4blend.js?v=9"></script>
 </body>
 </html>

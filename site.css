@@ -11,7 +11,7 @@
   --muted:#7a7369;
   --line:rgba(20,23,26,.10);
   --line-strong:rgba(20,23,26,.22);
-  --accent:#C6A55A;
+  --accent:#FBE196;
   --heart:#b54a3e;       /* reserved, used sparingly */
   --ease:cubic-bezier(.19,1,.22,1);
   --ease-smooth:cubic-bezier(.6,.05,.2,1);
@@ -51,11 +51,7 @@ a{text-decoration:none;color:inherit}
   position:fixed; inset:0; z-index:-2; pointer-events:none;
   background:radial-gradient(ellipse at 50% 0%, transparent 40%, rgba(20,23,26,.06) 100%);
 }
-.grain{
-  position:fixed; inset:0; z-index:-1; pointer-events:none;
-  opacity:.32;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+.grain{display:none}
 
 /* =========================================================
    CHROME — topbar, progress, footer
@@ -146,7 +142,7 @@ html:not(.loading) .topbar{transform:translateY(0); opacity:1}
    ========================================================= */
 .eyebrow{
   font-family:"JetBrains Mono",monospace;
-  font-size:.72rem;
+  font-size:.86rem;
   font-weight:400;
   letter-spacing:.14em;
   text-transform:uppercase;
@@ -155,6 +151,32 @@ html:not(.loading) .topbar{transform:translateY(0); opacity:1}
 }
 .eyebrow::before{
   content:""; width:28px; height:1px; background:var(--ink); opacity:.5;
+}
+
+/* Page hero eyebrow spans the full width of the hero card on
+   desktop so the decorative line reads as a section rule rather
+   than a short dash. On mobile the hero is centered, so we leave
+   the eyebrow as its original inline-flex dash. */
+@media (min-width:901px){
+  .page-hero .eyebrow{
+    display:flex;
+    width:100%;
+  }
+  .page-hero .eyebrow::before{
+    flex:1;
+    width:auto;
+    max-width:none;
+    margin-right:4px;
+  }
+  /* Title and lede span the full hero width instead of being
+     capped to narrow measures (16ch for h1, 58ch for the lede).
+     !important is needed to beat site_v4blend.css's lede rule. */
+  .page-hero h1{
+    max-width:none!important;
+  }
+  .page-hero .lede{
+    max-width:none!important;
+  }
 }
 
 h1.display, h2.display{
@@ -186,9 +208,9 @@ h3.subhead em{font-style:italic}
 
 .lede{
   font-family:Manrope,sans-serif;
-  font-size:1.06rem;
+  font-size:1.38rem;
   font-weight:400;
-  line-height:1.62;
+  line-height:1.6;
   color:var(--ink-2);
   max-width:46ch;
 }
@@ -244,21 +266,25 @@ h3.subhead em{font-style:italic}
 }
 .sec-head{
   display:grid;
-  grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);
-  gap:80px;
-  align-items:end;
+  grid-template-columns:1fr;
+  gap:18px;
+  align-items:start;
   margin-bottom:72px;
   border-bottom:1px solid var(--line);
   padding-bottom:48px;
+  text-align:left;
 }
 .sec-head .eyebrow{margin-bottom:0}
-.sec-head h2.display{max-width:14ch}
+.sec-head > div{text-align:left}
+.sec-head h2.display{max-width:28ch; text-align:left; margin-left:0}
 .sec-head .sec-lede{
   margin-top:18px;
-  font-size:1rem;
+  font-size:1.32rem;
   line-height:1.62;
   color:var(--ink-2);
-  max-width:52ch;
+  max-width:64ch;
+  text-align:left;
+  margin-left:0;
 }
 
 /* =========================================================
@@ -279,7 +305,7 @@ h3.subhead em{font-style:italic}
 }
 .card h3{font-family:var(--serif); font-variation-settings:"opsz" 144; font-weight:400; font-size:1.3rem; letter-spacing:-0.01em; margin:0 0 10px}
 .card h3 em{font-style:italic}
-.card p{font-size:.94rem; line-height:1.62; color:var(--ink-2); margin:0}
+.card p{font-size:1.12rem; line-height:1.65; color:var(--ink-2); margin:0}
 
 /* =========================================================
    FOOTER
@@ -316,7 +342,7 @@ h3.subhead em{font-style:italic}
   margin-bottom:18px;
 }
 .foot .wordmark em{font-style:italic}
-.foot p{color:var(--muted); line-height:1.6; font-size:.82rem; margin:0; max-width:40ch}
+.foot p{color:var(--muted); line-height:1.6; font-size:.95rem; margin:0; max-width:42ch}
 .foot .addr{
   margin-top:14px;
   font-family:"JetBrains Mono",monospace;
@@ -426,15 +452,12 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   .foot{grid-template-columns:1fr}
 
   /* ── Mobile layout refinements ── */
-  .page-hero{padding:60px 16px 24px; text-align:center}
-  .page-hero h1{margin-left:auto; margin-right:auto; font-size:1.4rem; line-height:1.1}
-  .page-hero .lede{margin-left:auto; margin-right:auto; font-size:.75rem; line-height:1.5}
-  .page-hero .eyebrow{margin-bottom:14px; font-size:.55rem}
-  .team-group{padding:0 16px 24px}
-  .team-group-head{margin-bottom:16px}
-  .team-group-label{font-size:.55rem}
-  .team-group-count{font-size:.5rem}
-  .sec{padding:64px 14px 20px}
+  .page-hero{padding:88px 16px 12px; text-align:center}
+  .page-hero h1{margin:0 auto 14px; font-size:1.4rem; line-height:1.15; max-width:none}
+  .page-hero .lede{margin:0 auto; font-size:.75rem; line-height:1.5}
+  .page-hero .eyebrow{margin-bottom:10px; font-size:.55rem}
+  .team-group-count{font-size:.7rem}
+  .sec{padding:5px 14px 20px}
   .sec-head{text-align:left}
   .sec-head h2.display{margin-left:0; margin-right:0; max-width:none}
   .sec-head .lede{margin-left:0; margin-right:0}
@@ -629,8 +652,8 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 }
 .split-sec .split-prose h3 em{font-style:italic; font-weight:400}
 .split-sec .split-prose p{
-  font-size:1rem; line-height:1.68; color:var(--ink-2); margin:0 0 28px;
-  max-width:44ch;
+  font-size:1.18rem; line-height:1.65; color:var(--ink-2); margin:0 0 28px;
+  max-width:48ch;
 }
 .split-sec .split-prose .meta-list{
   display:grid;
@@ -665,7 +688,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   grid-template-columns:none;
 }
 .card-grid.four > .fig-card{
-  flex:0 0 220px;
+  flex:0 0 260px;
 }
 .card-grid:last-child{margin-bottom:0}
 
@@ -697,27 +720,29 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   box-shadow:0 4px 20px rgba(0,0,0,.10);
   transition:box-shadow .4s var(--ease), transform .4s var(--ease);
 }
-.fig-card .body{padding:16px 4px 0; text-align:center}
+.fig-card .body{padding:22px 8px 6px; text-align:center}
 .fig-card h3{
   font-family:var(--serif);
   font-variation-settings:"opsz" 144;
   font-weight:400;
-  font-size:1.05rem;
-  letter-spacing:-0.01em;
-  margin:0 0 4px;
+  font-size:1.3rem;
+  line-height:1.25;
+  letter-spacing:-0.015em;
+  margin:0 0 8px;
+  white-space:nowrap;
 }
 .fig-card h3 em{font-style:italic}
 .fig-card .mono{
   font-family:"JetBrains Mono",monospace;
-  font-size:.58rem; letter-spacing:.10em; text-transform:uppercase;
+  font-size:.88rem; letter-spacing:.12em; text-transform:uppercase;
   color:var(--muted);
-  margin-bottom:8px;
+  margin-bottom:14px;
 }
-.fig-card p{font-size:.78rem; line-height:1.5; color:var(--ink-2); margin:0; max-width:28ch; margin-left:auto; margin-right:auto}
+.fig-card p{font-size:1.02rem; line-height:1.55; color:var(--ink-2); margin:0; max-width:32ch; margin-left:auto; margin-right:auto}
 .fig-card .meta{
-  margin-top:10px;
+  margin-top:14px;
   font-family:"JetBrains Mono",monospace;
-  font-size:.58rem;
+  font-size:.92rem;
   color:var(--muted);
   word-break:break-all;
 }
@@ -758,7 +783,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   position:absolute;
   left:0; top:0; bottom:0;
   width:3px;
-  background:linear-gradient(180deg, rgba(198,165,90,.9), rgba(198,165,90,.3));
+  background:linear-gradient(180deg, rgba(251,225,150,.9), rgba(251,225,150,.3));
   transform:scaleY(0);
   transform-origin:top;
   transition:transform .4s var(--ease);
@@ -778,19 +803,19 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 }
 .pub-year{
   font-family:"JetBrains Mono",monospace;
-  font-size:.68rem;
+  font-size:.82rem;
   letter-spacing:.1em;
-  color:rgba(198,165,90,.95);
+  color:rgba(251,225,150,.95);
   font-variant-numeric:tabular-nums;
   font-weight:500;
 }
 .pub-type{
   font-family:"JetBrains Mono",monospace;
-  font-size:.52rem;
+  font-size:.66rem;
   letter-spacing:.12em;
   text-transform:uppercase;
   color:var(--muted);
-  padding:3px 9px;
+  padding:4px 10px;
   border:1px solid var(--line);
   border-radius:999px;
   white-space:nowrap;
@@ -799,7 +824,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   font-family:var(--serif);
   font-variation-settings:"opsz" 144;
   font-weight:400;
-  font-size:1rem;
+  font-size:1.18rem;
   line-height:1.3;
   letter-spacing:-0.01em;
   margin:0;
@@ -808,17 +833,17 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 .pub-title em{font-style:italic}
 .pub-meta{
   font-family:"JetBrains Mono",monospace;
-  font-size:.6rem;
-  line-height:1.5;
+  font-size:.78rem;
+  line-height:1.55;
   color:var(--muted);
   letter-spacing:.03em;
   margin-top:auto;
   padding-top:4px;
 }
 .pub-meta a{
-  color:rgba(198,165,90,.95);
+  color:rgba(251,225,150,.95);
   text-decoration:none;
-  border-bottom:1px solid rgba(198,165,90,.3);
+  border-bottom:1px solid rgba(251,225,150,.3);
   transition:border-color .25s var(--ease), color .25s var(--ease);
 }
 .pub-meta a:hover{
@@ -851,7 +876,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   position:absolute;
   left:0; top:0; bottom:0;
   width:3px;
-  background:linear-gradient(180deg, rgba(198,165,90,.9), rgba(198,165,90,.3));
+  background:linear-gradient(180deg, rgba(251,225,150,.9), rgba(251,225,150,.3));
   transform:scaleY(0);
   transform-origin:top;
   transition:transform .45s var(--ease);
@@ -865,7 +890,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 .ed-item:hover::before{transform:scaleY(1)}
 .ed-item .year{
   font-family:"JetBrains Mono",monospace;
-  font-size:.74rem; color:var(--ink);
+  font-size:.88rem; color:var(--ink);
   letter-spacing:.08em;
   font-variant-numeric:tabular-nums;
   font-weight:500;
@@ -874,37 +899,37 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   font-family:var(--serif);
   font-variation-settings:"opsz" 144;
   font-weight:400;
-  font-size:1rem;
-  line-height:1.25;
+  font-size:1.2rem;
+  line-height:1.28;
   letter-spacing:-0.01em;
   margin:0 0 5px;
-  max-width:52ch;
+  max-width:56ch;
 }
 .ed-item .body h3 em{font-style:italic}
 .ed-item .body .meta-line{
   font-family:"JetBrains Mono",monospace;
-  font-size:.62rem;
+  font-size:.78rem;
   color:var(--muted);
   letter-spacing:.04em;
 }
 .ed-item .body .meta-line em{font-style:italic; color:var(--ink-2)}
 .ed-item .tag{
   font-family:"JetBrains Mono",monospace;
-  font-size:.58rem;
+  font-size:.72rem;
   text-transform:uppercase;
   letter-spacing:.14em;
-  color:rgba(198,165,90,.95);
+  color:rgba(251,225,150,.95);
   padding:7px 14px;
-  border:1px solid rgba(198,165,90,.35);
+  border:1px solid rgba(251,225,150,.35);
   border-radius:999px;
   white-space:nowrap;
   align-self:center;
-  background:rgba(198,165,90,.08);
+  background:rgba(251,225,150,.08);
   transition:background .3s var(--ease), border-color .3s var(--ease);
 }
 .ed-item:hover .tag{
-  background:rgba(198,165,90,.16);
-  border-color:rgba(198,165,90,.55);
+  background:rgba(251,225,150,.16);
+  border-color:rgba(251,225,150,.55);
 }
 
 /* responsive overrides */
@@ -913,7 +938,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   .split-sec.reverse .split-prose{order:0}
   .card-grid{grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom:80px}
   .card-grid.two{grid-template-columns:1fr}
-  .card-grid.four > .fig-card{flex:0 0 200px}
+  .card-grid.four > .fig-card{flex:0 0 240px}
   .lead-figure{margin-bottom:80px}
   .ed-list{grid-template-columns:1fr}
   .ed-item{grid-template-columns:56px 1fr; gap:14px; padding:16px 18px}
@@ -924,11 +949,11 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   .card-grid.two{grid-template-columns:1fr}
   .card-grid.four{flex-wrap:wrap !important; gap:16px 12px; justify-content:flex-start}
   .card-grid.four > .fig-card{flex:0 0 calc(50% - 8px); min-width:0; max-width:200px}
-  .fig-card .body{padding:10px 4px 0}
-  .fig-card h3{font-size:.85rem}
-  .fig-card .mono{font-size:.5rem; letter-spacing:.08em; margin-bottom:4px}
-  .fig-card p{font-size:.7rem; line-height:1.4}
-  .fig-card .meta{font-size:.5rem}
+  .fig-card .body{padding:14px 4px 4px}
+  .fig-card h3{font-size:1rem; line-height:1.25; white-space:normal}
+  .fig-card .mono{font-size:.58rem; letter-spacing:.1em; margin-bottom:6px}
+  .fig-card p{font-size:.82rem; line-height:1.45}
+  .fig-card .meta{font-size:.6rem; margin-top:8px}
   .figure.portrait{margin-top:12px}
 }
 
@@ -1129,8 +1154,8 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 }
 .atlas-step h3 em{font-style:italic; font-weight:400}
 .atlas-step p{
-  font-size:1.02rem; line-height:1.7; color:var(--ink-2); margin:0 0 32px;
-  max-width:44ch;
+  font-size:1.18rem; line-height:1.68; color:var(--ink-2); margin:0 0 32px;
+  max-width:48ch;
 }
 .atlas-step .meta-list{
   display:grid;

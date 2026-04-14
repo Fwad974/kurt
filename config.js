@@ -9,14 +9,14 @@ window.SITE_CONFIG = {
      co-authored work isn't shown twice.
      Format: xxxx-xxxx-xxxx-xxxx */
   orcidIds: [
-    "0000-0002-5155-9467",
-    "0000-0002-4284-774X",
+    "0000-0002-5155-9467", // Kurt Pfannkuche
+    "0000-0002-4284-774X", // Sarkawt Hamad
   ],
 
-  /* Maximum number of publications to show on the Publications page. */
-  publicationsLimit: 20,
+  /* Only show publications from this year onwards. */
+  publicationsSinceYear: 2018,
 
-  /* External profile links (used by buttons on the Publications page). */
-  googleScholarUrl: "",
-  orcidUrl: "https://orcid.org/0000-0002-5155-9467"
+  /* Maximum number of publications to show on the Publications page.
+     Set to 0 (or omit) to show every entry at or after publicationsSinceYear. */
+  publicationsLimit: 0
 };
