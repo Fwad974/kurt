@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=30">
+<link rel="stylesheet" href="site.css?v=31">
 <style>
 .split-fig{min-height:360px}
 .fig-svg{
@@ -108,7 +108,7 @@ body[data-page="team"] .sec-head .eyebrow{
 .fig-card.has-bio:focus-visible{outline:none}
 .fig-card.has-bio:focus-visible .figure{
   box-shadow:
-    0 0 0 1px #C6A55A,
+    0 0 0 1px #FBE196,
     0 28px 56px -32px rgba(20,23,26,.32);
 }
 
@@ -125,7 +125,7 @@ body[data-page="team"] .sec-head .eyebrow{
   color:rgba(244,240,232,.95);
   background:rgba(13,27,42,.82);
   backdrop-filter:blur(4px);
-  border:1px solid rgba(198,165,90,.35);
+  border:1px solid rgba(251,225,150,.35);
   border-radius:999px;
   opacity:0;
   transform:translateY(-4px);
@@ -137,7 +137,7 @@ body[data-page="team"] .sec-head .eyebrow{
   content:"→";
   font-size:.7rem;
   letter-spacing:0;
-  color:#C6A55A;
+  color:#FBE196;
 }
 .fig-card.has-bio:hover .bio-hint,
 .fig-card.has-bio:focus-visible .bio-hint{
@@ -159,7 +159,7 @@ body[data-page="team"] .sec-head .eyebrow{
   color:var(--ink);
   border-radius:3px;
   box-shadow:
-    0 0 0 1px rgba(198,165,90,.2),
+    0 0 0 1px rgba(251,225,150,.2),
     0 60px 120px -32px rgba(0,0,0,.6),
     0 24px 48px -20px rgba(0,0,0,.35);
   overflow:hidden;
@@ -200,7 +200,7 @@ body[data-page="team"] .sec-head .eyebrow{
   position:relative;
   flex:0 0 300px;
   background:
-    radial-gradient(ellipse at 50% 30%, rgba(198,165,90,.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 30%, rgba(251,225,150,.08) 0%, transparent 60%),
     linear-gradient(180deg, var(--bone-2), var(--bone));
   background-size:cover;
   background-position:center 20%;
@@ -227,14 +227,14 @@ body[data-page="team"] .sec-head .eyebrow{
   content:"";
   position:absolute; top:0; right:0; bottom:0;
   width:1px;
-  background:rgba(198,165,90,.15);
+  background:rgba(251,225,150,.15);
   z-index:2;
 }
 /* Monogram fallback when a card has no portrait image */
 .bio-portrait.no-img{
   background:
-    radial-gradient(ellipse at 50% 30%, rgba(198,165,90,.18) 0%, transparent 62%),
-    linear-gradient(160deg, var(--bone-2) 0%, var(--bone) 55%, rgba(198,165,90,.05) 100%);
+    radial-gradient(ellipse at 50% 30%, rgba(251,225,150,.18) 0%, transparent 62%),
+    linear-gradient(160deg, var(--bone-2) 0%, var(--bone) 55%, rgba(251,225,150,.05) 100%);
 }
 .bio-initials{
   position:absolute;
@@ -248,7 +248,7 @@ body[data-page="team"] .sec-head .eyebrow{
   font-style:italic;
   font-size:6rem;
   letter-spacing:-0.04em;
-  color:rgba(198,165,90,.65);
+  color:rgba(251,225,150,.65);
   opacity:0;
   transition:opacity .35s var(--ease);
   pointer-events:none;
@@ -312,22 +312,22 @@ body[data-page="team"] .sec-head .eyebrow{
   padding-right:16px;
   margin-right:-16px;
   scrollbar-width:thin;
-  scrollbar-color:rgba(198,165,90,.35) transparent;
+  scrollbar-color:rgba(251,225,150,.35) transparent;
 }
 .bio-text::-webkit-scrollbar{width:6px}
 .bio-text::-webkit-scrollbar-track{background:transparent; margin:4px 0}
 .bio-text::-webkit-scrollbar-thumb{
-  background:rgba(198,165,90,.35);
+  background:rgba(251,225,150,.35);
   border-radius:3px;
 }
-.bio-text::-webkit-scrollbar-thumb:hover{background:rgba(198,165,90,.55)}
+.bio-text::-webkit-scrollbar-thumb:hover{background:rgba(251,225,150,.55)}
 
 .bio-eyebrow{
   font-family:"JetBrains Mono",monospace;
   font-size:.6rem;
   letter-spacing:.24em;
   text-transform:uppercase;
-  color:#C6A55A;
+  color:#FBE196;
   display:flex; align-items:center; gap:14px;
   margin:0 0 22px;
 }
@@ -335,7 +335,7 @@ body[data-page="team"] .sec-head .eyebrow{
   content:"";
   display:block;
   width:28px; height:1px;
-  background:#C6A55A;
+  background:#FBE196;
   opacity:.7;
 }
 
@@ -359,7 +359,7 @@ body[data-page="team"] .sec-head .eyebrow{
   color:rgba(248,243,232,.68);
   margin:0 0 28px;
   padding-bottom:22px;
-  border-bottom:1px solid rgba(198,165,90,.22);
+  border-bottom:1px solid rgba(251,225,150,.22);
 }
 
 .bio-text p{
@@ -375,13 +375,13 @@ body[data-page="team"] .sec-head .eyebrow{
 .bio-text a{
   color:var(--ink);
   text-decoration:none;
-  border-bottom:1px solid rgba(198,165,90,.55);
+  border-bottom:1px solid rgba(251,225,150,.55);
   transition:color .22s var(--ease), border-color .22s var(--ease);
 }
 .bio-text a:hover,
 .bio-text a:focus-visible{
-  color:#C6A55A;
-  border-bottom-color:#C6A55A;
+  color:#FBE196;
+  border-bottom-color:#FBE196;
   outline:none;
 }
 
@@ -390,7 +390,7 @@ body[data-page="team"] .sec-head .eyebrow{
 .bio-contact{
   margin-top:28px;
   padding-top:22px;
-  border-top:1px solid rgba(198,165,90,.22);
+  border-top:1px solid rgba(251,225,150,.22);
   display:flex;
   flex-wrap:wrap;
   gap:12px;
@@ -400,9 +400,9 @@ body[data-page="team"] .sec-head .eyebrow{
   height:42px;
   color:rgba(248,243,232,.92);
   text-decoration:none;
-  border:1px solid rgba(198,165,90,.35);
+  border:1px solid rgba(251,225,150,.35);
   border-radius:50%;
-  background:rgba(198,165,90,.04);
+  background:rgba(251,225,150,.04);
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -419,9 +419,9 @@ body[data-page="team"] .sec-head .eyebrow{
 }
 .bio-contact a:hover,
 .bio-contact a:focus-visible{
-  background:#C6A55A;
+  background:#FBE196;
   color:#0D1B2A;
-  border-color:#C6A55A;
+  border-color:#FBE196;
   transform:translateY(-1px);
   outline:none;
 }
@@ -430,8 +430,8 @@ body[data-page="team"] .sec-head .eyebrow{
   position:absolute;
   top:18px; right:20px;
   width:32px; height:32px;
-  border:1px solid rgba(198,165,90,.4);
-  background:rgba(198,165,90,.1);
+  border:1px solid rgba(251,225,150,.4);
+  background:rgba(251,225,150,.1);
   backdrop-filter:blur(8px);
   border-radius:50%;
   font-size:1.1rem; line-height:1;
@@ -447,9 +447,9 @@ body[data-page="team"] .sec-head .eyebrow{
 }
 .bio-close:hover,
 .bio-close:focus-visible{
-  background:#C6A55A;
+  background:#FBE196;
   color:#0D1B2A;
-  border-color:#C6A55A;
+  border-color:#FBE196;
   transform:rotate(90deg);
   outline:none;
 }
@@ -488,7 +488,7 @@ body[data-page="team"] .sec-head .eyebrow{
   .bio-portrait::before{
     top:auto; left:0; right:0; bottom:0;
     width:auto; height:1px;
-    background:rgba(198,165,90,.15);
+    background:rgba(251,225,150,.15);
   }
   .bio-initials{font-size:3.6rem}
 
@@ -535,11 +535,11 @@ body[data-page="team"] .sec-head .eyebrow{
     width:40px; height:40px;
     font-size:1.25rem;
     background:rgba(5,12,22,.78);
-    border-color:rgba(198,165,90,.55);
+    border-color:rgba(251,225,150,.55);
   }
 }
 </style>
-<link rel="stylesheet" href="site_v4blend.css?v=13">
+<link rel="stylesheet" href="site_v4blend.css?v=14">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png">
@@ -1170,6 +1170,6 @@ document.querySelectorAll('.ed-filters').forEach(bar => {
   }));
 })();
 </script>
-<script src="site_v4blend.js?v=8"></script>
+<script src="site_v4blend.js?v=9"></script>
 </body>
 </html>
