@@ -266,21 +266,25 @@ h3.subhead em{font-style:italic}
 }
 .sec-head{
   display:grid;
-  grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);
-  gap:80px;
-  align-items:end;
+  grid-template-columns:1fr;
+  gap:18px;
+  align-items:start;
   margin-bottom:72px;
   border-bottom:1px solid var(--line);
   padding-bottom:48px;
+  text-align:left;
 }
 .sec-head .eyebrow{margin-bottom:0}
-.sec-head h2.display{max-width:14ch}
+.sec-head > div{text-align:left}
+.sec-head h2.display{max-width:28ch; text-align:left; margin-left:0}
 .sec-head .sec-lede{
   margin-top:18px;
   font-size:1.32rem;
   line-height:1.62;
   color:var(--ink-2);
-  max-width:58ch;
+  max-width:64ch;
+  text-align:left;
+  margin-left:0;
 }
 
 /* =========================================================
