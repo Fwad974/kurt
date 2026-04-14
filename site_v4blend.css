@@ -231,7 +231,6 @@ body,
 .ed-item .year{
   color:var(--text-2)!important;
 }
-.page-hero .lede,
 .lede,
 .sec-head .sec-lede{max-width:58ch!important;}
 .page-hero{padding-top:162px!important;}
