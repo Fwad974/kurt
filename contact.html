@@ -116,6 +116,65 @@
   outline-offset:2px;
 }
 
+/* "Read full notice →" hint that fades in on hover */
+body[data-page="contact"] .ed-item.has-detail{
+  position:relative;
+  padding-bottom:40px!important;
+  align-items:start!important;
+}
+body[data-page="contact"] .ed-item.has-detail .year{padding-top:2px}
+body[data-page="contact"] .ed-item.has-detail::after{
+  content:"Read full notice \2192";
+  position:absolute;
+  bottom:13px; right:22px;
+  font-family:"JetBrains Mono",monospace;
+  font-size:.58rem; letter-spacing:.16em;
+  text-transform:uppercase;
+  color:rgba(251,225,150,.55);
+  opacity:0; transform:translateX(-6px);
+  transition:opacity .3s var(--ease), transform .3s var(--ease), color .3s var(--ease);
+  pointer-events:none;
+}
+body[data-page="contact"] .ed-item.has-detail:hover::after,
+body[data-page="contact"] .ed-item.has-detail:focus-visible::after{
+  opacity:1; transform:translateX(0); color:#FBE196;
+}
+
+/* Rights list inside modal body */
+.news-body .rights-list{
+  margin:0 0 18px;
+  padding:0;
+  list-style:none;
+  display:grid;
+  gap:8px;
+}
+.news-body .rights-list li{
+  display:flex; align-items:baseline; gap:10px;
+  font-size:1.05rem; line-height:1.55;
+  color:rgba(248,243,232,.85);
+}
+.news-body .rights-list li::before{
+  content:"";
+  flex:0 0 6px; height:6px;
+  border-radius:50%;
+  background:#FBE196;
+  opacity:.7;
+  margin-top:2px;
+}
+.news-body .section-rule{
+  margin:24px 0;
+  border:none;
+  border-top:1px solid rgba(251,225,150,.15);
+}
+.news-body .section-label{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.62rem; letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(251,225,150,.55);
+  margin:0 0 8px;
+  display:block;
+}
+
 /* ===== News detail modal ===== */
 .news-modal{
   width:min(760px, calc(100vw - 32px));
@@ -363,13 +422,41 @@
         <div class="year">GDPR</div>
         <div class="body">
           <h3>Data protection <em>notice</em></h3>
-          <div class="meta-line">Privacy &middot; GDPR-compliant personal data handling for all enquiries</div>
+          <div class="meta-line">Privacy &middot; Personal data processed under EU Regulation 2016/679 solely to respond to your enquiry</div>
           <div class="ed-body">
-            <p>Personal data submitted via email enquiry is processed solely for the purpose of responding to your message, in accordance with the <strong>General Data Protection Regulation (GDPR)</strong> and the data protection policies of the University of Cologne.</p>
-            <p>Data is not shared with third parties and is not retained beyond the duration required to handle your enquiry. You may request deletion at any time by writing to <a href="mailto:kurt.pfannkuche@uni-koeln.de">kurt.pfannkuche@uni-koeln.de</a>.</p>
-            <p><strong>What we collect.</strong> When you contact us by email, we receive your email address, name (if provided), and the content of your message. No other personal data is collected through this website.</p>
-            <p><strong>Your rights.</strong> Under the GDPR you have the right to access, rectify, or erase personal data we hold about you. You may also object to processing or request restriction. To exercise any of these rights, contact the PI directly.</p>
-            <p>For the full University of Cologne privacy policy, see <a href="privacy.html">our privacy page &rarr;</a></p>
+            <p>The following notice explains how personal data you submit when contacting the MWB Lab is collected, used, and protected under the <strong>General Data Protection Regulation (GDPR)</strong> (EU) 2016/679 and the data protection policies of the University of Cologne.</p>
+
+            <hr class="section-rule">
+            <span class="section-label">Controller</span>
+            <p><strong>Dr. Kurt Pfannkuche</strong><br>
+            Universität zu Köln &mdash; Institut für Neurophysiologie<br>
+            Robert-Koch-Straße 39, 50931 Cologne, Germany<br>
+            <a href="mailto:kurt.pfannkuche@uni-koeln.de">kurt.pfannkuche@uni-koeln.de</a></p>
+
+            <hr class="section-rule">
+            <span class="section-label">What we collect</span>
+            <p>When you contact us by email we receive your email address, your name if provided, and the content of your message. No cookies, analytics trackers, or additional personal data are collected through this website beyond technically necessary server logs.</p>
+
+            <hr class="section-rule">
+            <span class="section-label">How data is used &amp; deleted</span>
+            <p>Your data is used exclusively to handle and respond to your enquiry. It is not passed to third parties for any other purpose. We follow principles of data minimisation — your data is stored only as long as required and deleted routinely once the enquiry has been resolved.</p>
+            <p>You may request deletion at any time by writing to <a href="mailto:kurt.pfannkuche@uni-koeln.de">kurt.pfannkuche@uni-koeln.de</a>. Any previously given consent may be withdrawn at any time with effect for the future.</p>
+
+            <hr class="section-rule">
+            <span class="section-label">Your rights under GDPR</span>
+            <p>You may exercise the following rights at any time by contacting the controller above:</p>
+            <ul class="rights-list">
+              <li>Access to the personal data we hold about you</li>
+              <li>Rectification of inaccurate personal data</li>
+              <li>Erasure of your stored data</li>
+              <li>Restriction of processing where legal obligations prevent immediate deletion</li>
+              <li>Objection to processing of your data</li>
+              <li>Data portability where processing is based on consent or contract</li>
+            </ul>
+            <p>You also have the right to lodge a complaint with the competent supervisory authority. A directory of authorities is available at <a href="https://www.bfdi.bund.de/DE/Infothek/Anschriften_Links/anschriften_links-node.html" target="_blank" rel="noopener noreferrer">www.bfdi.bund.de &rarr;</a></p>
+
+            <hr class="section-rule">
+            <p style="margin-bottom:0">For the complete <em>Datenschutzerklärung</em> (German), see <a href="privacy.html">our privacy page &rarr;</a></p>
           </div>
         </div>
         <div class="tag">Privacy</div>
