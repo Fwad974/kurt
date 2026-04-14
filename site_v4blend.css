@@ -74,7 +74,7 @@ img{image-rendering:auto;}
     radial-gradient(ellipse at 50% 10%, rgba(255,255,255,.02), transparent 28%),
     radial-gradient(ellipse at center, transparent 42%, rgba(0,0,0,.22) 78%, rgba(0,0,0,.52) 100%)!important;
 }
-.grain{opacity:.11!important;}
+.grain{opacity:.04!important;}
 
 .topbar{
   background:rgba(13,27,42,.62)!important;
@@ -323,7 +323,10 @@ body,
 .fig-card .figure.portrait:hover{
   border:none!important;
   border-bottom:none!important;
-  background:none!important;
+  background:#0D1B2A!important;
+  isolation:isolate!important;
+  position:relative!important;
+  z-index:1!important;
   box-shadow:none!important;
   border-radius:16px!important;
   overflow:hidden!important;
@@ -587,7 +590,7 @@ body[data-page="translational"]{
     radial-gradient(ellipse at 50% 10%, rgba(255,255,255,.025), transparent 28%),
     radial-gradient(ellipse at center, transparent 38%, rgba(0,0,0,.28) 76%, rgba(0,0,0,.68) 100%)!important;
 }
-.grain{opacity:.08!important;}
+.grain{opacity:.03!important;}
 
 .page-hero,
 .hero{
