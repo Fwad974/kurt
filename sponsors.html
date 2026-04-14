@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sponsors — MWB Lab</title>
+<meta name="description" content="The Marga and Walter Boll Laboratory for Cardiac Tissue Engineering is supported by the Marga and Walter Boll Foundation and a network of private foundations, academic partners, and public research funders.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css?v=32">
+<style>
+.sponsors-prose{
+  max-width:78ch;
+  margin:0;
+}
+.sponsors-prose p{
+  font-size:1.18rem;
+  line-height:1.72;
+  color:var(--ink-2);
+  margin:0 0 22px;
+}
+.sponsors-prose p:last-child{margin-bottom:0}
+.sponsors-prose strong{color:var(--ink); font-weight:500}
+.sponsors-prose em{font-style:italic; color:var(--ink)}
+.sponsors-prose a{
+  color:var(--ink);
+  text-decoration:none;
+  border-bottom:1px solid rgba(251,225,150,.45);
+  padding-bottom:1px;
+  transition:color .25s var(--ease), border-color .25s var(--ease);
+}
+.sponsors-prose a:hover,
+.sponsors-prose a:focus-visible{
+  color:#FBE196;
+  border-bottom-color:#FBE196;
+  outline:none;
+}
+
+.sponsors-signature{
+  margin-top:36px;
+  padding-top:24px;
+  border-top:1px solid rgba(251,225,150,.22);
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.sponsors-signature .name{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:1.45rem;
+  color:var(--ink);
+}
+.sponsors-signature .role{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.74rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.sponsor-group{
+  margin-top:28px;
+}
+.sponsor-group-label{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#FBE196;
+  margin:0 0 14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.sponsor-group-label::after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg, rgba(251,225,150,.28), rgba(251,225,150,0));
+  max-width:180px;
+}
+.sponsor-chips{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.sponsor-chips li{display:inline-flex; margin:0}
+.sponsor-chips a,
+.sponsor-chips span{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 16px 8px 18px;
+  border:1px solid rgba(251,225,150,.28);
+  border-radius:999px;
+  background:rgba(251,225,150,.04);
+  font-family:"JetBrains Mono",monospace;
+  font-size:.72rem;
+  font-weight:500;
+  letter-spacing:.08em;
+  color:rgba(248,243,232,.85);
+  text-decoration:none;
+  white-space:nowrap;
+  transition:
+    background .25s var(--ease),
+    color .25s var(--ease),
+    border-color .25s var(--ease),
+    transform .25s var(--ease);
+}
+.sponsor-chips a::after{
+  content:"\2197";
+  display:inline-block;
+  font-size:.74rem;
+  line-height:1;
+  color:rgba(251,225,150,.7);
+  transform:translateY(-1px);
+  transition:color .25s var(--ease), transform .25s var(--ease);
+}
+.sponsor-chips a:hover,
+.sponsor-chips a:focus-visible{
+  background:rgba(251,225,150,.14);
+  color:#F8F3E8;
+  border-color:rgba(251,225,150,.55);
+  transform:translateY(-1px);
+  outline:none;
+}
+.sponsor-chips a:hover::after,
+.sponsor-chips a:focus-visible::after{
+  color:#FBE196;
+  transform:translate(1px,-2px);
+}
+</style>
+<link rel="stylesheet" href="site_v4blend.css?v=16">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png">
+</head>
+<body data-page="sponsors">
+
+<!-- ========== AMBIENT BG ========== -->
+<div id="ambient">
+  <div class="bg on" style="background-image:url('bg_merged.webp')"></div>
+</div>
+<div class="vignette"></div>
+<div class="grain"></div>
+
+<!-- ========== TOPBAR ========== -->
+<header class="topbar">
+  <a href="index.html" class="brand-logo"><img src="log_animated.svg?v=2" alt="Marga &amp; Walter Boll Laboratory" class="logo-img"></a>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="technology.html">Technology</a>
+    <a href="translational.html">Translational</a>
+    <a href="publications.html">Publications</a>
+    <a href="team.html">Team</a>
+    <a href="sponsors.html" aria-current="page">Sponsors</a>
+    <a href="news.html">News</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="meta-right">
+    <span>University of Cologne</span>
+    <span class="live">Active lab</span>
+  </div>
+  <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+<div class="progress"><span id="progressFill"></span></div>
+
+<!-- ========== PAGE HERO ========== -->
+<section class="page-hero">
+  <div class="eyebrow rv" style="--d:.15s">&sect; Supported by</div>
+  <h1 class="display rv" style="--d:.3s" data-split-on-reveal>Foundations, funders, and <em>partners</em>.</h1>
+  <p class="lede rv" style="--d:.5s">
+    The Marga and Walter Boll Laboratory for Cardiac Tissue Engineering is grateful for the
+    trust and financial support of private foundations, academic partners, and public research
+    funders, whose backing makes the work possible.
+  </p>
+</section>
+
+<!-- ========== ABOUT + ACKNOWLEDGMENT ========== -->
+<section class="sec">
+  <div class="sec-head">
+    <div class="eyebrow rv">&sect; 01 &mdash; About the lab</div>
+    <div>
+      <h2 class="display" data-split-on-reveal>The <em>Marga and Walter Boll</em> Laboratory.</h2>
+    </div>
+  </div>
+
+  <div class="sponsors-prose rv">
+    <p>
+      The Marga-and-Walter-Boll-Laboratory for Cardiac Tissue Engineering was established with
+      the support of the <strong>Marga and Walter Boll Foundation</strong> (Kerpen, Germany)
+      and is situated at the Center for Physiology and Pathophysiology of the Medical Faculty,
+      University of Cologne.
+    </p>
+    <p>
+      Human induced pluripotent stem cells (hiPSCs) and organotypic cells differentiated from
+      hiPSCs are the focus of the lab&rsquo;s research projects. The team works across several
+      areas related to iPS cell technologies including, but not limited to, cardiac tissue
+      engineering, cardiac organoids, cardiac cell therapy, cardiac diseases, stem cell
+      biotechnology, and biomaterial research.
+    </p>
+  </div>
+</section>
+
+<!-- ========== ACKNOWLEDGEMENT ========== -->
+<section class="sec">
+  <div class="sec-head">
+    <div class="eyebrow rv">&sect; 02 &mdash; Acknowledgement</div>
+    <div>
+      <h2 class="display" data-split-on-reveal>With <em>gratitude</em>.</h2>
+    </div>
+  </div>
+
+  <div class="sponsors-prose rv">
+    <p>
+      Building my research career from my days as a doctoral student until today has become
+      possible only through the support of private foundations, which have given me their
+      trust and the funds that enabled me to test new ideas. I thankfully acknowledge their
+      contributions.
+    </p>
+
+    <div class="sponsor-group">
+      <div class="sponsor-group-label">Private foundations</div>
+      <ul class="sponsor-chips">
+        <li><span>Marga and Walter Boll Foundation</span></li>
+        <li><span>Else Kr&ouml;ner-Fresenius-Stiftung</span></li>
+        <li><span>Hans und Gertie Fischer-Stiftung</span></li>
+        <li><span>Dr. Robert Pfleger-Stiftung</span></li>
+        <li><span>A. M. Wilsing-Stiftung</span></li>
+        <li><span>Hirsch-Foundation</span></li>
+        <li><span>Elisabeth und Rudolf Hirsch-Stiftung</span></li>
+        <li><span>Imhoff-Stiftung</span></li>
+        <li><span>Maria Pesch-Stiftung</span></li>
+        <li><span>Freunde und F&ouml;rderer der Universit&auml;t zu K&ouml;ln</span></li>
+      </ul>
+    </div>
+
+    <p style="margin-top:28px">
+      Further support was provided by the following academic partners, government ministries,
+      and public research funders:
+    </p>
+
+    <div class="sponsor-group">
+      <div class="sponsor-group-label">Academic &amp; international partners</div>
+      <ul class="sponsor-chips">
+        <li><a href="https://fsg-lab.com" target="_blank" rel="noopener noreferrer">First Stem Cells &amp; Genomics Lab, Dubai</a></li>
+      </ul>
+    </div>
+
+    <div class="sponsor-group">
+      <div class="sponsor-group-label">Public funders</div>
+      <ul class="sponsor-chips">
+        <li><a href="https://www.wirtschaft.nrw" target="_blank" rel="noopener noreferrer">State of North Rhine-Westphalia</a></li>
+        <li><a href="https://www.bmbf.de" target="_blank" rel="noopener noreferrer">BMBF &mdash; Federal Ministry of Education and Research</a></li>
+        <li><a href="https://www.bmwk.de" target="_blank" rel="noopener noreferrer">BMWK &mdash; Federal Ministry for Economic Affairs and Climate Action</a></li>
+        <li><a href="https://www.efre.nrw.de" target="_blank" rel="noopener noreferrer">European Regional Development Fund (EFRE)</a></li>
+        <li><a href="https://www.dfg.de" target="_blank" rel="noopener noreferrer">DFG &mdash; German Research Foundation</a></li>
+        <li><a href="https://medfak.uni-koeln.de/en/research/funding-programmes/koeln-fortune" target="_blank" rel="noopener noreferrer">K&ouml;ln Fortune</a></li>
+      </ul>
+    </div>
+
+    <div class="sponsors-signature">
+      <span class="name">Prof. Dr. Kurt Pfannkuche</span>
+      <span class="role">Principal Investigator &middot; MWB Lab</span>
+    </div>
+  </div>
+</section>
+
+<script>
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function splitText(el, baseDelay = 0, step = 0.018){
+  if(!el || el.dataset.splitDone) return;
+  const tmp = document.createElement('div');
+  tmp.innerHTML = el.innerHTML;
+  const walk = (node, out) => {
+    node.childNodes.forEach(n => {
+      if(n.nodeType === 3){
+        const words = n.textContent.split(/(\s+)/);
+        words.forEach(w => {
+          if(/^\s+$/.test(w)){ out.push(document.createTextNode(' ')); return; }
+          if(!w) return;
+          const wEl = document.createElement('span');
+          wEl.className = 'word';
+          [...w].forEach(ch => {
+            const cEl = document.createElement('span');
+            cEl.className = 'char';
+            cEl.textContent = ch;
+            wEl.appendChild(cEl);
+          });
+          out.push(wEl);
+        });
+      } else if(n.nodeType === 1){
+        const clone = n.cloneNode(false);
+        const inner = [];
+        walk(n, inner);
+        inner.forEach(c => clone.appendChild(c));
+        out.push(clone);
+      }
+    });
+  };
+  const collected = [];
+  walk(tmp, collected);
+  el.innerHTML = '';
+  collected.forEach(c => el.appendChild(c));
+  el.querySelectorAll('.char').forEach((c,i) => c.style.setProperty('--d', (baseDelay + i*step) + 's'));
+  el.dataset.splitDone = '1';
+}
+
+const rvIO = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); rvIO.unobserve(e.target); }});
+},{threshold:.15, rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.rv').forEach(el => rvIO.observe(el));
+
+const splitIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const h = e.target;
+      if(!reducedMotion && !h.dataset.splitDone){
+        h.classList.add('split');
+        splitText(h, 0, 0.02);
+      }
+      requestAnimationFrame(() => h.classList.add('in'));
+      splitIO.unobserve(h);
+    }
+  });
+},{threshold:.4});
+document.querySelectorAll('h2[data-split-on-reveal]').forEach(h => splitIO.observe(h));
+
+const progressFill = document.getElementById('progressFill');
+let rafId = null;
+function onScroll(){
+  const max = document.documentElement.scrollHeight - innerHeight;
+  if(progressFill) progressFill.style.width = (max>0 ? scrollY/max*100 : 0) + '%';
+  rafId = null;
+}
+window.addEventListener('scroll', () => { if(!rafId) rafId = requestAnimationFrame(onScroll); }, {passive:true});
+
+document.documentElement.classList.remove('loading');
+</script>
+<script src="site_v4blend.js?v=9"></script>
+</body>
+</html>
