@@ -720,27 +720,28 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   box-shadow:0 4px 20px rgba(0,0,0,.10);
   transition:box-shadow .4s var(--ease), transform .4s var(--ease);
 }
-.fig-card .body{padding:16px 4px 0; text-align:center}
+.fig-card .body{padding:22px 8px 6px; text-align:center}
 .fig-card h3{
   font-family:var(--serif);
   font-variation-settings:"opsz" 144;
   font-weight:400;
-  font-size:1.05rem;
+  font-size:1.35rem;
+  line-height:1.25;
   letter-spacing:-0.01em;
-  margin:0 0 4px;
+  margin:0 0 8px;
 }
 .fig-card h3 em{font-style:italic}
 .fig-card .mono{
   font-family:"JetBrains Mono",monospace;
-  font-size:.58rem; letter-spacing:.10em; text-transform:uppercase;
+  font-size:.74rem; letter-spacing:.12em; text-transform:uppercase;
   color:var(--muted);
-  margin-bottom:8px;
+  margin-bottom:12px;
 }
-.fig-card p{font-size:.96rem; line-height:1.55; color:var(--ink-2); margin:0; max-width:30ch; margin-left:auto; margin-right:auto}
+.fig-card p{font-size:1.02rem; line-height:1.55; color:var(--ink-2); margin:0; max-width:32ch; margin-left:auto; margin-right:auto}
 .fig-card .meta{
-  margin-top:10px;
+  margin-top:14px;
   font-family:"JetBrains Mono",monospace;
-  font-size:.58rem;
+  font-size:.78rem;
   color:var(--muted);
   word-break:break-all;
 }
@@ -947,11 +948,11 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   .card-grid.two{grid-template-columns:1fr}
   .card-grid.four{flex-wrap:wrap !important; gap:16px 12px; justify-content:flex-start}
   .card-grid.four > .fig-card{flex:0 0 calc(50% - 8px); min-width:0; max-width:200px}
-  .fig-card .body{padding:10px 4px 0}
-  .fig-card h3{font-size:.85rem}
-  .fig-card .mono{font-size:.5rem; letter-spacing:.08em; margin-bottom:4px}
-  .fig-card p{font-size:.7rem; line-height:1.4}
-  .fig-card .meta{font-size:.5rem}
+  .fig-card .body{padding:14px 4px 4px}
+  .fig-card h3{font-size:1rem; line-height:1.25}
+  .fig-card .mono{font-size:.58rem; letter-spacing:.1em; margin-bottom:6px}
+  .fig-card p{font-size:.82rem; line-height:1.45}
+  .fig-card .meta{font-size:.6rem; margin-top:8px}
   .figure.portrait{margin-top:12px}
 }
 
