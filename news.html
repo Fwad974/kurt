@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=29">
+<link rel="stylesheet" href="site.css?v=30">
 <style>
 .split-fig{min-height:360px}
 .fig-svg{
@@ -106,7 +106,7 @@
 .featured-pub-journal em{font-style:italic}
 .featured-pub-sub{
   font-family:"JetBrains Mono",monospace;
-  font-size:.58rem;
+  font-size:.78rem;
   letter-spacing:.16em;
   text-transform:uppercase;
   color:var(--muted, rgba(255,255,255,.55));
@@ -114,32 +114,32 @@
 .featured-pub-title{
   font-family:var(--serif);
   font-weight:400;
-  font-size:1.72rem;
+  font-size:2.05rem;
   line-height:1.22;
   letter-spacing:-0.01em;
-  margin:0 0 22px;
+  margin:0 0 24px;
   color:#F8F3E8;
   max-width:44ch;
 }
 .featured-pub-title em{font-style:italic}
 .featured-pub-authors{
   font-family:Manrope,sans-serif;
-  font-size:.92rem;
+  font-size:1.08rem;
   line-height:1.65;
-  color:rgba(248,243,232,.82);
-  margin:0 0 14px;
+  color:rgba(248,243,232,.85);
+  margin:0 0 16px;
   max-width:66ch;
 }
 .featured-pub-citation{
   font-family:"JetBrains Mono",monospace;
-  font-size:.72rem;
+  font-size:.92rem;
   letter-spacing:.06em;
-  color:rgba(255,255,255,.55);
-  margin:0 0 28px;
+  color:rgba(255,255,255,.6);
+  margin:0 0 30px;
 }
 .featured-pub-citation em{
   font-family:var(--serif);
-  font-size:.92rem;
+  font-size:1.1rem;
   font-style:italic;
   letter-spacing:0;
   color:#7CECD5;
@@ -147,18 +147,18 @@
 }
 .featured-pub-citation strong{
   font-weight:600;
-  color:rgba(248,243,232,.85);
+  color:rgba(248,243,232,.9);
 }
 .featured-pub-link{
   display:inline-flex;
   align-items:center;
   gap:10px;
-  padding:12px 20px 12px 22px;
+  padding:14px 24px 14px 26px;
   border:1px solid rgba(198,165,90,.4);
   border-radius:999px;
   background:rgba(198,165,90,.06);
   font-family:"JetBrains Mono",monospace;
-  font-size:.62rem;
+  font-size:.8rem;
   letter-spacing:.16em;
   text-transform:uppercase;
   color:rgba(248,243,232,.92);
@@ -192,9 +192,9 @@
   .featured-pub-badge{margin-bottom:18px}
   .featured-pub-journal{font-size:1.55rem}
   .featured-pub-title{font-size:1.25rem; margin-bottom:16px}
-  .featured-pub-authors{font-size:.82rem; line-height:1.55; margin-bottom:10px}
-  .featured-pub-citation{font-size:.66rem; margin-bottom:22px}
-  .featured-pub-link{padding:10px 16px; font-size:.56rem}
+  .featured-pub-authors{font-size:.95rem; line-height:1.55; margin-bottom:12px}
+  .featured-pub-citation{font-size:.82rem; margin-bottom:24px}
+  .featured-pub-link{padding:12px 18px; font-size:.72rem}
 }
 
 /* ================================================================
@@ -469,12 +469,12 @@ body[data-page="news"] .ed-item.has-detail:focus-visible::after{
 
 .news-summary{
   font-family:"JetBrains Mono",monospace;
-  font-size:.72rem;
+  font-size:.9rem;
   letter-spacing:.08em;
-  color:rgba(255,255,255,.6);
-  line-height:1.6;
-  margin:0 0 26px;
-  padding-bottom:22px;
+  color:rgba(255,255,255,.68);
+  line-height:1.65;
+  margin:0 0 28px;
+  padding-bottom:24px;
   border-bottom:1px solid rgba(198,165,90,.22);
 }
 .news-summary:empty{display:none}
@@ -499,9 +499,9 @@ body[data-page="news"] .ed-item.has-detail:focus-visible::after{
 
 .news-body{
   font-family:Manrope,sans-serif;
-  font-size:.95rem;
-  line-height:1.72;
-  color:rgba(248,243,232,.84);
+  font-size:1.12rem;
+  line-height:1.7;
+  color:rgba(248,243,232,.88);
 }
 .news-body p{margin:0 0 14px}
 .news-body p:last-child{margin-bottom:0}
@@ -541,10 +541,10 @@ body[data-page="news"] .ed-item.has-detail:focus-visible::after{
     max-height:100dvh;
   }
   .news-title{font-size:1.4rem; margin-bottom:12px}
-  .news-summary{font-size:.66rem; margin-bottom:20px; padding-bottom:16px}
-  .news-media{margin-bottom:20px}
+  .news-summary{font-size:.82rem; margin-bottom:22px; padding-bottom:18px}
+  .news-media{margin-bottom:22px}
   .news-media img{max-height:260px}
-  .news-body{font-size:.85rem; line-height:1.65}
+  .news-body{font-size:1rem; line-height:1.65}
 }
 
 @media (max-width:900px){

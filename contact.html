@@ -8,16 +8,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=29">
+<link rel="stylesheet" href="site.css?v=30">
 <style>
 .contact-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:16px;
+  gap:20px;
   margin-bottom:24px;
 }
 .contact-card{
-  padding:40px;
+  padding:44px;
   border:1px solid var(--line);
   border-radius:2px;
   background:rgba(244,240,232,.5);
@@ -27,26 +27,26 @@
 .contact-card .mono{
   color:var(--muted);
   text-transform:uppercase;
-  font-size:.62rem;
+  font-size:.82rem;
   letter-spacing:.14em;
-  margin-bottom:14px;
+  margin-bottom:16px;
   font-family:"JetBrains Mono",monospace;
 }
-.contact-card h3{margin:0 0 10px}
-.contact-card p{font-size:1.08rem; line-height:1.62; color:var(--ink-2); margin:0 0 24px}
+.contact-card h3{margin:0 0 14px; font-size:1.55rem}
+.contact-card p{font-size:1.14rem; line-height:1.65; color:var(--ink-2); margin:0 0 26px}
 .contact-card .link{
-  display:inline-flex; gap:8px; align-items:center;
+  display:inline-flex; gap:10px; align-items:center;
   font-family:"JetBrains Mono",monospace;
-  font-size:.72rem; letter-spacing:.04em;
+  font-size:.92rem; letter-spacing:.04em;
   color:var(--ink); border-bottom:1px solid var(--line-strong);
-  padding-bottom:3px;
+  padding-bottom:4px;
   transition:border-color .3s var(--ease);
 }
 .contact-card .link:hover{border-color:var(--ink)}
 
 .addr-block{
-  margin-top:16px;
-  padding:32px 40px;
+  margin-top:20px;
+  padding:36px 44px;
   border:1px solid var(--line);
   border-radius:2px;
   background:rgba(244,240,232,.5);
@@ -54,41 +54,46 @@
 .addr-block .mono{
   color:var(--muted);
   text-transform:uppercase;
-  font-size:.62rem;
+  font-size:.82rem;
   letter-spacing:.14em;
-  margin-bottom:14px;
+  margin-bottom:16px;
   font-family:"JetBrains Mono",monospace;
 }
 .addr-block p{
   margin:0;
   font-family:"JetBrains Mono",monospace;
-  font-size:.78rem;
-  line-height:1.9;
+  font-size:1rem;
+  line-height:1.85;
   color:var(--ink-2);
 }
 
 .legal{
-  padding:40px;
+  padding:44px;
   border:1px solid var(--line);
   border-radius:2px;
   background:rgba(244,240,232,.5);
 }
-.legal h3{font-family:var(--serif); font-variation-settings:"opsz" 144; font-weight:400; font-size:1.1rem; letter-spacing:-0.01em; margin:0 0 16px}
-.legal p{font-size:1.08rem; line-height:1.68; color:var(--ink-2); margin:0 0 12px}
+.legal h3{font-family:var(--serif); font-variation-settings:"opsz" 144; font-weight:400; font-size:1.5rem; letter-spacing:-0.01em; margin:0 0 18px}
+.legal p{font-size:1.12rem; line-height:1.7; color:var(--ink-2); margin:0 0 14px}
 .legal p:last-child{margin-bottom:0}
-.legal .small{font-size:.82rem; color:var(--muted)}
+.legal .small{font-size:1.02rem; line-height:1.68; color:var(--ink-2)}
 
 .split-contact{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:80px;
+  gap:32px;
   align-items:start;
 }
+.split-contact .card{padding:36px 40px}
+.split-contact .card h3{font-size:1.45rem; margin:0 0 14px}
+.split-contact .card p{font-size:1.12rem; line-height:1.65; color:var(--ink-2); margin:0}
+.split-contact .card .mono{font-size:.82rem!important; margin-bottom:16px!important}
 
 @media (max-width:900px){
   .contact-grid{grid-template-columns:1fr}
-  .contact-card, .addr-block, .legal{padding:28px}
-  .split-contact{grid-template-columns:1fr; gap:40px}
+  .contact-card, .addr-block, .legal{padding:30px}
+  .split-contact{grid-template-columns:1fr; gap:24px}
+  .split-contact .card{padding:28px 30px}
 }
 </style>
 <link rel="stylesheet" href="site_v4blend.css?v=9">
@@ -198,19 +203,19 @@
   <div class="split-contact">
     <div>
       <div class="card rv" style="margin-bottom:16px">
-        <div class="mono" style="font-family:'JetBrains Mono',monospace; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:14px">Collaborations</div>
+        <div class="mono">Collaborations</div>
         <h3>Academic &amp; industry <em>partnerships</em></h3>
         <p>Proposals for collaborative projects, material transfer, or joint grant applications. Include a brief description of your group and the intended scope.</p>
       </div>
 
       <div class="card rv" style="margin-bottom:16px">
-        <div class="mono" style="font-family:'JetBrains Mono',monospace; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:14px">Positions</div>
+        <div class="mono">Positions</div>
         <h3>PhD, postdoc &amp; <em>student enquiries</em></h3>
         <p>Unsolicited applications are welcome. Please include your CV, a brief motivation letter, and an indication of your preferred start date.</p>
       </div>
 
       <div class="card rv">
-        <div class="mono" style="font-family:'JetBrains Mono',monospace; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:14px">Press &amp; media</div>
+        <div class="mono">Press &amp; media</div>
         <h3>Interviews &amp; <em>media enquiries</em></h3>
         <p>Journalists and science communicators may contact the PI directly. High-resolution microscopy images and figures are available on request for editorial use.</p>
       </div>
