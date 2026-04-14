@@ -1194,20 +1194,20 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   align-items:center;
   gap:12px;
   font-family:var(--mono,"JetBrains Mono",monospace)!important;
-  font-size:.58rem!important;
-  font-weight:400!important;
+  font-size:.72rem!important;
+  font-weight:700!important;
   letter-spacing:.22em!important;
   text-transform:uppercase!important;
-  color:rgba(198,165,90,.62)!important;
+  color:#C6A55A!important;
   margin:0 0 18px!important;
 }
 .foot-supporters h4::before,
 .foot-nav-group h4::before{
   content:"";
   display:block;
-  width:18px;
+  width:22px;
   height:1px;
-  background:rgba(198,165,90,.42);
+  background:rgba(198,165,90,.72);
   flex-shrink:0;
 }
 
@@ -1226,11 +1226,11 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 }
 .foot-supporters .supporters-group-label{
   font-family:"JetBrains Mono",monospace;
-  font-size:.52rem;
-  font-weight:500;
+  font-size:.66rem;
+  font-weight:700;
   letter-spacing:.2em;
   text-transform:uppercase;
-  color:rgba(255,255,255,.42);
+  color:#C6A55A;
   margin:0 0 12px;
   display:flex;
   align-items:center;
