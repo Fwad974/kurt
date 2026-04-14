@@ -95,6 +95,142 @@
   .split-contact{grid-template-columns:1fr; gap:24px}
   .split-contact .card{padding:28px 30px}
 }
+
+/* ===== Privacy ed-item in contact ===== */
+.ed-item .ed-body{display:none}
+.ed-item.has-detail{
+  cursor:pointer;
+  transition:
+    border-color .35s var(--ease),
+    background .35s var(--ease),
+    transform .35s var(--ease),
+    box-shadow .35s var(--ease);
+}
+.ed-item.has-detail:hover,
+.ed-item.has-detail:focus-visible{
+  border-color:rgba(251,225,150,.55)!important;
+  outline:none;
+}
+.ed-item.has-detail:focus-visible{
+  outline:2px solid rgba(251,225,150,.55);
+  outline-offset:2px;
+}
+
+/* ===== News detail modal ===== */
+.news-modal{
+  width:min(760px, calc(100vw - 32px));
+  max-height:calc(100vh - 64px);
+  margin:32px auto;
+  padding:0;
+  border:1px solid rgba(251,225,150,.3);
+  border-radius:4px;
+  background:#0D1B2A;
+  color:#F8F3E8;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+  overflow:hidden;
+  position:fixed;
+  inset:0;
+}
+.news-modal::backdrop{
+  background:rgba(0,0,0,.78);
+  backdrop-filter:blur(4px);
+}
+.news-modal[open]{animation:newsIn .28s var(--ease) both}
+.news-modal[open]::backdrop{animation:newsBackdropIn .28s ease both}
+.news-modal.closing{animation:newsOut .22s var(--ease) both}
+.news-modal.closing::backdrop{animation:newsBackdropOut .22s ease both}
+@keyframes newsIn{
+  from{opacity:0; transform:translateY(14px) scale(.985)}
+  to{opacity:1; transform:translateY(0) scale(1)}
+}
+@keyframes newsOut{
+  from{opacity:1; transform:translateY(0) scale(1)}
+  to{opacity:0; transform:translateY(10px) scale(.985)}
+}
+@keyframes newsBackdropIn{from{opacity:0}to{opacity:1}}
+@keyframes newsBackdropOut{from{opacity:1}to{opacity:0}}
+.news-modal-inner{
+  padding:48px 56px 44px;
+  overflow-y:auto;
+  overflow-x:hidden;
+  max-height:calc(100vh - 64px);
+  -webkit-overflow-scrolling:touch;
+}
+.news-close{
+  position:absolute;
+  top:18px; right:20px;
+  width:34px; height:34px;
+  border:1px solid rgba(251,225,150,.4);
+  background:rgba(251,225,150,.1);
+  backdrop-filter:blur(6px);
+  border-radius:50%;
+  font-size:1.15rem; line-height:1;
+  color:rgba(248,243,232,.92);
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  z-index:5;
+  transition:background .28s var(--ease), color .28s var(--ease),
+    border-color .28s var(--ease), transform .35s var(--ease);
+}
+.news-close:hover,.news-close:focus-visible{
+  background:#FBE196; color:#0D1B2A;
+  border-color:#FBE196; transform:rotate(90deg); outline:none;
+}
+.news-meta-row{display:flex; align-items:center; gap:16px; margin-bottom:16px}
+.news-year{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.68rem; letter-spacing:.14em;
+  text-transform:uppercase; color:rgba(248,243,232,.55);
+}
+.news-tag{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.58rem; letter-spacing:.16em;
+  text-transform:uppercase; color:#0D1B2A;
+  background:#FBE196; padding:5px 12px; border-radius:999px;
+}
+.news-title{
+  font-family:var(--serif);
+  font-weight:400; font-size:2rem;
+  line-height:1.2; letter-spacing:-0.01em;
+  color:#F8F3E8; margin:0 0 14px; max-width:44ch;
+}
+.news-title em{font-style:italic}
+.news-summary{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.9rem; letter-spacing:.08em;
+  color:rgba(255,255,255,.68); line-height:1.65;
+  margin:0 0 28px; padding-bottom:24px;
+  border-bottom:1px solid rgba(251,225,150,.22);
+}
+.news-summary:empty{display:none}
+.news-media{margin:0 0 28px; border:1px solid rgba(251,225,150,.22); border-radius:2px; overflow:hidden; background:rgba(255,255,255,.02)}
+.news-media:empty{display:none}
+.news-media img,.news-media figure img{display:block; width:100%; height:auto; max-height:440px; object-fit:cover}
+.news-media figure{margin:0}
+.news-body{font-family:Manrope,sans-serif; font-size:1.12rem; line-height:1.7; color:rgba(248,243,232,.88)}
+.news-body p{margin:0 0 14px}
+.news-body p:last-child{margin-bottom:0}
+.news-body ul{margin:0 0 14px; padding-left:22px; list-style:disc outside}
+.news-body ul li{margin-bottom:6px}
+.news-body a{
+  color:#7CECD5; text-decoration:none;
+  border-bottom:1px solid rgba(124,236,213,.35);
+  transition:color .22s var(--ease), border-color .22s var(--ease);
+}
+.news-body a:hover,.news-body a:focus-visible{
+  color:#FBE196; border-bottom-color:#FBE196; outline:none;
+}
+.news-body strong{color:#F8F3E8}
+.news-body em{font-style:italic}
+@media (max-width:760px){
+  .news-modal{width:100%; max-width:100%; margin:0; height:100dvh; max-height:100dvh; border-radius:0; border:none}
+  .news-modal-inner{padding:64px 20px 32px; max-height:100dvh}
+  .news-title{font-size:1.4rem; margin-bottom:12px}
+  .news-summary{font-size:.82rem; margin-bottom:22px; padding-bottom:18px}
+  .news-media{margin-bottom:22px}
+  .news-media img{max-height:260px}
+  .news-body{font-size:1rem; line-height:1.65}
+}
 </style>
 <link rel="stylesheet" href="site_v4blend.css?v=16">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -223,18 +359,20 @@
     </div>
 
     <div>
-      <div class="legal rv" style="margin-bottom:16px">
-        <h3>Data protection <em>notice</em></h3>
-        <p class="small">
-          Personal data submitted via email enquiry is processed solely for the purpose of responding
-          to your message, in accordance with the General Data Protection Regulation (GDPR) and the
-          data protection policies of the University of Cologne.
-        </p>
-        <p class="small">
-          Data is not shared with third parties and is not retained beyond the duration required to
-          handle your enquiry. You may request deletion at any time by writing to
-          <a href="mailto:kurt.pfannkuche@uni-koeln.de" style="color:var(--ink)">kurt.pfannkuche@uni-koeln.de</a>.
-        </p>
+      <div class="ed-item rv" data-tag="privacy" style="margin-bottom:16px">
+        <div class="year">GDPR</div>
+        <div class="body">
+          <h3>Data protection <em>notice</em></h3>
+          <div class="meta-line">Privacy &middot; GDPR-compliant personal data handling for all enquiries</div>
+          <div class="ed-body">
+            <p>Personal data submitted via email enquiry is processed solely for the purpose of responding to your message, in accordance with the <strong>General Data Protection Regulation (GDPR)</strong> and the data protection policies of the University of Cologne.</p>
+            <p>Data is not shared with third parties and is not retained beyond the duration required to handle your enquiry. You may request deletion at any time by writing to <a href="mailto:kurt.pfannkuche@uni-koeln.de">kurt.pfannkuche@uni-koeln.de</a>.</p>
+            <p><strong>What we collect.</strong> When you contact us by email, we receive your email address, name (if provided), and the content of your message. No other personal data is collected through this website.</p>
+            <p><strong>Your rights.</strong> Under the GDPR you have the right to access, rectify, or erase personal data we hold about you. You may also object to processing or request restriction. To exercise any of these rights, contact the PI directly.</p>
+            <p>For the full University of Cologne privacy policy, see <a href="privacy.html">our privacy page &rarr;</a></p>
+          </div>
+        </div>
+        <div class="tag">Privacy</div>
       </div>
 
       <div class="legal rv">
@@ -268,7 +406,20 @@
   </div>
 </section>
 
-<!-- ========== FOOTER ========== -->
+<!-- ========== PRIVACY MODAL ========== -->
+<dialog id="newsModal" class="news-modal" aria-labelledby="newsTitle">
+  <button type="button" class="news-close" aria-label="Close">&times;</button>
+  <div class="news-modal-inner">
+    <div class="news-meta-row">
+      <span class="news-year" id="newsYear"></span>
+      <span class="news-tag" id="newsTagLabel"></span>
+    </div>
+    <h3 class="news-title" id="newsTitle"></h3>
+    <div class="news-summary" id="newsSummary"></div>
+    <div class="news-media" id="newsMedia"></div>
+    <div class="news-body" id="newsBody"></div>
+  </div>
+</dialog>
 
 <script>
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -352,6 +503,80 @@ if(canHover && !reducedMotion){
     btn.addEventListener('mouseleave', () => btn.style.transform = '');
   });
 }
+
+/* ========== NEWS/PRIVACY DETAIL MODAL ========== */
+(function initNewsModal(){
+  const modal = document.getElementById('newsModal');
+  if(!modal || typeof modal.showModal !== 'function') return;
+  const yearEl    = document.getElementById('newsYear');
+  const tagEl     = document.getElementById('newsTagLabel');
+  const titleEl   = document.getElementById('newsTitle');
+  const summaryEl = document.getElementById('newsSummary');
+  const mediaEl   = document.getElementById('newsMedia');
+  const bodyEl    = document.getElementById('newsBody');
+  const closeBtn  = modal.querySelector('.news-close');
+  const inner     = modal.querySelector('.news-modal-inner');
+
+  document.querySelectorAll('.ed-item').forEach(item => {
+    if(!item.querySelector('.ed-body')) return;
+    item.classList.add('has-detail');
+    item.setAttribute('role', 'button');
+    item.setAttribute('tabindex', '0');
+    const h3 = item.querySelector('h3');
+    if(h3) item.setAttribute('aria-label', 'Read more: ' + h3.textContent.trim());
+  });
+
+  function openFromItem(item){
+    const year    = item.querySelector('.year');
+    const tag     = item.querySelector('.tag');
+    const title   = item.querySelector('.body h3');
+    const summary = item.querySelector('.body > .meta-line');
+    const media   = item.querySelector('.body > .ed-media');
+    const body    = item.querySelector('.body > .ed-body');
+    yearEl.textContent   = year    ? year.textContent    : '';
+    tagEl.textContent    = tag     ? tag.textContent     : '';
+    titleEl.innerHTML    = title   ? title.innerHTML     : '';
+    summaryEl.innerHTML  = summary ? summary.innerHTML   : '';
+    mediaEl.innerHTML    = media   ? media.outerHTML     : '';
+    bodyEl.innerHTML     = body    ? body.innerHTML      : '';
+    if(inner) inner.scrollTop = 0;
+    modal.classList.remove('closing');
+    modal.showModal();
+  }
+
+  function closeModal(){
+    if(modal.classList.contains('closing')) return;
+    modal.classList.add('closing');
+    const done = (e) => {
+      if(e.animationName !== 'newsOut') return;
+      modal.removeEventListener('animationend', done);
+      modal.close();
+      modal.classList.remove('closing');
+    };
+    modal.addEventListener('animationend', done);
+    setTimeout(() => {
+      if(modal.classList.contains('closing')){
+        modal.removeEventListener('animationend', done);
+        modal.close();
+        modal.classList.remove('closing');
+      }
+    }, 400);
+  }
+
+  document.querySelectorAll('.ed-item.has-detail').forEach(item => {
+    item.addEventListener('click', e => {
+      if(e.target.closest('a')) return;
+      openFromItem(item);
+    });
+    item.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openFromItem(item); }
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+  modal.addEventListener('cancel', e => { e.preventDefault(); closeModal(); });
+})();
 
 document.documentElement.classList.remove('loading');
 </script>
