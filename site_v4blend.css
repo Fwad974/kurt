@@ -1118,6 +1118,12 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 }
 
 /* ── Logo in navbar ── */
+/* Topbar grows to accommodate the larger 82px logo
+   (base topbar is 80px in site.css; 100px gives ~9px breathing
+   room top and bottom). */
+.topbar{
+  height:100px!important;
+}
 .brand-logo {
   display: flex;
   align-items: center;
@@ -1125,7 +1131,7 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   flex-shrink: 0;
 }
 .logo-img {
-  height: 64px;
+  height: 82px;
   width: auto;
   display: block;
   filter: drop-shadow(0 0 8px rgba(251,225,150,0.25));
