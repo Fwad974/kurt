@@ -80,6 +80,12 @@ body[data-page="team"] .sec-head .eyebrow{
   font-size:1rem;
   letter-spacing:.16em;
 }
+/* All section-marker eyebrows on the team page pick up the footer
+   gold (--accent), matching the treatment of .foot h4. Needs
+   !important to win over the .eyebrow override in site_v4blend.css. */
+body[data-page="team"] .eyebrow{
+  color:#FBE196!important;
+}
 
 @media (max-width:900px){
   .timeline{grid-template-columns:1fr; gap:0}
