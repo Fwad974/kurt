@@ -132,20 +132,20 @@ body[data-page="publications"] .sec-head .pub-heading em{
   color:#FBE196!important;
   font-style:italic;
 }
-/* "To see more articles" CTA block — right-aligned, bright gold
-   header, two link cards for the two PIs' public profiles. */
+/* "To see more articles" CTA block — bright gold prompt with two
+   profile cards for the PIs. Right-aligned on desktop, stacks left
+   on narrow screens. */
 body[data-page="publications"] .more-articles{
   max-width:1100px;
-  margin:48px auto 0;
+  margin:56px auto 0;
   display:flex;
   flex-direction:column;
   align-items:flex-end;
-  gap:18px;
-  text-align:right;
+  gap:22px;
 }
 body[data-page="publications"] .more-articles-intro{
   font-family:var(--serif);
-  font-size:1.5rem;
+  font-size:1.55rem;
   font-weight:300;
   font-style:italic;
   letter-spacing:-.01em;
@@ -156,56 +156,100 @@ body[data-page="publications"] .more-articles-links{
   display:flex;
   flex-wrap:wrap;
   justify-content:flex-end;
-  gap:14px;
+  gap:18px;
 }
 body[data-page="publications"] .more-articles-link{
   display:inline-flex;
   flex-direction:column;
-  align-items:flex-end;
-  gap:4px;
-  padding:14px 22px;
-  border:1px solid rgba(251,225,150,.3);
-  border-radius:14px;
-  background:rgba(251,225,150,.05);
+  align-items:center;
+  gap:12px;
+  padding:22px 34px 20px;
+  min-width:248px;
+  border:1px solid rgba(251,225,150,.28);
+  border-radius:16px;
+  background:
+    linear-gradient(180deg, rgba(251,225,150,.08) 0%, rgba(251,225,150,.03) 100%);
   text-decoration:none;
-  transition:background .25s ease, border-color .25s ease, transform .25s ease;
+  transition:
+    background .35s ease,
+    border-color .35s ease,
+    transform .35s var(--ease, cubic-bezier(.19,1,.22,1)),
+    box-shadow .35s ease;
 }
 body[data-page="publications"] .more-articles-link:hover,
 body[data-page="publications"] .more-articles-link:focus-visible{
-  background:rgba(251,225,150,.12);
-  border-color:rgba(251,225,150,.6);
-  transform:translateY(-2px);
+  background:
+    linear-gradient(180deg, rgba(251,225,150,.16) 0%, rgba(251,225,150,.06) 100%);
+  border-color:rgba(251,225,150,.62);
+  transform:translateY(-3px);
+  box-shadow:
+    0 14px 34px -18px rgba(251,225,150,.35),
+    0 0 0 1px rgba(251,225,150,.12) inset;
   outline:none;
 }
 body[data-page="publications"] .more-articles-link .ma-name{
   font-family:var(--serif);
-  font-size:1.15rem;
+  font-size:1.32rem;
   font-weight:400;
-  letter-spacing:-.01em;
+  letter-spacing:-.012em;
   color:#FBE196;
+  line-height:1.1;
+}
+body[data-page="publications"] .more-articles-link .ma-rule{
+  display:block;
+  width:26px;
+  height:1px;
+  background:rgba(251,225,150,.45);
+  transition:width .35s ease, background .35s ease;
+}
+body[data-page="publications"] .more-articles-link:hover .ma-rule,
+body[data-page="publications"] .more-articles-link:focus-visible .ma-rule{
+  width:44px;
+  background:rgba(251,225,150,.8);
 }
 body[data-page="publications"] .more-articles-link .ma-label{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
   font-family:"JetBrains Mono",monospace;
-  font-size:.68rem;
-  font-weight:500;
-  letter-spacing:.14em;
+  font-size:.66rem;
+  font-weight:600;
+  letter-spacing:.2em;
   text-transform:uppercase;
-  color:rgba(251,225,150,.7);
+  color:rgba(251,225,150,.78);
+}
+body[data-page="publications"] .more-articles-link .ma-arrow{
+  display:inline-block;
+  font-size:.82rem;
+  color:rgba(251,225,150,.75);
+  transform:translate(0,0);
+  transition:transform .35s ease, color .35s ease;
+}
+body[data-page="publications"] .more-articles-link:hover .ma-arrow,
+body[data-page="publications"] .more-articles-link:focus-visible .ma-arrow{
+  transform:translate(2px,-2px);
+  color:#FBE196;
 }
 @media(max-width:760px){
   body[data-page="publications"] .more-articles{
-    margin-top:36px;
+    margin-top:40px;
     align-items:stretch;
-    text-align:left;
   }
   body[data-page="publications"] .more-articles-intro{
     font-size:1.25rem;
+    text-align:left;
   }
   body[data-page="publications"] .more-articles-links{
     justify-content:flex-start;
+    gap:14px;
   }
   body[data-page="publications"] .more-articles-link{
-    align-items:flex-start;
+    min-width:0;
+    flex:1 1 240px;
+    padding:18px 24px 16px;
+  }
+  body[data-page="publications"] .more-articles-link .ma-name{
+    font-size:1.2rem;
   }
 }
 body[data-page="publications"] .ed-item .body .meta-line{
@@ -301,12 +345,14 @@ body[data-page="publications"] .ed-item .body .meta-line a:focus-visible{
     <p class="more-articles-intro">To see more articles &rarr;</p>
     <div class="more-articles-links">
       <a class="more-articles-link" href="https://orcid.org/0000-0002-4284-774X" target="_blank" rel="noopener noreferrer">
-        <span class="ma-name">Sarkawt Hamad</span>
-        <span class="ma-label">ORCID &nearr;</span>
+        <span class="ma-name">Kurt Pfannkuche</span>
+        <span class="ma-rule" aria-hidden="true"></span>
+        <span class="ma-label">ORCID <span class="ma-arrow">&nearr;</span></span>
       </a>
       <a class="more-articles-link" href="https://scholar.google.com/citations?user=-cYPHQkAAAAJ&amp;hl=en&amp;oi=ao" target="_blank" rel="noopener noreferrer">
-        <span class="ma-name">Kurt Pfannkuche</span>
-        <span class="ma-label">Google Scholar &nearr;</span>
+        <span class="ma-name">Sarkawt Hamad</span>
+        <span class="ma-rule" aria-hidden="true"></span>
+        <span class="ma-label">Google Scholar <span class="ma-arrow">&nearr;</span></span>
       </a>
     </div>
   </div>
