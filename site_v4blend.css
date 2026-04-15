@@ -1035,7 +1035,7 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   box-shadow:0 10px 28px rgba(0,0,0,.38), inset 0 0 0 1px rgba(255,255,255,.1);
 }
 .hero{
-  padding-top:130px!important;
+  padding-top:116px!important;
   padding-bottom:72px!important;
   align-items:start!important;
   min-height:auto!important;
@@ -1123,16 +1123,16 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 }
 
 /* ── Logo in navbar ── */
-/* Topbar grows to accommodate the larger 82px logo
-   (base topbar is 80px in site.css; 90px gives ~4px breathing
-   room top and bottom so the gold bar sits close to the logo).
-   The progress bar is pinned to the new topbar bottom so the
-   gold line sits under the nav instead of cutting through it. */
+/* Compact topbar. Base topbar is 80px in site.css; 76px makes it
+   a touch more compact, with a 68px logo leaving ~4px breathing
+   room top and bottom. The progress bar and hero padding-top are
+   pinned to the new topbar bottom so the gold line sits flush
+   under the nav. */
 .topbar{
-  height:90px!important;
+  height:76px!important;
 }
 .progress{
-  top:90px!important;
+  top:76px!important;
 }
 .brand-logo {
   display: flex;
@@ -1141,7 +1141,7 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   flex-shrink: 0;
 }
 .logo-img {
-  height: 82px;
+  height: 68px;
   width: auto;
   display: block;
   filter: drop-shadow(0 0 8px rgba(251,225,150,0.25));
