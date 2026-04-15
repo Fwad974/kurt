@@ -1120,9 +1120,14 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 /* ── Logo in navbar ── */
 /* Topbar grows to accommodate the larger 82px logo
    (base topbar is 80px in site.css; 100px gives ~9px breathing
-   room top and bottom). */
+   room top and bottom). The progress bar is pinned to the new
+   topbar bottom so the gold line sits under the nav instead of
+   cutting through it. */
 .topbar{
   height:100px!important;
+}
+.progress{
+  top:100px!important;
 }
 .brand-logo {
   display: flex;
