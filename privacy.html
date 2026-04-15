@@ -11,23 +11,17 @@
 <link rel="stylesheet" href="site.css?v=32">
 <style>
 .privacy-block{
-  padding:44px;
-  border:1px solid rgba(20,23,26,.08);
-  border-radius:2px;
-  background:linear-gradient(180deg,#f6f2ea 0%,#efe9dc 100%);
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.6) inset,
-    0 0 0 1px rgba(244,240,232,.04),
-    0 24px 50px -28px rgba(8,10,14,.55);
-  margin-bottom:20px;
+  margin-bottom:32px;
   max-width:82ch;
 }
+.privacy-block:last-child{margin-bottom:0}
 .privacy-block h3{
   font-family:var(--serif);
   font-variation-settings:"opsz" 144;
   font-weight:400;
   font-size:1.5rem;
   letter-spacing:-0.01em;
+  color:var(--ink);
   margin:0 0 18px;
 }
 .privacy-block p{
@@ -53,10 +47,6 @@
   transition:border-color .3s var(--ease);
 }
 .privacy-block a:hover{border-color:var(--ink)}
-
-@media (max-width:900px){
-  .privacy-block{padding:30px}
-}
 </style>
 <link rel="stylesheet" href="site_v4blend.css?v=16">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
