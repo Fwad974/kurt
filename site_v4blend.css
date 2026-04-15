@@ -180,6 +180,18 @@ h3.subhead em,
 .page-hero h1 em,
 .hero h1 em{font-style:italic!important;}
 
+/* Hero titles pick up the footer gold (--accent), matching the
+   rest of the golden text on the site. Declared after the white
+   color rule above so it wins via source order. */
+.page-hero h1,
+.hero h1{
+  color:#FBE196!important;
+}
+.page-hero h1 em,
+.hero h1 em{
+  color:#FBE196!important;
+}
+
 body,
 .lede,
 .sec-head .sec-lede,
