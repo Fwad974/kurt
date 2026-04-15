@@ -618,11 +618,21 @@ body[data-page="translational"]{
   position:absolute;
   inset:72px 28px 0 28px;
   border-radius:34px;
-  background:linear-gradient(180deg, rgba(4,7,15,.06), rgba(4,7,15,.18) 34%, rgba(4,7,15,0) 56%, rgba(4,7,15,.32) 100%);
+  background:
+    radial-gradient(ellipse at 50% 44%, rgba(4,7,15,.48), rgba(4,7,15,.22) 55%, rgba(4,7,15,0) 82%),
+    linear-gradient(180deg, rgba(4,7,15,.18), rgba(4,7,15,.28) 34%, rgba(4,7,15,.16) 56%, rgba(4,7,15,.5) 100%);
   border:1px solid rgba(255,255,255,.06);
+  box-shadow:
+    inset 0 -60px 90px -30px rgba(4,7,15,.45),
+    0 34px 80px -24px rgba(0,0,0,.55);
   z-index:-1;
 }
 .page-hero > *{position:relative; z-index:1;}
+.page-hero h1,
+.page-hero .lede,
+.page-hero .eyebrow{
+  text-shadow:0 2px 18px rgba(4,7,15,.55), 0 1px 2px rgba(4,7,15,.4);
+}
 
 .hero::before{
   content:"";
