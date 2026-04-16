@@ -22,6 +22,11 @@
 }
 .fig-svg svg text{fill:var(--muted); stroke:none; font-family:"JetBrains Mono",monospace; font-size:9px; letter-spacing:.8px}
 
+.figure.is-photo{
+  clip-path:none !important;
+  background:#f4f0e8;
+  overflow:hidden;
+}
 .fig-photo{
   position:absolute; inset:0;
   display:flex; align-items:center; justify-content:center;
@@ -375,7 +380,7 @@
   </div>
 
   <div class="split-sec reverse">
-    <div class="split-fig"><div class="figure hero-fig figure-reveal">
+    <div class="split-fig"><div class="figure hero-fig is-photo">
     <div class="fig-photo"><img src="micro-enc.jpg" alt="Microfluidic encapsulation schematic"></div>
     <div class="fig-overlay"></div>
     <div class="fig-label">02 / Chip</div>
