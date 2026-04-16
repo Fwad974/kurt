@@ -152,6 +152,14 @@ img{image-rendering:auto;}
   opacity:1!important;
 }
 
+/* All section eyebrows pick up the site accent gold so § THE THESIS,
+   § PEOPLE, § DATENSCHUTZ etc. read in the same #FBE196 as the
+   footer h4 and hero titles. The decorative ::before line above is
+   already gold; this just brings the text in tone. */
+.eyebrow{
+  color:#FBE196!important;
+}
+
 h1.display,
 h2.display,
 h3.subhead,
