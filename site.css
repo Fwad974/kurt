@@ -371,7 +371,7 @@ h3.subhead em{font-style:italic}
 html.loading body > *{opacity:0}
 html.loading body > #intro{opacity:1}
 
-.split .word{display:inline-block; overflow:hidden; vertical-align:top}
+.split .word{display:inline-block; overflow:hidden; vertical-align:top; padding-bottom:.22em; margin-bottom:-.22em}
 .split .char{
   display:inline-block;
   transform:translateY(110%) rotate(6deg);
