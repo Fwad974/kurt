@@ -22,6 +22,19 @@
 }
 .fig-svg svg text{fill:var(--muted); stroke:none; font-family:"JetBrains Mono",monospace; font-size:9px; letter-spacing:.8px}
 
+.fig-photo{
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  padding:20px;
+  background:#f4f0e8;
+}
+.fig-photo img{
+  max-width:100%; max-height:100%;
+  width:auto; height:auto;
+  display:block;
+  object-fit:contain;
+}
+
 .ed-filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:32px; font-family:"JetBrains Mono",monospace; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase}
 .ed-filters .chip{padding:9px 14px; border:1px solid var(--line-strong); border-radius:999px; color:var(--ink-2); transition:border-color .3s var(--ease), background .3s var(--ease), color .3s var(--ease); cursor:pointer; background:transparent; font:inherit; letter-spacing:inherit; text-transform:inherit}
 .ed-filters .chip:hover{border-color:var(--ink)}
@@ -363,17 +376,7 @@
 
   <div class="split-sec reverse">
     <div class="split-fig"><div class="figure hero-fig figure-reveal">
-    <div class="fig-svg"><svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg">
-  <g>
-    <rect x="40" y="60" width="240" height="120" rx="2"/>
-    <path d="M40 100 Q80 100 80 120 Q80 140 120 140 Q160 140 160 120 Q160 100 200 100 Q240 100 240 120 L280 120"/>
-    <circle cx="40" cy="100" r="6" fill="#14171a"/>
-    <circle cx="280" cy="120" r="6" fill="#14171a"/>
-    <circle cx="120" cy="140" r="3"/>
-    <circle cx="160" cy="120" r="3"/>
-    <circle cx="200" cy="100" r="3"/>
-  </g>
-</svg></div>
+    <div class="fig-photo"><img src="micro-enc.jpg" alt="Microfluidic encapsulation schematic"></div>
     <div class="fig-overlay"></div>
     <div class="fig-label">02 / Chip</div>
     <div class="fig-caption"><span class="sm">Encapsulation platform</span><span>Custom design</span></div>
