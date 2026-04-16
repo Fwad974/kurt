@@ -115,6 +115,19 @@ html:not(.loading) .topbar{transform:translateY(0); opacity:1}
   letter-spacing:.04em;
   display:flex; gap:18px; align-items:center;
 }
+.meta-right .uni-seal{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.meta-right .uni-seal img{
+  height:56px;
+  width:auto;
+  display:block;
+  opacity:.92;
+  transition:opacity .3s var(--ease);
+}
+.meta-right .uni-seal:hover img{opacity:1}
 .meta-right .live{display:inline-flex; align-items:center; gap:6px}
 .meta-right .live::before{
   content:""; width:6px; height:6px; border-radius:50%;
