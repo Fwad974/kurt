@@ -1083,6 +1083,116 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   z-index:1;
 }
 .photo-feature:hover img{transform:scale(1.05);}
+.photo-feature[data-gallery]{cursor:zoom-in;}
+.photo-feature[data-gallery]:focus-visible{outline:2px solid rgba(251,225,150,.6); outline-offset:3px;}
+
+/* Microscopy lightbox */
+.photo-lightbox{
+  position:fixed; inset:0; z-index:2000;
+  background:rgba(4,7,16,.92);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  display:flex; align-items:center; justify-content:center;
+  padding:48px;
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity .35s ease, visibility .35s ease;
+}
+.photo-lightbox.open{opacity:1; visibility:visible; pointer-events:auto;}
+.photo-lightbox-close{
+  position:absolute; top:18px; right:22px;
+  width:44px; height:44px; border-radius:50%;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.18);
+  color:#f4f7ff;
+  font-size:1.6rem; line-height:1;
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:background .25s ease, border-color .25s ease, transform .25s ease;
+}
+.photo-lightbox-close:hover{background:rgba(251,225,150,.18); border-color:rgba(251,225,150,.45); transform:scale(1.05);}
+.photo-lightbox-inner{
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) 320px;
+  gap:24px;
+  width:100%; max-width:1400px;
+  max-height:calc(100vh - 96px);
+  align-items:stretch;
+}
+.photo-lightbox-stage{
+  position:relative;
+  background:#060812;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  overflow:hidden;
+  min-height:0;
+  display:flex; align-items:center; justify-content:center;
+}
+.photo-lightbox-stage img{
+  max-width:100%; max-height:calc(100vh - 96px);
+  width:auto; height:auto;
+  display:block;
+  transition:opacity .25s ease;
+}
+.photo-lightbox-stage img.swapping{opacity:0;}
+.photo-lightbox-panel{
+  display:flex; flex-direction:column; gap:18px;
+  padding:24px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  overflow-y:auto;
+}
+.photo-lightbox-head .k{
+  display:inline-flex;
+  padding:6px 11px; border-radius:999px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.06);
+  color:rgba(235,242,255,.82);
+  font-family:"JetBrains Mono",monospace;
+  font-size:.58rem; letter-spacing:.14em; text-transform:uppercase;
+  margin-bottom:14px;
+}
+.photo-lightbox-head h3{
+  color:#f4f7ff; margin:0 0 8px;
+  font-family:var(--serif); font-weight:400;
+  font-size:1.5rem; line-height:1.2;
+}
+.photo-lightbox-head p{
+  color:rgba(226,233,246,.74);
+  margin:0; font-size:.94rem; line-height:1.55;
+}
+.photo-lightbox-variants{
+  display:flex; flex-direction:column; gap:8px;
+  margin-top:4px;
+}
+.photo-lightbox-variant{
+  text-align:left;
+  padding:12px 16px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.03);
+  border-radius:10px;
+  color:rgba(235,242,255,.82);
+  font-family:"JetBrains Mono",monospace;
+  font-size:.74rem; letter-spacing:.06em;
+  cursor:pointer;
+  transition:background .25s ease, border-color .25s ease, color .25s ease;
+}
+.photo-lightbox-variant:hover{
+  background:rgba(251,225,150,.08);
+  border-color:rgba(251,225,150,.32);
+  color:#f4f7ff;
+}
+.photo-lightbox-variant.active{
+  background:rgba(251,225,150,.14);
+  border-color:rgba(251,225,150,.5);
+  color:#FBE196;
+}
+@media (max-width:900px){
+  .photo-lightbox{padding:16px;}
+  .photo-lightbox-inner{grid-template-columns:1fr; max-height:none;}
+  .photo-lightbox-stage img{max-height:55vh;}
+  .photo-lightbox-panel{max-height:40vh;}
+}
 .photo-meta{
   position:absolute; left:0; right:0; bottom:0;
   z-index:2;

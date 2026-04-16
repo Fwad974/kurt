@@ -46,7 +46,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=34">
+<link rel="stylesheet" href="site.css?v=35">
 <style>
 /* =========================================================
    HOME-ONLY STYLES
@@ -498,7 +498,7 @@ html:not(.loading) .hud-bot{opacity:1}
 }
 
 </style>
-<link rel="stylesheet" href="site_v4blend.css?v=16">
+<link rel="stylesheet" href="site_v4blend.css?v=17">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png">
@@ -907,7 +907,16 @@ html:not(.loading) .hud-bot{opacity:1}
   </div>
 
   <div class="photo-band rv">
-    <article class="photo-feature wide">
+    <article class="photo-feature wide" tabindex="0" role="button" aria-label="Open overview field gallery"
+      data-gallery='[
+        {"label":"Nuclei","src":"images/96well-COs_Day10_4/96well-CO_Day10_Heochst.jpg"},
+        {"label":"Nuclei + CD31","src":"images/96well-COs_Day10_4/96well-CO_Day10_Heochst_CD31-AF555.jpg"},
+        {"label":"Nuclei + α-Actinin","src":"images/96well-COs_Day10_4/96well-CO_Day10_Heochst_Alpha-Actini-AF647.jpg"},
+        {"label":"CD31 + α-Actinin","src":"images/96well-COs_Day10_4/96well-CO_Day10_CD31-AF555_Alpha-Actini-AF647.jpg"},
+        {"label":"Merged","src":"images/96well-COs_Day10_4/96well-CO_Day10_Heochst_CD31-AF555_Alpha-Actini-AF647.jpg"}
+      ]'
+      data-gallery-title="Overview field — 96-well CO, D10"
+      data-gallery-caption="Dense cellular architecture with lumen-like voids and multi-marker texture.">
       <img src="photo_overview_1.webp" alt="Wide microscopy overview">
       <div class="photo-meta">
         <span class="k">Overview field</span>
@@ -916,7 +925,15 @@ html:not(.loading) .hud-bot{opacity:1}
       </div>
     </article>
 
-    <article class="photo-feature tall">
+    <article class="photo-feature tall" tabindex="0" role="button" aria-label="Open 2026 overlay gallery"
+      data-gallery='[
+        {"label":"Nuclei","src":"images/96well-COs_TNNT2-CX43/20012026_96well-COs_actinin-CX43_Image001_ch00_SV.jpg"},
+        {"label":"Cx43","src":"images/96well-COs_TNNT2-CX43/20012026_96well-COs_actinin-CX43_Image001_ch01_SV.jpg"},
+        {"label":"α-Actinin","src":"images/96well-COs_TNNT2-CX43/20012026_96well-COs_actinin-CX43_Image001_ch02_SV.jpg"},
+        {"label":"Overlay","src":"images/96well-COs_TNNT2-CX43/20012026_96well-COs_actinin-CX43_Image001_overlay.jpg"}
+      ]'
+      data-gallery-title="2026 overlay — 96-well CO"
+      data-gallery-caption="Cx43 + α-Actinin + nuclei">
       <img src="photo_overlay_2026.webp" alt="2026 overlay specimen">
       <div class="photo-meta">
         <span class="k">2026 overlay</span>
@@ -924,7 +941,16 @@ html:not(.loading) .hud-bot{opacity:1}
       </div>
     </article>
 
-    <article class="photo-feature tall">
+    <article class="photo-feature tall" tabindex="0" role="button" aria-label="Open ring specimen gallery"
+      data-gallery='[
+        {"label":"Nuclei","src":"images/DSR-COs_Day20_HOME_PAGE-Website/03082022_DSR-Organoids_D20_Hoechst.jpg"},
+        {"label":"Nuclei + α-Actinin","src":"images/DSR-COs_Day20_HOME_PAGE-Website/03082022_DSR-Organoids_D20_Hoechst_Actinin-AF467.jpg"},
+        {"label":"Nuclei + RFP","src":"images/DSR-COs_Day20_HOME_PAGE-Website/03082022_DSR-Organoids_D20_Hoechst_RFP.jpg"},
+        {"label":"Nuclei + vWF","src":"images/DSR-COs_Day20_HOME_PAGE-Website/03082022_DSR-Organoids_D20_Hoechst-vWF-AF488.jpg"},
+        {"label":"Merged","src":"images/DSR-COs_Day20_HOME_PAGE-Website/03082022_DSR-Organoids_D20_Merged.jpg"}
+      ]'
+      data-gallery-title="Ring specimen — DSR Organoids, D20"
+      data-gallery-caption="Compact organoid shell view">
       <img src="photo_organoid_ring.webp" alt="Ring organoid view">
       <div class="photo-meta">
         <span class="k">Ring specimen</span>
@@ -932,7 +958,15 @@ html:not(.loading) .hud-bot{opacity:1}
       </div>
     </article>
 
-    <article class="photo-feature wide">
+    <article class="photo-feature wide" tabindex="0" role="button" aria-label="Open close field gallery"
+      data-gallery='[
+        {"label":"Nuclei (Applikon)","src":"images/Bio-COs_Day10/Applikon-bioreactor-CO_Day10_Heochst.jpg"},
+        {"label":"Nuclei + α-Actinin (Applikon)","src":"images/Bio-COs_Day10/Applikon-CO_Day10_Heochst_Alpha-Actini-AF647.jpg"},
+        {"label":"Nuclei + CD31 (Applikon)","src":"images/Bio-COs_Day10/Applikon-bioreac-CO_Day10_Heochst_CD31-AF555.jpg"},
+        {"label":"Merged (96-well reference)","src":"images/Bio-COs_Day10/96well-CO_Day10_Heochst_CD31-AF555_Alpha-Actini-AF647.jpg"}
+      ]'
+      data-gallery-title="Close field — Bioreactor CO, D10"
+      data-gallery-caption="Fine-grained network detail from the Applikon bioreactor batch.">
       <img src="photo_overview_2.webp" alt="Close microscopy overview">
       <div class="photo-meta">
         <span class="k">Close field</span>
@@ -942,6 +976,24 @@ html:not(.loading) .hud-bot{opacity:1}
     </article>
   </div>
 </section>
+
+<!-- ========== MICROSCOPY LIGHTBOX ========== -->
+<div class="photo-lightbox" id="photoLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="photoLightboxTitle">
+  <button class="photo-lightbox-close" type="button" aria-label="Close">×</button>
+  <div class="photo-lightbox-inner">
+    <div class="photo-lightbox-stage">
+      <img id="photoLightboxImg" src="" alt="">
+    </div>
+    <div class="photo-lightbox-panel">
+      <div class="photo-lightbox-head">
+        <span class="k" id="photoLightboxEyebrow">Channel</span>
+        <h3 id="photoLightboxTitle"></h3>
+        <p id="photoLightboxCaption"></p>
+      </div>
+      <div class="photo-lightbox-variants" id="photoLightboxVariants" role="tablist"></div>
+    </div>
+  </div>
+</div>
 
 
 <!-- ========== FOOTER ========== -->
@@ -1181,6 +1233,79 @@ if(reducedMotion || skipSplash){
   setTimeout(releaseSite, 5400);
   setTimeout(() => { if(document.documentElement.classList.contains('loading')) releaseSite(); }, 8000);
 }
+
+/* ========== MICROSCOPY LIGHTBOX ========== */
+(function initPhotoLightbox(){
+  const box = document.getElementById('photoLightbox');
+  if(!box) return;
+  const img = document.getElementById('photoLightboxImg');
+  const eyebrow = document.getElementById('photoLightboxEyebrow');
+  const title = document.getElementById('photoLightboxTitle');
+  const caption = document.getElementById('photoLightboxCaption');
+  const variantsBox = document.getElementById('photoLightboxVariants');
+  const closeBtn = box.querySelector('.photo-lightbox-close');
+  let activeVariants = [];
+
+  function setVariant(idx){
+    if(!activeVariants[idx]) return;
+    const v = activeVariants[idx];
+    img.classList.add('swapping');
+    const pre = new Image();
+    pre.onload = () => {
+      img.src = v.src;
+      img.alt = v.label;
+      requestAnimationFrame(() => img.classList.remove('swapping'));
+    };
+    pre.src = v.src;
+    eyebrow.textContent = v.label;
+    variantsBox.querySelectorAll('.photo-lightbox-variant').forEach((b, i) => {
+      b.classList.toggle('active', i === idx);
+    });
+  }
+
+  function open(tile){
+    let variants;
+    try { variants = JSON.parse(tile.dataset.gallery || '[]'); } catch(e){ variants = []; }
+    if(!variants.length) return;
+    activeVariants = variants;
+    title.textContent = tile.dataset.galleryTitle || '';
+    caption.textContent = tile.dataset.galleryCaption || '';
+    variantsBox.innerHTML = '';
+    variants.forEach((v, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'photo-lightbox-variant';
+      btn.role = 'tab';
+      btn.textContent = v.label;
+      btn.addEventListener('click', () => setVariant(i));
+      variantsBox.appendChild(btn);
+    });
+    setVariant(0);
+    box.classList.add('open');
+    box.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function close(){
+    box.classList.remove('open');
+    box.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.photo-feature[data-gallery]').forEach(tile => {
+    tile.addEventListener('click', () => open(tile));
+    tile.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(tile); }
+    });
+  });
+
+  closeBtn.addEventListener('click', close);
+  box.addEventListener('click', (e) => { if(e.target === box) close(); });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && box.classList.contains('open')) close();
+  });
+})();
 </script>
 <script src="site_v4blend.js?v=9"></script>
 </body>
