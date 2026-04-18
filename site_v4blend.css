@@ -19,7 +19,7 @@
   --shadow-xl:0 34px 90px rgba(6,10,18,.55);
   --shadow-lg:0 22px 54px rgba(6,10,18,.42);
   --serif:"Cormorant Garamond", Georgia, serif;
-  --sans:"Inter", system-ui, sans-serif;
+  --sans:"Manrope", system-ui, sans-serif;
   --mono:"JetBrains Mono", monospace;
   /* remap light-theme variables for dark background */
   --ink:rgba(248,243,232,.92);
