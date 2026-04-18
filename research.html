@@ -38,14 +38,33 @@
 }
 @media (max-width:1100px){
   .figure.is-photo{
-    aspect-ratio:auto;
+    position:relative !important;
+    width:100% !important;
+    aspect-ratio:auto !important;
+    overflow:visible !important;
+    background:#ffffff !important;
+    border-radius:12px !important;
+    min-height:auto !important;
   }
-  .fig-photo{
-    position:static;
+  .figure.is-photo .fig-photo{
+    position:static !important;
+    padding:0 !important;
+    background:#ffffff !important;
   }
-  .fig-photo img{
-    width:100%; height:auto;
-    object-fit:contain;
+  .figure.is-photo .fig-photo img{
+    position:static !important;
+    width:100% !important;
+    height:auto !important;
+    object-fit:contain !important;
+    display:block !important;
+  }
+  .figure.is-photo .fig-overlay{display:none !important}
+  .figure.is-photo .fig-label,
+  .figure.is-photo .fig-caption{
+    position:static !important;
+    opacity:1 !important;
+    padding:8px 16px !important;
+    background:#ffffff !important;
   }
 }
 
