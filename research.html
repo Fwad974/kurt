@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=51">
+<link rel="stylesheet" href="site.css?v=52">
 <style>
 .split-fig{min-height:360px; position:relative}
 .fig-svg{
@@ -37,146 +37,88 @@
   object-fit:cover;
 }
 /* =========================================================
-   MOBILE R&D — clean single-column layout
+   MOBILE R&D
    ========================================================= */
 @media (max-width:1100px){
-  /* --- Split sections: stack vertically, prose first --- */
-  .split-sec,
-  .split-sec.reverse{
-    display:flex !important;
-    flex-direction:column !important;
-    gap:24px !important;
-    margin-bottom:56px !important;
+  /* --- Atlas: hide viewer, linearise steps --- */
+  .atlas-sticky{display:none !important}
+  .scroll-atlas{display:block !important; padding:0 20px !important}
+  .atlas-steps{
+    display:flex !important; flex-direction:column !important;
+    padding:0 !important; gap:0 !important;
   }
-  .split-sec .split-prose{order:1 !important}
-  .split-sec .split-fig{
-    order:2 !important;
-    width:100% !important;
-    min-height:auto !important;
+  .atlas-step{
+    opacity:1 !important; transform:none !important;
+    max-width:none !important;
+    background:transparent !important;
+    border:none !important; border-radius:0 !important;
+    box-shadow:none !important; backdrop-filter:none !important;
+    padding:0 0 40px !important;
+    margin:0 !important;
+    border-bottom:1px solid rgba(251,225,150,.1) !important;
   }
+  .atlas-step:last-child{border-bottom:none !important; padding-bottom:0 !important}
+  .atlas-step .num{font-size:.64rem !important; margin-bottom:14px !important}
+  .atlas-step h3{
+    font-size:1.35rem !important; line-height:1.12 !important;
+    max-width:none !important; margin-bottom:16px !important;
+  }
+  .atlas-step p{
+    font-size:.9rem !important; line-height:1.7 !important;
+    max-width:none !important;
+  }
+  .atlas-step .meta-list{max-width:none !important; font-size:.72rem !important}
 
-  /* --- Photo figures (micro-enc.jpg etc): static flow --- */
+  /* --- Split-sec: stack, prose first --- */
+  .split-sec, .split-sec.reverse{
+    display:flex !important; flex-direction:column !important;
+    gap:28px !important; margin-bottom:48px !important;
+  }
+  .split-sec .split-prose{order:1 !important; text-align:left !important}
+  .split-sec .split-fig{order:2 !important; width:100% !important; min-height:auto !important}
+
+  /* --- Photo figures: static flow, full-width --- */
   .figure.is-photo{
-    position:relative !important;
-    width:100% !important;
-    aspect-ratio:auto !important;
-    overflow:hidden !important;
-    background:#fff !important;
-    border-radius:12px !important;
-    min-height:auto !important;
+    position:relative !important; width:100% !important;
+    min-height:auto !important; aspect-ratio:auto !important;
+    overflow:hidden !important; background:#fff !important;
+    border-radius:16px !important;
   }
-  .figure.is-photo .fig-photo{
-    position:static !important;
-    padding:0 !important;
-    background:#fff !important;
-  }
+  .figure.is-photo .fig-photo{position:static !important; background:#fff !important}
   .figure.is-photo .fig-photo img{
-    position:static !important;
-    width:100% !important;
-    height:auto !important;
-    object-fit:contain !important;
-    display:block !important;
+    position:static !important; width:100% !important;
+    height:auto !important; object-fit:contain !important; display:block !important;
   }
   .figure.is-photo .fig-overlay{display:none !important}
   .figure.is-photo .fig-label,
   .figure.is-photo .fig-caption{
-    position:static !important;
-    opacity:1 !important;
-    padding:8px 16px !important;
-    background:#fff !important;
-    color:#14171a !important;
+    position:static !important; opacity:1 !important;
+    padding:8px 16px !important; background:#fff !important; color:#14171a !important;
   }
 
-  /* --- SVG figures: remove clip reveal --- */
+  /* --- SVG figures: disable clip reveal --- */
   .split-fig .figure-reveal{clip-path:none !important}
-  .split-fig .figure-reveal .fig-inner,
-  .split-fig .figure-reveal .fig-stack img{transform:scale(1) !important}
   .split-fig .figure-reveal .fig-label,
   .split-fig .figure-reveal .fig-caption{opacity:1 !important}
 
-  /* --- Scroll atlas: hide viewer, show steps as cards --- */
-  .atlas-sticky{display:none !important}
-  .scroll-atlas{
-    display:block !important;
-    padding:0 16px !important;
-  }
-  .atlas-steps{
-    display:flex !important;
-    flex-direction:column !important;
-    padding:0 !important;
-    gap:16px !important;
-  }
-  .atlas-step{
-    opacity:1 !important;
-    transform:none !important;
-    max-width:none !important;
-    padding:0 !important;
-    border:none !important;
-    border-bottom:1px solid rgba(251,225,150,.08) !important;
-    border-radius:0 !important;
-    background:transparent !important;
-    box-shadow:none !important;
-    padding-bottom:32px !important;
-    margin-bottom:8px !important;
-  }
-  .atlas-step:last-child{
-    border-bottom:none !important;
-    padding-bottom:0 !important;
-    margin-bottom:0 !important;
-  }
-  .atlas-step .num{
-    margin-bottom:10px !important;
-    font-size:.62rem !important;
-  }
-  .atlas-step h3{
-    max-width:none !important;
-    font-size:1.35rem !important;
-    line-height:1.15 !important;
-    margin-bottom:14px !important;
-    text-align:left !important;
-  }
-  .atlas-step p{
-    max-width:none !important;
-    font-size:.88rem !important;
-    line-height:1.65 !important;
-    text-align:left !important;
-  }
-  .atlas-step .meta-list{
-    max-width:none !important;
-    font-size:.7rem !important;
-    gap:6px 20px !important;
-  }
-
-  /* --- Overview figure & lead-figure --- */
-  .lead-figure .figure{
-    aspect-ratio:auto !important;
-    min-height:auto !important;
-  }
-  .lead-figure .fig-svg{
-    position:static !important;
-    padding:20px !important;
-  }
-  .lead-figure .fig-svg svg{
-    width:100% !important;
-    height:auto !important;
-    max-width:100% !important;
-  }
+  /* --- Lead figure: let SVG flow naturally --- */
+  .lead-figure .figure{aspect-ratio:auto !important; min-height:auto !important}
+  .lead-figure .fig-svg{position:static !important; padding:24px !important}
+  .lead-figure .fig-svg svg{width:100% !important; height:auto !important; max-width:100% !important}
 }
+
 @media (max-width:600px){
-  .split-sec{gap:20px !important; margin-bottom:40px !important}
-  .split-sec .split-prose{text-align:left !important}
-  .split-sec .split-prose .num{justify-content:flex-start !important}
-  .split-sec .split-prose h3{margin-left:0 !important; margin-right:0 !important; text-align:left !important}
-  .split-sec .split-prose p{margin-left:0 !important; margin-right:0 !important; text-align:left !important}
-  .split-sec .split-prose .meta-list{
-    gap:6px 16px;
-    font-size:.66rem;
-    padding-top:14px;
-  }
-  .atlas-steps{gap:12px !important; padding:0 4px !important}
-  .atlas-step{padding:20px 16px 24px !important}
+  .scroll-atlas{padding:0 16px !important}
+  .atlas-step{padding-bottom:32px !important}
   .atlas-step h3{font-size:1.2rem !important}
-  .atlas-step p{font-size:.84rem !important}
+  .atlas-step p{font-size:.84rem !important; line-height:1.65 !important}
+  .atlas-step .meta-list{font-size:.68rem !important; gap:6px 18px !important}
+  .split-sec{gap:20px !important; margin-bottom:36px !important}
+  .split-sec .split-prose h3{margin-left:0 !important; margin-right:0 !important}
+  .split-sec .split-prose p{margin-left:0 !important; margin-right:0 !important}
+  .split-sec .split-prose .num{justify-content:flex-start !important}
+  .split-sec .split-prose .meta-list{font-size:.66rem !important; padding-top:14px !important}
+  .lead-figure .fig-svg{padding:16px !important}
 }
 </style>
 <link rel="stylesheet" href="site_v4blend.css?v=16">
