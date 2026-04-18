@@ -989,6 +989,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 .atlas-sticky{
   position:sticky;
   top:80px;
+  align-self:start;
   height:calc(100vh - 160px);
   min-height:560px;
   display:flex; flex-direction:column;
