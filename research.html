@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=44">
+<link rel="stylesheet" href="site.css?v=45">
 <style>
 .split-fig{min-height:360px; position:relative}
 .fig-svg{
@@ -154,6 +154,21 @@
   .split-fig .figure-reveal .fig-stack img{transform:scale(1) !important}
   .split-fig .figure-reveal .fig-label,
   .split-fig .figure-reveal .fig-caption{opacity:1 !important}
+  .atlas-sticky{display:none !important}
+  .scroll-atlas{display:block !important}
+  .atlas-steps{
+    display:flex !important;
+    flex-direction:column !important;
+    padding:0 !important;
+    gap:48px !important;
+  }
+  .atlas-step{
+    opacity:1 !important;
+    transform:none !important;
+    max-width:none !important;
+  }
+  .atlas-step h3{max-width:none !important}
+  .atlas-step .meta-list{max-width:none !important}
 }
 @media (max-width:600px){
   .fig-svg{padding:14px}
