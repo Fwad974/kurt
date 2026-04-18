@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=63">
+<link rel="stylesheet" href="site.css?v=64">
 <style>
 .split-fig{min-height:360px; position:relative}
 .fig-svg{
@@ -30,12 +30,19 @@
 .fig-photo{
   position:absolute; inset:0;
   background:#ffffff;
-  display:flex; align-items:center; justify-content:center;
 }
 .fig-photo img{
-  max-width:100%; max-height:100%;
-  width:auto; height:auto;
+  width:100%; height:100%;
   display:block;
+  object-fit:cover;
+}
+/* Diagrams with text labels — fit the whole image, don't crop */
+.figure.is-diagram .fig-photo{
+  display:flex; align-items:center; justify-content:center;
+}
+.figure.is-diagram .fig-photo img{
+  width:auto; height:auto;
+  max-width:100%; max-height:100%;
   object-fit:contain;
 }
 /* =========================================================
@@ -202,7 +209,7 @@
     </div>
   </div>
   <div class="lead-figure">
-    <div class="figure hero-fig is-photo">
+    <div class="figure hero-fig is-photo is-diagram">
     <div class="fig-photo"><img src="images/RD/Lab pipline.png" alt="Lab research pipeline — from somatic cells through iPSCs to cardiac organoids, drug testing, and disease modelling"></div>
     <div class="fig-overlay"></div>
     <div class="fig-label">Research pipeline</div>
@@ -400,7 +407,7 @@
   </div>
 
   <div class="split-sec ">
-    <div class="split-fig"><div class="figure hero-fig is-photo">
+    <div class="split-fig"><div class="figure hero-fig is-photo is-diagram">
     <div class="fig-photo"><img src="images/RD/2.jpg" alt="Hydrogel scaffold preparation"></div>
     <div class="fig-overlay"></div>
     <div class="fig-label">03 / Gel</div>
