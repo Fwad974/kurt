@@ -98,6 +98,11 @@
   .split-sec .split-prose .meta-list{max-width:100%}
   .figure.is-photo{aspect-ratio:4/3; width:100%}
   .fig-photo{position:absolute; inset:0}
+  .split-fig .figure-reveal{clip-path:none !important}
+  .split-fig .figure-reveal .fig-inner,
+  .split-fig .figure-reveal .fig-stack img{transform:scale(1) !important}
+  .split-fig .figure-reveal .fig-label,
+  .split-fig .figure-reveal .fig-caption{opacity:1 !important}
 }
 @media (max-width:600px){
   .fig-svg{padding:14px}
