@@ -48,61 +48,61 @@
 /* =========================================================
    MOBILE R&D
    ========================================================= */
+/* --- Atlas: hide viewer, show steps as organoid cards (all breakpoints) --- */
+.atlas-sticky{display:none !important}
+.scroll-atlas{display:block !important; padding:0 16px !important; max-width:900px !important; margin:0 auto !important}
+.atlas-steps{
+  display:flex !important; flex-direction:column !important;
+  padding:0 !important; gap:16px !important;
+}
+.atlas-step{
+  opacity:1 !important; transform:none !important;
+  max-width:none !important;
+  padding:28px 24px 32px !important;
+  margin:0 !important;
+  border-radius:20px !important;
+  border:1px solid rgba(255,255,255,.08) !important;
+  background:linear-gradient(180deg, rgba(8,14,28,.92), rgba(6,10,22,.96)) !important;
+  box-shadow:0 8px 32px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.04) !important;
+  backdrop-filter:none !important;
+  position:relative !important;
+  overflow:hidden !important;
+  isolation:isolate !important;
+}
+.atlas-step::before{
+  content:""; position:absolute; inset:0; z-index:-1;
+  background-size:cover; background-position:center;
+  opacity:.2; filter:saturate(.7) brightness(.8);
+}
+.atlas-step[data-atlas="nuclei"]::before{background-image:url('stack_nuclei.webp')}
+.atlas-step[data-atlas="actinin"]::before{background-image:url('stack_actinin.webp')}
+.atlas-step[data-atlas="rfp"]::before{background-image:url('stack_rfp.webp')}
+.atlas-step[data-atlas="merged"]::before{background-image:url('stack_merged.webp')}
+.atlas-step[data-atlas="vwf"]::before{background-image:url('stack_vwf.webp')}
+.atlas-step .num{font-size:.64rem !important; margin-bottom:16px !important}
+.atlas-step h3{
+  font-size:1.5rem !important; line-height:1.12 !important;
+  max-width:none !important; margin-bottom:20px !important;
+  color:#F4F0E8 !important;
+}
+.atlas-step h3 em{color:#FBE196 !important}
+.atlas-step p{
+  font-size:.94rem !important; line-height:1.72 !important;
+  max-width:none !important; color:rgba(244,240,232,.72) !important;
+}
+.atlas-step .meta-list{
+  max-width:none !important; font-size:.72rem !important;
+  margin-top:8px !important;
+  border-top:1px solid rgba(251,225,150,.1) !important;
+  padding-top:20px !important;
+}
+.atlas-step .meta-list dt{color:rgba(251,225,150,.5) !important}
+.atlas-step .meta-list dd{color:rgba(244,240,232,.7) !important}
+
 @media (max-width:1100px){
   /* --- Page hero: bigger title and lede --- */
   .page-hero h1{font-size:2.2rem !important; line-height:1.05 !important}
   .page-hero .lede{font-size:1rem !important; line-height:1.6 !important}
-
-  /* --- Atlas: hide viewer, show steps as organoid cards --- */
-  .atlas-sticky{display:none !important}
-  .scroll-atlas{display:block !important; padding:0 16px !important}
-  .atlas-steps{
-    display:flex !important; flex-direction:column !important;
-    padding:0 !important; gap:16px !important;
-  }
-  .atlas-step{
-    opacity:1 !important; transform:none !important;
-    max-width:none !important;
-    padding:28px 24px 32px !important;
-    margin:0 !important;
-    border-radius:20px !important;
-    border:1px solid rgba(255,255,255,.08) !important;
-    background:linear-gradient(180deg, rgba(8,14,28,.92), rgba(6,10,22,.96)) !important;
-    box-shadow:0 8px 32px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.04) !important;
-    backdrop-filter:none !important;
-    position:relative !important;
-    overflow:hidden !important;
-    isolation:isolate !important;
-  }
-  .atlas-step::before{
-    content:""; position:absolute; inset:0; z-index:-1;
-    background-size:cover; background-position:center;
-    opacity:.2; filter:saturate(.7) brightness(.8);
-  }
-  .atlas-step[data-atlas="nuclei"]::before{background-image:url('stack_nuclei.webp')}
-  .atlas-step[data-atlas="actinin"]::before{background-image:url('stack_actinin.webp')}
-  .atlas-step[data-atlas="rfp"]::before{background-image:url('stack_rfp.webp')}
-  .atlas-step[data-atlas="merged"]::before{background-image:url('stack_merged.webp')}
-  .atlas-step[data-atlas="vwf"]::before{background-image:url('stack_vwf.webp')}
-  .atlas-step .num{font-size:.64rem !important; margin-bottom:16px !important}
-  .atlas-step h3{
-    font-size:1.5rem !important; line-height:1.12 !important;
-    max-width:none !important; margin-bottom:20px !important;
-    color:#F4F0E8 !important;
-  }
-  .atlas-step h3 em{color:#FBE196 !important}
-  .atlas-step p{
-    font-size:.94rem !important; line-height:1.72 !important;
-    max-width:none !important; color:rgba(244,240,232,.72) !important;
-  }
-  .atlas-step .meta-list{
-    max-width:none !important; font-size:.72rem !important;
-    margin-top:8px !important;
-    border-top:1px solid rgba(251,225,150,.1) !important;
-    padding-top:20px !important;
-  }
-  .atlas-step .meta-list dt{color:rgba(251,225,150,.5) !important}
-  .atlas-step .meta-list dd{color:rgba(244,240,232,.7) !important}
 
   /* --- Split-sec: stack, prose first --- */
   .split-sec, .split-sec.reverse{
