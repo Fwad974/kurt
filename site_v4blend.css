@@ -1002,7 +1002,7 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   color:#eef4ff;
 }
 .hero-thumb img{
-  width:100%; aspect-ratio:1/0.68; object-fit:cover; display:block;
+  width:100%; aspect-ratio:1/1; object-fit:cover; display:block;
   opacity:.82;
   transition:opacity .35s ease, transform .5s cubic-bezier(.19,1,.22,1);
   transform:scale(1.02);
