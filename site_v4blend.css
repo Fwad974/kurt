@@ -1596,9 +1596,9 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 /* ── Mobile team page fit ── */
 @media(max-width:760px){
   .page-hero{padding:88px 16px 12px!important;}
-  .page-hero h1{font-size:1.5rem!important; line-height:1.15!important; overflow-wrap:break-word!important; max-width:none!important; margin:0 auto 14px!important;}
-  .page-hero .lede{font-size:.75rem!important; line-height:1.5!important; margin:0 auto!important;}
-  .page-hero .eyebrow{margin-bottom:10px!important; font-size:.55rem!important;}
+  .page-hero h1{font-size:2.2rem!important; line-height:1.06!important; overflow-wrap:break-word!important; max-width:none!important; margin:0 auto 14px!important;}
+  .page-hero .lede{font-size:1rem!important; line-height:1.6!important; margin:0 auto!important;}
+  .page-hero .eyebrow{margin-bottom:10px!important; font-size:.62rem!important;}
   .page-hero::before,.page-hero::after{inset:74px 10px 0 10px!important; border-radius:20px!important;}
   .card-grid.four{display:grid!important; grid-template-columns:1fr 1fr!important; justify-content:start!important; flex-wrap:nowrap!important;}
   .card-grid.four > .fig-card{flex:none!important; max-width:none!important; width:100%!important;}
