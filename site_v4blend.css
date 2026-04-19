@@ -260,6 +260,19 @@ body,
 .page-hero{padding-top:162px!important;}
 .sec-head{border-bottom:1px solid var(--line)!important;}
 #why .sec-head{border-bottom:none!important; padding-bottom:0!important;}
+@media (min-width:901px){
+  .sec-head .eyebrow{
+    display:flex!important;
+    width:100%!important;
+    justify-content:flex-end!important;
+  }
+  .sec-head .eyebrow::before{
+    flex:1!important;
+    width:auto!important;
+    max-width:none!important;
+    margin-right:4px!important;
+  }
+}
 .sec{position:relative;}
 .sec::before{
   content:"";
