@@ -1292,13 +1292,24 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   margin-bottom:48px;
 }
 
-/* ── Main area: brand left, nav group right ── */
+/* ── Main area: brand + nav on top row, supporters spanning below ── */
 .foot-main{
   display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);
-  gap:72px;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);
+  grid-template-areas:
+    "brand nav"
+    "supporters supporters";
+  column-gap:72px;
+  row-gap:56px;
   padding-bottom:40px;
   align-items:start;
+}
+.foot-brand{grid-area:brand;}
+.foot-nav-group{grid-area:nav;}
+.foot-supporters{
+  grid-area:supporters;
+  padding-top:32px;
+  border-top:1px solid rgba(251,225,150,.08);
 }
 
 /* ── Brand column ── */
@@ -1375,18 +1386,20 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   flex-shrink:0;
 }
 
-/* ── Supported by (sponsor list inside the brand column) ── */
+/* ── Supported by (sponsor list, full-width row under brand + nav) ── */
 .foot-supporters{
-  margin-top:8px;
-  padding-top:28px;
-  border-top:1px solid rgba(251,225,150,.12);
-  max-width:640px;
+  display:grid;
+  grid-template-columns:minmax(0,auto) minmax(0,1fr);
+  column-gap:56px;
+  row-gap:18px;
+  align-items:start;
 }
+.foot-supporters h4{grid-column:1 / -1; margin-bottom:4px!important;}
 .foot-supporters .supporters-group{
-  margin-top:18px;
-}
-.foot-supporters .supporters-group:first-of-type{
   margin-top:0;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
 }
 .foot-supporters .supporters-group-label{
   font-family:"JetBrains Mono",monospace;
@@ -1468,17 +1481,18 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 /* ── Nav columns ── */
 .foot-nav-group{
   display:grid;
-  grid-template-columns:repeat(4, 1fr);
-  gap:48px;
+  grid-template-columns:minmax(0,.9fr) minmax(0,.9fr) minmax(0,1.5fr) minmax(0,.7fr);
+  gap:40px;
   padding-top:8px;
 }
 .foot-nav-group ul{gap:11px!important;}
 .foot-nav-group ul a{
   position:relative;
-  font-size:1rem!important;
+  font-size:.95rem!important;
   color:rgba(255,255,255,.6)!important;
   border-bottom:1px solid transparent;
   padding-bottom:1px;
+  word-break:break-word;
   transition:color .25s ease, border-color .25s ease!important;
 }
 .foot-nav-group ul a:hover,
