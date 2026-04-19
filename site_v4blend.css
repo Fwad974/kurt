@@ -1289,22 +1289,22 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
     rgba(251,225,150,.18) 84%,
     transparent 100%
   );
-  margin-bottom:80px;
+  margin-bottom:48px;
 }
 
 /* ── Main area: brand on top, nav row below ── */
 .foot-main{
   display:grid;
   grid-template-columns:1fr;
-  gap:72px;
-  padding-bottom:64px;
+  gap:40px;
+  padding-bottom:40px;
 }
 
 /* ── Brand column ── */
 .foot-brand{
   display:flex;
   flex-direction:column;
-  gap:32px;
+  gap:24px;
 }
 .foot-logo{
   display:block;
@@ -1312,7 +1312,7 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   width:fit-content;
 }
 .foot-logo-img{
-  height:140px;
+  height:104px;
   width:auto;
   display:block;
   opacity:.92;
