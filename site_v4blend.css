@@ -255,8 +255,8 @@ body,
 .ed-item .year{
   color:var(--text-2)!important;
 }
-.lede,
-.sec-head .sec-lede{max-width:58ch!important;}
+.lede{max-width:58ch!important;}
+.sec-head .sec-lede{max-width:none!important;}
 .page-hero{padding-top:162px!important;}
 .sec-head{border-bottom:1px solid var(--line)!important;}
 #why .sec-head{border-bottom:none!important; padding-bottom:0!important;}
