@@ -1295,11 +1295,11 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 /* ── Main area: brand + nav on top row, supporters spanning below ── */
 .foot-main{
   display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);
+  grid-template-columns:minmax(0,.85fr) minmax(0,1.9fr);
   grid-template-areas:
     "brand nav"
     "supporters supporters";
-  column-gap:72px;
+  column-gap:56px;
   row-gap:56px;
   padding-bottom:40px;
   align-items:start;
@@ -1480,8 +1480,8 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 /* ── Nav columns ── */
 .foot-nav-group{
   display:grid;
-  grid-template-columns:minmax(0,.8fr) minmax(0,.8fr) minmax(0,1.3fr) minmax(220px,1.1fr);
-  gap:24px;
+  grid-template-columns:minmax(140px,1fr) minmax(120px,1fr) minmax(210px,1.3fr) minmax(210px,1fr);
+  gap:28px;
   padding-top:8px;
 }
 .foot-nav-group > div:last-child h4{white-space:nowrap;}
