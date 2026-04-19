@@ -211,11 +211,19 @@
     position:static !important; width:100% !important;
     height:auto !important; object-fit:contain !important; display:block !important;
   }
-  .figure.is-photo.is-video,
-  .figure.is-photo.is-video .fig-photo{background:#0d1b2a !important}
+  .figure.is-photo.is-video{
+    aspect-ratio:16/11 !important;
+    background:transparent !important;
+    border:none !important;
+  }
+  .figure.is-photo.is-video .fig-photo{
+    position:absolute !important; inset:0 !important;
+    background:transparent !important;
+  }
   .figure.is-photo.is-video .fig-photo video{
-    position:static !important; width:100% !important;
-    height:auto !important; object-fit:contain !important; display:block !important;
+    position:absolute !important; inset:0 !important;
+    width:100% !important; height:100% !important;
+    object-fit:cover !important; display:block !important;
   }
   .figure.is-photo .fig-overlay{display:none !important}
   .figure.is-photo .fig-label,
