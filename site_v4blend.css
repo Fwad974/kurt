@@ -261,24 +261,13 @@ body,
 .sec-head{border-bottom:1px solid var(--line)!important;}
 #why .sec-head{border-bottom:none!important; padding-bottom:0!important;}
 @media (min-width:901px){
-  .sec-head .eyebrow{
-    display:flex!important;
-    width:100%!important;
-    justify-content:flex-end!important;
+  .page-hero .eyebrow{
+    justify-content:flex-start!important;
   }
-  .sec-head .eyebrow::before{
-    flex:1!important;
-    width:auto!important;
-    max-width:none!important;
-    margin-right:4px!important;
-  }
-  .page-hero h1,
-  .page-hero .lede,
-  .sec-head h2.display,
-  .sec-head .sec-lede{
-    text-align:right!important;
-    margin-left:auto!important;
+  .page-hero .eyebrow::before{
+    order:2!important;
     margin-right:0!important;
+    margin-left:14px!important;
   }
 }
 .sec{position:relative;}
