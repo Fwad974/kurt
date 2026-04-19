@@ -101,8 +101,8 @@
 
 @media (min-width:1101px){
   .scroll-atlas{max-width:1200px !important; padding:0 32px !important}
-  .atlas-steps{gap:32px !important}
-  .atlas-step{
+  .scroll-atlas .atlas-steps{gap:32px !important}
+  .scroll-atlas .atlas-step{
     padding:56px 64px 56px 460px !important;
     border-radius:28px !important;
     min-height:420px !important;
@@ -111,7 +111,7 @@
     justify-content:center !important;
     transition:transform .5s var(--ease), box-shadow .5s var(--ease) !important;
   }
-  .atlas-step::before{
+  .scroll-atlas .atlas-step::before{
     inset:40px auto 40px 40px !important;
     width:360px !important;
     height:auto !important;
@@ -123,7 +123,7 @@
     background-position:center !important;
     transition:transform .6s var(--ease), filter .6s var(--ease) !important;
   }
-  .atlas-step::after{
+  .scroll-atlas .atlas-step::after{
     content:""; position:absolute;
     inset:40px auto 40px 40px;
     width:360px;
@@ -131,34 +131,34 @@
     background:linear-gradient(180deg, transparent 55%, rgba(6,10,22,.55)) !important;
     pointer-events:none; z-index:-1;
   }
-  .atlas-step:nth-child(even){padding:56px 460px 56px 64px !important}
-  .atlas-step:nth-child(even)::before,
-  .atlas-step:nth-child(even)::after{inset:40px 40px 40px auto !important}
-  .atlas-step:hover{
+  .scroll-atlas .atlas-step:nth-child(even){padding:56px 460px 56px 64px !important}
+  .scroll-atlas .atlas-step:nth-child(even)::before,
+  .scroll-atlas .atlas-step:nth-child(even)::after{inset:40px 40px 40px auto !important}
+  .scroll-atlas .atlas-step:hover{
     transform:translateY(-4px) !important;
     box-shadow:0 24px 56px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.08) !important;
   }
-  .atlas-step:hover::before{transform:scale(1.015) !important; filter:saturate(1.1) brightness(1) !important}
-  .atlas-step .num{
+  .scroll-atlas .atlas-step:hover::before{transform:scale(1.015) !important; filter:saturate(1.1) brightness(1) !important}
+  .scroll-atlas .atlas-step .num{
     font-size:.7rem !important; margin-bottom:22px !important;
     letter-spacing:.18em !important;
     color:rgba(251,225,150,.75) !important;
   }
-  .atlas-step .num::before{background:rgba(251,225,150,.5) !important; width:28px !important}
-  .atlas-step h3{
+  .scroll-atlas .atlas-step .num::before{background:rgba(251,225,150,.5) !important; width:28px !important}
+  .scroll-atlas .atlas-step h3{
     font-size:clamp(2rem, 2.6vw, 2.6rem) !important;
     line-height:1.04 !important;
     margin-bottom:22px !important;
     max-width:18ch !important;
     letter-spacing:-.02em !important;
   }
-  .atlas-step p{
+  .scroll-atlas .atlas-step p{
     font-size:1.02rem !important;
     line-height:1.72 !important;
     max-width:52ch !important;
     margin-bottom:28px !important;
   }
-  .atlas-step .meta-list{
+  .scroll-atlas .atlas-step .meta-list{
     grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
     gap:12px 40px !important;
     font-size:.72rem !important;
