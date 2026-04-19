@@ -1374,7 +1374,6 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   text-transform:uppercase!important;
   color:#FBE196!important;
   margin:0 0 18px!important;
-  white-space:nowrap;
 }
 .foot-supporters h4::before,
 .foot-nav-group h4::before{
@@ -1481,8 +1480,8 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 /* ── Nav columns ── */
 .foot-nav-group{
   display:grid;
-  grid-template-columns:minmax(0,.85fr) minmax(0,.85fr) minmax(0,1.2fr) minmax(0,1fr);
-  gap:32px;
+  grid-template-columns:minmax(0,.75fr) minmax(0,.75fr) minmax(0,1.2fr) minmax(0,1.1fr);
+  gap:24px;
   padding-top:8px;
 }
 .foot-nav-group ul{gap:11px!important;}
