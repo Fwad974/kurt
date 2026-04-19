@@ -272,6 +272,14 @@ body,
     max-width:none!important;
     margin-right:4px!important;
   }
+  .page-hero h1,
+  .page-hero .lede,
+  .sec-head h2.display,
+  .sec-head .sec-lede{
+    text-align:right!important;
+    margin-left:auto!important;
+    margin-right:0!important;
+  }
 }
 .sec{position:relative;}
 .sec::before{
