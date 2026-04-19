@@ -1591,6 +1591,9 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 #platforms .sec-head .sec-lede{
   max-width:none!important;
 }
+.meta-right .uni-seal img{
+  filter:brightness(0) invert(1)!important;
+}
 .why-diagram svg{
   stroke:var(--text)!important;
 }
