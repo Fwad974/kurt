@@ -45,12 +45,22 @@
   max-width:100%; max-height:100%;
   object-fit:contain;
 }
-/* Video-backed figures (dark video, no white card) */
-.figure.is-video,
-.figure.is-video .fig-photo{background:transparent !important}
-.fig-photo video{
-  width:100%; height:100%; display:block;
-  object-fit:cover;
+/* Video-backed figures: let the video drive the aspect ratio so there's no letterboxing */
+.figure.is-video{
+  aspect-ratio:auto !important;
+  background:transparent !important;
+  border:none !important;
+  box-shadow:0 30px 60px -40px rgba(0,0,0,.5) !important;
+  border-radius:16px !important;
+}
+.figure.is-video .fig-photo{
+  position:relative !important;
+  inset:auto !important;
+  background:transparent !important;
+}
+.figure.is-video .fig-photo video{
+  width:100%; height:auto; display:block;
+  border-radius:16px;
 }
 /* =========================================================
    MOBILE R&D
@@ -506,9 +516,6 @@
   <div class="split-sec reverse">
     <div class="split-fig"><div class="figure hero-fig is-photo is-video figure-reveal">
     <div class="fig-photo"><video autoplay muted loop playsinline preload="metadata" aria-label="3D tissue organoid assembly"><source src="images/organoid_web_black_text_compressed.mp4" type="video/mp4"><source src="images/organoid_web_black_text_compressed_1.webm" type="video/webm"></video></div>
-    <div class="fig-overlay"></div>
-    <div class="fig-label">04 / Tissue</div>
-    <div class="fig-caption"><span class="sm">Assembly platform</span><span>3D</span></div>
   </div></div>
     <div class="split-prose">
       <div class="num">04 / 3D tissue</div>
