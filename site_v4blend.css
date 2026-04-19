@@ -1584,7 +1584,11 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   color:var(--text)!important;
 }
 .why .quote{
-  color:#fff!important;
+  color:var(--text-2)!important;
+  max-width:none!important;
+}
+#platforms .sec-head .sec-lede{
+  max-width:none!important;
 }
 .why-diagram svg{
   stroke:var(--text)!important;
