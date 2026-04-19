@@ -1480,10 +1480,11 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 /* ── Nav columns ── */
 .foot-nav-group{
   display:grid;
-  grid-template-columns:minmax(0,.75fr) minmax(0,.75fr) minmax(0,1.2fr) minmax(0,1.1fr);
+  grid-template-columns:minmax(0,.8fr) minmax(0,.8fr) minmax(0,1.3fr) minmax(220px,1.1fr);
   gap:24px;
   padding-top:8px;
 }
+.foot-nav-group > div:last-child h4{white-space:nowrap;}
 .foot-nav-group ul{gap:11px!important;}
 .foot-nav-group ul a{
   position:relative;
