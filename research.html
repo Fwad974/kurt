@@ -47,7 +47,7 @@
 }
 /* Video-backed figures: crop source black sidebars by matching active-content aspect ratio */
 .figure.is-video{
-  aspect-ratio:3/2 !important;
+  aspect-ratio:7/5 !important;
   background:transparent !important;
   border:none !important;
   box-shadow:0 30px 60px -40px rgba(0,0,0,.5) !important;
@@ -64,6 +64,8 @@
   width:100% !important; height:100% !important;
   display:block !important;
   object-fit:cover !important;
+  transform:scale(1.05) !important;
+  transform-origin:center top !important;
 }
 /* =========================================================
    MOBILE R&D
@@ -214,7 +216,7 @@
     height:auto !important; object-fit:contain !important; display:block !important;
   }
   .figure.is-photo.is-video{
-    aspect-ratio:3/2 !important;
+    aspect-ratio:7/5 !important;
     background:transparent !important;
     border:none !important;
   }
@@ -226,6 +228,8 @@
     position:absolute !important; inset:0 !important;
     width:100% !important; height:100% !important;
     object-fit:cover !important; display:block !important;
+    transform:scale(1.05) !important;
+    transform-origin:center top !important;
   }
   .figure.is-photo .fig-overlay{display:none !important}
   .figure.is-photo .fig-label,
