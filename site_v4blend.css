@@ -1292,12 +1292,13 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   margin-bottom:48px;
 }
 
-/* ── Main area: brand on top, nav row below ── */
+/* ── Main area: brand left, nav group right ── */
 .foot-main{
   display:grid;
-  grid-template-columns:1fr;
-  gap:40px;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);
+  gap:72px;
   padding-bottom:40px;
+  align-items:start;
 }
 
 /* ── Brand column ── */
