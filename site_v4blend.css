@@ -259,6 +259,7 @@ body,
 .sec-head .sec-lede{max-width:58ch!important;}
 .page-hero{padding-top:162px!important;}
 .sec-head{border-bottom:1px solid var(--line)!important;}
+#why .sec-head{border-bottom:none!important; padding-bottom:0!important;}
 .sec{position:relative;}
 .sec::before{
   content:"";
