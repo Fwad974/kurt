@@ -37,6 +37,20 @@
 .addr-block .mono{color:var(--muted); text-transform:uppercase; font-size:.62rem; letter-spacing:.14em; margin-bottom:14px; font-family:"JetBrains Mono",monospace}
 .addr-block p{margin:0; font-family:"JetBrains Mono",monospace; font-size:.78rem; line-height:1.8; color:var(--ink-2)}
 
+/* Scale split-prose headings up to match the sec-head treatment on
+   this page so every § block ('Safety endpoint', '§ 02 — Relevance',
+   etc.) reads at the same size as '§ 01 — Validation'. */
+.split-sec .split-prose .num{
+  font-size:.86rem;
+  letter-spacing:.14em;
+}
+.split-sec .split-prose .num::before{width:28px}
+.split-sec .split-prose h3{
+  font-size:clamp(2.4rem, 4.8vw, 4.6rem);
+  line-height:.98;
+  letter-spacing:-0.032em;
+}
+
 .legal{padding:32px 40px; border:1px solid var(--line); border-radius:2px; background:rgba(244,240,232,.5); max-width:72ch}
 .legal p{font-size:1.08rem; line-height:1.68; color:var(--ink-2); margin:0 0 14px}
 .legal p:last-child{margin-bottom:0}
