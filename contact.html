@@ -7,8 +7,8 @@
 <meta name="description" content="Contact the MWB Lab at the Institute for Physiology I, Medical Faculty, University of Cologne. Reach Prof. Dr. Kurt Pfannkuche or Dr. Sarkawt Hamad.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=32">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css?v=34">
 <style>
 .contact-grid{
   display:grid;
@@ -95,8 +95,258 @@
   .split-contact{grid-template-columns:1fr; gap:24px}
   .split-contact .card{padding:28px 30px}
 }
+
+/* ===== Privacy ed-item in contact ===== */
+.ed-item .ed-body{display:none}
+.ed-item.has-detail{
+  cursor:pointer;
+  transition:
+    border-color .35s var(--ease),
+    background .35s var(--ease),
+    transform .35s var(--ease),
+    box-shadow .35s var(--ease);
+}
+.ed-item.has-detail:hover,
+.ed-item.has-detail:focus-visible{
+  border-color:rgba(251,225,150,.55)!important;
+  outline:none;
+}
+.ed-item.has-detail:focus-visible{
+  outline:2px solid rgba(251,225,150,.55);
+  outline-offset:2px;
+}
+
+/* ===== Privacy card: full dark card (overrides ed-item row) ===== */
+body[data-page="contact"] .ed-item[data-tag="privacy"]{
+  grid-template-columns:1fr!important;
+  padding:26px 30px 30px!important;
+  gap:14px;
+  align-items:stretch!important;
+  background:linear-gradient(150deg,rgba(13,27,42,.96) 0%,rgba(7,16,28,.93) 100%)!important;
+  border-color:rgba(124,236,213,.2)!important;
+  border-radius:12px;
+}
+body[data-page="contact"] .ed-item[data-tag="privacy"]::before{
+  background:linear-gradient(180deg,rgba(124,236,213,.85),rgba(124,236,213,.2))!important;
+}
+body[data-page="contact"] .ed-item[data-tag="privacy"]::after{content:none!important}
+body[data-page="contact"] .ed-item[data-tag="privacy"]:hover{
+  border-color:rgba(124,236,213,.48)!important;
+  background:linear-gradient(150deg,rgba(14,29,46,.98) 0%,rgba(8,18,32,.97) 100%)!important;
+  box-shadow:0 14px 40px rgba(0,0,0,.55), 0 0 0 1px rgba(124,236,213,.12)!important;
+}
+/* Top row: date left, tag right */
+.prv-meta{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+body[data-page="contact"] .ed-item[data-tag="privacy"] .year{
+  color:rgba(248,243,232,.34)!important;
+}
+/* Body column */
+body[data-page="contact"] .ed-item[data-tag="privacy"] .body{
+  display:flex; flex-direction:column; gap:8px;
+}
+body[data-page="contact"] .ed-item[data-tag="privacy"] .body h3{
+  font-size:1.52rem!important; line-height:1.22!important;
+  color:#F8F3E8; margin:0!important;
+}
+body[data-page="contact"] .ed-item[data-tag="privacy"] .body .meta-line{
+  color:rgba(248,243,232,.44)!important; line-height:1.65; max-width:48ch;
+}
+/* Visible CTA */
+.prv-open-hint{
+  display:inline-flex; align-items:center; gap:9px; margin-top:10px;
+  font-family:"JetBrains Mono",monospace;
+  font-size:.68rem; letter-spacing:.15em; text-transform:uppercase;
+  color:rgba(124,236,213,.58);
+  transition:color .3s var(--ease);
+}
+.prv-open-hint svg{
+  width:13px; height:13px; flex-shrink:0;
+  transition:transform .35s var(--ease);
+}
+body[data-page="contact"] .ed-item[data-tag="privacy"]:hover .prv-open-hint{
+  color:#7CECD5;
+}
+body[data-page="contact"] .ed-item[data-tag="privacy"]:hover .prv-open-hint svg{
+  transform:translateX(4px);
+}
+
+/* ===== Modal privacy extras ===== */
+/* Quick-facts strip at top of modal body */
+.news-body .prv-facts{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:rgba(251,225,150,.12);
+  border:1px solid rgba(251,225,150,.12);
+  border-radius:4px;
+  overflow:hidden;
+  margin-bottom:28px;
+}
+.news-body .prv-fact{
+  padding:16px 18px;
+  background:#0D1B2A;
+  display:flex; flex-direction:column; gap:5px;
+}
+.news-body .prv-fact-label{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.58rem; letter-spacing:.16em; text-transform:uppercase;
+  color:rgba(251,225,150,.48);
+}
+.news-body .prv-fact-value{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.82rem; letter-spacing:.04em;
+  color:rgba(248,243,232,.88);
+  line-height:1.45;
+}
+@media (max-width:540px){
+  .news-body .prv-facts{grid-template-columns:1fr 1fr}
+  .news-body .prv-facts .prv-fact:last-child{grid-column:1/-1}
+}
+
+/* Rights list inside modal body */
+.news-body .rights-list{
+  margin:0 0 18px;
+  padding:0; list-style:none; display:grid; gap:8px;
+}
+.news-body .rights-list li{
+  display:flex; align-items:baseline; gap:10px;
+  font-size:1.05rem; line-height:1.55;
+  color:rgba(248,243,232,.85);
+}
+.news-body .rights-list li::before{
+  content:"";
+  flex:0 0 6px; height:6px; border-radius:50%;
+  background:#FBE196; opacity:.7; margin-top:2px;
+}
+.news-body .section-rule{
+  margin:24px 0; border:none;
+  border-top:1px solid rgba(251,225,150,.12);
+}
+.news-body .section-label{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.62rem; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(251,225,150,.5); margin:0 0 10px; display:block;
+}
+
+/* ===== News detail modal ===== */
+.news-modal{
+  width:min(760px, calc(100vw - 32px));
+  max-height:calc(100vh - 64px);
+  margin:32px auto;
+  padding:0;
+  border:1px solid rgba(251,225,150,.3);
+  border-radius:4px;
+  background:#0D1B2A;
+  color:#F8F3E8;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+  overflow:hidden;
+  position:fixed;
+  inset:0;
+}
+.news-modal::backdrop{
+  background:rgba(0,0,0,.78);
+  backdrop-filter:blur(4px);
+}
+.news-modal[open]{animation:newsIn .28s var(--ease) both}
+.news-modal[open]::backdrop{animation:newsBackdropIn .28s ease both}
+.news-modal.closing{animation:newsOut .22s var(--ease) both}
+.news-modal.closing::backdrop{animation:newsBackdropOut .22s ease both}
+@keyframes newsIn{
+  from{opacity:0; transform:translateY(14px) scale(.985)}
+  to{opacity:1; transform:translateY(0) scale(1)}
+}
+@keyframes newsOut{
+  from{opacity:1; transform:translateY(0) scale(1)}
+  to{opacity:0; transform:translateY(10px) scale(.985)}
+}
+@keyframes newsBackdropIn{from{opacity:0}to{opacity:1}}
+@keyframes newsBackdropOut{from{opacity:1}to{opacity:0}}
+.news-modal-inner{
+  padding:48px 56px 44px;
+  overflow-y:auto;
+  overflow-x:hidden;
+  max-height:calc(100vh - 64px);
+  -webkit-overflow-scrolling:touch;
+}
+.news-close{
+  position:absolute;
+  top:18px; right:20px;
+  width:34px; height:34px;
+  border:1px solid rgba(251,225,150,.4);
+  background:rgba(251,225,150,.1);
+  backdrop-filter:blur(6px);
+  border-radius:50%;
+  font-size:1.15rem; line-height:1;
+  color:rgba(248,243,232,.92);
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  z-index:5;
+  transition:background .28s var(--ease), color .28s var(--ease),
+    border-color .28s var(--ease), transform .35s var(--ease);
+}
+.news-close:hover,.news-close:focus-visible{
+  background:#FBE196; color:#0D1B2A;
+  border-color:#FBE196; transform:rotate(90deg); outline:none;
+}
+.news-meta-row{display:flex; align-items:center; gap:16px; margin-bottom:16px}
+.news-year{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.68rem; letter-spacing:.14em;
+  text-transform:uppercase; color:rgba(248,243,232,.55);
+}
+.news-tag{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.58rem; letter-spacing:.16em;
+  text-transform:uppercase; color:#0D1B2A;
+  background:#FBE196; padding:5px 12px; border-radius:999px;
+}
+.news-title{
+  font-family:var(--serif);
+  font-weight:400; font-size:2rem;
+  line-height:1.2; letter-spacing:-0.01em;
+  color:#F8F3E8; margin:0 0 14px; max-width:44ch;
+}
+.news-title em{font-style:italic}
+.news-summary{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.9rem; letter-spacing:.08em;
+  color:rgba(255,255,255,.68); line-height:1.65;
+  margin:0 0 28px; padding-bottom:24px;
+  border-bottom:1px solid rgba(251,225,150,.22);
+}
+.news-summary:empty{display:none}
+.news-media{margin:0 0 28px; border:1px solid rgba(251,225,150,.22); border-radius:2px; overflow:hidden; background:rgba(255,255,255,.02)}
+.news-media:empty{display:none}
+.news-media img,.news-media figure img{display:block; width:100%; height:auto; max-height:440px; object-fit:cover}
+.news-media figure{margin:0}
+.news-body{font-family:Manrope,sans-serif; font-size:1.12rem; line-height:1.7; color:rgba(248,243,232,.88)}
+.news-body p{margin:0 0 14px}
+.news-body p:last-child{margin-bottom:0}
+.news-body ul{margin:0 0 14px; padding-left:22px; list-style:disc outside}
+.news-body ul li{margin-bottom:6px}
+.news-body a{
+  color:#7CECD5; text-decoration:none;
+  border-bottom:1px solid rgba(124,236,213,.35);
+  transition:color .22s var(--ease), border-color .22s var(--ease);
+}
+.news-body a:hover,.news-body a:focus-visible{
+  color:#FBE196; border-bottom-color:#FBE196; outline:none;
+}
+.news-body strong{color:#F8F3E8}
+.news-body em{font-style:italic}
+@media (max-width:760px){
+  .news-modal{width:100%; max-width:100%; margin:0; height:100dvh; max-height:100dvh; border-radius:0; border:none}
+  .news-modal-inner{padding:64px 20px 32px; max-height:100dvh}
+  .news-title{font-size:1.4rem; margin-bottom:12px}
+  .news-summary{font-size:.82rem; margin-bottom:22px; padding-bottom:18px}
+  .news-media{margin-bottom:22px}
+  .news-media img{max-height:260px}
+  .news-body{font-size:1rem; line-height:1.65}
+}
 </style>
-<link rel="stylesheet" href="site_v4blend.css?v=16">
+<link rel="stylesheet" href="site_v4blend.css?v=19">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png">
@@ -112,11 +362,10 @@
 
 <!-- ========== TOPBAR ========== -->
 <header class="topbar">
-  <a href="index.html" class="brand-logo"><img src="log_animated.svg?v=2" alt="Marga &amp; Walter Boll Laboratory" class="logo-img"></a>
+  <a href="index.html" class="brand-logo"><img src="log_animated.svg?v=3" alt="Marga &amp; Walter Boll Laboratory" class="logo-img"></a>
   <nav class="nav">
     <a href="index.html">Home</a>
-    <a href="research.html">Research</a>
-    <a href="technology.html">Technology</a>
+    <a href="research.html">R&amp;D</a>
     <a href="translational.html">Translational</a>
     <a href="publications.html">Publications</a>
     <a href="team.html">Team</a>
@@ -125,8 +374,7 @@
     <a href="contact.html" aria-current="page">Contact</a>
   </nav>
   <div class="meta-right">
-    <span>University of Cologne</span>
-    <span class="live">Active lab</span>
+    <a class="uni-seal" href="https://portal.uni-koeln.de/en/uoc-home" target="_blank" rel="noopener noreferrer" aria-label="University of Cologne"><img src="uni-koeln-seal.png?v=1" alt="University of Cologne"></a>
   </div>
   <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -186,6 +434,28 @@
       Tel. +49 221 478 6968
     </p>
   </div>
+
+  <div class="contact-grid rv" style="margin-top:24px">
+    <a class="contact-card" href="impressum.html" style="text-decoration:none; display:block">
+      <div class="mono">Legal</div>
+      <h3 class="subhead"><em>Impressum</em></h3>
+      <p>
+        Inhaltlich verantwortliche Stelle, Kontaktdaten und Haftungs&shy;ausschluß
+        gemäß den Anforderungen des deutschen Telemediengesetzes.
+      </p>
+      <span class="link">→ Read the Impressum</span>
+    </a>
+
+    <a class="contact-card" href="privacy.html" style="text-decoration:none; display:block">
+      <div class="mono">Privacy</div>
+      <h3 class="subhead"><em>Datenschutz</em></h3>
+      <p>
+        Full data-protection notice (DSGVO / GDPR) covering how personal data
+        submitted through this site is collected, used, and retained.
+      </p>
+      <span class="link">→ Read the Datenschutzerklärung</span>
+    </a>
+  </div>
 </section>
 
 <!-- ========== HOW TO REACH US ========== -->
@@ -223,18 +493,68 @@
     </div>
 
     <div>
-      <div class="legal rv" style="margin-bottom:16px">
-        <h3>Data protection <em>notice</em></h3>
-        <p class="small">
-          Personal data submitted via email enquiry is processed solely for the purpose of responding
-          to your message, in accordance with the General Data Protection Regulation (GDPR) and the
-          data protection policies of the University of Cologne.
-        </p>
-        <p class="small">
-          Data is not shared with third parties and is not retained beyond the duration required to
-          handle your enquiry. You may request deletion at any time by writing to
-          <a href="mailto:kurt.pfannkuche@uni-koeln.de" style="color:var(--ink)">kurt.pfannkuche@uni-koeln.de</a>.
-        </p>
+      <div class="ed-item rv" data-tag="privacy" style="margin-bottom:16px">
+        <div class="prv-meta">
+          <div class="year">GDPR &middot; EU 2016/679</div>
+          <div class="tag">Privacy</div>
+        </div>
+        <div class="body">
+          <h3>Data protection <em>notice</em></h3>
+          <div class="meta-line">Personal data submitted via email is processed solely to respond to your enquiry &mdash; never shared, deleted on request.</div>
+          <div class="prv-open-hint">
+            Read full notice
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+          </div>
+          <div class="ed-body">
+            <p>The following notice explains how personal data submitted when contacting the MWB Lab is collected, used, and protected under the <strong>General Data Protection Regulation (GDPR)</strong> (EU) 2016/679 and the data protection policies of the University of Cologne.</p>
+
+            <div class="prv-facts">
+              <div class="prv-fact">
+                <span class="prv-fact-label">Legal basis</span>
+                <span class="prv-fact-value">GDPR Art. 6(1)(b)<br>Legitimate interest</span>
+              </div>
+              <div class="prv-fact">
+                <span class="prv-fact-label">Data sharing</span>
+                <span class="prv-fact-value">Not shared with<br>third parties</span>
+              </div>
+              <div class="prv-fact">
+                <span class="prv-fact-label">Retention</span>
+                <span class="prv-fact-value">Deleted after<br>enquiry resolved</span>
+              </div>
+            </div>
+
+            <span class="section-label">Controller</span>
+            <p><strong>Dr. Kurt Pfannkuche</strong><br>
+            Universität zu Köln &mdash; Institut für Neurophysiologie<br>
+            Robert-Koch-Straße 39, 50931 Cologne, Germany<br>
+            <a href="mailto:kurt.pfannkuche@uni-koeln.de">kurt.pfannkuche@uni-koeln.de</a></p>
+
+            <hr class="section-rule">
+            <span class="section-label">What we collect</span>
+            <p>When you write to us by email we receive your email address, your name if provided, and the content of your message. No cookies, analytics trackers, or additional personal data are collected or processed through this website beyond technically necessary server logs.</p>
+
+            <hr class="section-rule">
+            <span class="section-label">How data is used &amp; deleted</span>
+            <p>Your data is used exclusively to handle and reply to your enquiry. It is not passed to third parties for any other purpose. We adhere to the principle of data minimisation &mdash; your data is stored only as long as necessary and deleted routinely once the enquiry has been resolved.</p>
+            <p>You may request deletion at any time by writing to <a href="mailto:kurt.pfannkuche@uni-koeln.de">kurt.pfannkuche@uni-koeln.de</a>. Any previously given consent may be withdrawn at any time with effect for the future.</p>
+
+            <hr class="section-rule">
+            <span class="section-label">Your rights under GDPR</span>
+            <p>You may exercise any of the following rights at any time by contacting the controller above:</p>
+            <ul class="rights-list">
+              <li>Access to the personal data we hold about you</li>
+              <li>Rectification of inaccurate personal data</li>
+              <li>Erasure of your stored data</li>
+              <li>Restriction of processing where legal obligations prevent immediate deletion</li>
+              <li>Objection to processing of your data</li>
+              <li>Data portability where processing is based on consent or contract</li>
+            </ul>
+            <p>You also have the right to lodge a complaint with the competent supervisory authority. A directory of national authorities is available at <a href="https://www.bfdi.bund.de/DE/Infothek/Anschriften_Links/anschriften_links-node.html" target="_blank" rel="noopener noreferrer">www.bfdi.bund.de &rarr;</a></p>
+
+            <hr class="section-rule">
+            <p style="margin-bottom:0">For the complete <em>Datenschutzerklärung</em> (German), see <a href="privacy.html">our privacy page &rarr;</a></p>
+          </div>
+        </div>
       </div>
 
       <div class="legal rv">
@@ -268,7 +588,20 @@
   </div>
 </section>
 
-<!-- ========== FOOTER ========== -->
+<!-- ========== PRIVACY MODAL ========== -->
+<dialog id="newsModal" class="news-modal" aria-labelledby="newsTitle">
+  <button type="button" class="news-close" aria-label="Close">&times;</button>
+  <div class="news-modal-inner">
+    <div class="news-meta-row">
+      <span class="news-year" id="newsYear"></span>
+      <span class="news-tag" id="newsTagLabel"></span>
+    </div>
+    <h3 class="news-title" id="newsTitle"></h3>
+    <div class="news-summary" id="newsSummary"></div>
+    <div class="news-media" id="newsMedia"></div>
+    <div class="news-body" id="newsBody"></div>
+  </div>
+</dialog>
 
 <script>
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -352,6 +685,80 @@ if(canHover && !reducedMotion){
     btn.addEventListener('mouseleave', () => btn.style.transform = '');
   });
 }
+
+/* ========== NEWS/PRIVACY DETAIL MODAL ========== */
+(function initNewsModal(){
+  const modal = document.getElementById('newsModal');
+  if(!modal || typeof modal.showModal !== 'function') return;
+  const yearEl    = document.getElementById('newsYear');
+  const tagEl     = document.getElementById('newsTagLabel');
+  const titleEl   = document.getElementById('newsTitle');
+  const summaryEl = document.getElementById('newsSummary');
+  const mediaEl   = document.getElementById('newsMedia');
+  const bodyEl    = document.getElementById('newsBody');
+  const closeBtn  = modal.querySelector('.news-close');
+  const inner     = modal.querySelector('.news-modal-inner');
+
+  document.querySelectorAll('.ed-item').forEach(item => {
+    if(!item.querySelector('.ed-body')) return;
+    item.classList.add('has-detail');
+    item.setAttribute('role', 'button');
+    item.setAttribute('tabindex', '0');
+    const h3 = item.querySelector('h3');
+    if(h3) item.setAttribute('aria-label', 'Read more: ' + h3.textContent.trim());
+  });
+
+  function openFromItem(item){
+    const year    = item.querySelector('.year');
+    const tag     = item.querySelector('.tag');
+    const title   = item.querySelector('.body h3');
+    const summary = item.querySelector('.body > .meta-line');
+    const media   = item.querySelector('.body > .ed-media');
+    const body    = item.querySelector('.body > .ed-body');
+    yearEl.textContent   = year    ? year.textContent    : '';
+    tagEl.textContent    = tag     ? tag.textContent     : '';
+    titleEl.innerHTML    = title   ? title.innerHTML     : '';
+    summaryEl.innerHTML  = summary ? summary.innerHTML   : '';
+    mediaEl.innerHTML    = media   ? media.outerHTML     : '';
+    bodyEl.innerHTML     = body    ? body.innerHTML      : '';
+    if(inner) inner.scrollTop = 0;
+    modal.classList.remove('closing');
+    modal.showModal();
+  }
+
+  function closeModal(){
+    if(modal.classList.contains('closing')) return;
+    modal.classList.add('closing');
+    const done = (e) => {
+      if(e.animationName !== 'newsOut') return;
+      modal.removeEventListener('animationend', done);
+      modal.close();
+      modal.classList.remove('closing');
+    };
+    modal.addEventListener('animationend', done);
+    setTimeout(() => {
+      if(modal.classList.contains('closing')){
+        modal.removeEventListener('animationend', done);
+        modal.close();
+        modal.classList.remove('closing');
+      }
+    }, 400);
+  }
+
+  document.querySelectorAll('.ed-item.has-detail').forEach(item => {
+    item.addEventListener('click', e => {
+      if(e.target.closest('a')) return;
+      openFromItem(item);
+    });
+    item.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openFromItem(item); }
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+  modal.addEventListener('cancel', e => { e.preventDefault(); closeModal(); });
+})();
 
 document.documentElement.classList.remove('loading');
 </script>

@@ -115,6 +115,19 @@ html:not(.loading) .topbar{transform:translateY(0); opacity:1}
   letter-spacing:.04em;
   display:flex; gap:18px; align-items:center;
 }
+.meta-right .uni-seal{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.meta-right .uni-seal img{
+  height:56px;
+  width:auto;
+  display:block;
+  opacity:.92;
+  transition:opacity .3s var(--ease);
+}
+.meta-right .uni-seal:hover img{opacity:1}
 .meta-right .live{display:inline-flex; align-items:center; gap:6px}
 .meta-right .live::before{
   content:""; width:6px; height:6px; border-radius:50%;
@@ -371,7 +384,7 @@ h3.subhead em{font-style:italic}
 html.loading body > *{opacity:0}
 html.loading body > #intro{opacity:1}
 
-.split .word{display:inline-block; overflow:hidden; vertical-align:top}
+.split .word{display:inline-block; overflow:hidden; vertical-align:top; padding-bottom:.22em; margin-bottom:-.22em}
 .split .char{
   display:inline-block;
   transform:translateY(110%) rotate(6deg);
@@ -934,7 +947,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 
 /* responsive overrides */
 @media (max-width:1100px){
-  .split-sec{grid-template-columns:1fr; gap:40px; margin-bottom:80px}
+  .split-sec, .split-sec.reverse{grid-template-columns:1fr; gap:40px; margin-bottom:80px}
   .split-sec.reverse .split-prose{order:0}
   .card-grid{grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom:80px}
   .card-grid.two{grid-template-columns:1fr}
@@ -976,6 +989,7 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
 .atlas-sticky{
   position:sticky;
   top:80px;
+  align-self:start;
   height:calc(100vh - 160px);
   min-height:560px;
   display:flex; flex-direction:column;

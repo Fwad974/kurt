@@ -7,8 +7,8 @@
 <meta name="description" content="Validated in a porcine acute myocardial infarction model. No arrhythmogenic effects at 30 days post-transplantation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=32">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css?v=34">
 <style>
 .split-fig{min-height:360px}
 .fig-svg{
@@ -36,6 +36,23 @@
 .addr-block{margin-top:16px; padding:32px 40px; border:1px solid var(--line); border-radius:2px; background:rgba(244,240,232,.5)}
 .addr-block .mono{color:var(--muted); text-transform:uppercase; font-size:.62rem; letter-spacing:.14em; margin-bottom:14px; font-family:"JetBrains Mono",monospace}
 .addr-block p{margin:0; font-family:"JetBrains Mono",monospace; font-size:.78rem; line-height:1.8; color:var(--ink-2)}
+
+/* Scale split-prose headings up to match the sec-head treatment on
+   this page so every § block ('Safety endpoint', '§ 02 — Relevance',
+   etc.) reads at the same size as '§ 01 — Validation'. */
+.split-sec .split-prose .num{
+  font-size:.86rem;
+  letter-spacing:.14em;
+  color:#FBE196;
+}
+.split-sec .split-prose .num::before{width:28px; background:linear-gradient(90deg, rgba(251,225,150,.85), rgba(251,225,150,.45)); opacity:1;}
+.split-sec .split-prose h3{
+  font-size:clamp(2.4rem, 4.8vw, 4.6rem);
+  line-height:.98;
+  letter-spacing:-0.032em;
+  max-width:none;
+  white-space:nowrap;
+}
 
 .legal{padding:32px 40px; border:1px solid var(--line); border-radius:2px; background:rgba(244,240,232,.5); max-width:72ch}
 .legal p{font-size:1.08rem; line-height:1.68; color:var(--ink-2); margin:0 0 14px}
@@ -73,9 +90,14 @@
   .t-item::before{left:-5px; top:30px}
   .contact-grid, .pos-grid, .apply-steps{grid-template-columns:1fr}
   .legal, .addr-block, .contact-card, .apply-step, .pos-card{padding:28px}
+  .split-sec .split-prose{text-align:left !important}
+  .split-sec .split-prose .num{justify-content:flex-start !important}
+  .split-sec .split-prose h3{margin-left:0 !important; margin-right:0 !important}
+  .split-sec .split-prose p{margin-left:0 !important; margin-right:0 !important}
+  .split-sec .split-prose .btn{margin-left:0 !important; margin-right:0 !important}
 }
 </style>
-<link rel="stylesheet" href="site_v4blend.css?v=16">
+<link rel="stylesheet" href="site_v4blend.css?v=19">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png">
@@ -87,11 +109,10 @@
 <div class="grain"></div>
 
 <header class="topbar">
-  <a href="index.html" class="brand-logo"><img src="log_animated.svg?v=2" alt="Marga &amp; Walter Boll Laboratory" class="logo-img"></a>
+  <a href="index.html" class="brand-logo"><img src="log_animated.svg?v=3" alt="Marga &amp; Walter Boll Laboratory" class="logo-img"></a>
   <nav class="nav">
     <a href="index.html">Home</a>
-    <a href="research.html">Research</a>
-    <a href="technology.html">Technology</a>
+    <a href="research.html">R&amp;D</a>
     <a href="translational.html" aria-current="page">Translational</a>
     <a href="publications.html">Publications</a>
     <a href="team.html">Team</a>
@@ -100,8 +121,7 @@
     <a href="contact.html">Contact</a>
   </nav>
   <div class="meta-right">
-    <span>University of Cologne</span>
-    <span class="live">Active lab</span>
+    <a class="uni-seal" href="https://portal.uni-koeln.de/en/uoc-home" target="_blank" rel="noopener noreferrer" aria-label="University of Cologne"><img src="uni-koeln-seal.png?v=1" alt="University of Cologne"></a>
   </div>
   <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -178,7 +198,7 @@
     <div class="fig-caption"><span class="sm">Composite channels</span><span>Scale: 100 μm</span></div>
   </div></div>
     <div class="split-prose">
-      <div class="num">Safety endpoint</div>
+      <div class="num">§ 02 — Safety endpoint</div>
       <h3>No arrhythmogenic effects at <em>30 days</em>.</h3>
       <p>Thirty days after transplantation, no arrhythmogenic effects were observed. That single sentence is the reason the rest of the programme exists: without a clean safety readout in a large animal, there is no path to the clinic for a cardiac cell therapy.</p>
       <dl class="meta-list"><dt>Model</dt><dd>Porcine · acute MI</dd><dt>Timepoint</dt><dd>30 days post-transplant</dd><dt>Primary</dt><dd>Safety · arrhythmia</dd></dl>
@@ -206,7 +226,7 @@
     <div class="fig-caption"><span class="sm">Vascular network</span><span>Endothelial</span></div>
   </div></div>
     <div class="split-prose">
-      <div class="num">§ 02 — Relevance</div>
+      <div class="num">§ 03 — Relevance</div>
       <h3>Four pillars of <em>clinical relevance</em>.</h3>
       <p>Safety, scalability, translational potential, and therapeutic relevance. Every cell and tissue system we develop is measured against these four pillars. A result that doesn't move any of them isn't worth moving forward.</p>
       <dl class="meta-list"><dt>Pillar 1</dt><dd>Safety</dd><dt>Pillar 2</dt><dd>Scalability</dd><dt>Pillar 3</dt><dd>Translational potential</dd><dt>Pillar 4</dt><dd>Therapeutic relevance</dd></dl>

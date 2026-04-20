@@ -45,8 +45,8 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=32">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css?v=43">
 <style>
 /* =========================================================
    HOME-ONLY STYLES
@@ -76,7 +76,7 @@ html.skip-splash #intro{display:none !important}
 }
 @keyframes logoIn{
   0%{opacity:0; filter:drop-shadow(0 0 0 transparent); transform:scale(.92)}
-  100%{opacity:1; filter:drop-shadow(0 0 22px rgba(251,225,150,.45)); transform:scale(1)}
+  100%{opacity:1; filter:drop-shadow(0 0 26px rgba(251,225,150,.7)); transform:scale(1)}
 }
 
 /* Heartbeat line */
@@ -93,7 +93,7 @@ html.skip-splash #intro{display:none !important}
 }
 .splash-line{
   fill:none;
-  stroke:rgba(251,225,150,.95);
+  stroke:#FBE196;
   stroke-width:1.5;
   stroke-linecap:round;
   stroke-linejoin:round;
@@ -107,7 +107,7 @@ html.skip-splash #intro{display:none !important}
 /* Glow trace behind the line */
 .splash-glow{
   fill:none;
-  stroke:rgba(251,225,150,.4);
+  stroke:rgba(251,225,150,.95);
   stroke-width:4;
   stroke-linecap:round;
   stroke-linejoin:round;
@@ -161,7 +161,7 @@ html.skip-splash #intro{display:none !important}
 }
 .splash-tagline .rule{
   width:42px; height:1px;
-  background:rgba(251,225,150,.8);
+  background:#FBE196;
   transform:scaleX(0); transform-origin:center;
   animation:taglineRule .9s cubic-bezier(.19,1,.22,1) 2.2s forwards;
 }
@@ -171,10 +171,10 @@ html.skip-splash #intro{display:none !important}
   letter-spacing:.32em;
   text-transform:uppercase;
   color:#FBE196;
+  text-shadow:0 0 16px rgba(251,225,150,.8), 0 0 32px rgba(251,225,150,.5);
 }
 .splash-tagline .line{
-  font-family:"Fraunces", serif;
-  font-variation-settings:"opsz" 144;
+  font-family:var(--serif, "Cormorant Garamond", Georgia, serif);
   font-weight:300;
   font-size:2.4rem;
   line-height:1.22;
@@ -187,6 +187,7 @@ html.skip-splash #intro{display:none !important}
   font-style:italic;
   font-weight:400;
   color:#FBE196;
+  text-shadow:0 0 20px rgba(251,225,150,.75), 0 0 40px rgba(251,225,150,.45);
 }
 @keyframes taglineIn{to{opacity:1}}
 @keyframes taglineRule{to{transform:scaleX(1)}}
@@ -310,16 +311,14 @@ html:not(.loading) .hud-bot{opacity:1}
 .channel-label .sm{color:var(--muted); font-size:.62rem; text-transform:uppercase; letter-spacing:.12em}
 
 /* ---------- key strengths ---------- */
-/* Section 01 flips the default sec-head layout so the title and
-   lede sit in the left (wider) column and the '§ 01 — Key
-   strengths' eyebrow sits on the right. The lede is justified
-   so it reads as a clean block of body prose. */
+/* '§ 01 — Key strengths' eyebrow sits in the narrower left
+   column; the title and lede fill the wider right column. */
 #strengths .sec-head{
-  grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
 }
 #strengths .sec-head .eyebrow{
-  justify-self:end;
-  align-self:end;
+  justify-self:start;
+  align-self:start;
 }
 #strengths .sec-head .sec-lede{
   text-align:justify;
@@ -330,6 +329,10 @@ html:not(.loading) .hud-bot{opacity:1}
 @media (max-width:1100px){
   #strengths .sec-head{grid-template-columns:1fr}
   #strengths .sec-head .eyebrow{justify-self:start}
+}
+
+#news-preview .sec-head .sec-lede{
+  max-width:none !important;
 }
 
 .strengths-grid{
@@ -362,24 +365,27 @@ html:not(.loading) .hud-bot{opacity:1}
   font-size:.66rem; letter-spacing:.1em;
   color:var(--muted); text-transform:uppercase;
 }
-.strength p{margin:0; font-size:.9rem; line-height:1.6; color:var(--ink-2)}
+.strength p{margin:0; font-size:1.06rem; line-height:1.6; color:var(--ink-2)}
 
 /* ---------- why it matters ---------- */
 .why{
   display:block;
 }
 .why .quote{
-  font-size:1.08rem;
-  line-height:1.68;
+  font-size:1.32rem;
+  line-height:1.62;
   font-weight:400;
   color:var(--ink-2);
   margin:0;
-  max-width:64ch;
+  max-width:none;
 }
 .why .quote em{font-style:italic; font-weight:500}
 .why-diagram{display:none}
 
 /* ---------- research platforms ---------- */
+#platforms .sec-head .sec-lede{
+  max-width:none;
+}
 .platforms-grid{
   display:grid;
   grid-template-columns:repeat(2, 1fr);
@@ -412,7 +418,7 @@ html:not(.loading) .hud-bot{opacity:1}
   max-width:14ch;
 }
 .platform h3 em{font-style:italic}
-.platform p{font-size:.94rem; line-height:1.62; color:var(--ink-2); margin:0; max-width:42ch}
+.platform p{font-size:1.06rem; line-height:1.62; color:var(--ink-2); margin:0; max-width:42ch}
 .platform .glyph{display:none}
 
 /* ---------- latest news ---------- */
@@ -465,7 +471,7 @@ html:not(.loading) .hud-bot{opacity:1}
   border-top:1px solid var(--line);
 }
 .join-cta h2{margin:24px 0 28px; max-width:14ch}
-.join-cta p{font-size:1rem; line-height:1.62; color:var(--ink-2); max-width:46ch; margin:0 0 28px}
+.join-cta p{font-size:1.08rem; line-height:1.62; color:var(--ink-2); max-width:46ch; margin:0 0 28px}
 
 /* responsive for home-specific */
 @media (max-width:1100px){
@@ -496,7 +502,7 @@ html:not(.loading) .hud-bot{opacity:1}
 }
 
 </style>
-<link rel="stylesheet" href="site_v4blend.css?v=16">
+<link rel="stylesheet" href="site_v4blend.css?v=19">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png">
@@ -533,11 +539,10 @@ html:not(.loading) .hud-bot{opacity:1}
 
 <!-- ========== TOPBAR ========== -->
 <header class="topbar">
-  <a href="index.html" class="brand-logo"><img src="log_animated.svg?v=2" alt="Marga &amp; Walter Boll Laboratory" class="logo-img"></a>
+  <a href="index.html" class="brand-logo"><img src="log_animated.svg?v=3" alt="Marga &amp; Walter Boll Laboratory" class="logo-img"></a>
   <nav class="nav">
     <a href="index.html" aria-current="page">Home</a>
-    <a href="research.html">Research</a>
-    <a href="technology.html">Technology</a>
+    <a href="research.html">R&amp;D</a>
     <a href="translational.html">Translational</a>
     <a href="publications.html">Publications</a>
     <a href="team.html">Team</a>
@@ -546,8 +551,7 @@ html:not(.loading) .hud-bot{opacity:1}
     <a href="contact.html">Contact</a>
   </nav>
   <div class="meta-right">
-    <span>University of Cologne</span>
-    <span class="live">Active lab</span>
+    <a class="uni-seal" href="https://portal.uni-koeln.de/en/uoc-home" target="_blank" rel="noopener noreferrer" aria-label="University of Cologne"><img src="uni-koeln-seal.png?v=1" alt="University of Cologne"></a>
   </div>
   <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -586,7 +590,7 @@ html:not(.loading) .hud-bot{opacity:1}
       <div class="hud-top">
         <div class="left">
           <span class="sm">Organoid</span>
-          <span>Cardiac organoid · D20–D21</span>
+          <span>Cardiac organoid · Day 20–Day 21</span>
         </div>
         <div class="right">
           <span class="sm">Channel</span>
@@ -650,6 +654,7 @@ html:not(.loading) .hud-bot{opacity:1}
 <!-- ========== KEY STRENGTHS ========== -->
 <section class="sec" id="strengths" data-bg="2">
   <div class="sec-head">
+    <div class="eyebrow rv">§ 01 — Key strengths</div>
     <div>
       <h2 class="display" data-split-on-reveal>What the lab is <em>known for</em>.</h2>
       <p class="sec-lede rv">
@@ -658,7 +663,6 @@ html:not(.loading) .hud-bot{opacity:1}
         validated large-animal safety data.
       </p>
     </div>
-    <div class="eyebrow rv">§ 01 — Key strengths</div>
   </div>
 
   <div class="strengths-grid">
@@ -907,8 +911,17 @@ html:not(.loading) .hud-bot{opacity:1}
   </div>
 
   <div class="photo-band rv">
-    <article class="photo-feature wide">
-      <img src="photo_overview_1.webp" alt="Wide microscopy overview">
+    <article class="photo-feature wide" tabindex="0" role="button" aria-label="Open overview field gallery"
+      data-gallery='[
+        {"label":"Nuclei","src":"images/96well-COs_Day10_4/96well-CO_Day10_Heochst.jpg"},
+        {"label":"Nuclei + CD31","src":"images/96well-COs_Day10_4/96well-CO_Day10_Heochst_CD31-AF555.jpg"},
+        {"label":"Nuclei + α-Actinin","src":"images/96well-COs_Day10_4/96well-CO_Day10_Heochst_Alpha-Actini-AF647.jpg"},
+        {"label":"CD31 + α-Actinin","src":"images/96well-COs_Day10_4/96well-CO_Day10_CD31-AF555_Alpha-Actini-AF647.jpg"},
+        {"label":"Merged","src":"images/96well-COs_Day10_4/96well-CO_Day10_Heochst_CD31-AF555_Alpha-Actini-AF647.jpg"}
+      ]'
+      data-gallery-title="Overview field — 96-well CO, D10"
+      data-gallery-caption="Dense cellular architecture with lumen-like voids and multi-marker texture.">
+      <img src="images/96well-COs_Day10_4/96well-CO_Day10_Heochst_CD31-AF555_Alpha-Actini-AF647.jpg" alt="Wide microscopy overview — merged">
       <div class="photo-meta">
         <span class="k">Overview field</span>
         <h3>Dense cellular architecture with lumen-like voids and multi-marker texture.</h3>
@@ -916,24 +929,49 @@ html:not(.loading) .hud-bot{opacity:1}
       </div>
     </article>
 
-    <article class="photo-feature tall">
-      <img src="photo_overlay_2026.webp" alt="2026 overlay specimen">
+    <article class="photo-feature tall" tabindex="0" role="button" aria-label="Open 2026 overlay gallery"
+      data-gallery='[
+        {"label":"Nuclei","src":"images/96well-COs_TNNT2-CX43/20012026_96well-COs_actinin-CX43_Image001_ch00_SV.jpg"},
+        {"label":"Cx43","src":"images/96well-COs_TNNT2-CX43/20012026_96well-COs_actinin-CX43_Image001_ch01_SV.jpg"},
+        {"label":"α-Actinin","src":"images/96well-COs_TNNT2-CX43/20012026_96well-COs_actinin-CX43_Image001_ch02_SV.jpg"},
+        {"label":"Overlay","src":"images/96well-COs_TNNT2-CX43/20012026_96well-COs_actinin-CX43_Image001_overlay.jpg"}
+      ]'
+      data-gallery-title="2026 overlay — 96-well CO"
+      data-gallery-caption="Cx43 + α-Actinin + nuclei">
+      <img src="images/96well-COs_TNNT2-CX43/20012026_96well-COs_actinin-CX43_Image001_overlay.jpg" alt="2026 overlay — Cx43 + α-Actinin + nuclei">
       <div class="photo-meta">
         <span class="k">2026 overlay</span>
         <h3>Cx43 + α-Actinin + nuclei</h3>
       </div>
     </article>
 
-    <article class="photo-feature tall">
-      <img src="photo_organoid_ring.webp" alt="Ring organoid view">
+    <article class="photo-feature tall" tabindex="0" role="button" aria-label="Open ring specimen gallery"
+      data-gallery='[
+        {"label":"Nuclei","src":"images/DSR-COs_Day20_HOME_PAGE-Website/03082022_DSR-Organoids_D20_Hoechst.jpg"},
+        {"label":"Nuclei + α-Actinin","src":"images/DSR-COs_Day20_HOME_PAGE-Website/03082022_DSR-Organoids_D20_Hoechst_Actinin-AF467.jpg"},
+        {"label":"Nuclei + RFP","src":"images/DSR-COs_Day20_HOME_PAGE-Website/03082022_DSR-Organoids_D20_Hoechst_RFP.jpg"},
+        {"label":"Nuclei + vWF","src":"images/DSR-COs_Day20_HOME_PAGE-Website/03082022_DSR-Organoids_D20_Hoechst-vWF-AF488.jpg"},
+        {"label":"Merged","src":"images/DSR-COs_Day20_HOME_PAGE-Website/03082022_DSR-Organoids_D20_Merged.jpg"}
+      ]'
+      data-gallery-title="Ring specimen — DSR Organoids, D20"
+      data-gallery-caption="Compact organoid shell view">
+      <img src="images/DSR-COs_Day20_HOME_PAGE-Website/03082022_DSR-Organoids_D20_Merged.jpg" alt="Ring organoid — merged">
       <div class="photo-meta">
         <span class="k">Ring specimen</span>
         <h3>Compact organoid shell view</h3>
       </div>
     </article>
 
-    <article class="photo-feature wide">
-      <img src="photo_overview_2.webp" alt="Close microscopy overview">
+    <article class="photo-feature wide" tabindex="0" role="button" aria-label="Open close field gallery"
+      data-gallery='[
+        {"label":"Nuclei (Applikon)","src":"images/Bio-COs_Day10/Applikon-bioreactor-CO_Day10_Heochst.jpg"},
+        {"label":"Nuclei + α-Actinin (Applikon)","src":"images/Bio-COs_Day10/Applikon-CO_Day10_Heochst_Alpha-Actini-AF647.jpg"},
+        {"label":"Nuclei + CD31 (Applikon)","src":"images/Bio-COs_Day10/Applikon-bioreac-CO_Day10_Heochst_CD31-AF555.jpg"},
+        {"label":"Merged (96-well reference)","src":"images/Bio-COs_Day10/96well-CO_Day10_Heochst_CD31-AF555_Alpha-Actini-AF647.jpg"}
+      ]'
+      data-gallery-title="Close field — Bioreactor CO, D10"
+      data-gallery-caption="Fine-grained network detail from the Applikon bioreactor batch.">
+      <img src="images/Bio-COs_Day10/96well-CO_Day10_Heochst_CD31-AF555_Alpha-Actini-AF647.jpg" alt="Close field — merged reference">
       <div class="photo-meta">
         <span class="k">Close field</span>
         <h3>Fine-grained network detail for section backdrops, figure cards, and image-led transitions.</h3>
@@ -943,38 +981,34 @@ html:not(.loading) .hud-bot{opacity:1}
   </div>
 </section>
 
+<!-- ========== MICROSCOPY LIGHTBOX ========== -->
+<div class="photo-lightbox" id="photoLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="photoLightboxTitle">
+  <button class="photo-lightbox-close" type="button" aria-label="Close">×</button>
+  <div class="photo-lightbox-inner">
+    <div class="photo-lightbox-stage">
+      <img id="photoLightboxImg" src="" alt="">
+    </div>
+    <div class="photo-lightbox-panel">
+      <div class="photo-lightbox-head">
+        <span class="k" id="photoLightboxEyebrow">Channel</span>
+        <h3 id="photoLightboxTitle"></h3>
+        <p id="photoLightboxCaption"></p>
+      </div>
+      <div class="photo-lightbox-variants" id="photoLightboxVariants" role="tablist"></div>
+    </div>
+  </div>
+</div>
+
 
 <!-- ========== FOOTER ========== -->
 <footer class="foot">
   <div class="foot-accent"></div>
   <div class="foot-main">
     <div class="foot-brand">
-      <a href="index.html" class="foot-logo"><img src="logo_white.svg" alt="MWB Lab" class="foot-logo-img"></a>
+      <a href="index.html" class="foot-logo"><img src="bioreactor_single_color_orbit.svg?v=2" alt="MWB Lab" class="foot-logo-img"></a>
       <div class="foot-brand-text">
         <p class="foot-tagline">Scalable cardiac tissue engineering for regenerative medicine.</p>
         <p class="foot-sub">Human iPSC-derived cardiac cells and organoids, developed for translational cardiac therapy.</p>
-      </div>
-      <div class="foot-supporters">
-        <h4>Supported by</h4>
-        <div class="supporters-group">
-          <div class="supporters-group-label">Research partners</div>
-          <ul class="supporters-list">
-            <li><a href="https://cmmc-uni-koeln.de" target="_blank" rel="noopener noreferrer">CMMC Cologne</a></li>
-            <li><a href="https://cecad.uni-koeln.de" target="_blank" rel="noopener noreferrer">CECAD Cologne</a></li>
-          </ul>
-        </div>
-        <div class="supporters-group">
-          <div class="supporters-group-label">Funding</div>
-          <ul class="supporters-list">
-            <li><a href="https://www.dfg.de" target="_blank" rel="noopener noreferrer">DFG</a></li>
-            <li><a href="https://www.bmbf.de" target="_blank" rel="noopener noreferrer">BMBF</a></li>
-            <li><a href="https://www.bmwk.de" target="_blank" rel="noopener noreferrer">BMWK</a></li>
-            <li><a href="https://medfak.uni-koeln.de/en/research/funding-programmes/koeln-fortune" target="_blank" rel="noopener noreferrer">K&ouml;ln Fortune</a></li>
-            <li><a href="https://www.efre.nrw.de" target="_blank" rel="noopener noreferrer">EFRE</a></li>
-            <li><a href="https://www.wirtschaft.nrw" target="_blank" rel="noopener noreferrer">State of North Rhine-Westphalia</a></li>
-            <li><a href="https://fsg-lab.com" target="_blank" rel="noopener noreferrer">First Stem Cells &amp; Genomics Lab, Dubai</a></li>
-          </ul>
-        </div>
       </div>
     </div>
     <div class="foot-nav-group">
@@ -1002,6 +1036,35 @@ html:not(.loading) .hud-bot{opacity:1}
           <li><a href="mailto:kurt.pfannkuche@uni-koeln.de">kurt.pfannkuche@uni-koeln.de</a></li>
           <li><a href="mailto:shamad@uni-koeln.de">shamad@uni-koeln.de</a></li>
           <li><a href="contact.html">Contact page</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal &amp; Privacy</h4>
+        <ul>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="privacy.html">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-supporters">
+      <h4>Supported by</h4>
+      <div class="supporters-group">
+        <div class="supporters-group-label">Research partners</div>
+        <ul class="supporters-list">
+          <li><a href="https://cmmc-uni-koeln.de" target="_blank" rel="noopener noreferrer">CMMC Cologne</a></li>
+          <li><a href="https://cecad.uni-koeln.de" target="_blank" rel="noopener noreferrer">CECAD Cologne</a></li>
+        </ul>
+      </div>
+      <div class="supporters-group">
+        <div class="supporters-group-label">Funding</div>
+        <ul class="supporters-list">
+          <li><a href="https://www.dfg.de" target="_blank" rel="noopener noreferrer">DFG</a></li>
+          <li><a href="https://www.bmbf.de" target="_blank" rel="noopener noreferrer">BMBF</a></li>
+          <li><a href="https://www.bmwk.de" target="_blank" rel="noopener noreferrer">BMWK</a></li>
+          <li><a href="https://medfak.uni-koeln.de/en/research/funding-programmes/koeln-fortune" target="_blank" rel="noopener noreferrer">K&ouml;ln Fortune</a></li>
+          <li><a href="https://www.efre.nrw.de" target="_blank" rel="noopener noreferrer">EFRE</a></li>
+          <li><a href="https://www.wirtschaft.nrw" target="_blank" rel="noopener noreferrer">State of North Rhine-Westphalia</a></li>
+          <li><a href="https://fsg-lab.com" target="_blank" rel="noopener noreferrer">First Stem Cells &amp; Genomics Lab, Dubai</a></li>
         </ul>
       </div>
     </div>
@@ -1175,6 +1238,79 @@ if(reducedMotion || skipSplash){
   setTimeout(releaseSite, 5400);
   setTimeout(() => { if(document.documentElement.classList.contains('loading')) releaseSite(); }, 8000);
 }
+
+/* ========== MICROSCOPY LIGHTBOX ========== */
+(function initPhotoLightbox(){
+  const box = document.getElementById('photoLightbox');
+  if(!box) return;
+  const img = document.getElementById('photoLightboxImg');
+  const eyebrow = document.getElementById('photoLightboxEyebrow');
+  const title = document.getElementById('photoLightboxTitle');
+  const caption = document.getElementById('photoLightboxCaption');
+  const variantsBox = document.getElementById('photoLightboxVariants');
+  const closeBtn = box.querySelector('.photo-lightbox-close');
+  let activeVariants = [];
+
+  function setVariant(idx){
+    if(!activeVariants[idx]) return;
+    const v = activeVariants[idx];
+    img.classList.add('swapping');
+    const pre = new Image();
+    pre.onload = () => {
+      img.src = v.src;
+      img.alt = v.label;
+      requestAnimationFrame(() => img.classList.remove('swapping'));
+    };
+    pre.src = v.src;
+    eyebrow.textContent = v.label;
+    variantsBox.querySelectorAll('.photo-lightbox-variant').forEach((b, i) => {
+      b.classList.toggle('active', i === idx);
+    });
+  }
+
+  function open(tile){
+    let variants;
+    try { variants = JSON.parse(tile.dataset.gallery || '[]'); } catch(e){ variants = []; }
+    if(!variants.length) return;
+    activeVariants = variants;
+    title.textContent = tile.dataset.galleryTitle || '';
+    caption.textContent = tile.dataset.galleryCaption || '';
+    variantsBox.innerHTML = '';
+    variants.forEach((v, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'photo-lightbox-variant';
+      btn.role = 'tab';
+      btn.textContent = v.label;
+      btn.addEventListener('click', () => setVariant(i));
+      variantsBox.appendChild(btn);
+    });
+    setVariant(0);
+    box.classList.add('open');
+    box.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function close(){
+    box.classList.remove('open');
+    box.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.photo-feature[data-gallery]').forEach(tile => {
+    tile.addEventListener('click', () => open(tile));
+    tile.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(tile); }
+    });
+  });
+
+  closeBtn.addEventListener('click', close);
+  box.addEventListener('click', (e) => { if(e.target === box) close(); });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && box.classList.contains('open')) close();
+  });
+})();
 </script>
 <script src="site_v4blend.js?v=9"></script>
 </body>
