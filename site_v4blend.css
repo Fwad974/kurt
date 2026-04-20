@@ -1643,3 +1643,13 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   /* Make sure the status-indicator dot never leaks through on mobile */
   .meta-right, .meta-right *{display:none!important;}
 }
+
+/* Left-align split-sec prose on mobile across all pages (overrides
+   the site.css center treatment at <=900px). */
+@media (max-width:900px){
+  .split-sec .split-prose{text-align:left!important;}
+  .split-sec .split-prose .num{justify-content:flex-start!important;}
+  .split-sec .split-prose h3{margin-left:0!important; margin-right:0!important;}
+  .split-sec .split-prose p{margin-left:0!important; margin-right:0!important;}
+  .split-sec .split-prose .btn{margin-left:0!important; margin-right:0!important;}
+}
