@@ -199,16 +199,6 @@ try { sessionStorage.setItem('mwbVisited', '1'); } catch(e){}
       padding:'20px 14px 16px'
     });
 
-    /* section label */
-    linksWrap.appendChild(el('div', {
-      padding:'0 12px 12px',
-      fontFamily:'"JetBrains Mono", monospace',
-      fontSize:'.56rem', fontWeight:'500',
-      color:'rgba(251,225,150,.4)',
-      letterSpacing:'.14em',
-      textTransform:'uppercase'
-    }, 'Navigate'));
-
     nav.querySelectorAll('a').forEach((a, i) => {
       const isCurrent = a.getAttribute('aria-current') === 'page';
 
