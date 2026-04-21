@@ -251,6 +251,13 @@
     min-height:auto !important;
     border-radius:16px !important;
   }
+  /* Drop the RESEARCH PIPELINE label + 'Stem cell to therapy / Integrated
+     platform' caption beneath the pipeline image on mobile — the section
+     heading already says the same thing, and the bare white strip just
+     adds empty scroll. */
+  .lead-figure .figure.is-photo .fig-label,
+  .lead-figure .figure.is-photo .fig-caption{display:none !important;}
+  .lead-figure .figure.is-photo .fig-photo{padding:8px !important;}
 
   /* --- Overview row: stack on mobile, don't keep 2-column grid --- */
   .overview-row{
