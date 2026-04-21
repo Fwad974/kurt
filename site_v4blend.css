@@ -1546,7 +1546,15 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 /* ── Footer responsive ── */
 @media(max-width:960px){
   .foot{padding:0 36px!important;}
-  .foot-main{grid-template-columns:1fr; gap:56px; padding-bottom:48px}
+  .foot-main{
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "brand"
+      "nav"
+      "supporters";
+    gap:56px;
+    padding-bottom:48px;
+  }
   .foot-accent{margin-bottom:56px;}
   .foot-logo-img{height:116px;}
   .foot-brand{gap:28px}
