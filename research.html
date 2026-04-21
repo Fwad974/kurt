@@ -251,6 +251,15 @@
     min-height:auto !important;
     border-radius:16px !important;
   }
+
+  /* --- Overview row: stack on mobile, don't keep 2-column grid --- */
+  .overview-row{
+    grid-template-columns:1fr !important;
+    gap:28px !important;
+    align-items:stretch !important;
+  }
+  .overview-row .sec-head h2.display{font-size:2.2rem !important; line-height:1.08 !important}
+  .overview-row .sec-head .sec-lede{font-size:.95rem !important; line-height:1.6 !important}
 }
 
 @media (max-width:600px){
