@@ -311,10 +311,10 @@ html:not(.loading) .hud-bot{opacity:1}
 .channel-label .sm{color:var(--muted); font-size:.62rem; text-transform:uppercase; letter-spacing:.12em}
 
 /* ---------- key strengths ---------- */
-/* '§ 01 — Key strengths' eyebrow sits in the narrower left
-   column; the title and lede fill the wider right column. */
+/* Title and lede fill the wider left column; the '§ 01 — Key
+   strengths' eyebrow and meta list sit in the narrower right column. */
 #strengths .sec-head{
-  grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
+  grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
 }
 #strengths .sec-head .eyebrow{
   justify-self:start;
@@ -684,6 +684,14 @@ html:not(.loading) .hud-bot{opacity:1}
 <!-- ========== KEY STRENGTHS ========== -->
 <section class="sec" id="strengths" data-bg="2">
   <div class="sec-head">
+    <div>
+      <h2 class="display" data-split-on-reveal>What the lab is <em>known for</em>.</h2>
+      <p class="sec-lede rv">
+        A decade of work building the cellular, tissue, and translational infrastructure
+        for scalable cardiac regenerative medicine — from iPSC-derived cell production to
+        validated large-animal safety data.
+      </p>
+    </div>
     <div class="head-left">
       <div class="eyebrow rv">§ 01 — Key strengths</div>
       <dl class="head-meta rv">
@@ -696,14 +704,6 @@ html:not(.loading) .hud-bot{opacity:1}
         <dt>Track record</dt>
         <dd>A decade of translational work</dd>
       </dl>
-    </div>
-    <div>
-      <h2 class="display" data-split-on-reveal>What the lab is <em>known for</em>.</h2>
-      <p class="sec-lede rv">
-        A decade of work building the cellular, tissue, and translational infrastructure
-        for scalable cardiac regenerative medicine — from iPSC-derived cell production to
-        validated large-animal safety data.
-      </p>
     </div>
   </div>
 
