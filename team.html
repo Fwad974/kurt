@@ -859,36 +859,203 @@ body[data-page="team"] .eyebrow{
   <div class="team-gallery-grid" id="galleryGrid"></div>
 </section>
 
+<!-- Gallery lightbox -->
+<div class="gallery-lightbox" id="galleryLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="gl-close" type="button" aria-label="Close">&times;</button>
+  <button class="gl-nav gl-prev" type="button" aria-label="Previous photo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6l-6 6 6 6"/></svg>
+  </button>
+  <button class="gl-nav gl-next" type="button" aria-label="Next photo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6l6 6-6 6"/></svg>
+  </button>
+  <figure class="gl-stage">
+    <img id="galleryLightboxImg" src="" alt="">
+    <figcaption class="gl-meta">
+      <span class="gl-counter" id="galleryLightboxCounter"></span>
+    </figcaption>
+  </figure>
+  <div class="gl-strip" id="galleryStrip" role="tablist" aria-label="Thumbnails"></div>
+</div>
+
 <style>
 .team-gallery-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
-  gap:18px;
+  grid-template-columns:repeat(12, 1fr);
+  grid-auto-rows:180px;
+  gap:14px;
 }
-.team-gallery-grid a{
-  display:block;
+.gl-tile{
   position:relative;
-  aspect-ratio:4/3;
   overflow:hidden;
-  border-radius:6px;
+  border-radius:8px;
   border:1px solid rgba(255,255,255,.08);
   background:rgba(5,12,22,.4);
-  transition:transform .35s var(--ease), border-color .35s var(--ease);
+  cursor:zoom-in;
+  padding:0;
+  appearance:none;
+  transition:border-color .35s var(--ease), transform .35s var(--ease), box-shadow .35s var(--ease);
+  grid-column:span 4;
+  grid-row:span 2;
 }
-.team-gallery-grid a:hover,
-.team-gallery-grid a:focus-visible{
+.gl-tile.span-wide{grid-column:span 6;}
+.gl-tile.span-tall{grid-row:span 3;}
+.gl-tile.span-feature{grid-column:span 6; grid-row:span 3;}
+.gl-tile:hover,
+.gl-tile:focus-visible{
+  border-color:rgba(251,225,150,.45);
   transform:translateY(-2px);
-  border-color:rgba(251,225,150,.35);
+  box-shadow:0 16px 40px rgba(0,0,0,.32);
   outline:none;
 }
-.team-gallery-grid img{
+.gl-tile img{
   position:absolute; inset:0;
   width:100%; height:100%;
   object-fit:cover;
   display:block;
-  transition:transform .6s var(--ease);
+  transition:transform .7s var(--ease), filter .5s var(--ease);
+  filter:saturate(1.02);
 }
-.team-gallery-grid a:hover img{transform:scale(1.04);}
+.gl-tile:hover img{transform:scale(1.05);}
+.gl-tile::after{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(5,12,22,0) 58%, rgba(5,12,22,.48) 100%);
+  opacity:.6;
+  transition:opacity .4s var(--ease);
+  pointer-events:none;
+}
+.gl-tile:hover::after{opacity:.35;}
+.gl-tile .gl-zoom{
+  position:absolute; right:12px; top:12px;
+  width:34px; height:34px;
+  border-radius:50%;
+  background:rgba(5,12,22,.55);
+  border:1px solid rgba(255,255,255,.14);
+  color:#FBE196;
+  display:flex; align-items:center; justify-content:center;
+  backdrop-filter:blur(6px);
+  opacity:0;
+  transform:translateY(-4px);
+  transition:opacity .3s var(--ease), transform .3s var(--ease);
+  pointer-events:none;
+}
+.gl-tile:hover .gl-zoom,
+.gl-tile:focus-visible .gl-zoom{opacity:1; transform:translateY(0);}
+.gl-tile .gl-zoom svg{width:16px; height:16px;}
+
+/* Lightbox */
+.gallery-lightbox{
+  position:fixed; inset:0;
+  display:none;
+  background:rgba(3,7,14,.92);
+  backdrop-filter:blur(14px);
+  z-index:9999;
+  padding:64px 24px 120px;
+  box-sizing:border-box;
+  flex-direction:column; align-items:center; justify-content:center;
+}
+.gallery-lightbox.open{display:flex;}
+.gl-stage{
+  margin:0;
+  max-width:min(1200px, 92vw);
+  max-height:calc(100vh - 240px);
+  display:flex; align-items:center; justify-content:center;
+  flex-direction:column;
+  gap:14px;
+}
+.gl-stage img{
+  max-width:100%;
+  max-height:calc(100vh - 280px);
+  object-fit:contain;
+  border-radius:4px;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+  background:#050a12;
+}
+.gl-meta{
+  color:rgba(255,255,255,.55);
+  font-family:"JetBrains Mono", monospace;
+  font-size:.72rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.gl-close{
+  position:absolute; top:18px; right:18px;
+  width:44px; height:44px;
+  border-radius:50%;
+  background:rgba(5,12,22,.6);
+  border:1px solid rgba(255,255,255,.12);
+  color:#fff;
+  font-size:28px; line-height:1;
+  cursor:pointer;
+  transition:background .25s var(--ease), border-color .25s var(--ease);
+}
+.gl-close:hover{background:rgba(251,225,150,.16); border-color:rgba(251,225,150,.45);}
+.gl-nav{
+  position:absolute; top:50%;
+  transform:translateY(-50%);
+  width:52px; height:52px;
+  border-radius:50%;
+  background:rgba(5,12,22,.55);
+  border:1px solid rgba(255,255,255,.12);
+  color:#fff;
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:background .25s var(--ease), border-color .25s var(--ease), transform .25s var(--ease);
+}
+.gl-nav:hover{
+  background:rgba(251,225,150,.14);
+  border-color:rgba(251,225,150,.45);
+  color:#FBE196;
+}
+.gl-nav svg{width:22px; height:22px;}
+.gl-prev{left:24px;}
+.gl-next{right:24px;}
+.gl-prev:hover{transform:translateY(-50%) translateX(-2px);}
+.gl-next:hover{transform:translateY(-50%) translateX(2px);}
+
+.gl-strip{
+  position:absolute; bottom:22px; left:50%;
+  transform:translateX(-50%);
+  display:flex; gap:8px;
+  max-width:92vw;
+  overflow-x:auto;
+  padding:8px;
+  scrollbar-width:thin;
+}
+.gl-strip::-webkit-scrollbar{height:6px;}
+.gl-strip::-webkit-scrollbar-thumb{background:rgba(251,225,150,.3); border-radius:4px;}
+.gl-strip button{
+  flex:0 0 auto;
+  width:72px; height:48px;
+  border-radius:4px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.1);
+  background:transparent;
+  padding:0;
+  cursor:pointer;
+  opacity:.55;
+  transition:opacity .25s var(--ease), border-color .25s var(--ease), transform .25s var(--ease);
+}
+.gl-strip button img{width:100%; height:100%; object-fit:cover; display:block;}
+.gl-strip button:hover{opacity:.85;}
+.gl-strip button[aria-selected="true"]{
+  opacity:1;
+  border-color:rgba(251,225,150,.7);
+  transform:translateY(-2px);
+}
+
+@media(max-width:760px){
+  .team-gallery-grid{grid-template-columns:repeat(6, 1fr); grid-auto-rows:140px;}
+  .gl-tile{grid-column:span 6; grid-row:span 2;}
+  .gl-tile.span-wide,
+  .gl-tile.span-feature{grid-column:span 6;}
+  .gl-tile.span-tall,
+  .gl-tile.span-feature{grid-row:span 2;}
+  .gallery-lightbox{padding:56px 12px 96px;}
+  .gl-nav{width:42px; height:42px;}
+  .gl-prev{left:10px;} .gl-next{right:10px;}
+  .gl-strip button{width:56px; height:40px;}
+}
 </style>
 
 <!-- Shared bio modal (populated on click from any .fig-card with a .fig-bio child) -->
@@ -915,19 +1082,105 @@ body[data-page="team"] .eyebrow{
   const GALLERY_IMAGES = [
     'team.jpg'
   ];
-  const grid = document.getElementById('galleryGrid');
-  const count = document.getElementById('galleryCount');
-  if(!grid) return;
+
+  const grid      = document.getElementById('galleryGrid');
+  const count     = document.getElementById('galleryCount');
+  const lightbox  = document.getElementById('galleryLightbox');
+  const lbImg     = document.getElementById('galleryLightboxImg');
+  const lbCount   = document.getElementById('galleryLightboxCounter');
+  const lbStrip   = document.getElementById('galleryStrip');
+  const lbClose   = lightbox && lightbox.querySelector('.gl-close');
+  const lbPrev    = lightbox && lightbox.querySelector('.gl-prev');
+  const lbNext    = lightbox && lightbox.querySelector('.gl-next');
+  if(!grid || !lightbox) return;
+
+  const src = n => `galery/${encodeURI(n)}`;
+
+  /* Build the grid with a rhythm: wide, standard, tall, feature, ... */
+  const layout = ['span-feature','span-wide','span-tall','','span-wide','','span-tall','span-feature'];
   grid.innerHTML = GALLERY_IMAGES.map((name, i) => `
-    <a href="galery/${encodeURI(name)}" target="_blank" rel="noopener noreferrer" aria-label="Open photo ${i+1}">
-      <img src="galery/${encodeURI(name)}" alt="" loading="lazy">
-    </a>
+    <button class="gl-tile ${layout[i % layout.length]}" type="button" data-index="${i}" aria-label="Open photo ${i+1}">
+      <img src="${src(name)}" alt="" loading="lazy">
+      <span class="gl-zoom" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="6"/><path d="M15.5 15.5L20 20"/><path d="M11 8v6M8 11h6"/></svg>
+      </span>
+    </button>
   `).join('');
+
   if(count){
-    count.textContent = GALLERY_IMAGES.length === 1
-      ? '1 photo'
-      : GALLERY_IMAGES.length + ' photos';
+    count.textContent = GALLERY_IMAGES.length === 1 ? '1 photo' : GALLERY_IMAGES.length + ' photos';
   }
+
+  /* Build strip thumbnails once */
+  lbStrip.innerHTML = GALLERY_IMAGES.map((name, i) => `
+    <button type="button" role="tab" aria-label="Photo ${i+1}" data-index="${i}">
+      <img src="${src(name)}" alt="" loading="lazy">
+    </button>
+  `).join('');
+
+  let current = 0;
+  let lastFocus = null;
+
+  function render(){
+    const total = GALLERY_IMAGES.length;
+    const name  = GALLERY_IMAGES[current];
+    lbImg.src = src(name);
+    lbImg.alt = name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ');
+    lbCount.textContent = `${current + 1} / ${total}`;
+    lbStrip.querySelectorAll('button').forEach((b, i) => {
+      b.setAttribute('aria-selected', i === current ? 'true' : 'false');
+      if(i === current) b.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
+    });
+    const hasMany = total > 1;
+    lbPrev.style.display = hasMany ? '' : 'none';
+    lbNext.style.display = hasMany ? '' : 'none';
+    lbStrip.style.display = hasMany ? '' : 'none';
+  }
+
+  function open(i){
+    current = i;
+    render();
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    lastFocus = document.activeElement;
+    lbClose.focus({preventScroll:true});
+  }
+  function close(){
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if(lastFocus && lastFocus.focus) lastFocus.focus({preventScroll:true});
+  }
+  function step(delta){
+    const total = GALLERY_IMAGES.length;
+    current = (current + delta + total) % total;
+    render();
+  }
+
+  grid.addEventListener('click', e => {
+    const tile = e.target.closest('.gl-tile');
+    if(!tile) return;
+    open(Number(tile.dataset.index) || 0);
+  });
+  lbStrip.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-index]');
+    if(!btn) return;
+    current = Number(btn.dataset.index) || 0;
+    render();
+  });
+  lbClose.addEventListener('click', close);
+  lbPrev.addEventListener('click', () => step(-1));
+  lbNext.addEventListener('click', () => step(1));
+  lightbox.addEventListener('click', e => {
+    if(e.target === lightbox) close();
+  });
+  document.addEventListener('keydown', e => {
+    if(!lightbox.classList.contains('open')) return;
+    if(e.key === 'Escape') close();
+    else if(e.key === 'ArrowLeft') step(-1);
+    else if(e.key === 'ArrowRight') step(1);
+  });
 })();
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
