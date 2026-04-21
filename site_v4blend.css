@@ -1563,6 +1563,7 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 }
 @media(max-width:768px){
   .foot-nav-group{grid-template-columns:1fr 1fr; gap:36px 32px;}
+  .foot-supporters{grid-template-columns:1fr; column-gap:0; row-gap:24px;}
   .foot-bottom{flex-direction:column; align-items:flex-start; gap:16px; padding:24px 0 32px;}
   .foot-supporters .supporters-list a{font-size:.72rem; padding:8px 14px}
   .foot-supporters .supporters-group{margin-top:14px}
