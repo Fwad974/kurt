@@ -1303,13 +1303,13 @@ body[data-page="team"]{ --hero-photo:url('team/team.jpg'); }
   margin-bottom:48px;
 }
 
-/* ── Main area: brand + nav on top row, supporters spanning below ── */
+/* ── Main area: supporters on top row, brand + nav spanning below ── */
 .foot-main{
   display:grid;
   grid-template-columns:minmax(0,.85fr) minmax(0,1.9fr);
   grid-template-areas:
-    "brand nav"
-    "supporters supporters";
+    "supporters supporters"
+    "brand nav";
   column-gap:56px;
   row-gap:56px;
   padding-bottom:40px;
@@ -1319,8 +1319,8 @@ body[data-page="team"]{ --hero-photo:url('team/team.jpg'); }
 .foot-nav-group{grid-area:nav;}
 .foot-supporters{
   grid-area:supporters;
-  padding-top:32px;
-  border-top:1px solid rgba(251,225,150,.08);
+  padding-bottom:32px;
+  border-bottom:1px solid rgba(251,225,150,.08);
 }
 
 /* ── Brand column ── */
@@ -1550,9 +1550,9 @@ body[data-page="team"]{ --hero-photo:url('team/team.jpg'); }
   .foot-main{
     grid-template-columns:1fr;
     grid-template-areas:
+      "supporters"
       "brand"
-      "nav"
-      "supporters";
+      "nav";
     gap:40px;
     padding-bottom:36px;
   }
