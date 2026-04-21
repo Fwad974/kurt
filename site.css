@@ -282,9 +282,9 @@ h3.subhead em{font-style:italic}
   grid-template-columns:1fr;
   gap:18px;
   align-items:start;
-  margin-bottom:72px;
+  margin-bottom:40px;
   border-bottom:1px solid var(--line);
-  padding-bottom:48px;
+  padding-bottom:24px;
   text-align:left;
 }
 .sec-head .eyebrow{margin-bottom:0}
