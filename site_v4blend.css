@@ -1557,7 +1557,12 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
   }
   .foot-accent{margin-bottom:40px;}
   .foot-logo-img{height:84px;}
-  .foot-brand{gap:20px}
+  .foot-brand{
+    flex-direction:row;
+    align-items:center;
+    gap:20px;
+  }
+  .foot-brand-text{flex:1; min-width:0;}
   .foot-supporters{max-width:none}
   .foot-tagline{font-size:1.05rem!important;}
   .foot-sub{font-size:.88rem!important;}
