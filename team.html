@@ -881,8 +881,8 @@ body[data-page="team"] .eyebrow{
 .team-gallery-grid{
   display:grid;
   grid-template-columns:repeat(12, 1fr);
-  grid-auto-rows:180px;
-  gap:14px;
+  grid-auto-rows:150px;
+  gap:12px;
 }
 .gl-tile{
   position:relative;
@@ -894,12 +894,12 @@ body[data-page="team"] .eyebrow{
   padding:0;
   appearance:none;
   transition:border-color .35s var(--ease), transform .35s var(--ease), box-shadow .35s var(--ease);
-  grid-column:span 4;
+  grid-column:span 3;
   grid-row:span 2;
 }
-.gl-tile.span-wide{grid-column:span 6;}
+.gl-tile.span-wide{grid-column:span 4;}
 .gl-tile.span-tall{grid-row:span 3;}
-.gl-tile.span-feature{grid-column:span 6; grid-row:span 3;}
+.gl-tile.span-feature{grid-column:span 4; grid-row:span 3;}
 .gl-tile:hover,
 .gl-tile:focus-visible{
   border-color:rgba(251,225,150,.45);
@@ -1044,11 +1044,19 @@ body[data-page="team"] .eyebrow{
   transform:translateY(-2px);
 }
 
-@media(max-width:760px){
+@media(max-width:1100px){
   .team-gallery-grid{grid-template-columns:repeat(6, 1fr); grid-auto-rows:140px;}
-  .gl-tile{grid-column:span 6; grid-row:span 2;}
+  .gl-tile{grid-column:span 3; grid-row:span 2;}
   .gl-tile.span-wide,
-  .gl-tile.span-feature{grid-column:span 6;}
+  .gl-tile.span-feature{grid-column:span 4;}
+  .gl-tile.span-tall,
+  .gl-tile.span-feature{grid-row:span 2;}
+}
+@media(max-width:760px){
+  .team-gallery-grid{grid-template-columns:repeat(4, 1fr); grid-auto-rows:120px;}
+  .gl-tile,
+  .gl-tile.span-wide,
+  .gl-tile.span-feature{grid-column:span 2;}
   .gl-tile.span-tall,
   .gl-tile.span-feature{grid-row:span 2;}
   .gallery-lightbox{padding:56px 12px 96px;}
@@ -1096,10 +1104,12 @@ body[data-page="team"] .eyebrow{
 
   const src = n => `galery/${encodeURI(n)}`;
 
-  /* Build the grid with a rhythm: wide, standard, tall, feature, ... */
-  const layout = ['span-feature','span-wide','span-tall','','span-wide','','span-tall','span-feature'];
+  /* Build the grid with a rhythm that depends on gallery size */
+  const rhythm = GALLERY_IMAGES.length < 4
+    ? ['','','']
+    : ['span-wide','','span-tall','','','span-wide','span-tall','','span-feature',''];
   grid.innerHTML = GALLERY_IMAGES.map((name, i) => `
-    <button class="gl-tile ${layout[i % layout.length]}" type="button" data-index="${i}" aria-label="Open photo ${i+1}">
+    <button class="gl-tile ${rhythm[i % rhythm.length]}" type="button" data-index="${i}" aria-label="Open photo ${i+1}">
       <img src="${src(name)}" alt="" loading="lazy">
       <span class="gl-zoom" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="6"/><path d="M15.5 15.5L20 20"/><path d="M11 8v6M8 11h6"/></svg>
