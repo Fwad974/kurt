@@ -1326,7 +1326,8 @@ body[data-page="team"]{ --hero-photo:url('team/team.jpg'); }
 /* ── Brand column ── */
 .foot-brand{
   display:flex;
-  flex-direction:column;
+  flex-direction:row;
+  align-items:center;
   gap:24px;
 }
 .foot-logo{
