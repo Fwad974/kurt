@@ -289,7 +289,7 @@ h3.subhead em{font-style:italic}
 }
 .sec-head .eyebrow{margin-bottom:0}
 .sec-head > div{text-align:left}
-.sec-head h2.display{max-width:28ch; text-align:left; margin-left:0}
+.sec-head h2.display{max-width:none; text-align:left; margin-left:0}
 .sec-head .sec-lede{
   margin-top:18px;
   font-size:1.32rem;
