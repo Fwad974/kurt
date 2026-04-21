@@ -90,10 +90,15 @@
   .t-item::before{left:-5px; top:30px}
   .contact-grid, .pos-grid, .apply-steps{grid-template-columns:1fr}
   .legal, .addr-block, .contact-card, .apply-step, .pos-card{padding:28px}
-  .split-sec .split-prose{text-align:left !important}
+  .split-sec .split-prose{text-align:left !important; min-width:0}
   .split-sec .split-prose .num{justify-content:flex-start !important}
-  .split-sec .split-prose h3{margin-left:0 !important; margin-right:0 !important}
-  .split-sec .split-prose p{margin-left:0 !important; margin-right:0 !important}
+  .split-sec .split-prose h3{
+    margin-left:0 !important; margin-right:0 !important;
+    white-space:normal !important;
+    font-size:clamp(1.9rem, 7vw, 2.4rem) !important;
+    line-height:1.08 !important;
+  }
+  .split-sec .split-prose p{margin-left:0 !important; margin-right:0 !important; max-width:none}
   .split-sec .split-prose .btn{margin-left:0 !important; margin-right:0 !important}
 }
 </style>
