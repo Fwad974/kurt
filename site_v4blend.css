@@ -932,6 +932,9 @@ body[data-page="technology"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 body[data-page="translational"]{ --hero-photo:url('photo_organoid_ring.webp'); }
 body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 body[data-page="team"]{ --hero-photo:url('team/team.jpg'); }
+body[data-page="sponsors"]{ --hero-photo:url('images/13122019_NP0040-ECs-EBs_Biorecator/13122019_NP0040-ECs-EBs_Biorecator_Merged.jpg'); }
+body[data-page="contact"]{ --hero-photo:url('images/NP0040-EC_Hoechst/Merg.jpg'); }
+body[data-page="news"]{ --hero-photo:url('images/27102019_NP0040-EC_Hoechst/27102019_NP0040-EC_Hoechst_LDL-AF555_Anti-LDL-AF488_Merged_40X_01.jpg'); }
 
 /* Fix: remove isolation so thumbs aren't clipped by stacking context */
 .hero-viewer{
