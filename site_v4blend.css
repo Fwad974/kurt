@@ -933,16 +933,6 @@ body[data-page="translational"]{ --hero-photo:url('photo_organoid_ring.webp'); }
 body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 body[data-page="team"]{ --hero-photo:url('team/team.jpg'); }
 
-/* Team hero: shift the group photo and push the heading down so faces clear the text */
-body[data-page="team"] .page-hero::before{
-  background-position:center top !important;
-}
-@media (min-width:901px){
-  body[data-page="team"] .page-hero{
-    padding-top:360px !important;
-  }
-}
-
 /* Fix: remove isolation so thumbs aren't clipped by stacking context */
 .hero-viewer{
   position:relative;
