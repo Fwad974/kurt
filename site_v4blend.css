@@ -1552,34 +1552,45 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
       "brand"
       "nav"
       "supporters";
-    gap:56px;
-    padding-bottom:48px;
+    gap:40px;
+    padding-bottom:36px;
   }
-  .foot-accent{margin-bottom:56px;}
-  .foot-logo-img{height:116px;}
-  .foot-brand{gap:28px}
+  .foot-accent{margin-bottom:40px;}
+  .foot-logo-img{height:84px;}
+  .foot-brand{gap:20px}
   .foot-supporters{max-width:none}
-  .foot-tagline{font-size:1.15rem!important;}
+  .foot-tagline{font-size:1.05rem!important;}
+  .foot-sub{font-size:.88rem!important;}
 }
 @media(max-width:768px){
-  .foot-nav-group{grid-template-columns:1fr 1fr; gap:36px 32px;}
-  .foot-supporters{grid-template-columns:1fr; column-gap:0; row-gap:24px;}
+  .foot-nav-group{grid-template-columns:1fr 1fr; gap:28px 24px;}
+  .foot-supporters{grid-template-columns:1fr; column-gap:0; row-gap:20px;}
   .foot-bottom{flex-direction:column; align-items:flex-start; gap:16px; padding:24px 0 32px;}
   .foot-supporters .supporters-list a{font-size:.72rem; padding:8px 14px}
-  .foot-supporters .supporters-group{margin-top:14px}
+  .foot-supporters .supporters-group{margin-top:10px}
 }
 @media(max-width:480px){
   .foot{padding:0 22px!important;}
-  .foot-accent{margin-bottom:40px;}
-  .foot-main{gap:44px; padding-bottom:36px}
-  .foot-nav-group{grid-template-columns:1fr; gap:28px;}
-  .foot-logo-img{height:96px;}
-  .foot-brand{gap:24px}
-  .foot-supporters{padding-top:22px}
+  .foot-accent{margin-bottom:28px;}
+  .foot-main{gap:32px; padding-bottom:28px}
+  .foot-nav-group{grid-template-columns:1fr 1fr; gap:22px 18px;}
+  .foot-logo-img{height:72px;}
+  .foot-brand{gap:16px}
+  .foot-brand-text{gap:8px}
+  .foot-supporters{padding-top:18px}
   .foot-supporters h4,
-  .foot-nav-group h4{margin-bottom:14px!important}
-  .foot-tagline{font-size:1.08rem!important;}
-  .foot-sub{font-size:.9rem!important;}
+  .foot-nav-group h4{
+    margin-bottom:10px!important;
+    font-size:.72rem!important;
+    letter-spacing:.18em!important;
+    gap:10px;
+  }
+  .foot-supporters h4::before,
+  .foot-nav-group h4::before{width:16px;}
+  .foot-nav-group ul{gap:8px!important}
+  .foot-nav-group ul a{font-size:.88rem!important;}
+  .foot-tagline{font-size:1rem!important; max-width:none!important;}
+  .foot-sub{display:none!important;}
 }
 
 /* ── Mobile menu dark theme ── */
