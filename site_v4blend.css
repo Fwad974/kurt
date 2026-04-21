@@ -931,6 +931,7 @@ body[data-page="research"]{ --hero-photo:url('photo_overview_2.webp'); }
 body[data-page="technology"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 body[data-page="translational"]{ --hero-photo:url('photo_organoid_ring.webp'); }
 body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
+body[data-page="team"]{ --hero-photo:url('team/team.jpg'); }
 
 /* Fix: remove isolation so thumbs aren't clipped by stacking context */
 .hero-viewer{
