@@ -101,6 +101,116 @@
   .split-sec .split-prose p{margin-left:0 !important; margin-right:0 !important; max-width:none}
   .split-sec .split-prose .btn{margin-left:0 !important; margin-right:0 !important}
 }
+
+/* Photo figure inside .hero-fig */
+.figure .fig-photo{
+  position:absolute; inset:0;
+  overflow:hidden;
+  background:#050a12;
+}
+.figure .fig-photo img{
+  width:100%; height:100%;
+  display:block;
+  object-fit:cover;
+}
+
+/* Protocol step schematic */
+.protocol-steps{
+  list-style:none;
+  margin:0; padding:0;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(210px, 1fr));
+  gap:16px;
+  counter-reset:pstep;
+}
+.protocol-step{
+  position:relative;
+  padding:24px 22px 22px;
+  border:1px solid var(--line);
+  border-radius:4px;
+  background:rgba(244,240,232,.5);
+  display:flex; flex-direction:column; gap:10px;
+  transition:border-color .35s var(--ease), transform .45s var(--ease);
+}
+.protocol-step:hover{border-color:var(--line-strong); transform:translateY(-2px)}
+.protocol-step + .protocol-step::before{
+  content:"";
+  position:absolute;
+  left:-12px; top:50%;
+  width:12px; height:1px;
+  background:var(--line-strong);
+}
+.ps-num{
+  font-family:"JetBrains Mono", monospace;
+  font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted);
+}
+.ps-icon{
+  width:44px; height:44px;
+  color:var(--ink);
+  stroke:currentColor;
+  flex:none;
+}
+.protocol-step h4{
+  font-family:var(--serif);
+  font-variation-settings:"opsz" 144;
+  font-weight:400;
+  font-size:1.14rem;
+  letter-spacing:-0.01em;
+  margin:0;
+}
+.protocol-step p{
+  font-size:.95rem; line-height:1.5;
+  color:var(--ink-2);
+  margin:0;
+}
+
+/* Clickable timeline item */
+a.t-item{
+  display:block;
+  text-decoration:none;
+  color:inherit;
+  transition:transform .35s var(--ease);
+}
+a.t-item:hover,
+a.t-item:focus-visible{
+  transform:translateY(-2px);
+  outline:none;
+}
+a.t-item:hover .t-text,
+a.t-item:focus-visible .t-text{color:var(--ink)}
+a.t-item::after{
+  content:"\2197";
+  position:absolute;
+  right:0; top:40px;
+  font-family:"JetBrains Mono", monospace;
+  font-size:.95rem;
+  color:var(--muted);
+  opacity:0;
+  transform:translate(-4px, 2px);
+  transition:opacity .35s var(--ease), transform .35s var(--ease), color .35s var(--ease);
+}
+a.t-item:hover::after,
+a.t-item:focus-visible::after{
+  opacity:1;
+  transform:translate(0, 0);
+  color:var(--ink);
+}
+
+.timeline-outlook{
+  margin-top:28px;
+  padding:20px 24px;
+  border-left:2px solid var(--line-strong);
+  font-size:1.02rem;
+  line-height:1.6;
+  color:var(--ink-2);
+  font-style:italic;
+}
+
+@media (max-width:900px){
+  .protocol-step + .protocol-step::before{display:none}
+  a.t-item::after{right:24px; top:24px}
+}
 </style>
 <link rel="stylesheet" href="site_v4blend.css?v=19">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -136,8 +246,8 @@
 
 <section class="page-hero">
   <div class="eyebrow">§ Bench to bedside</div>
-  <h1 class="display">From scalable cells and organoids to <em>translational therapy</em>.</h1>
-  <p class="lede">Large-animal validation in an acute myocardial infarction porcine model. Safety was the primary readout — and no arrhythmogenic effects were observed at 30 days post-transplantation.</p>
+  <h1 class="display">From Scalable Cardiac Cells &amp; Organoids to <em>Translational Therapy</em>.</h1>
+  <p class="lede">Large-animal Cardiac Organoid validation in an acute myocardial infarction porcine model. Safety was the primary readout &mdash; and no arrhythmogenic effects were observed at 30 days post-transplantation.</p>
 </section>
 
 
@@ -145,8 +255,8 @@
   <div class="sec-head">
     <div class="eyebrow rv">§ The thesis</div>
     <div>
-      <h2 class="display" data-split-on-reveal>From cells and organoids to <em>therapy</em>.</h2>
-      <p class="sec-lede rv">The lab is not only building cardiac cells and tissue — it is validating them in a clinically relevant large-animal system. The translational pipeline is what turns a scalable platform into a credible path toward the clinic.</p>
+      <h2 class="display" data-split-on-reveal>From Cardiac Cells and Organoids to <em>therapy</em>.</h2>
+      <p class="sec-lede rv">The lab is not only building cardiac cells, tissue, and organoids &mdash; it is validating them in a clinically relevant large-animal system. The translational pipeline is what turns a scalable platform into a credible path toward the clinic cardiac cell therapy.</p>
     </div>
   </div>
   <div class="lead-figure">
@@ -185,22 +295,108 @@
   </div>
 </section>
 
+<section class="sec" id="protocol">
+  <div class="sec-head">
+    <div class="eyebrow rv">§ Protocol</div>
+    <div>
+      <h2 class="display" data-split-on-reveal>Porcine <em>MI protocol</em>.</h2>
+      <p class="sec-lede rv">A schematic of the preclinical procedure &mdash; from animal preparation through MI induction, cardiac organoid delivery, post-operative care, and functional readout.</p>
+    </div>
+  </div>
+
+  <ol class="protocol-steps">
+    <li class="protocol-step rv">
+      <div class="ps-num">01</div>
+      <svg class="ps-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+        <path d="M10 30c0-8 6-14 14-14s14 6 14 14v4H10z"/>
+        <circle cx="18" cy="26" r="1.2" fill="currentColor"/>
+        <circle cx="30" cy="26" r="1.2" fill="currentColor"/>
+        <path d="M22 32c1 1 3 1 4 0"/>
+        <path d="M14 18l-3-4M34 18l3-4"/>
+      </svg>
+      <h4>Preparation</h4>
+      <p>Pig prepared and anaesthetised for the experimental procedure.</p>
+    </li>
+    <li class="protocol-step rv">
+      <div class="ps-num">02</div>
+      <svg class="ps-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+        <path d="M24 38c-9-6-14-11-14-18a7 7 0 0 1 14-3 7 7 0 0 1 14 3c0 7-5 12-14 18z"/>
+        <path d="M18 20l4 6 4-4 4 6" stroke-width="1.2"/>
+        <path d="M32 10l6 6M38 10l-6 6" stroke="#d9534f" stroke-width="1.5"/>
+      </svg>
+      <h4>MI induction</h4>
+      <p>Surgery to induce myocardial infarction via coronary ligation.</p>
+    </li>
+    <li class="protocol-step rv">
+      <div class="ps-num">03</div>
+      <svg class="ps-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+        <circle cx="24" cy="24" r="14"/>
+        <path d="M24 14v10l7 4"/>
+      </svg>
+      <h4>30 min wait</h4>
+      <p>Thirty minutes allowed to establish infarction before delivery.</p>
+    </li>
+    <li class="protocol-step rv">
+      <div class="ps-num">04</div>
+      <svg class="ps-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+        <path d="M6 34l8-8 6 6-8 8zM14 26l12-12 6 6-12 12zM28 12l6-6 6 6-6 6z"/>
+        <path d="M32 6l10 10" stroke-width="1.2"/>
+        <circle cx="20" cy="34" r="1.4" fill="currentColor"/>
+        <circle cx="24" cy="37" r="1.4" fill="currentColor"/>
+        <circle cx="16" cy="37" r="1.4" fill="currentColor"/>
+      </svg>
+      <h4>Organoid delivery</h4>
+      <p>3,500 cardiac organoids injected across 10 sites in the infarct border.</p>
+    </li>
+    <li class="protocol-step rv">
+      <div class="ps-num">05</div>
+      <svg class="ps-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+        <rect x="8" y="20" width="20" height="10" rx="5" transform="rotate(-30 18 25)"/>
+        <path d="M14 16l10 14" stroke-width="1.2"/>
+        <circle cx="34" cy="30" r="6"/>
+        <path d="M30 30h8M34 26v8"/>
+      </svg>
+      <h4>Post-op care</h4>
+      <p>Immunosuppressants to prevent rejection; antibiotics to limit inflammation.</p>
+    </li>
+    <li class="protocol-step rv">
+      <div class="ps-num">06</div>
+      <svg class="ps-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+        <rect x="8" y="12" width="32" height="28" rx="2"/>
+        <path d="M8 20h32M16 8v8M32 8v8"/>
+        <text x="16" y="32" font-family="JetBrains Mono, monospace" font-size="8" fill="currentColor" stroke="none">D8</text>
+        <text x="26" y="32" font-family="JetBrains Mono, monospace" font-size="8" fill="currentColor" stroke="none">D30</text>
+      </svg>
+      <h4>Timed readout</h4>
+      <p>Day 8 and Day 30 endpoints to assess cardiac organoid engraftment.</p>
+    </li>
+    <li class="protocol-step rv">
+      <div class="ps-num">07</div>
+      <svg class="ps-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+        <path d="M4 26h8l3-10 4 18 4-14 3 6h18"/>
+        <circle cx="38" cy="32" r="6" stroke-dasharray="2 2"/>
+      </svg>
+      <h4>Holter ECG + MRI</h4>
+      <p>Continuous ECG monitoring and MRI imaging to assess heart function.</p>
+    </li>
+  </ol>
+</section>
+
 <section class="sec">
   <div class="sec-head">
     <div class="eyebrow rv">§ 01 — Validation</div>
     <div>
       <h2 class="display" data-split-on-reveal>Validated in a <em>porcine MI model</em>.</h2>
-      <p class="sec-lede rv">The lab's work has been validated in an acute myocardial infarction porcine model — the closest preclinical analogue of human cardiac injury. Safety was the primary readout.</p>
+      <p class="sec-lede rv">The lab's work has been validated in an acute myocardial infarction porcine model &mdash; the closest preclinical analogue of human cardiac injury. Safety was the primary readout.</p>
     </div>
   </div>
 
   <div class="split-sec ">
     <div class="split-fig"><div class="figure hero-fig figure-reveal">
-    <div class="fig-inner microscopy" style="background-image:url('bg_merged.webp')"></div>
-    <div class="fig-stack"><img src="stack_merged.webp" alt=""></div>
+    <div class="fig-photo"><img src="images/translational/ecg-30-days.jpg" alt="ECG readout at 30 days post-transplantation — no arrhythmogenic effects"></div>
     <div class="fig-overlay"></div>
-    <div class="fig-label">Transplanted tissue</div>
-    <div class="fig-caption"><span class="sm">Composite channels</span><span>Scale: 100 μm</span></div>
+    <div class="fig-label">Holter ECG</div>
+    <div class="fig-caption"><span class="sm">30-day readout</span><span>No arrhythmia</span></div>
   </div></div>
     <div class="split-prose">
       <div class="num">§ 02 — Safety endpoint</div>
@@ -212,29 +408,16 @@
 
   <div class="split-sec reverse">
     <div class="split-fig"><div class="figure hero-fig figure-reveal">
-    <div class="fig-svg"><svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
-  <g>
-    <path d="M40 60 Q150 120 260 80 Q370 40 460 100"/>
-    <path d="M40 100 Q140 160 260 120 Q380 80 460 140"/>
-    <path d="M40 140 Q160 200 260 160 Q360 120 460 180"/>
-    <g fill="#14171a">
-      <circle cx="120" cy="90" r="3"/>
-      <circle cx="200" cy="130" r="3"/>
-      <circle cx="300" cy="100" r="3"/>
-      <circle cx="380" cy="150" r="3"/>
-    </g>
-    <text x="250" y="210" text-anchor="middle">ENDOTHELIAL NETWORK</text>
-  </g>
-</svg></div>
+    <div class="fig-photo"><img src="images/translational/cardiac-organoid-engraftment.jpg" alt="Scalable self-organised hiPSC-derived cardiac organoid engrafted inside acute MI porcine model"></div>
     <div class="fig-overlay"></div>
-    <div class="fig-label">Perfusion</div>
-    <div class="fig-caption"><span class="sm">Vascular network</span><span>Endothelial</span></div>
+    <div class="fig-label">Engraftment</div>
+    <div class="fig-caption"><span class="sm">Porcine MI model</span><span>hiPSC-derived CO</span></div>
   </div></div>
     <div class="split-prose">
       <div class="num">§ 03 — Relevance</div>
-      <h3>Four pillars of <em>clinical relevance</em>.</h3>
-      <p>Safety, scalability, translational potential, and therapeutic relevance. Every cell and tissue system we develop is measured against these four pillars. A result that doesn't move any of them isn't worth moving forward.</p>
-      <dl class="meta-list"><dt>Pillar 1</dt><dd>Safety</dd><dt>Pillar 2</dt><dd>Scalability</dd><dt>Pillar 3</dt><dd>Translational potential</dd><dt>Pillar 4</dt><dd>Therapeutic relevance</dd></dl>
+      <h3>Cardiac organoid safety and <em>clinical relevance</em>.</h3>
+      <p>Scalability, Safety, Translational potential, and Therapeutic relevance. Every cardiac cell, tissue, and cardiac organoid system we develop is measured against these four pillars &mdash; a scalable self-organised hiPSC-derived cardiac organoid engrafted inside an acute MI porcine model.</p>
+      <dl class="meta-list"><dt>Pillar 1</dt><dd>Scalability</dd><dt>Pillar 2</dt><dd>Safety</dd><dt>Pillar 3</dt><dd>Translational potential</dd><dt>Pillar 4</dt><dd>Therapeutic relevance</dd></dl>
     </div>
   </div>
 </section>
@@ -248,10 +431,21 @@
     </div>
   </div>
   <div class="timeline">
-    <div class="t-item rv"><div class="t-year">2019</div><div class="t-text">Scalable iPSC-derived cardiomyocytes</div></div>
-    <div class="t-item rv"><div class="t-year">2022</div><div class="t-text">Human iPSC-derived endothelial cells</div></div>
-    <div class="t-item rv"><div class="t-year">2026</div><div class="t-text">Self-organising cardiac organoids</div></div>
+    <a class="t-item rv" href="https://scholar.google.com/scholar?q=Generation+of+human+induced+pluripotent+stem+cell-derived+cardiomyocytes+in+2D+monolayer+and+scalable+3D+suspension+bioreactor+cultures+with+reduced+batch-to-batch+variations" target="_blank" rel="noopener noreferrer">
+      <div class="t-year">2019</div>
+      <div class="t-text">Generation of human induced pluripotent stem cell-derived cardiomyocytes in 2D monolayer and scalable 3D suspension bioreactor cultures with reduced batch-to-batch variations.</div>
+    </a>
+    <a class="t-item rv" href="https://scholar.google.com/scholar?q=High-efficient+serum-free+differentiation+of+endothelial+cells+from+human+iPS+cells" target="_blank" rel="noopener noreferrer">
+      <div class="t-year">2022</div>
+      <div class="t-text">High-efficient serum-free differentiation of endothelial cells from human iPS cells.</div>
+    </a>
+    <a class="t-item rv" href="https://scholar.google.com/scholar?q=Scalable+differentiation+of+human+cardiac+organoids+from+iPSCs+generates+cardiac+tissues+for+cardiac+cell+therapy" target="_blank" rel="noopener noreferrer">
+      <div class="t-year">2026</div>
+      <div class="t-text">Scalable differentiation of human cardiac organoids from iPSCs generates cardiac tissues for cardiac cell therapy.</div>
+    </a>
   </div>
+
+  <p class="timeline-outlook rv">Ongoing preclinical studies in a chronic myocardial porcine model are advancing toward human clinical trials. We are open to collaborative partnerships.</p>
 </section>
 
 <script>
