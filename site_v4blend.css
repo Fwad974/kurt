@@ -936,12 +936,13 @@ body[data-page="team"]{ --hero-photo:url('team/team.jpg'); }
 body[data-page="team"] .page-hero::before{
   background-position:center top !important;
 }
-/* Mobile: keep the whole team width visible (don't crop the side members) */
+/* Mobile: keep the whole team width visible and fade smoothly into the dark hero */
 @media (max-width:760px){
   body[data-page="team"] .page-hero::before{
-    background-size:100% auto !important;
-    background-position:center top !important;
-    background-color:#050a12 !important;
+    background:
+      linear-gradient(180deg, rgba(5,12,22,0) 0%, rgba(5,12,22,0) 38%, rgba(5,12,22,.55) 62%, #050a12 88%) center/100% 100% no-repeat,
+      url('team/team.jpg') center top / 100% auto no-repeat,
+      #050a12 !important;
   }
 }
 body[data-page="sponsors"]{ --hero-photo:url('images/13122019_NP0040-ECs-EBs_Biorecator/13122019_NP0040-ECs-EBs_Biorecator_Merged.jpg'); }
