@@ -936,12 +936,12 @@ body[data-page="team"]{ --hero-photo:url('team/team.jpg'); }
 body[data-page="team"] .page-hero::before{
   background-position:center top !important;
 }
-/* Mobile: keep the whole team width visible and fade smoothly into the dark hero */
+/* Mobile: center the team photo vertically with a dark surround that fades into it */
 @media (max-width:760px){
   body[data-page="team"] .page-hero::before{
     background:
-      linear-gradient(180deg, rgba(5,12,22,0) 0%, rgba(5,12,22,0) 38%, rgba(5,12,22,.55) 62%, #050a12 88%) center/100% 100% no-repeat,
-      url('team/team.jpg') center top / 100% auto no-repeat,
+      linear-gradient(180deg, #050a12 0%, rgba(5,12,22,.7) 18%, rgba(5,12,22,0) 36%, rgba(5,12,22,0) 64%, rgba(5,12,22,.7) 82%, #050a12 100%) center/100% 100% no-repeat,
+      url('team/team.jpg') center center / 100% auto no-repeat,
       #050a12 !important;
   }
 }
