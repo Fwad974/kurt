@@ -936,6 +936,14 @@ body[data-page="team"]{ --hero-photo:url('team/team.jpg'); }
 body[data-page="team"] .page-hero::before{
   background-position:center top !important;
 }
+/* Mobile: keep the whole team width visible (don't crop the side members) */
+@media (max-width:760px){
+  body[data-page="team"] .page-hero::before{
+    background-size:100% auto !important;
+    background-position:center top !important;
+    background-color:#050a12 !important;
+  }
+}
 body[data-page="sponsors"]{ --hero-photo:url('images/13122019_NP0040-ECs-EBs_Biorecator/13122019_NP0040-ECs-EBs_Biorecator_Merged.jpg'); }
 body[data-page="contact"]{ --hero-photo:url('images/NP0040-EC_Hoechst/Merg.jpg'); }
 body[data-page="news"]{ --hero-photo:url('images/27102019_NP0040-EC_Hoechst/27102019_NP0040-EC_Hoechst_LDL-AF555_Anti-LDL-AF488_Merged_40X_01.jpg'); }
