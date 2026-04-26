@@ -110,17 +110,24 @@
   font-weight:400 !important;
 }
 
-/* Photo figure inside .hero-fig — show the full image, don't crop */
+/* Photo figure inside .hero-fig — show the full image at its natural aspect */
+.figure.hero-fig:has(.fig-photo){
+  aspect-ratio:auto;
+  background:#050a12;
+}
 .figure .fig-photo{
-  position:absolute; inset:0;
+  position:relative;
+  inset:auto;
   overflow:hidden;
   background:#050a12;
 }
 .figure .fig-photo img{
-  width:100%; height:100%;
+  width:100%;
+  height:auto;
   display:block;
   object-fit:contain;
 }
+.split-fig:has(.fig-photo){min-height:auto;}
 
 /* Protocol step schematic */
 .protocol-steps{
