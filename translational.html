@@ -110,7 +110,7 @@
   font-weight:400 !important;
 }
 
-/* Photo figure inside .hero-fig */
+/* Photo figure inside .hero-fig — show the full image, don't crop */
 .figure .fig-photo{
   position:absolute; inset:0;
   overflow:hidden;
@@ -119,7 +119,7 @@
 .figure .fig-photo img{
   width:100%; height:100%;
   display:block;
-  object-fit:cover;
+  object-fit:contain;
 }
 
 /* Protocol step schematic */
