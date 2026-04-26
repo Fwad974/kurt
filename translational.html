@@ -136,6 +136,26 @@
   gap:36px;
 }
 .split-sec.relevance-block .split-prose{max-width:none; width:100%;}
+
+/* Body row: paragraph on the left, pillars on the right */
+.relevance-body{
+  display:grid;
+  grid-template-columns:minmax(0, 1.5fr) minmax(0, 1fr);
+  gap:48px;
+  align-items:start;
+}
+.relevance-copy{
+  margin:0;
+  font-size:1.18rem;
+  line-height:1.62;
+  color:rgba(255,255,255,.78);
+  max-width:none;
+}
+.relevance-pillars{margin:0;}
+@media (max-width:760px){
+  .relevance-body{grid-template-columns:1fr; gap:24px;}
+}
+
 .relevance-fig-wide{
   width:100%;
   aspect-ratio:auto !important;
@@ -375,11 +395,14 @@ a.t-item:focus-visible::after{
   </div>
 
   <div class="split-sec relevance-block">
-    <div class="split-prose">
+    <div class="split-prose relevance-head">
       <div class="num">§ 02 — Relevance</div>
       <h3>Cardiac organoid safety and <em>clinical relevance</em>.</h3>
-      <p>Scalability, Safety, Translational potential, and Therapeutic relevance. Every cardiac cell, tissue, and cardiac organoid system we develop is measured against these four pillars &mdash; a scalable self-organised hiPSC-derived cardiac organoid engrafted inside an acute MI porcine model.</p>
-      <dl class="meta-list"><dt>Pillar 1</dt><dd>Scalability</dd><dt>Pillar 2</dt><dd>Safety</dd><dt>Pillar 3</dt><dd>Translational potential</dd><dt>Pillar 4</dt><dd>Therapeutic relevance</dd></dl>
+    </div>
+
+    <div class="relevance-body">
+      <p class="relevance-copy">Scalability, Safety, Translational potential, and Therapeutic relevance. Every cardiac cell, tissue, and cardiac organoid system we develop is measured against these four pillars &mdash; a scalable self-organised hiPSC-derived cardiac organoid engrafted inside an acute MI porcine model.</p>
+      <dl class="meta-list relevance-pillars"><dt>Pillar 1</dt><dd>Scalability</dd><dt>Pillar 2</dt><dd>Safety</dd><dt>Pillar 3</dt><dd>Translational potential</dd><dt>Pillar 4</dt><dd>Therapeutic relevance</dd></dl>
     </div>
 
     <div class="figure hero-fig relevance-fig relevance-fig-wide">
