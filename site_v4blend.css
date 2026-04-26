@@ -1120,9 +1120,7 @@ body[data-page="news"]{ --hero-photo:url('images/27102019_NP0040-EC_Hoechst/2710
 /* Microscopy lightbox */
 .photo-lightbox{
   position:fixed; inset:0; z-index:2000;
-  background:rgba(4,7,16,.92);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
+  background:#040710;
   display:flex; align-items:center; justify-content:center;
   padding:48px;
   overflow-y:auto;
