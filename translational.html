@@ -129,13 +129,13 @@
 .split-fig:has(.fig-photo){min-height:auto;}
 
 /* Relevance block: prose on top, full-width image row below */
-.relevance-block{
-  display:flex;
+.split-sec.relevance-block{
+  display:flex !important;
   flex-direction:column;
+  grid-template-columns:none !important;
   gap:36px;
-  margin-bottom:120px;
 }
-.relevance-block .split-prose{max-width:none;}
+.split-sec.relevance-block .split-prose{max-width:none; width:100%;}
 .relevance-fig-wide{
   width:100%;
   aspect-ratio:auto !important;
@@ -374,7 +374,7 @@ a.t-item:focus-visible::after{
     </div>
   </div>
 
-  <div class="relevance-block">
+  <div class="split-sec relevance-block">
     <div class="split-prose">
       <div class="num">§ 02 — Relevance</div>
       <h3>Cardiac organoid safety and <em>clinical relevance</em>.</h3>
