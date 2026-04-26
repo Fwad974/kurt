@@ -128,7 +128,20 @@
 }
 .split-fig:has(.fig-photo){min-height:auto;}
 
-/* Multi-image grid for the Relevance card — 1x4 on desktop, 2x2 on mobile */
+/* Relevance block: prose on top, full-width image row below */
+.relevance-block{
+  display:flex;
+  flex-direction:column;
+  gap:36px;
+  margin-bottom:120px;
+}
+.relevance-block .split-prose{max-width:none;}
+.relevance-fig-wide{
+  width:100%;
+  aspect-ratio:auto !important;
+}
+
+/* Multi-image grid for the Relevance card — 4x1 on desktop, 2x2 on mobile */
 .figure.hero-fig.relevance-fig{
   aspect-ratio:auto;
   background:linear-gradient(180deg, #0F1E2E 0%, #0A1624 100%);
@@ -361,23 +374,21 @@ a.t-item:focus-visible::after{
     </div>
   </div>
 
-  <div class="split-sec reverse">
-    <div class="split-fig"><div class="figure hero-fig relevance-fig">
-    <div class="fig-photo-grid">
-      <figure><img src="images/translational/2_0.png" alt="Distal myocardium — histology"></figure>
-      <figure><img src="images/translational/2_1.png" alt="Border zone — histology"></figure>
-      <figure><img src="images/translational/2_2.png" alt="Functional readouts — LVEF, scar, cardiac index"></figure>
-      <figure><img src="images/translational/2_3.png" alt="MRI — 2 days vs 30 days"></figure>
-    </div>
-    <div class="fig-overlay"></div>
-    <div class="fig-label">Engraftment</div>
-    <div class="fig-caption"><span class="sm">Porcine MI model</span><span>hiPSC-derived CO</span></div>
-  </div></div>
+  <div class="relevance-block">
     <div class="split-prose">
       <div class="num">§ 02 — Relevance</div>
       <h3>Cardiac organoid safety and <em>clinical relevance</em>.</h3>
       <p>Scalability, Safety, Translational potential, and Therapeutic relevance. Every cardiac cell, tissue, and cardiac organoid system we develop is measured against these four pillars &mdash; a scalable self-organised hiPSC-derived cardiac organoid engrafted inside an acute MI porcine model.</p>
       <dl class="meta-list"><dt>Pillar 1</dt><dd>Scalability</dd><dt>Pillar 2</dt><dd>Safety</dd><dt>Pillar 3</dt><dd>Translational potential</dd><dt>Pillar 4</dt><dd>Therapeutic relevance</dd></dl>
+    </div>
+
+    <div class="figure hero-fig relevance-fig relevance-fig-wide">
+      <div class="fig-photo-grid">
+        <figure><img src="images/translational/2_0.png" alt="Distal myocardium — histology"></figure>
+        <figure><img src="images/translational/2_1.png" alt="Border zone — histology"></figure>
+        <figure><img src="images/translational/2_2.png" alt="Functional readouts — LVEF, scar, cardiac index"></figure>
+        <figure><img src="images/translational/2_3.png" alt="MRI — 2 days vs 30 days"></figure>
+      </div>
     </div>
   </div>
 </section>
