@@ -128,7 +128,7 @@
 }
 .split-fig:has(.fig-photo){min-height:auto;}
 
-/* Multi-image grid for the Relevance card */
+/* Multi-image grid for the Relevance card — 1x4 on desktop, 2x2 on mobile */
 .figure.hero-fig.relevance-fig{
   aspect-ratio:auto;
   background:linear-gradient(180deg, #0F1E2E 0%, #0A1624 100%);
@@ -137,7 +137,7 @@
 .fig-photo-grid{
   position:relative;
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:1fr;
   gap:10px;
 }
 .fig-photo-grid figure{
@@ -149,7 +149,7 @@
   box-shadow:0 8px 22px rgba(0,0,0,.28);
   display:flex; align-items:center; justify-content:center;
   overflow:hidden;
-  aspect-ratio:1/1;
+  aspect-ratio:16/9;
 }
 .fig-photo-grid img{
   width:100%;
@@ -157,10 +157,10 @@
   display:block;
   object-fit:contain;
 }
-@media (max-width:600px){
+@media (max-width:760px){
   .figure.hero-fig.relevance-fig{padding:10px;}
-  .fig-photo-grid{gap:8px;}
-  .fig-photo-grid figure{aspect-ratio:4/3; padding:6px;}
+  .fig-photo-grid{grid-template-columns:1fr 1fr; gap:8px;}
+  .fig-photo-grid figure{aspect-ratio:1/1; padding:6px;}
 }
 
 /* Protocol step schematic */
