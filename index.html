@@ -1378,9 +1378,11 @@ if(reducedMotion || skipSplash){
       variantsBox.appendChild(btn);
     });
     setVariant(0);
+    box.scrollTop = 0;
     box.classList.add('open');
     box.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
     closeBtn.focus();
   }
 
@@ -1388,6 +1390,7 @@ if(reducedMotion || skipSplash){
     box.classList.remove('open');
     box.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
   }
 
   document.querySelectorAll('.photo-feature[data-gallery]').forEach(tile => {
