@@ -1131,16 +1131,19 @@ body[data-page="news"]{ --hero-photo:url('images/27102019_NP0040-EC_Hoechst/2710
 .photo-lightbox.open{opacity:1; visibility:visible; pointer-events:auto;}
 .photo-lightbox-close{
   position:absolute; top:18px; right:22px;
+  z-index:10;
   width:44px; height:44px; border-radius:50%;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.18);
+  background:rgba(8,12,24,.78);
+  border:1px solid rgba(255,255,255,.32);
   color:#f4f7ff;
   font-size:1.6rem; line-height:1;
   cursor:pointer;
   display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 18px rgba(0,0,0,.45);
   transition:background .25s ease, border-color .25s ease, transform .25s ease;
 }
-.photo-lightbox-close:hover{background:rgba(251,225,150,.18); border-color:rgba(251,225,150,.45); transform:scale(1.05);}
+.photo-lightbox-close:hover,
+.photo-lightbox-close:focus-visible{background:rgba(251,225,150,.22); border-color:rgba(251,225,150,.55); transform:scale(1.05); outline:none;}
 .photo-lightbox-inner{
   display:grid;
   grid-template-columns:minmax(0, 1fr) 320px;
@@ -1219,7 +1222,13 @@ body[data-page="news"]{ --hero-photo:url('images/27102019_NP0040-EC_Hoechst/2710
   color:#FBE196;
 }
 @media (max-width:900px){
-  .photo-lightbox{padding:16px;}
+  .photo-lightbox{padding:16px; padding-top:64px;}
+  .photo-lightbox-close{
+    top:max(12px, env(safe-area-inset-top, 0px));
+    right:12px;
+    width:48px; height:48px;
+    font-size:1.7rem;
+  }
   .photo-lightbox-inner{grid-template-columns:1fr; max-height:none;}
   .photo-lightbox-stage img{max-height:55vh;}
   .photo-lightbox-panel{max-height:40vh;}
