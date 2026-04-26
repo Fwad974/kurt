@@ -934,7 +934,7 @@ body[data-page="publications"]{ --hero-photo:url('photo_overlay_2026.webp'); }
 body[data-page="team"]{ --hero-photo:url('team/team.jpg'); }
 /* Team hero: show the top of the group photo so no heads get cut off */
 body[data-page="team"] .page-hero::before{
-  background-position:55% 20% !important;
+  background-position:62% 38% !important;
 }
 /* Mobile: center the team photo vertically with a refined dark-blue surround */
 @media (max-width:760px){
