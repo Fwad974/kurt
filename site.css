@@ -473,19 +473,19 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   .sec{padding:5px 14px 20px}
   .sec-head{text-align:left}
   .sec-head h2.display{
-    margin-left:0; margin-right:0; max-width:100%;
-    font-size:clamp(1.6rem, 6vw, 2.2rem);
-    letter-spacing:-0.022em;
-    line-height:1.08;
+    margin-left:0 !important; margin-right:0 !important; max-width:100% !important;
+    font-size:clamp(1.6rem, 6vw, 2.2rem) !important;
+    letter-spacing:-0.022em !important;
+    line-height:1.08 !important;
     overflow-wrap:break-word;
     word-break:break-word;
     hyphens:auto;
   }
   .sec-head h1.display{
-    max-width:100%;
-    font-size:clamp(1.7rem, 7vw, 2.6rem);
-    letter-spacing:-0.022em;
-    line-height:1.08;
+    max-width:100% !important;
+    font-size:clamp(1.7rem, 7vw, 2.6rem) !important;
+    letter-spacing:-0.022em !important;
+    line-height:1.08 !important;
     overflow-wrap:break-word;
     word-break:break-word;
     hyphens:auto;
