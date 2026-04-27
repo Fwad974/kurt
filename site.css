@@ -472,7 +472,24 @@ html:not(.loading) .page-hero .lede{animation-delay:.5s}
   .team-group-count{font-size:.7rem}
   .sec{padding:5px 14px 20px}
   .sec-head{text-align:left}
-  .sec-head h2.display{margin-left:0; margin-right:0; max-width:none}
+  .sec-head h2.display{
+    margin-left:0; margin-right:0; max-width:100%;
+    font-size:clamp(1.6rem, 6vw, 2.2rem);
+    letter-spacing:-0.022em;
+    line-height:1.08;
+    overflow-wrap:break-word;
+    word-break:break-word;
+    hyphens:auto;
+  }
+  .sec-head h1.display{
+    max-width:100%;
+    font-size:clamp(1.7rem, 7vw, 2.6rem);
+    letter-spacing:-0.022em;
+    line-height:1.08;
+    overflow-wrap:break-word;
+    word-break:break-word;
+    hyphens:auto;
+  }
   .sec-head .lede{margin-left:0; margin-right:0}
   .sec-head .sec-lede{max-width:none}
   .colophon{text-align:center}
