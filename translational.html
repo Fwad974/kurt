@@ -94,10 +94,20 @@
   .split-sec .split-prose h3{
     margin-left:0 !important; margin-right:0 !important;
     white-space:normal !important;
-    font-size:clamp(1.9rem, 7vw, 2.4rem) !important;
-    line-height:1.08 !important;
+    font-size:clamp(1.6rem, 5.6vw, 2.1rem) !important;
+    line-height:1.1 !important;
+    max-width:100% !important;
+    overflow-wrap:break-word;
+    word-break:break-word;
+    hyphens:auto;
   }
-  .split-sec .split-prose p{margin-left:0 !important; margin-right:0 !important; max-width:none}
+  .split-sec .split-prose p{
+    margin-left:0 !important; margin-right:0 !important;
+    max-width:100%;
+    overflow-wrap:break-word;
+    word-break:break-word;
+    hyphens:auto;
+  }
   .split-sec .split-prose .btn{margin-left:0 !important; margin-right:0 !important}
 }
 
