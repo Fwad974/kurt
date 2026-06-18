@@ -243,6 +243,11 @@ html.skip-splash #intro{display:none !important}
   cursor:none;
 }
 html:not(.loading) .viewer-frame{transform:scale(1); opacity:1}
+.viewer-frame:has(.hero-video){cursor:default; background:#0a0d10}
+.hero-video{
+  position:absolute; inset:0; z-index:2;
+  width:100%; height:100%; object-fit:cover; display:block;
+}
 .viewer-frame::before{
   content:""; position:absolute; inset:0;
   background:
@@ -615,50 +620,10 @@ html:not(.loading) .hud-bot{opacity:1}
 
   <div class="hero-viewer">
     <div class="viewer-frame">
-      <div class="viewer-bg on" data-viewbg="merged" style="background-image:url('bg_merged.webp')"></div>
-      <div class="viewer-bg" data-viewbg="nuclei" style="background-image:url('bg_nuclei.webp')"></div>
-      <div class="viewer-bg" data-viewbg="actinin" style="background-image:url('bg_actinin.webp')"></div>
-      <div class="viewer-bg" data-viewbg="rfp" style="background-image:url('bg_rfp.webp')"></div>
-      <div class="viewer-bg" data-viewbg="vwf" style="background-image:url('bg_vwf.webp')"></div>
-
-      <div class="channel-stage">
-        <div class="channel on" data-channel="merged">
-          <img class="layer back" src="stack_merged.webp" alt="">
-          <img class="layer mid" src="stack_merged.webp" alt="">
-          <img class="layer front" src="stack_merged.webp" alt="Merged view">
-        </div>
-        <div class="channel" data-channel="nuclei">
-          <img class="layer back" src="stack_nuclei.webp" alt="">
-          <img class="layer mid" src="stack_nuclei.webp" alt="">
-          <img class="layer front" src="stack_nuclei.webp" alt="Nuclei">
-        </div>
-        <div class="channel" data-channel="actinin">
-          <img class="layer back" src="stack_actinin.webp" alt="">
-          <img class="layer mid" src="stack_actinin.webp" alt="">
-          <img class="layer front" src="stack_actinin.webp" alt="α-Actinin">
-        </div>
-        <div class="channel" data-channel="rfp">
-          <img class="layer back" src="stack_rfp.webp" alt="">
-          <img class="layer mid" src="stack_rfp.webp" alt="">
-          <img class="layer front" src="stack_rfp.webp" alt="CD31">
-        </div>
-        <div class="channel" data-channel="vwf">
-          <img class="layer back" src="stack_vwf.webp" alt="">
-          <img class="layer mid" src="stack_vwf.webp" alt="">
-          <img class="layer front" src="stack_vwf.webp" alt="Dual stain">
-        </div>
-      </div>
-
-      <div class="crosshair"></div>
-
-    </div>
-
-    <div class="hero-thumbs" id="heroThumbs">
-      <button class="hero-thumb active" data-herodot="merged" aria-label="Merged overlay"><img src="photo_overlay_2026.webp" alt=""><span>Merged</span></button>
-      <button class="hero-thumb" data-herodot="nuclei" aria-label="Hoechst nuclei"><img src="20012026_96well-COs_actinin-CX43_Image001_ch00_SV.webp" alt=""><span>Nuclei</span></button>
-      <button class="hero-thumb" data-herodot="actinin" aria-label="Alpha actinin"><img src="20012026_96well-COs_actinin-CX43_Image001_ch02_SV.webp" alt=""><span>α-Actinin</span></button>
-      <button class="hero-thumb" data-herodot="rfp" aria-label="Cx43"><img src="20012026_96well-COs_actinin-CX43_Image001_ch01_SV.webp" alt=""><span>Cx43</span></button>
-      <button class="hero-thumb" data-herodot="vwf" aria-label="vWF"><img src="03082022_DSR-Organoids_D20_Hoechst-vWF-AF488.webp" alt=""><span>vWF</span></button>
+      <video class="hero-video" autoplay muted loop playsinline preload="metadata"
+             aria-label="Human iPSC-derived cardiac organoid">
+        <source src="images/RD/video.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
 </section>
