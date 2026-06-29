@@ -545,6 +545,25 @@ html:not(.loading) .hud-bot{opacity:1}
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png">
+  <style>
+  /* ============================================================
+     START-PAGE TYPOGRAPHY — two fonts only
+     One font throughout (Manrope / sans), with Cormorant (serif)
+     reserved as the single highlight for the large display
+     headings and card titles. This removes the monospace labels
+     and the stray serif used on the footer tagline and the
+     image-tile titles, which made the page look mixed.
+     Scoped to body[data-page="index"] so subpages are unaffected.
+     ============================================================ */
+  body[data-page="index"] *:not(#_){
+    font-family:var(--sans,"Manrope",system-ui,sans-serif)!important;
+  }
+  body[data-page="index"] .display:not(#_),
+  body[data-page="index"] .display *:not(#_),
+  body[data-page="index"] .card h3:not(#_){
+    font-family:var(--serif,"Cormorant Garamond",Georgia,serif)!important;
+  }
+  </style>
 </head>
 <body data-page="index">
 
