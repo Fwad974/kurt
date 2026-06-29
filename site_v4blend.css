@@ -1729,3 +1729,21 @@ body[data-page="news"]{ --hero-photo:url('images/27102019_NP0040-EC_Hoechst/2710
   .split-sec .split-prose p{margin-left:0!important; margin-right:0!important;}
   .split-sec .split-prose .btn{margin-left:0!important; margin-right:0!important;}
 }
+
+/* ============================================================
+   SITE-WIDE TYPOGRAPHY — two fonts only
+   One font throughout (Manrope / sans), with Cormorant (serif)
+   kept only as the single highlight on the large display headings
+   and card titles. This removes the monospace label font and any
+   stray serif on body-level text so every page uses at most two
+   font styles. The :not(#_) bump raises specificity above the
+   per-component font rules without needing per-element overrides.
+   ============================================================ */
+body *:not(#_){
+  font-family:var(--sans,"Manrope",system-ui,sans-serif)!important;
+}
+body .display:not(#_),
+body .display *:not(#_),
+body .card h3:not(#_){
+  font-family:var(--serif,"Cormorant Garamond",Georgia,serif)!important;
+}
