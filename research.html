@@ -275,6 +275,41 @@
   .split-sec .split-prose .meta-list{font-size:.66rem !important; padding-top:14px !important}
   .lead-figure .fig-svg{padding:16px !important}
 }
+
+/* ── Click-to-zoom for the overview diagram ── */
+.figure[data-zoom]{cursor:zoom-in;}
+.figure[data-zoom]:focus-visible{outline:2px solid var(--accent,#FBE196); outline-offset:4px;}
+.diagram-lightbox{
+  position:fixed; inset:0; z-index:9999;
+  display:flex; align-items:center; justify-content:center;
+  padding:4vmin;
+  background:rgba(8,11,16,.93);
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+  opacity:0; visibility:hidden;
+  transition:opacity .28s ease, visibility .28s ease;
+  cursor:zoom-out;
+}
+.diagram-lightbox.open{opacity:1; visibility:visible;}
+.diagram-lightbox img{
+  max-width:96vw; max-height:92vh; width:auto; height:auto;
+  border-radius:10px; background:#fff;
+  box-shadow:0 30px 80px -20px rgba(0,0,0,.7);
+  transform:scale(.98); transition:transform .28s ease;
+}
+.diagram-lightbox.open img{transform:scale(1);}
+.diagram-lightbox-close{
+  position:absolute; top:18px; right:22px;
+  width:44px; height:44px; border-radius:50%;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.06);
+  color:#fff; font-size:1.6rem; line-height:1; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:background .2s ease, border-color .2s ease;
+}
+.diagram-lightbox-close:hover{background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.4);}
+@media (prefers-reduced-motion: reduce){
+  .diagram-lightbox, .diagram-lightbox img{transition:none;}
+}
 </style>
 <link rel="stylesheet" href="site_v4blend.css?v=22">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -325,7 +360,7 @@
       </div>
     </div>
     <div class="lead-figure" style="margin:0;">
-      <div class="figure hero-fig is-photo is-diagram">
+      <div class="figure hero-fig is-photo is-diagram" data-zoom role="button" tabindex="0" aria-label="Enlarge the iPSC-derived cardiac applications diagram">
       <div class="fig-photo"><img src="images/RD/Lab pipline.png" alt="Lab research pipeline — from somatic cells through iPSCs to cardiac organoids, drug testing, and disease modelling"></div>
       <div class="fig-overlay"></div>
       <div class="fig-label">Research pipeline</div>
@@ -728,7 +763,52 @@ document.querySelectorAll('.ed-filters').forEach(bar => {
     if(step) step.scrollIntoView({ behavior:'smooth', block:'center' });
   }));
 })();
+
+/* ── Overview diagram: click to open larger ── */
+document.addEventListener('DOMContentLoaded', function initDiagramZoom(){
+  const lb = document.getElementById('diagramLightbox');
+  if(!lb) return;
+  const lbImg = document.getElementById('diagramLightboxImg');
+  const closeBtn = lb.querySelector('.diagram-lightbox-close');
+  const figs = document.querySelectorAll('.figure[data-zoom]');
+  let lastFocus = null;
+
+  function open(fig){
+    const img = fig.querySelector('img');
+    if(!img) return;
+    lbImg.src = img.currentSrc || img.src;
+    lbImg.alt = img.alt || '';
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    lastFocus = document.activeElement;
+    closeBtn.focus();
+  }
+  function close(){
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  figs.forEach(fig => {
+    fig.addEventListener('click', () => open(fig));
+    fig.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(fig); }
+    });
+  });
+  closeBtn.addEventListener('click', close);
+  lb.addEventListener('click', e => { if(e.target === lb) close(); });
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && lb.classList.contains('open')) close();
+  });
+});
 </script>
+<div class="diagram-lightbox" id="diagramLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Enlarged diagram view">
+  <button class="diagram-lightbox-close" type="button" aria-label="Close enlarged view">&times;</button>
+  <img id="diagramLightboxImg" src="" alt="">
+</div>
 <script src="site_v4blend.js?v=9"></script>
 <script src="cookie-consent.js?v=1"></script>
 </body>
