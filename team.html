@@ -587,7 +587,6 @@ body[data-page="team"] .eyebrow{
 <section class="sec">
   <div class="sec-head">
     <div class="eyebrow rv">Leadership</div>
-    <div><span class="team-group-count rv">2 members</span></div>
   </div>
   <div class="card-grid four">
     <div class="fig-card">
@@ -647,7 +646,6 @@ body[data-page="team"] .eyebrow{
 <section class="sec">
   <div class="sec-head">
     <div class="eyebrow rv">Advisors</div>
-    <div><span class="team-group-count rv">3 members</span></div>
   </div>
   <div class="card-grid four">
     <div class="fig-card">
@@ -695,7 +693,6 @@ body[data-page="team"] .eyebrow{
 <section class="sec">
   <div class="sec-head">
     <div class="eyebrow rv">Researchers</div>
-    <div><span class="team-group-count rv">4 members</span></div>
   </div>
   <div class="card-grid four">
     <div class="fig-card">
@@ -799,7 +796,6 @@ body[data-page="team"] .eyebrow{
 <section class="sec">
   <div class="sec-head">
     <div class="eyebrow rv">Students</div>
-    <div><span class="team-group-count rv">5 members</span></div>
   </div>
   <div class="card-grid four">
     <div class="fig-card">
@@ -897,7 +893,6 @@ body[data-page="team"] .eyebrow{
 <section class="sec">
   <div class="sec-head">
     <div class="eyebrow rv">Technical staff</div>
-    <div><span class="team-group-count rv">1 member</span></div>
   </div>
   <div class="card-grid four">
     <div class="fig-card">
@@ -912,7 +907,6 @@ body[data-page="team"] .eyebrow{
 <section class="sec" id="team-gallery">
   <div class="sec-head">
     <div class="eyebrow rv">Gallery</div>
-    <div><span class="team-group-count rv" id="galleryCount"></span></div>
   </div>
   <div class="team-gallery-grid" id="galleryGrid"></div>
 </section>
@@ -1178,7 +1172,7 @@ body[data-page="team"] .eyebrow{
   `).join('');
 
   if(count){
-    count.textContent = GALLERY_IMAGES.length === 1 ? '1 photo' : GALLERY_IMAGES.length + ' photos';
+    if(count) count.textContent = GALLERY_IMAGES.length === 1 ? '1 photo' : GALLERY_IMAGES.length + ' photos';
   }
 
   /* Build strip thumbnails once */
