@@ -1771,3 +1771,17 @@ h4 em:not(#_), h5 em:not(#_), h6 em:not(#_),
   .page-hero .eyebrow{justify-content:center;}
   .page-hero .eyebrow::before{display:none !important;}
 }
+
+/* ============================================================
+   Mobile: never force split-section headings onto one line — the
+   nowrap made long titles (e.g. "Microfluidic encapsulation")
+   overflow the viewport and get clipped. Let them wrap/break.
+   ============================================================ */
+@media (max-width:900px){
+  .split-sec .split-prose h3:not(#_){
+    white-space:normal !important;
+    overflow-wrap:break-word;
+    word-break:break-word;
+    max-width:100% !important;
+  }
+}
