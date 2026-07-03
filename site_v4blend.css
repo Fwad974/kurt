@@ -1747,3 +1747,17 @@ body .display *:not(#_),
 body .card h3:not(#_){
   font-family:var(--serif,"Cormorant Garamond",Georgia,serif)!important;
 }
+
+/* ============================================================
+   Headings: upright serif (no italic emphasis) so headings read
+   as a single serif style rather than serif + serif-italic.
+   Body-text emphasis (e.g. journal names) keeps its italic.
+   ============================================================ */
+h1.display em, h2.display em, h3.display em, .display em,
+.hero h1 em, .page-hero h1 em,
+.card h3 em, .fig-card h3 em, #bioName em,
+.split-sec h3 em, .split-prose h3 em,
+.pos-card h3 em, .apply-step h3 em, .atlas-step h3 em,
+h3.subhead em{
+  font-style:normal !important;
+}
