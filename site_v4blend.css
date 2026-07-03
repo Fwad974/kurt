@@ -1749,15 +1749,14 @@ body .card h3:not(#_){
 }
 
 /* ============================================================
-   Headings: upright serif (no italic emphasis) so headings read
-   as a single serif style rather than serif + serif-italic.
-   Body-text emphasis (e.g. journal names) keeps its italic.
+   Heading emphasis: an <em> inside any heading takes that heading's
+   own font and is never italic, so a heading never mixes serif + sans
+   or shows a stray italic word. Body-text emphasis (e.g. journal names
+   in .meta-line, which are not headings) keeps its italic.
    ============================================================ */
-h1.display em, h2.display em, h3.display em, .display em,
-.hero h1 em, .page-hero h1 em,
-.card h3 em, .fig-card h3 em, #bioName em,
-.split-sec h3 em, .split-prose h3 em,
-.pos-card h3 em, .apply-step h3 em, .atlas-step h3 em,
-h3.subhead em{
+h1 em:not(#_), h2 em:not(#_), h3 em:not(#_),
+h4 em:not(#_), h5 em:not(#_), h6 em:not(#_),
+.display em:not(#_), #bioName em{
+  font-family:inherit !important;
   font-style:normal !important;
 }
