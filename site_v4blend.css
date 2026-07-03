@@ -1760,3 +1760,14 @@ h4 em:not(#_), h5 em:not(#_), h6 em:not(#_),
   font-family:inherit !important;
   font-style:normal !important;
 }
+
+/* ============================================================
+   Mobile page-hero eyebrow centering: drop the leading dash so the
+   label itself is centred, not "dash + label" (which pushed the text
+   right of centre). Applies to every subpage hero.
+   ============================================================ */
+@media (max-width:900px){
+  .page-hero{text-align:center;}
+  .page-hero .eyebrow{justify-content:center;}
+  .page-hero .eyebrow::before{display:none !important;}
+}
