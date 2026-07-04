@@ -1744,6 +1744,9 @@ body *:not(#_){
 }
 body .display:not(#_),
 body .display *:not(#_),
+body h1:not(#_), body h1 *:not(#_),
+body h2:not(#_), body h2 *:not(#_),
+body h3:not(#_), body h3 *:not(#_),
 body .card h3:not(#_){
   font-family:var(--serif,"Cormorant Garamond",Georgia,serif)!important;
 }
