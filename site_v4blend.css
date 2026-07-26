@@ -1788,3 +1788,17 @@ h4 em:not(#_), h5 em:not(#_), h6 em:not(#_),
     max-width:100% !important;
   }
 }
+
+/* ============================================================
+   Email addresses shown as plain "[at]" text (bot-obfuscated).
+   In team bios the address sits on its own line above the icons.
+   ============================================================ */
+.bio-contact{flex-wrap:wrap;}
+.bio-email{
+  flex-basis:100%;
+  font-size:.82rem;
+  color:var(--muted);
+  letter-spacing:.01em;
+  margin-bottom:2px;
+  word-break:break-word;
+}
