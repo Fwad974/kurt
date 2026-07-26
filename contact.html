@@ -80,7 +80,7 @@
 
 .split-contact{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:repeat(3, minmax(0,1fr));
   gap:32px;
   align-items:start;
 }
@@ -89,11 +89,24 @@
 .split-contact .card p{font-size:1.12rem; line-height:1.65; color:var(--ink-2); margin:0}
 .split-contact .card .mono{font-size:.82rem!important; margin-bottom:16px!important}
 
+/* bottom legal / affiliations pair */
+.legal-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:32px;
+  align-items:start;
+}
+.legal-grid .legal h3{margin:0 0 12px}
+
+@media (max-width:1100px){
+  .split-contact{grid-template-columns:1fr 1fr}
+}
 @media (max-width:900px){
   .contact-grid{grid-template-columns:1fr}
   .contact-card, .addr-block, .legal{padding:30px}
   .split-contact{grid-template-columns:1fr; gap:24px}
   .split-contact .card{padding:28px 30px}
+  .legal-grid{grid-template-columns:1fr; gap:24px}
 }
 
 /* ===== Privacy ed-item in contact ===== */
@@ -346,7 +359,7 @@ body[data-page="contact"] .ed-item[data-tag="privacy"]:hover .prv-open-hint svg{
   .news-body{font-size:1rem; line-height:1.65}
 }
 </style>
-<link rel="stylesheet" href="site_v4blend.css?v=19">
+<link rel="stylesheet" href="site_v4blend.css?v=29">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png">
@@ -409,7 +422,7 @@ body[data-page="contact"] .ed-item[data-tag="privacy"]:hover .prv-open-hint svg{
         Head of the MWB Lab. Enquiries about research programmes, collaborations,
         grant opportunities, and the lab's translational and clinical partnerships.
       </p>
-      <a class="link" href="mailto:kurt.pfannkuche@uni-koeln.de">→ kurt.pfannkuche@uni-koeln.de</a>
+      <span class="link">→ kurt.pfannkuche [at] uni-koeln.de</span>
     </div>
 
     <div class="contact-card">
@@ -419,7 +432,7 @@ body[data-page="contact"] .ed-item[data-tag="privacy"]:hover .prv-open-hint svg{
         Leads the cardiac organoid and 3D tissue programmes. Best point of contact
         for scientific enquiries, protocols, and ongoing experimental work.
       </p>
-      <a class="link" href="mailto:shamad@uni-koeln.de">→ shamad@uni-koeln.de</a>
+      <span class="link">→ shamad [at] uni-koeln.de</span>
     </div>
   </div>
 
@@ -460,36 +473,22 @@ body[data-page="contact"] .ed-item[data-tag="privacy"]:hover .prv-open-hint svg{
   </div>
 
   <div class="split-contact">
-    <div>
-      <div class="card rv" style="margin-bottom:16px">
-        <div class="mono">Collaborations</div>
-        <h3>Academic &amp; industry <em>partnerships</em></h3>
-        <p>Proposals for collaborative projects, material transfer, or joint grant applications. Include a brief description of your group and the intended scope.</p>
-      </div>
-
-      <div class="card rv" style="margin-bottom:16px">
-        <div class="mono">Positions</div>
-        <h3>PhD, postdoc &amp; <em>student enquiries</em></h3>
-        <p>Unsolicited applications are welcome. Please include your CV, a brief motivation letter, and an indication of your preferred start date.</p>
-      </div>
-
-      <div class="card rv">
-        <div class="mono">Press &amp; media</div>
-        <h3>Interviews &amp; <em>media enquiries</em></h3>
-        <p>Journalists and science communicators may contact the PI directly. High-resolution microscopy images and figures are available on request for editorial use.</p>
-      </div>
+    <div class="card rv">
+      <div class="mono">Collaborations</div>
+      <h3>Academic &amp; industry <em>partnerships</em></h3>
+      <p>Proposals for collaborative projects, material transfer, or joint grant applications. Include a brief description of your group and the intended scope.</p>
     </div>
 
-    <div>
-      <div class="legal rv">
-        <h3>Institute <em>affiliations</em></h3>
-        <p class="small">
-          The MWB Lab is part of the Institute for Physiology I, Medical Faculty, University
-          of Cologne (Universität zu Köln). Research is conducted in accordance with
-          the ethical standards and institutional review requirements of the University of Cologne
-          and the associated University Hospital (Uniklinik Köln).
-        </p>
-      </div>
+    <div class="card rv">
+      <div class="mono">Positions</div>
+      <h3>PhD, postdoc &amp; <em>student enquiries</em></h3>
+      <p>Unsolicited applications are welcome. Please include your CV, a brief motivation letter, and an indication of your preferred start date.</p>
+    </div>
+
+    <div class="card rv">
+      <div class="mono">Press &amp; media</div>
+      <h3>Interviews &amp; <em>media enquiries</em></h3>
+      <p>Journalists and science communicators may contact the PI directly. High-resolution microscopy images and figures are available on request for editorial use.</p>
     </div>
   </div>
 </section>
@@ -497,18 +496,30 @@ body[data-page="contact"] .ed-item[data-tag="privacy"]:hover .prv-open-hint svg{
 <!-- ========== DISCLAIMER ========== -->
 <section class="sec" style="padding-top:0">
   <div class="sec-head">
-    <div class="eyebrow rv">03 &mdash; Disclaimer</div>
+    <div class="eyebrow rv">03 &mdash; Legal &amp; affiliations</div>
     <div></div>
   </div>
-  <div class="legal rv" style="max-width:82ch">
-    <p class="small">
-      Despite careful control of the content, we assume no liability for the accuracy,
-      completeness and up-to-dateness of our websites or for the content of external
-      websites. We expressly distance ourselves from the content of the linked pages
-      &mdash; on the design of which we have no influence. This statement applies to all
-      information posted on the websites and for all content of the pages to which links
-      or banners lead.
-    </p>
+  <div class="legal-grid">
+    <div class="legal rv">
+      <h3>Institute <em>affiliations</em></h3>
+      <p class="small">
+        The MWB Lab is part of the Institute for Physiology I, Medical Faculty, University
+        of Cologne (Universität zu Köln). Research is conducted in accordance with
+        the ethical standards and institutional review requirements of the University of Cologne
+        and the associated University Hospital (Uniklinik Köln).
+      </p>
+    </div>
+    <div class="legal rv">
+      <h3><em>Disclaimer</em></h3>
+      <p class="small">
+        Despite careful control of the content, we assume no liability for the accuracy,
+        completeness and up-to-dateness of our websites or for the content of external
+        websites. We expressly distance ourselves from the content of the linked pages
+        &mdash; on the design of which we have no influence. This statement applies to all
+        information posted on the websites and for all content of the pages to which links
+        or banners lead.
+      </p>
+    </div>
   </div>
 </section>
 

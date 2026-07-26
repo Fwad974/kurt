@@ -544,8 +544,12 @@ body[data-page="team"] .eyebrow{
     border-color:rgba(251,225,150,.55);
   }
 }
+
+/* team member names: keep last names upright, not italic */
+.fig-card .body h3 em,
+#bioName em{font-style:normal !important;}
 </style>
-<link rel="stylesheet" href="site_v4blend.css?v=19">
+<link rel="stylesheet" href="site_v4blend.css?v=29">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png">
@@ -587,7 +591,6 @@ body[data-page="team"] .eyebrow{
 <section class="sec">
   <div class="sec-head">
     <div class="eyebrow rv">Leadership</div>
-    <div><span class="team-group-count rv">2 members</span></div>
   </div>
   <div class="card-grid four">
     <div class="fig-card">
@@ -597,18 +600,16 @@ body[data-page="team"] .eyebrow{
       <div class="body">
         <h3>Prof. Dr. Kurt <em>Pfannkuche</em></h3>
         <div class="mono">Principal Investigator</div>
-        <div class="meta"><a href="mailto:kurt.pfannkuche@uni-koeln.de">kurt.pfannkuche@uni-koeln.de</a></div>
+        <div class="meta"><span>kurt.pfannkuche [at] uni-koeln.de</span></div>
         <div class="fig-bio">
           <p>Kurt Pfannkuche studied biology at the University of Cologne, specializing in animal physiology, genetics, ecology, and pharmacology, and wrote his thesis in Klaus Rajewsky&rsquo;s laboratory on the topic of cell-permeable Cre recombinase.</p>
           <p>He then moved to the Faculty of Medicine and joined the Institute of Neurophysiology under the direction of J&uuml;rgen Hescheler to conduct research on pluripotent stem cells and issues related to cardiac cell therapy. There, he also received his venia legendi and was appointed adjunct professor in 2024.</p>
           <div class="bio-contact">
-            <a href="mailto:kurt.pfannkuche@uni-koeln.de" aria-label="Email Kurt Pfannkuche" title="Email">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            </a>
+            <span class="bio-email">kurt.pfannkuche [at] uni-koeln.de</span>
             <a href="https://www.linkedin.com/in/kurt-pfannkuche-0835a594/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile of Kurt Pfannkuche" title="LinkedIn">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
             </a>
-            <a href="https://scholar.google.com/scholar?q=Kurt+Pfannkuche" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar profile of Kurt Pfannkuche" title="Google Scholar">
+            <a href="https://scholar.google.com/citations?user=9RcQSa4AAAAJ&amp;hl=en&amp;oi=ao" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar profile of Kurt Pfannkuche" title="Google Scholar">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 14.17L0 5.36 12 0l12 5.36-12 8.81zM5.82 11.21v4.76L12 20.52l6.18-4.55v-4.76L12 15.76 5.82 11.21z"/></svg>
             </a>
           </div>
@@ -622,20 +623,21 @@ body[data-page="team"] .eyebrow{
       <div class="body">
         <h3>Dr. Sarkawt <em>Hamad</em></h3>
         <div class="mono">Head of Scientific Development</div>
-        <div class="meta"><a href="mailto:shamad@uni-koeln.de">shamad@uni-koeln.de</a></div>
+        <div class="meta"><span>shamad [at] uni-koeln.de</span></div>
         <div class="fig-bio">
           <p>Dr. Sarkawt Hamad is a scientist specializing in regenerative medicine, with a focus on cardiac tissue engineering, stem cell biology, and translational research. He currently serves as Head of Scientific Development at the MWB-Lab, where he works on developing clinically relevant and scalable approaches in cardiac regeneration.</p>
           <p>His research includes hiPSC-derived cardiomyocytes, endothelial cells, cardiac organoids, mesenchymal stem cells, exosome platforms, and cGMP-compliant cell systems. He is particularly interested in translating stem cell-based technologies into reproducible and clinically applicable solutions.</p>
           <p>Dr. Hamad has experience in large-animal translational models, AI-driven bioinformatics, and international scientific collaboration. He has supervised MD, MSc, and PhD researchers and actively contributes to advancing regenerative medicine toward clinical and industrial applications.</p>
           <div class="bio-contact">
-            <a href="mailto:shamad@uni-koeln.de" aria-label="Email Sarkawt Hamad" title="Email">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            </a>
+            <span class="bio-email">shamad [at] uni-koeln.de</span>
             <a href="https://www.linkedin.com/in/sarkawt-hamad-7192b7219" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile of Sarkawt Hamad" title="LinkedIn">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
             </a>
-            <a href="https://scholar.google.com/scholar?q=Sarkawt+Hamad" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar profile of Sarkawt Hamad" title="Google Scholar">
+            <a href="https://scholar.google.com/citations?user=-cYPHQkAAAAJ&amp;hl=en&amp;oi=ao" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar profile of Sarkawt Hamad" title="Google Scholar">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 14.17L0 5.36 12 0l12 5.36-12 8.81zM5.82 11.21v4.76L12 20.52l6.18-4.55v-4.76L12 15.76 5.82 11.21z"/></svg>
+            </a>
+            <a href="https://orcid.org/0000-0002-5155-9467" target="_blank" rel="noopener noreferrer" aria-label="ORCID profile of Sarkawt Hamad" title="ORCID">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.37 17.97H5.9V7.37h1.47v10.6zM6.635 6.32a.935.935 0 1 1 0-1.87.935.935 0 0 1 0 1.87zm11.29 11.65h-4.35V7.37h4.17c3.97 0 5.71 2.83 5.71 5.3 0 2.69-2.1 5.3-5.53 5.3zm-.12-9.22h-2.76v7.84h2.69c3.82 0 4.7-2.9 4.7-3.92 0-1.66-1.06-3.92-4.63-3.92z"/></svg>
             </a>
           </div>
         </div>
@@ -647,7 +649,6 @@ body[data-page="team"] .eyebrow{
 <section class="sec">
   <div class="sec-head">
     <div class="eyebrow rv">Advisors</div>
-    <div><span class="team-group-count rv">3 members</span></div>
   </div>
   <div class="card-grid four">
     <div class="fig-card">
@@ -682,10 +683,27 @@ body[data-page="team"] .eyebrow{
       </div>
       <div class="body">
         <h3>Fatma <em>Alhashimi</em>, PhD</h3>
-        <div class="mono">Director, First Stem Cell and Genomics Laboratory, Dubai</div>
+        <div class="mono">CEO of FSG, and Chairperson of Dubai Stem Cell Congress</div>
         <p>Expert in GMP cell manufacturing.</p>
         <div class="fig-bio">
           <p>Dr. Fatma Alhashimi is a stem cell expert, CEO of FSG Lab in Dubai, and Chairperson of the Dubai Stem Cell Congress. She established the UAE&rsquo;s first GMP-compliant stem cell and molecular laboratory, featuring advanced ISO clean room facilities for stem cell isolation, culture, and banking. With a PhD in Project Management and a background in molecular and medical genetics, she combines scientific expertise with strong leadership in healthcare innovation. Dr. Alhashimi has led pioneering initiatives in cord blood donor recruitment in the UAE and is a certified trainer in project management, change management, and organizational transformation.</p>
+        </div>
+      </div>
+    </div>
+    <div class="fig-card">
+      <div class="figure portrait" style="clip-path:none;">
+        <img src="team/Antoni_Bayes_01_20200923.jpg" alt="Antoni Bayés-Genís" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="body">
+        <h3>Antoni <em>Bay&eacute;s-Gen&iacute;s</em>, MD, PhD</h3>
+        <div class="mono">ICREC &middot; IGTP &amp; UAB, Barcelona</div>
+        <p>Clinical Director of the Heart Area at Germans Trias i Pujol University Hospital and Principal Investigator of the Heart Failure and Cardiac Regeneration group (ICREC).</p>
+        <div class="fig-bio">
+          <p>Antoni Bay&eacute;s-Gen&iacute;s is the Clinical Director of the Heart Area at Germans Trias i Pujol University Hospital, holds a PhD in Medicine, and is Full Professor of Cardiology at the Autonomous University of Barcelona (UAB). He is also the Principal Investigator of the Heart Failure and Cardiac Regeneration Research Group (ICREC) at IGTP and a faculty member of the UAB Faculty of Medicine at the Can Ruti Campus.</p>
+          <p>He is a world-renowned reference in the field of cardiology. His research focuses on novel biomarkers and biotherapies for personalized and precision cardiology. He has led and contributed to numerous research projects, particularly in the development of new biomarkers to improve the diagnosis and prognosis of heart failure, the study of sudden cardiac death, as well as regenerative medicine and telemedicine. His research has also contributed to the understanding of the so-called Bay&eacute;s syndrome.</p>
+          <p>One of the most significant milestones in his research career was the development of a pioneering therapy to repair heart tissue after myocardial infarction. Known as PeriCord, this therapy consists of attaching a bioimplant of stem cells directly to the patient&rsquo;s heart to regenerate the damaged area and improve cardiac function.</p>
+          <p>He has authored over 1,051 SCI-indexed scientific articles in high-impact international journals and has contributed to more than 600 national and international conferences, delivering oral presentations. He has been awarded 49 competitive research grants, generating over &euro;8 million in research funding. He is a Full Professor of Medicine&ndash;Cardiology and has supervised and co-supervised 25 doctoral theses.</p>
+          <p>His innovative research has led to the development of multiple medical technologies and the registration of ten patents, two of which have been licensed to U.S. biotechnology companies. Another patent was awarded a &ldquo;Llavor&rdquo; project by the Government of Catalonia in 2020, supporting prototype development and the creation of a spin-off company. In 2022, he co-founded a startup, Nimble Diagnostics, in collaboration with the Germans Trias i Pujol Research Institute, the Polytechnic University of Catalonia, and the University of Barcelona (IGTP&ndash;UPC&ndash;UB), which subsequently secured &euro;2.5 million from the EIC Accelerator program. He has also established several collaboration agreements with biotechnology companies. He currently serves as a Board member and President of the Heart Failure Association of the European Society of Cardiology (ESC).</p>
         </div>
       </div>
     </div>
@@ -695,7 +713,6 @@ body[data-page="team"] .eyebrow{
 <section class="sec">
   <div class="sec-head">
     <div class="eyebrow rv">Researchers</div>
-    <div><span class="team-group-count rv">4 members</span></div>
   </div>
   <div class="card-grid four">
     <div class="fig-card">
@@ -704,14 +721,12 @@ body[data-page="team"] .eyebrow{
       </div>
       <div class="body">
         <h3>Lisa <em>Münchhalfen</em></h3>
-        <div class="mono">PhD student</div>
+        <div class="mono">Postdoctoral researcher</div>
         <div class="fig-bio">
           <p>Lisa Münchhalfen obtained her Bachelor&rsquo;s and Master&rsquo;s degrees in Biology and Geography at the University of Cologne. She gained research insights into in-vivo genome editing via CRISPR/Cas9 in the mouse model at the Transgenic Core Facility of the Max Planck Institute for Biology of Aging, before joining RG Pfannkuche as a PhD student.</p>
           <p>In her PhD she investigates the genetic network of the cardiac lineage and genetically modifies different cell lines using CRISPR technology to overcome hurdles for pre-clinical transplantation experiments.</p>
           <div class="bio-contact">
-            <a href="mailto:lmuench6@uni-koeln.de" aria-label="Email Lisa Münchhalfen" title="Email">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            </a>
+            <span class="bio-email">lmuench6 [at] uni-koeln.de</span>
             <a href="https://www.linkedin.com/in/lisa-m%C3%BCnchhalfen-aa742a1b1" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile of Lisa Münchhalfen" title="LinkedIn">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
             </a>
@@ -734,9 +749,7 @@ body[data-page="team"] .eyebrow{
           <p>She investigates the roles of different cell types within these systems, with particular emphasis on controlling myofibrosis and enhancing vascularization. In addition, her research involves upscaling organoid production using stirred bioreactor systems.</p>
           <p>She is also engaged in translational studies, including the transplantation of cardiac constructs in porcine models of myocardial infarction, aiming to bridge the gap between laboratory research and clinical application.</p>
           <div class="bio-contact">
-            <a href="mailto:eaksoy2359@gmail.com" aria-label="Email Ebru Aksoy" title="Email">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            </a>
+            <span class="bio-email">eaksoy2359 [at] gmail.com</span>
             <a href="https://www.linkedin.com/in/ebru-aksoy-9b72a2108" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile of Ebru Aksoy" title="LinkedIn">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
             </a>
@@ -759,9 +772,7 @@ body[data-page="team"] .eyebrow{
           <p>Drawing on her background in veterinary medicine, she brings a distinctive translational lens to her work &mdash; bridging the gap between animal physiology and cutting-edge stem cell science. Her technical expertise encompasses mRNA transfection, nucleofection, PBMC engineering, and hiPSC-derived cardiomyocyte and cardiac organoid differentiation, complemented by proficiency in advanced bioinformatics pipelines, including single-cell and bulk RNA-seq analysis.</p>
           <p>Through this seamless integration of experimental rigor and computational insight, Rezwan contributes to the forefront of cardiac tissue engineering and cell reprogramming research, working toward innovative solutions in regenerative medicine.</p>
           <div class="bio-contact">
-            <a href="mailto:rfiruzi1@smail.uni-koeln.de" aria-label="Email Rezwan Firuzi" title="Email">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            </a>
+            <span class="bio-email">rfiruzi1 [at] smail.uni-koeln.de</span>
             <a href="https://www.linkedin.com/in/rezwan-firuzi-82667a199" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile of Rezwan Firuzi" title="LinkedIn">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
             </a>
@@ -786,9 +797,7 @@ body[data-page="team"] .eyebrow{
           <p>I have a clinical background in cardiology with prior experience as a cardiologist, specializing in adult echocardiography and cardiomyopathy management.</p>
           <p>My research focuses on the isolation and characterization of mesenchymal stem cell (MSC)-derived exosomes and their roles in cardiomyocyte maturation. In addition, I investigate macrophage-mediated regulation of endothelial migration in bioartificial heart tissue, as well as the differentiation of human iPSCs into cardiac fibroblasts and epicardial cells.</p>
           <div class="bio-contact">
-            <a href="mailto:jiangyajuan01@outlook.com" aria-label="Email Yajuan Jiang" title="Email">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            </a>
+            <span class="bio-email">jiangyajuan01 [at] outlook.com</span>
           </div>
         </div>
       </div>
@@ -799,12 +808,11 @@ body[data-page="team"] .eyebrow{
 <section class="sec">
   <div class="sec-head">
     <div class="eyebrow rv">Students</div>
-    <div><span class="team-group-count rv">4 members</span></div>
   </div>
   <div class="card-grid four">
     <div class="fig-card">
       <div class="figure portrait" style="clip-path:none;">
-        <div class="placeholder"><span>Portrait<br>coming soon</span></div>
+        <img src="team/Katharina.jpeg" alt="Katharina Zahn" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
       </div>
       <div class="body">
         <h3>Katharina <em>Zahn</em></h3>
@@ -812,8 +820,12 @@ body[data-page="team"] .eyebrow{
         <div class="fig-bio">
           <p>Katharina Zahn is a medical student at the University of Cologne. For her medical doctoral thesis she is conducting research in the field of cardiac tissue engineering. Her work focuses on human induced pluripotent stem cells (hiPSCs) and their differentiation into cardiomyocytes and cardiac organoids. She investigates the long-term culture of cardiac organoids and their potential as model organisms.</p>
           <div class="bio-contact">
+            <span class="bio-email">katharina.zahn1 [at] uk-koeln.de</span>
             <a href="https://www.linkedin.com/in/katharina-zahn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile of Katharina Zahn" title="LinkedIn">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+            <a href="https://orcid.org/0009-0006-2905-4274" target="_blank" rel="noopener noreferrer" aria-label="ORCID profile of Katharina Zahn" title="ORCID">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.37 17.97H5.9V7.37h1.47v10.6zM6.635 6.32a.935.935 0 1 1 0-1.87.935.935 0 0 1 0 1.87zm11.29 11.65h-4.35V7.37h4.17c3.97 0 5.71 2.83 5.71 5.3 0 2.69-2.1 5.3-5.53 5.3zm-.12-9.22h-2.76v7.84h2.69c3.82 0 4.7-2.9 4.7-3.92 0-1.66-1.06-3.92-4.63-3.92z"/></svg>
             </a>
           </div>
         </div>
@@ -831,9 +843,7 @@ body[data-page="team"] .eyebrow{
           <p>My core research focuses on cryopolymer hydrogel and silk fibroin as biomaterial scaffolds to support the 3D culture, maturation, and in vivo engraftment of cardiomyocytes and cardiac organoids, aiming to advance translational therapies for myocardial repair and cardiovascular regenerative medicine. I have hands-on expertise in iPSC differentiation into cardiomyocytes and laboratory skills.</p>
           <p>I&rsquo;m passionate about bridging biomaterial science, stem cell biology, and clinical cardiovascular medicine.</p>
           <div class="bio-contact">
-            <a href="mailto:lu_ziwei@yeah.net" aria-label="Email Ziwei Lu" title="Email">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            </a>
+            <span class="bio-email">lu_ziwei [at] yeah.net</span>
             <a href="https://www.linkedin.com/in/ziwei-lu-691a51401" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile of Ziwei Lu" title="LinkedIn">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
             </a>
@@ -857,6 +867,70 @@ body[data-page="team"] .eyebrow{
     </div>
     <div class="fig-card">
       <div class="figure portrait" style="clip-path:none;">
+        <img src="team/12.jpeg" alt="Huolin Yang" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="body">
+        <h3>Huolin <em>Yang</em></h3>
+        <div class="mono">MD student</div>
+        <div class="fig-bio">
+          <p>Huolin Yang is a medical student at the University of Cologne and a doctoral researcher at the Institute of Neurophysiology. His research focuses on hiPSC-derived cardiomyocytes as models of inherited cardiac arrhythmia syndromes.</p>
+          <div class="bio-contact">
+            <span class="bio-email">huolin.yang7 [at] gmail.com</span>
+            <a href="https://www.linkedin.com/in/h-yang-979377392" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile of Huolin Yang" title="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+            <a href="https://orcid.org/0009-0001-3940-4454" target="_blank" rel="noopener noreferrer" aria-label="ORCID profile of Huolin Yang" title="ORCID">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.37 17.97H5.9V7.37h1.47v10.6zM6.635 6.32a.935.935 0 1 1 0-1.87.935.935 0 0 1 0 1.87zm11.29 11.65h-4.35V7.37h4.17c3.97 0 5.71 2.83 5.71 5.3 0 2.69-2.1 5.3-5.53 5.3zm-.12-9.22h-2.76v7.84h2.69c3.82 0 4.7-2.9 4.7-3.92 0-1.66-1.06-3.92-4.63-3.92z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fig-card">
+      <div class="figure portrait" style="clip-path:none;">
+        <img src="team/11.jpeg" alt="Omar Al Zouabi" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="body">
+        <h3>Omar <em>Al Zouabi</em></h3>
+        <div class="mono">MD student</div>
+        <div class="fig-bio">
+          <p>I am a medical student at the University of Cologne and a doctoral researcher in Neurophysiology, focusing on nanoparticle-mediated thermoablation and innovative translational approaches in neuroscience. Alongside my research activities, I have a strong clinical interest in Ophthalmology and aim to further develop and apply my experience in this field within a clinical context. I combine clinical, scientific, and humanitarian engagement to advance mental health and community resilience.</p>
+          <div class="bio-contact">
+            <span class="bio-email">Omar.Alzouabi [at] uk-koeln.de</span>
+            <a href="https://www.linkedin.com/in/omar-al-zouabi-2788b22a6/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile of Omar Al Zouabi" title="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+            <a href="https://orcid.org/0009-0008-3688-5660" target="_blank" rel="noopener noreferrer" aria-label="ORCID profile of Omar Al Zouabi" title="ORCID">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.37 17.97H5.9V7.37h1.47v10.6zM6.635 6.32a.935.935 0 1 1 0-1.87.935.935 0 0 1 0 1.87zm11.29 11.65h-4.35V7.37h4.17c3.97 0 5.71 2.83 5.71 5.3 0 2.69-2.1 5.3-5.53 5.3zm-.12-9.22h-2.76v7.84h2.69c3.82 0 4.7-2.9 4.7-3.92 0-1.66-1.06-3.92-4.63-3.92z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div class="eyebrow rv">Technical staff</div>
+  </div>
+  <div class="card-grid four">
+    <div class="fig-card">
+      <div class="figure portrait" style="clip-path:none;">
+        <img src="team/dainel.jpg" alt="Daniel Derichsweiler" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="body"><h3>Daniel <em>Derichsweiler</em></h3><div class="mono">Technical assistant</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div class="eyebrow rv">Lab alumni</div>
+  </div>
+  <div class="card-grid four">
+    <div class="fig-card">
+      <div class="figure portrait" style="clip-path:none;">
         <img src="team/Pranjali.jpg" alt="Pranjali Bhagat" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
       </div>
       <div class="body">
@@ -877,25 +951,9 @@ body[data-page="team"] .eyebrow{
   </div>
 </section>
 
-<section class="sec">
-  <div class="sec-head">
-    <div class="eyebrow rv">Technical staff</div>
-    <div><span class="team-group-count rv">1 member</span></div>
-  </div>
-  <div class="card-grid four">
-    <div class="fig-card">
-      <div class="figure portrait" style="clip-path:none;">
-        <img src="team/dainel.jpg" alt="Daniel Derichsweiler" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-      </div>
-      <div class="body"><h3>Daniel <em>Derichsweiler</em></h3><div class="mono">Technical assistant</div></div>
-    </div>
-  </div>
-</section>
-
 <section class="sec" id="team-gallery">
   <div class="sec-head">
     <div class="eyebrow rv">Gallery</div>
-    <div><span class="team-group-count rv" id="galleryCount"></span></div>
   </div>
   <div class="team-gallery-grid" id="galleryGrid"></div>
 </section>
@@ -1161,7 +1219,7 @@ body[data-page="team"] .eyebrow{
   `).join('');
 
   if(count){
-    count.textContent = GALLERY_IMAGES.length === 1 ? '1 photo' : GALLERY_IMAGES.length + ' photos';
+    if(count) count.textContent = GALLERY_IMAGES.length === 1 ? '1 photo' : GALLERY_IMAGES.length + ' photos';
   }
 
   /* Build strip thumbnails once */

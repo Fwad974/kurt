@@ -332,8 +332,46 @@ a.t-item:focus-visible::after{
   .protocol-step + .protocol-step::before{display:none}
   a.t-item::after{right:24px; top:24px}
 }
+
+/* credit line under the graphic abstract */
+.fig-credit{
+  margin:12px 2px 0;
+  font-size:.82rem;
+  line-height:1.5;
+  color:var(--muted);
+  letter-spacing:.01em;
+}
+
+/* collaboration section */
+.collab-prose{
+  max-width:none;
+  margin:36px 0 0;
+}
+.collab-prose p{
+  font-size:1.32rem;
+  line-height:1.62;
+  color:var(--ink-2);
+  margin:0 0 22px;
+}
+.collab-prose p:last-child{margin-bottom:0}
+.collab-photo-placeholder{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:320px;
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,.018) 0 14px, rgba(255,255,255,0) 14px 28px),
+    rgba(255,255,255,.02);
+}
+.collab-photo-placeholder span{
+  font-family:"JetBrains Mono",monospace;
+  font-size:.72rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
 </style>
-<link rel="stylesheet" href="site_v4blend.css?v=21">
+<link rel="stylesheet" href="site_v4blend.css?v=29">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png">
@@ -386,6 +424,7 @@ a.t-item:focus-visible::after{
     <div class="fig-label">Large-animal validation</div>
     <div class="fig-caption"><span class="sm">Porcine MI model</span><span>30 days · no arrhythmia</span></div>
   </div>
+    <p class="fig-credit">Designed by Dr. Carol G&aacute;lvez-Mont&oacute;n</p>
   </div>
 </section>
 
@@ -400,8 +439,8 @@ a.t-item:focus-visible::after{
   </div></div>
     <div class="split-prose">
       <div class="num">01 — Safety endpoint</div>
-      <h3>No arrhythmogenic effects at <em>30 days</em>.</h3>
-      <p>Cardiac organoid transplantation in a porcine model of acute myocardial infarction produced no arrhythmogenic effects. This finding underpins the program, as without proven electrical safety in a large-animal model, clinical translation is not feasible.</p>
+      <h3>No evidence of <em>increased arrhythmogenic risk</em>.</h3>
+      <p>Cardiac organoid transplantation in a porcine model of acute myocardial infarction produced no treatment-related pro-arrhythmic effects. This finding underpins the program, as without proven electrical safety in a large-animal model, clinical translation is not feasible.</p>
       <dl class="meta-list"><dt>Model</dt><dd>Porcine · acute MI</dd><dt>Timepoint</dt><dd>30 days post-transplant</dd><dt>Primary</dt><dd>Safety · arrhythmia</dd></dl>
     </div>
   </div>
@@ -452,6 +491,34 @@ a.t-item:focus-visible::after{
   </div>
 
   <p class="timeline-outlook rv">Ongoing preclinical studies in a chronic myocardial porcine model are advancing toward human clinical trials. We are open to collaborative partnerships.</p>
+</section>
+
+<!-- ========== COLLABORATION — ICREC / IGTP BARCELONA ========== -->
+<section class="sec" id="collaboration" style="padding-bottom:100px">
+  <div class="sec-head">
+    <div class="eyebrow rv">Collaboration &middot; Barcelona</div>
+    <div>
+      <h2 class="display" data-split-on-reveal>Collaboration with the ICREC Research Lab (IGTP, Barcelona).</h2>
+      <p class="sec-lede rv">Our group maintains a close collaboration with the ICREC Research Lab at the Germans Trias i Pujol Research Institute (IGTP, Barcelona), a leading translational cardiovascular research team with extensive expertise in advanced therapies, cardiac regeneration and preclinical cardiovascular research.</p>
+    </div>
+  </div>
+
+  <!-- Group photo hidden until provided by Carol's lab; restore this block (with the real <img>) when received.
+  <div class="lead-figure">
+    <div class="figure hero-fig">
+      <div class="fig-photo collab-photo-placeholder"><span>Group photo &mdash; coming soon</span></div>
+      <div class="fig-overlay"></div>
+      <div class="fig-label">ICREC &middot; IGTP Barcelona</div>
+    </div>
+  </div>
+  -->
+
+  <div class="collab-prose rv">
+    <p>The ICREC team, lead by Dr. Carolina G&aacute;lvez-Mont&oacute;n, has more than two decades of experience in the development and validation of large-animal models of cardiovascular disease, including myocardial infarction, heart failure and vascular interventions. Their expertise encompasses advanced cardiac imaging, electrophysiological mapping, arrhythmia assessment, tissue engineering, regenerative medicine and the preclinical evaluation of cell- and tissue-based therapies under conditions that closely mimic clinical practice. The group has a strong track record in translating innovative therapeutic concepts from the laboratory to clinically relevant preclinical models and has contributed to the development of several advanced therapy medicinal products (ATMPs) for cardiovascular diseases.</p>
+    <p>Our collaboration combines complementary expertise in stem cell biology, cardiac organoid generation and bioprocess engineering with IGTP&#39;s unique capabilities in large-animal cardiac surgery, multimodality phenotyping, cardiac magnetic resonance imaging, electrophysiological safety assessment and long-term in vivo evaluation. This multidisciplinary approach provides a highly robust platform for the development and translational validation of next-generation regenerative therapies.</p>
+    <p>A major outcome of this collaboration was the recent publication demonstrating the successful large-scale production, transplantation and therapeutic evaluation of human iPSC-derived cardiac organoids in a porcine model of acute myocardial infarction. The study showed efficient organoid engraftment, improved cardiac function, reduced scar formation and a favourable arrhythmia safety profile during follow-up. Importantly, the work also provided mechanistic insights into cardiac repair through spatial transcriptomic analyses, highlighting the potential of cardiac organoids as a novel regenerative strategy for myocardial regeneration.</p>
+    <p>Beyond this project, the collaboration continues to advance innovative approaches in cardiovascular regenerative medicine, leveraging IGTP&#39;s expertise in clinically relevant large-animal models and translational cardiovascular research to accelerate the path towards future clinical applications.</p>
+  </div>
 </section>
 
 <script>

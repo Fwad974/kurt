@@ -1729,3 +1729,76 @@ body[data-page="news"]{ --hero-photo:url('images/27102019_NP0040-EC_Hoechst/2710
   .split-sec .split-prose p{margin-left:0!important; margin-right:0!important;}
   .split-sec .split-prose .btn{margin-left:0!important; margin-right:0!important;}
 }
+
+/* ============================================================
+   SITE-WIDE TYPOGRAPHY — two fonts only
+   One font throughout (Manrope / sans), with Cormorant (serif)
+   kept only as the single highlight on the large display headings
+   and card titles. This removes the monospace label font and any
+   stray serif on body-level text so every page uses at most two
+   font styles. The :not(#_) bump raises specificity above the
+   per-component font rules without needing per-element overrides.
+   ============================================================ */
+body *:not(#_){
+  font-family:var(--sans,"Manrope",system-ui,sans-serif)!important;
+}
+body .display:not(#_),
+body .display *:not(#_),
+body h1:not(#_), body h1 *:not(#_),
+body h2:not(#_), body h2 *:not(#_),
+body h3:not(#_), body h3 *:not(#_),
+body .card h3:not(#_){
+  font-family:var(--serif,"Cormorant Garamond",Georgia,serif)!important;
+}
+
+/* ============================================================
+   Heading emphasis: an <em> inside any heading takes that heading's
+   own font and is never italic, so a heading never mixes serif + sans
+   or shows a stray italic word. Body-text emphasis (e.g. journal names
+   in .meta-line, which are not headings) keeps its italic.
+   ============================================================ */
+h1 em:not(#_), h2 em:not(#_), h3 em:not(#_),
+h4 em:not(#_), h5 em:not(#_), h6 em:not(#_),
+.display em:not(#_), #bioName em{
+  font-family:inherit !important;
+  font-style:normal !important;
+}
+
+/* ============================================================
+   Mobile page-hero eyebrow centering: drop the leading dash so the
+   label itself is centred, not "dash + label" (which pushed the text
+   right of centre). Applies to every subpage hero.
+   ============================================================ */
+@media (max-width:900px){
+  .page-hero{text-align:center;}
+  .page-hero .eyebrow{justify-content:center;}
+  .page-hero .eyebrow::before{display:none !important;}
+}
+
+/* ============================================================
+   Mobile: never force split-section headings onto one line — the
+   nowrap made long titles (e.g. "Microfluidic encapsulation")
+   overflow the viewport and get clipped. Let them wrap/break.
+   ============================================================ */
+@media (max-width:900px){
+  .split-sec .split-prose h3:not(#_){
+    white-space:normal !important;
+    overflow-wrap:break-word;
+    word-break:break-word;
+    max-width:100% !important;
+  }
+}
+
+/* ============================================================
+   Email addresses shown as plain "[at]" text (bot-obfuscated).
+   In team bios the address sits on its own line above the icons.
+   ============================================================ */
+.bio-contact{flex-wrap:wrap;}
+.bio-email{
+  flex-basis:100%;
+  font-size:.82rem;
+  color:var(--muted);
+  letter-spacing:.01em;
+  margin-bottom:2px;
+  word-break:break-word;
+}
